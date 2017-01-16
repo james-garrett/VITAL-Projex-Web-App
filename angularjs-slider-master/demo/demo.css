@@ -1,0 +1,97 @@
+* { 
+	margin: 0; padding: 0; 
+	background-image: url("lib/images/gradient-wallpaper-4.jpg");
+}
+body { 
+	/*font-family: 'Open Sans', sans-serif; color: #1f2636; */
+	font-family: 'Ubuntu', sans-serif; color: #1f2636; 
+	font-size: 14px; 
+	background: #000; 
+	/*padding-bottom: 40px; */
+
+}
+
+header { 
+	background: #0db9f0; color: #fff; margin-top: -40px; margin-bottom: 40px; 
+	text-align: center; 
+	padding: 15px 0; 
+	font-size: 28px;
+	}
+
+h1 { 
+	font-weight: 300; 
+}
+
+.hehch1 {
+	font-family: 'Ubuntu'; 
+	color: #1f2636; 
+}
+
+article {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+input {
+	width: 50%;
+	height: 20%;
+}
+
+.Q1slider {
+	text-align: center;
+}
+
+.inputBox {
+	margin-top: 10%;
+	text-align: center;
+	
+}
+
+.button-ion-button-round {
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: center;	
+}
+
+.button.icon-right.ion-android-create {
+	background-color: #33CD5F;
+	color: white;
+	-webkit-border-radius: 15px;
+  	-moz-border-radius: 15px;
+  	border-radius: 15px;
+  	-webkit-box-shadow: 0 10px #009C2F;
+  	-moz-box-shadow: 0 10px #009C2F;
+  	box-shadow: 0 10px #009C2F;
+
+}
+
+h2 {
+	margin-bottom:10px;}
+.wrapper { 
+	background: #fff; 
+	padding-top: 40px; 
+	text-align: center;
+
+}
+
+.DescriptionBox {
+	padding: 10px;
+	/*background-image: url("lib/images/4gTNThG.png");*/
+	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
+	/*background-image: url("lib/images/nice green to orange.jpg");*/
+}
+
+article { margin-bottom: 10px; }
+.tab-pane{
+  padding-top: 10px;
+}
+.field-title {
+  width: 100px;
+}
+
+.vertical-sliders {
+  margin: 0;
+}
+.vertical-sliders > div {
+  height: 250px;
+}

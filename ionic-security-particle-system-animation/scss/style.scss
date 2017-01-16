@@ -1,0 +1,186 @@
+@import "compass/css3";
+
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+body{
+  font-family: "Oswald",sans-serif;
+}
+
+#myCanvas{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.story-panels{
+	width: 100%;
+	height: 100%;
+}
+
+.story-content{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	max-width: 980px;
+	text-align: center;
+
+	p{
+		margin: 0;
+	}
+}
+
+.section{
+	height: 100%;
+	width: 100%;
+	@include transition(all 500ms ease-out);
+
+	&.hidden{
+		// @include translate3d(0px, 500px, 0px);
+		opacity: 0.0;
+	}
+
+	&.active{
+		@include translate3d(0px,0px,0px);
+		@include transition(all 1000ms ease-out 1000ms);
+		opacity: 1.0;
+	}
+}
+
+.status-bar{
+	width: 20%;
+	position: fixed;
+	height: 5px;
+	left: 0%;
+	background-color: red;
+	bottom: 0px;
+	@include transition(all 500ms ease-out);
+}
+
+.title{
+  font-size: 1.7rem;
+  text-align: center;
+  color: red;
+  padding-top: 2rem;
+}
+
+
+@mixin animation ($animation, $duration, $easing, $iterations, $delay) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-iteration-count: $iterations;
+    -webkit-animation-timing-function: $easing;
+ 
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-iteration-count: $iterations;
+    animation-timing-function: $easing;
+ 
+    -o-animation-delay: $delay;
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-iteration-count: $iterations;
+    -o-animation-timing-function: $easing;
+ 
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-iteration-count: $iterations;
+    animation-timing-function: $easing;
+}
+
+
+.environments-image{
+	height: 300px;
+	@include animation(rotate, 9s, linear, infinite, 0s);
+
+	.circle-1{
+		@include animation(rotateCounter, 9s, linear, infinite, 0s);
+		@include transform-origin(43.9px, 141.9px);
+	}
+
+	.circle-2{
+		@include animation(rotateCounter, 9s, linear, infinite, 0s);
+		@include transform-origin(112.1px, 34px);
+	}
+
+	.circle-3{
+		@include animation(rotateCounter, 9s, linear, infinite, 0s);
+		@include transform-origin(182.1px, 141.9px);
+	}
+
+
+}
+
+
+@include keyframes(rotate) {
+  from {
+  	@include rotate(0deg);
+  }
+
+  to{
+  	@include rotate(360deg);
+  }
+}
+
+@include keyframes(rotateCounter) {
+  from {
+  	@include rotate(0deg);
+  }
+
+  to{
+  	@include rotate(-360deg);
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+.btn{
+	border: 2px solid darkgrey;
+	background-color: transparent;
+	cursor: pointer;
+
+	&:focus{
+		outline: none;
+	}
+}
+
+.scroll-btn{
+	border: 3px solid red;
+	color: red;
+	font-size: 1.5rem;
+	width: 40px;
+	margin-left: -20px;
+	height: 40px;
+	position: fixed;
+	bottom: 50px;
+	background-color: transparent;
+	@include rotate(180deg);
+	@include border-radius(50%);
+  @include transition(all 300ms ease-out);
+	z-index: 999;
+  left: 50%;
+  cursor: pointer;
+  
+  &:hover{
+    background-color: red;
+    color: white !important;
+  }
+}

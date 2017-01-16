@@ -1,0 +1,281 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+body {
+  font-family: "Oswald",sans-serif;
+}
+
+#myCanvas {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.story-panels {
+  width: 100%;
+  height: 100%;
+}
+
+.story-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  text-align: center;
+}
+.story-content p {
+  margin: 0;
+}
+
+.section {
+  height: 100%;
+  width: 100%;
+  -moz-transition: all 500ms ease-out;
+  -o-transition: all 500ms ease-out;
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+}
+.section.hidden {
+  opacity: 0.0;
+}
+.section.active {
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+  -moz-transition: all 1000ms ease-out 1000ms;
+  -o-transition: all 1000ms ease-out 1000ms;
+  -webkit-transition: all 1000ms ease-out;
+  -webkit-transition-delay: 1000ms;
+  transition: all 1000ms ease-out 1000ms;
+  opacity: 1.0;
+}
+
+.status-bar {
+  width: 20%;
+  position: fixed;
+  height: 5px;
+  left: 0%;
+  background-color: red;
+  bottom: 0px;
+  -moz-transition: all 500ms ease-out;
+  -o-transition: all 500ms ease-out;
+  -webkit-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+}
+
+.title {
+  font-size: 1.7rem;
+  text-align: center;
+  color: red;
+  padding-top: 2rem;
+}
+
+.environments-image {
+  height: 300px;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotate;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotate;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotate;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.environments-image .circle-1 {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotateCounter;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotateCounter;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotateCounter;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotateCounter;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-transform-origin: 43.9px 141.9px;
+  -ms-transform-origin: 43.9px 141.9px;
+  -webkit-transform-origin: 43.9px 141.9px;
+  transform-origin: 43.9px 141.9px;
+}
+.environments-image .circle-2 {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotateCounter;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotateCounter;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotateCounter;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotateCounter;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-transform-origin: 112.1px 34px;
+  -ms-transform-origin: 112.1px 34px;
+  -webkit-transform-origin: 112.1px 34px;
+  transform-origin: 112.1px 34px;
+}
+.environments-image .circle-3 {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotateCounter;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotateCounter;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotateCounter;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotateCounter;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-transform-origin: 182.1px 141.9px;
+  -ms-transform-origin: 182.1px 141.9px;
+  -webkit-transform-origin: 182.1px 141.9px;
+  transform-origin: 182.1px 141.9px;
+}
+
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotateCounter {
+  from {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes rotateCounter {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+@keyframes rotateCounter {
+  from {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+.btn {
+  border: 2px solid darkgrey;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: none;
+}
+
+.scroll-btn {
+  border: 3px solid red;
+  color: red;
+  font-size: 1.5rem;
+  width: 40px;
+  margin-left: -20px;
+  height: 40px;
+  position: fixed;
+  bottom: 50px;
+  background-color: transparent;
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  z-index: 999;
+  left: 50%;
+  cursor: pointer;
+}
+.scroll-btn:hover {
+  background-color: red;
+  color: white !important;
+}
