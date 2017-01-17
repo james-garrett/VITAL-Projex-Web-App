@@ -11,7 +11,7 @@ body {
 
 }
 
-header, h2 { 
+header, h2, h3, h4 { 
 	background: #FF7964; 
 	color: #FFFFFF; 
 	margin-top: -40px; 
@@ -20,6 +20,12 @@ header, h2 {
 	padding: 15px 0; 
 	font-size: 28px;
 	}
+
+/*h4 {
+	background: #FF7964; 
+	color: #FFFFFF; 
+}*/
+
 
 #questionHeading {
 	color: #FFFFFF;
@@ -53,7 +59,7 @@ header, h2 {
 }
 
 .scroll {
-	
+	    background-color: #FF9F90;
 }
 
 .hehch1 {
@@ -61,11 +67,12 @@ header, h2 {
 	color: #1f2636; 
 }
 
-article {
+/*article {
 	margin-left: 10%;
 	margin-right: 10%;
+	background: #FF9F90;
 }
-
+*/
 input {
 	width: 50%;
 	height: 20%;
@@ -79,6 +86,24 @@ input {
 	margin-top: 10%;
 	text-align: center;
 	
+}
+
+.Q1slider, div.with-legend.rzslider, span.rz-bar-wrapper, span.rz-wrapper, .inputBox {
+	background: #FF9F90;
+}
+
+h3#h3Q {
+	background: #FF9F90;
+}
+
+.DescriptionBox {
+	margin-top: -10px;
+	padding: 10px;
+	background: #FF9F90;
+	text-align: center;
+
+	/*margin-left: 10%;
+	margin-right: 10%;*/
 }
 
 .button-ion-button-round {
@@ -100,14 +125,11 @@ input {
 
 }
 
-.DescriptionBox {
-	padding: 10px;
-	/*background-image: url("lib/images/4gTNThG.png");*/
-	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
-	/*background-image: url("lib/images/nice green to orange.jpg");*/
-}
+/*article { 
+	margin-bottom: 10px; 
+	background-color: #FF9F90;
+}*/
 
-article { margin-bottom: 10px; }
 .tab-pane{
   padding-top: 10px;
 }
