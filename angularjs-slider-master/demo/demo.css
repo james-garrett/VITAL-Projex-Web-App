@@ -11,15 +11,37 @@ body {
 
 }
 
-header, h2, h3, h4 { 
-	background: #FF7964; 
+/*header { 
+	
 	color: #FFFFFF; 
-	margin-top: -40px; 
-	margin-bottom: 40px; 
-	text-align: center; 
-	padding: 15px 0; 
+	
 	font-size: 28px;
-	}
+	}*/
+
+ #Qh2, #Qh3, #Qh4 {
+ 	background: #FF7964; 
+	color: #FFFFFF; 
+	text-align: center; 
+
+ }
+
+#Qh3, #Qh4 { 
+	margin-top: -10px;
+
+}
+
+#QDh3 {
+	background: #FF9F90; 
+	color: #FFFFFF; 
+}
+
+span.rz-tick-value.ng-binding {
+	background: #FF9F90;
+}
+
+span.rz-tick-legend.ng-binding {
+	background: #FF9F90;
+}
 
 /*h4 {
 	background: #FF7964; 
@@ -28,6 +50,11 @@ header, h2, h3, h4 {
 
 
 #questionHeading {
+	background: #FF7964; 
+	/*margin-top: -40px; */
+	/*margin-bottom: 40px; */
+	text-align: center; 
+	padding: 15px 0; 
 	color: #FFFFFF;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
@@ -94,6 +121,7 @@ input {
 
 h3#h3Q {
 	background: #FF9F90;
+	color: #FFFFFF;
 }
 
 .DescriptionBox {
