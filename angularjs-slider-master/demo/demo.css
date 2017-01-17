@@ -11,15 +11,49 @@ body {
 
 }
 
-header { 
-	background: #0db9f0; color: #fff; margin-top: -40px; margin-bottom: 40px; 
+header, h2 { 
+	background: #FF7964; 
+	color: #FFFFFF; 
+	margin-top: -40px; 
+	margin-bottom: 40px; 
 	text-align: center; 
 	padding: 15px 0; 
 	font-size: 28px;
 	}
 
-h1 { 
+#questionHeading {
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+}
+
+#mainh1 { 
 	font-weight: 300; 
+	background: rgba(0,0,0, 0);
+	color: #FFFFFF;
+	/*text-align: center;*/
+}
+
+#mainh4 { 
+	background: rgba(0,0,0, 0);
+	color: #FFFFFF;
+	/*text-align: center;*/
+}
+
+.wrapper { 
+	background: rgba(0,0,0, 0.7);
+	padding-bottom: 30px;
+	padding-top: 30px;
+	margin: 30px;
+	color: #FFFFFF;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.scroll {
+	
 }
 
 .hehch1 {
@@ -62,14 +96,6 @@ input {
   	-webkit-box-shadow: 0 10px #009C2F;
   	-moz-box-shadow: 0 10px #009C2F;
   	box-shadow: 0 10px #009C2F;
-
-}
-
-h2 {
-	margin-bottom:10px;}
-.wrapper { 
-	background: #fff; 
-	padding-top: 40px; 
 	text-align: center;
 
 }
