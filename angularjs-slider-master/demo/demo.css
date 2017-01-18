@@ -77,6 +77,33 @@ header, h2 {
 	margin: auto;
 }
 
+.scroll .environments-image .gem {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotateCounter;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotateCounter;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotateCounter;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotateCounter;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-transform-origin: 43.9px 141.9px;
+  -ms-transform-origin: 43.9px 141.9px;
+  -webkit-transform-origin: 43.9px 141.9px;
+  transform-origin: 43.9px 141.9px;
+}
+
 .Q1slider {
 	text-align: center;
 	background: none;

@@ -7,16 +7,24 @@
 <ion-content>
 <header><h2 id="questionHeading">QUESTION 1</h2></header>
   <h4 id="questionHeading">Indicate on the scale which words most accurately describe your level of honesty in everyday life.</h4>
-    <h3 id="questionHeading">Where would you be on this scale?</h3>
+  <h3 id="questionHeading">Where would you be on this scale?</h3>
     
-    <svg id="shapeContainer" width="30%" height="20%">
-      <!-- <circle fill="#DA126D" stroke="#DA126D" cx="80" cy="80" r="75"/> -->
-      <!-- <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300,150 225,280 75,280 0,150 75,20 225,20" /> -->
-      <svg viewBox="0 0 300 300" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-        <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" />
-        <!-- https://codepen.io/cwmanning/pen/Hugye -->
-      </svg>
+  <svg id="shapeContainer" width="30%" height="20%" viewBox="0 0 300 300">
+    <!-- <circle fill="#DA126D" stroke="#DA126D" cx="80" cy="80" r="75"/> -->
+    <!-- <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300,150 225,280 75,280 0,150 75,20 225,20" /> -->
+    <svg class="environments-image" viewBox="0 0 300 300" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+      <polygon class="gem" fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+        <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="0 60 70"
+                          to="360 60 70"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+      <!-- https://codepen.io/cwmanning/pen/Hugye -->
+      </polygon>
     </svg>
+  </svg>
 
   <article class="DescriptionBox">
     <div class="Q1slider">
