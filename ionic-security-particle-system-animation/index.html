@@ -77,7 +77,7 @@ var stopped = false,
 	isMobile = false,
 	currentIndex = 5,
 	circleRadius = 65,
-	moveSpeed = 10;
+	moveSpeed = 10;		//Move speed for circles and ui elms
 	
 
 //3 Concentric Circles in
@@ -258,7 +258,7 @@ Line.prototype.reset = function(){
 	this.line.segments[1].point = point;
 }
 
-var Node = function(point, dest){
+var Node = function(point, dest){		//Specs for particles
 	this.point = point;
 
 	var color = {

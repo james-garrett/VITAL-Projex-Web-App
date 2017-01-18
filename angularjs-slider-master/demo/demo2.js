@@ -32,7 +32,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     value: 10
   };
 
-  
+  // $(function changeHREF() {
+  //   $("#theLink").click(function(){
+  //       $(this).attr("href","http://tnbelt.com");
+  //   });
+  // // http://stackoverflow.com/questions/9933835/modify-target-url-in-onclick-handler  
+  // // http://jsbin.com/icUTUjI/1/edit?html,js,output  
+  // });
+
+
   //Slider with ticks values and legend
   $scope.slider_ticks_legend = {
     value: 4,
@@ -52,12 +60,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
         
       ],
       getPointerColor: function(value) {
-            if (value <= 2)
+            if (value <= 2) {
                 return 'green';
-            if (value <= 5)
+              }
+            if (value <= 5) {
                 return 'blue';
-            if (value <= 7)
+              }
+            if (value <= 7) {
                 return 'purple';
+              }
             return '#2AE02A';
         }
     }

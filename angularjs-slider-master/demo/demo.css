@@ -11,24 +11,6 @@ body {
 
 }
 
-header, h2 { 
-	background: #FF7964; 
-	color: #FFFFFF; 
-	margin-top: -40px; 
-	margin-bottom: 40px; 
-	text-align: center; 
-	padding: 15px 0; 
-	font-size: 28px;
-	}
-
-#questionHeading {
-	color: #FFFFFF;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
-    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
-    line-height: 1.2;
-}
-
 #mainh1 { 
 	font-weight: 300; 
 	background: rgba(0,0,0, 0);
@@ -61,24 +43,69 @@ header, h2 {
 	color: #1f2636; 
 }
 
-article {
+/*article {
 	margin-left: 10%;
 	margin-right: 10%;
+}*/
+
+/* QUESTION 1 CSS */
+
+header, h2 { 
+	background: #FF7964; 
+	color: #FFFFFF; 
+	margin-top: -40px; 
+	margin-bottom: 40px; 
+	text-align: center; 
+	padding: 15px 0; 
+	font-size: 28px;
+	}
+
+#questionHeading {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
 }
 
-input {
-	width: 50%;
-	height: 20%;
+#shapeContainer {
+	background-image: none;
+	/*These two lines below center-align the svg*/
+	display: block;
+	margin: auto;
 }
 
 .Q1slider {
 	text-align: center;
+	background: none;
+}
+
+.rz-tick-legend.ng-binding {
+	background: none;
+}
+
+.rz-tick-value.ng-binding {
+	background: none;
+}
+
+.rz-bar-wrapper {
+	background: none;
+}
+
+h3#QDh3 {
+	font-size: 20px;
+	background: none;
+	color: #FFFFFF;
 }
 
 .inputBox {
+	background: none;
 	margin-top: 10%;
 	text-align: center;
-	
+	width: 100%;
+	height: 20%;
 }
 
 .button-ion-button-round {
@@ -100,14 +127,25 @@ input {
 
 }
 
-.DescriptionBox {
+article.DescriptionBox {
 	padding: 10px;
+	background: rgba(0,0,0, 0.7);
+	padding-bottom: 30px;
+	padding-top: 30px;
+	margin: 30px;
+	color: #FFFFFF;
+	border-radius: 15px;
+	text-align: center;
 	/*background-image: url("lib/images/4gTNThG.png");*/
 	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
 	/*background-image: url("lib/images/nice green to orange.jpg");*/
 }
 
-article { margin-bottom: 10px; }
+/*article { 
+*/	/*margin-bottom: 10px; */
+/*}*/
+
+
 .tab-pane{
   padding-top: 10px;
 }

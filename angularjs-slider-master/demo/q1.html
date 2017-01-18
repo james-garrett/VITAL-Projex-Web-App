@@ -6,9 +6,19 @@
 </ion-header-bar> -->
 <ion-content>
 <header><h2 id="questionHeading">QUESTION 1</h2></header>
-  <h4>Indicate on the scale which words most accurately describe your level of honesty in everyday life.</h4>
+  <h4 id="questionHeading">Indicate on the scale which words most accurately describe your level of honesty in everyday life.</h4>
+    <h3 id="questionHeading">Where would you be on this scale?</h3>
+    
+    <svg id="shapeContainer" width="30%" height="20%">
+      <!-- <circle fill="#DA126D" stroke="#DA126D" cx="80" cy="80" r="75"/> -->
+      <!-- <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300,150 225,280 75,280 0,150 75,20 225,20" /> -->
+      <svg viewBox="0 0 300 300" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+        <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" />
+        <!-- https://codepen.io/cwmanning/pen/Hugye -->
+      </svg>
+    </svg>
+
   <article class="DescriptionBox">
-    <h3>Where would you be on this scale?</h3>
     <div class="Q1slider">
       <rzslider class="with-legend"
         rz-slider-model="slider_ticks_legend.value"
@@ -16,7 +26,7 @@
       </rzslider>
     </div>
     <div class="inputBox">
-      <h3>Please list key words in the box so you can remember what you were thinking.</h3>
+      <h3 id="QDh3">Please list key words in the box so you can remember what you were thinking.</h3>
       <textarea rows="3" cols="80" placeholder="Please list any further thoughts you have here as key words"></textarea>
       <br>
       <a href="#/second">Next Question</a>    
