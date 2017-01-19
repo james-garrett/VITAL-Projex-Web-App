@@ -68,6 +68,19 @@ header, h2 {
     font-weight: 500;
     /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
     line-height: 1.2;
+    margin-top: -5px;
+
+}
+
+h3#questionHeading {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+    margin-top: 10px;
 }
 
 #valueExplanation {
@@ -85,10 +98,13 @@ header, h2 {
 	/*These two lines below center-align the svg*/
 	display: block;
 	margin: auto;
+	height: 700px;
 }
 
 
 #gemLabel {
+	font-family: "Ubuntu";
+	font-style: bold;
 /*	text-align: center;
 	word-wrap: break-word;
 	color: #000000;*/
@@ -147,10 +163,12 @@ h3#QDh3 {
 
 .inputBox {
 	background: none;
-	margin-top: 10%;
+	margin-top: 5%;
+
 	text-align: center;
 	width: 100%;
-	height: 20%;
+	/*height: 20%;*/
+	vertical-align: middle;
 }
 
 .button-ion-button-round {
@@ -175,12 +193,13 @@ h3#QDh3 {
 article.DescriptionBox {
 	padding: 10px;
 	background: rgba(0,0,0, 0.7);
-	padding-bottom: 30px;
-	padding-top: 30px;
+	padding-bottom: 15px;
+	padding-top: 15px;
 	margin: 30px;
 	color: #FFFFFF;
 	border-radius: 15px;
 	text-align: center;
+
 	/*background-image: url("lib/images/4gTNThG.png");*/
 	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
 	/*background-image: url("lib/images/nice green to orange.jpg");*/
@@ -203,4 +222,18 @@ article.DescriptionBox {
 }
 .vertical-sliders > div {
   height: 250px;
+}
+
+#txt {
+	text-align: center;
+	height: 40px;
+}
+
+.rzslider .rz-ticks .rz-tick .rz-tick-legend { /*Stolen from rzslider.css to be modified for more room*/
+  font-size: 12px;
+  max-width: 100px
+}
+
+#finish {
+	margin-bottom: 10px;
 }

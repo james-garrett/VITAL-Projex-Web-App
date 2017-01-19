@@ -16,6 +16,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/second',
     templateUrl: 'q2.html'
   })
+
+  .state('menu', {
+    url: '/menu',
+    templateUrl: 'menu.html'
+  })
+  
   .state('last', {
     url: '/last',
     templateUrl: 'last.html'
