@@ -35,13 +35,13 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
   $scope.Q1LegendArray = [
-      'Lie; Dishonest; Untrustworthy',
-      'Cheat; Deceive',
-      'White Lies',
-      'Honest',
-      'Honest but...',
-      'Gossip',
-      'Hard Hearted or Idealistic'];
+      ['You Lie; You are Dishonest; You are Untrustworthy', 'untruthful; unfair; corrupt'],
+      ['You Cheat; You Deceive', 'avoids consequences; rumours; exaggerate answers'],
+      ['You tell White Lies', 'tell minor lies to avoid hurting someones feelings'],
+      ['You are Honest', 'Everything said is right and true and considerate; trustworthy; genuine; reliable'],
+      ['You are Honest but...', 'inconsiderate; insensitive; tactless; inappropriate; too modest'],
+      ['You Gossip', 'true but destructive to relationships'],
+      ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
   // $(function changeHREF() {
   //   $("#theLink").click(function(){
   //       $(this).attr("href","http://tnbelt.com");
@@ -72,8 +72,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       getPointerColor: function(value) {
         
         switch(value) {
+          
           case 1:
-            
             $scope.gemColor = 'green';
             break;
           
@@ -113,15 +113,35 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   };
 
   $scope.changeGemLabel = function(value) {
-    console.log(value, $scope.Q1LegendArray[value-1]);
+    // console.log(value, $scope.Q1LegendArray[value-1]);
     var gem = document.getElementsByClassName("gem");
+    var gemTxt = document.getElementById("gemLabel");
+    var gemTxt2 = document.getElementById("subGemLabel");
+    var gemTxt3 = document.getElementById("subGemLabel2");
+
+    var desc = document.getElementById("valueExplanation");
     // console.log(gem.[0]);
     // gem.style.fill="yellow";
-    gem.fill = '#000000';
+    // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
-    var gemTxt = document.getElementById("gemLabel");
-    gemTxt.textContent='You are ' + $scope.Q1LegendArray[value-1];
+    var val = $scope.Q1LegendArray[value-1][0];
+    console.log(val.length);
+    if(val.length > 14) {
+        var split = val.match(/.{1,14}/g);
+        console.log(split);
+        gemTxt.textContent = split[0];
+        gemTxt2.textContent = split[1];
+        if(split.length > 2) {
+          gemTxt3.textContent = split[2];
+        }
 
+        // Need for loop for larger split arrays that also make the containing gem larger
+    } else {
+      gemTxt.textContent = $scope.Q1LegendArray[value-1][0];
+      gemTxt2.textContent = '';
+      gemTxt3.textContent = '';
+    }
+    desc.innerText = $scope.Q1LegendArray[value-1][1];
   }
 
   $scope.toggleHighValue = function() {

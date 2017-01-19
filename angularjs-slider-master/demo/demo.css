@@ -51,7 +51,7 @@ body {
 /* QUESTION 1 CSS */
 
 header, h2 { 
-	background: #FF7964; 
+	background: rgba(0,0,0, 0.7);
 	color: #FFFFFF; 
 	margin-top: -40px; 
 	margin-bottom: 40px; 
@@ -70,11 +70,28 @@ header, h2 {
     line-height: 1.2;
 }
 
+#valueExplanation {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+}
+
 #shapeContainer {
 	background-image: none;
 	/*These two lines below center-align the svg*/
 	display: block;
 	margin: auto;
+}
+
+
+#gemLabel {
+/*	text-align: center;
+	word-wrap: break-word;
+	color: #000000;*/
 }
 
 .scroll .environments-image .gem {
@@ -122,6 +139,7 @@ header, h2 {
 }
 
 h3#QDh3 {
+	padding-top: 25px;
 	font-size: 20px;
 	background: none;
 	color: #FFFFFF;
