@@ -32,6 +32,16 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     value: 10
   };
 
+  $scope.gemColor = 'purple';
+  $scope.gemValueText = 'purple';
+  $scope.Q1LegendArray = [
+      'Lie; Dishonest; Untrustworthy',
+      'Cheat; Deceive',
+      'White Lies',
+      'Honest',
+      'Honest but...',
+      'Gossip',
+      'Hard Hearted or Idealistic'];
   // $(function changeHREF() {
   //   $("#theLink").click(function(){
   //       $(this).attr("href","http://tnbelt.com");
@@ -60,20 +70,59 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
         
       ],
       getPointerColor: function(value) {
-            if (value <= 2) {
-                return 'green';
-              }
-            if (value <= 5) {
-                return 'blue';
-              }
-            if (value <= 7) {
-                return 'purple';
-              }
-            return '#2AE02A';
+        
+        switch(value) {
+          case 1:
+            
+            $scope.gemColor = 'green';
+            break;
+          
+          case 2:
+            $scope.gemColor = 'green';
+            break;
+          
+          case 3:
+            $scope.gemColor = 'blue';
+            break;
+
+          case 4:
+            $scope.gemColor = 'blue';
+            break;
+
+          case 5:
+            $scope.gemColor = 'blue';
+            break;
+
+          case 6:
+            $scope.gemColor = 'purple';
+            break;
+
+          case 7:
+            $scope.gemColor = 'purple';
+            break;
         }
+        // $scope.gemValueText = legend;
+        // console.log($scope.gemValueText);
+        // console.log(stepsArray[value++]);
+        // console.log($scope.gemColor);
+        $scope.changeGemLabel(value);
+        return $scope.gemColor;
+      }
     }
+      
   };
 
+  $scope.changeGemLabel = function(value) {
+    console.log(value, $scope.Q1LegendArray[value-1]);
+    var gem = document.getElementsByClassName("gem");
+    // console.log(gem.[0]);
+    // gem.style.fill="yellow";
+    gem.fill = '#000000';
+    // gem.setAttribute("fill", $scope.gemValueText);
+    var gemTxt = document.getElementById("gemLabel");
+    gemTxt.textContent='You are ' + $scope.Q1LegendArray[value-1];
+
+  }
 
   $scope.toggleHighValue = function() {
     if ($scope.slider_all_options.maxValue != null) {
