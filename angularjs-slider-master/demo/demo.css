@@ -102,6 +102,13 @@ h3#questionHeading {
 }
 
 
+#QshapeContainer {
+	background-image: none;
+	/*These two lines below center-align the svg*/
+	display: block;
+	margin: auto;
+}
+
 #gemLabel {
 	font-family: "Ubuntu";
 	font-style: bold;
