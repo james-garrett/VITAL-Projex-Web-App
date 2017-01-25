@@ -40,6 +40,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
+  $scope.start = true;
   $scope.Q1LegendArray = [
       ['You Lie; You are Dishonest; You are Untrustworthy', 'untruthful; unfair; corrupt'],
       ['You Cheat; You Deceive', 'avoids consequences; rumours; exaggerate answers'],
@@ -76,7 +77,10 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
         
       ],
       getPointerColor: function(value) {
-        
+        if($scope.start == true) {
+            $scope.start = false;
+            return;
+        }
         switch(value) {
           
           case 1:
@@ -106,11 +110,13 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
           case 7:
             $scope.gemColor = 'purple';
             break;
+
+
+          default:
+            console.log("Starting off");
+            break;
         }
-        // $scope.gemValueText = legend;
-        // console.log($scope.gemValueText);
-        // console.log(stepsArray[value++]);
-        // console.log($scope.gemColor);
+        console.log($scope.gemColor);
         $scope.changeGemLabel(value);
         return $scope.gemColor;
       }

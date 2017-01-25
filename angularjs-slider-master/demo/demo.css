@@ -80,7 +80,7 @@ h3#questionHeading {
     font-weight: 500;
     /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
     line-height: 1.2;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 #valueExplanation {
@@ -107,6 +107,7 @@ h3#questionHeading {
 	/*These two lines below center-align the svg*/
 	display: block;
 	margin: auto;
+	/*height: 80px;*/
 }
 
 #gemLabel {

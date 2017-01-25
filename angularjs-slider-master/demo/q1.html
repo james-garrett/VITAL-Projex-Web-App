@@ -5,17 +5,14 @@
   
 </ion-header-bar> -->
 <ion-content>
-<header><h2 id="questionHeading">QUESTION 1</h2></header>
-  <h4 id="questionHeading">Indicate on the scale which words most accurately describe your level of honesty in everyday life.</h4>
-  <h3 id="questionHeading">Where would you be on this scale?</h3>
+<header><h3 id="questionHeading">Indicate on the scale which words most accurately describe your level of honesty in everyday life.</3></header>
+    <!-- Only adjust width for shape size -->
+  <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
     
-  <svg id="QshapeContainer" width="20%" height="20%" viewBox="0 0 300 300">
-    <!-- <circle fill="#DA126D" stroke="#DA126D" cx="80" cy="80" r="75"/> -->
-    <!-- <polygon fill="#DA126D" stroke="#DA126D" cx="20" cy="20" points="300,150 225,280 75,280 0,150 75,20 225,20" /> -->
     <svg class="environments-image"  > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-      <!-- <g transform = "translate(100, 100) rotate(45 60 60)"/> -->
-        <polygon class="gem" fill="#DA126D" stroke="#DA126D" cx="300" cy="20" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
-        <animateTransform attributeName="transform"
+      
+        <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+          <animateTransform attributeName="transform"
                           attributeType="XML"
                           type="rotate"
                           from="0 150 150"
@@ -24,9 +21,9 @@
                           repeatCount="indefinite"/>
       <!-- https://codepen.io/cwmanning/pen/Hugye -->
       </polygon>
-      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white">You are Honest</text>
-        <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white">yo</text>
-        <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white">yo</text>
+      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
+        <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
+        <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
     </svg>
   </svg>
   <h5 id="valueExplanation">Where would you be on this scale?</h3>
