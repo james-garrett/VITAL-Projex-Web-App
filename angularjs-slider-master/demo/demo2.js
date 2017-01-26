@@ -67,13 +67,20 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       floor: 1,
 
       stepsArray: [
-        {value: 1, legend: 'Lie; Dishonest; Untrustworthy'},
-        {value: 2, legend: 'Cheat; Deceive'},
-        {value: 3, legend: 'White Lies'},
+        // {value: 1, legend: 'Lie; Dishonest; Untrustworthy'},
+        // {value: 2, legend: 'Cheat; Deceive'},
+        // {value: 3, legend: 'White Lies'},
+        // {value: 4, legend: 'Honest'},
+        // {value: 5, legend: 'Honest but...'},
+        // {value: 6, legend: 'Gossip'},
+        // {value: 7, legend: 'Hard Hearted or Idealistic'},
+        {value: 1, legend: 'Dishonest'},
+        {value: 2, legend: 'Cheat'},
+        {value: 3, legend: 'White Liar'},
         {value: 4, legend: 'Honest'},
         {value: 5, legend: 'Honest but...'},
         {value: 6, legend: 'Gossip'},
-        {value: 7, legend: 'Hard Hearted or Idealistic'},
+        {value: 7, legend: 'Idealistic'},
         
       ],
       getPointerColor: function(value) {
@@ -118,6 +125,10 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
         }
         console.log($scope.gemColor);
         $scope.changeGemLabel(value);
+        var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min");
+        console.log(pointer);
+        pointer.style.backgroundColor=$scope.gemColor;
+        pointer.style.backgroundColor="red";
         return $scope.gemColor;
       }
     }

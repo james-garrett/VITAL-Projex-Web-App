@@ -48,7 +48,7 @@
 .rzslider span {
   position: absolute;
   display: inline-block;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .rzslider .rz-base {

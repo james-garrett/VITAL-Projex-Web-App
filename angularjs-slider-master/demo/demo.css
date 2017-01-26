@@ -145,6 +145,12 @@ h3#questionHeading {
   transform-origin: 43.9px 141.9px;
 }
 
+.rzslider .rz-ticks .rz-tick .rz-tick-value {
+	max-width: 100px;
+	white-space: normal;
+	visibility: hidden;
+}
+
 .Q1slider {
 	text-align: center;
 	background: none;
@@ -163,7 +169,7 @@ h3#questionHeading {
 }
 
 h3#QDh3 {
-	padding-top: 25px;
+	/*padding-top: 25px;*/
 	font-size: 20px;
 	background: none;
 	color: #FFFFFF;
@@ -203,7 +209,7 @@ article.DescriptionBox {
 	background: rgba(0,0,0, 0.7);
 	padding-bottom: 15px;
 	padding-top: 15px;
-	margin: 30px;
+	margin: 10px;
 	color: #FFFFFF;
 	border-radius: 15px;
 	text-align: center;
@@ -235,11 +241,13 @@ article.DescriptionBox {
 #txt {
 	text-align: center;
 	height: 40px;
+	width: inherit;
 }
 
 .rzslider .rz-ticks .rz-tick .rz-tick-legend { /*Stolen from rzslider.css to be modified for more room*/
   font-size: 12px;
-  max-width: 100px
+  max-width: 100px;
+  margin-top: -70px; /*Lazy solution - should pick another slider showing legend/ticks at top IN FUTURE */
 }
 
 #finish {
