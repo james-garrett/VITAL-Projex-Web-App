@@ -123,10 +123,10 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             console.log("Starting off");
             break;
         }
-        console.log($scope.gemColor);
-        // $scope.changeGemLabel(value);
+        // console.log($scope.gemColor);
+        $scope.changeGemLabel(value);
         var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
-        console.log(pointer);
+        // console.log(pointer);
 
         // document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
         //
@@ -148,8 +148,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     var gemTxt3 = document.getElementById("subGemLabel2");
 
     var desc = document.getElementById("valueExplanation");
-    // console.log(gem.[0]);
-    // gem.style.fill="yellow";
+    console.log(gem);
+    gem[0].style.fill= "blue";
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
     var val = $scope.Q1LegendArray[value-1][0];
