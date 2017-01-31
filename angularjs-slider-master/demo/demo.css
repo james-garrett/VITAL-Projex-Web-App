@@ -113,6 +113,7 @@ h3#questionHeading {
 #gemLabel {
 	font-family: "Ubuntu";
 	font-style: bold;
+
 /*	text-align: center;
 	word-wrap: break-word;
 	color: #000000;*/
@@ -143,10 +144,11 @@ h3#questionHeading {
   -ms-transform-origin: 43.9px 141.9px;
   -webkit-transform-origin: 43.9px 141.9px;
   transform-origin: 43.9px 141.9px;
+  fill: #DA126D;
 }
 
 .rz-pointer.rz-pointer-min {
-	/*background-color: #FFFFFF;*/
+	background-color: #DA126D;
 
 }
 

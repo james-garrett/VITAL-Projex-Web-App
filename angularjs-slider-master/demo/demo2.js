@@ -124,11 +124,14 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             break;
         }
         console.log($scope.gemColor);
-        $scope.changeGemLabel(value);
+        // $scope.changeGemLabel(value);
         var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min");
         console.log(pointer);
-        pointer.style.backgroundColor=$scope.gemColor;
-        pointer.style.backgroundColor="red";
+        document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
+        // "Pointer" actually returns an array where the first element is the actual pointer!
+        // pointer.style.backgroundColor=$scope.gemColor;
+        // pointer.setStyle({fillColor: '#dddddd'})
+        // pointer.style.fill="red";
         return $scope.gemColor;
       }
     }
