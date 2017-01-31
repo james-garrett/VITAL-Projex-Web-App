@@ -1,8 +1,8 @@
 * { 
 	margin: 0; padding: 0; 
-	background-image: url("lib/images/gradient-wallpaper-4.jpg");
 }
 body { 
+	
 	/*font-family: 'Open Sans', sans-serif; color: #1f2636; */
 	font-family: 'Ubuntu', sans-serif; color: #1f2636; 
 	font-size: 14px; 
@@ -34,8 +34,8 @@ body {
 	text-align: center;
 }
 
-.scroll {
-	
+.scroll, ion-content.scroll-content.ionic-scroll {
+	background-image: url("lib/images/gradient-wallpaper-4.jpg");
 }
 
 .hehch1 {
@@ -145,6 +145,11 @@ h3#questionHeading {
   transform-origin: 43.9px 141.9px;
 }
 
+.rz-pointer.rz-pointer-min {
+	/*background-color: #FFFFFF;*/
+
+}
+
 .rzslider .rz-ticks .rz-tick .rz-tick-value {
 	max-width: 100px;
 	white-space: normal;
@@ -161,7 +166,7 @@ h3#questionHeading {
 }
 
 .rz-tick-value.ng-binding {
-	background: none;
+	/*background: none;*/
 }
 
 .rz-bar-wrapper {
