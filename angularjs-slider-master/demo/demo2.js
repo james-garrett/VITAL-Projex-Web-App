@@ -125,9 +125,11 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
         }
         console.log($scope.gemColor);
         // $scope.changeGemLabel(value);
-        var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min");
+        var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
         console.log(pointer);
-        document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
+
+        // document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
+        //
         // "Pointer" actually returns an array where the first element is the actual pointer!
         // pointer.style.backgroundColor=$scope.gemColor;
         // pointer.setStyle({fillColor: '#dddddd'})

@@ -149,7 +149,10 @@ h3#questionHeading {
 
 .rz-pointer.rz-pointer-min {
 	background-color: #DA126D;
+}
 
+.rzslider .rz-pointer{
+	background-color:#0db9f0;
 }
 
 .rzslider .rz-ticks .rz-tick .rz-tick-value {
