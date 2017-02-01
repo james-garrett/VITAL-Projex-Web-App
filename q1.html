@@ -1,0 +1,61 @@
+<ion-view>
+<!-- <ion-header-bar class="q1-header">
+  
+    <h1>Question One</h1>
+  
+</ion-header-bar> -->
+<ion-content>
+<header><h3 id="questionHeading">Indicate on the scale which words most accurately describe your level of honesty in everyday life.</3></header>
+    <!-- Only adjust width for shape size -->
+  <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
+    
+    <svg class="environments-image"  > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+      
+        <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+          <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="0 150 150"
+                          to="360 150 150"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+      <!-- https://codepen.io/cwmanning/pen/Hugye -->
+      </polygon>
+      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
+        <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
+        <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
+    </svg>
+  </svg>
+  <h5 id="valueExplanation">Where would you be on this scale?</h3>
+
+  <article class="DescriptionBox">
+    <div id="accordion">
+      <h3>Slider Response</h3>
+        <div class="Q1slider" id="slider1">
+          <rzslider class="with-legend"
+            rz-slider-model="slider_ticks_legend.value"
+            rz-slider-options="slider_ticks_legend.options">
+          </rzslider>
+        </div>
+  
+      <h3>Optional Response</h3>
+      <!-- https://api.jqueryui.com/accordion/#option-header -->
+          <div class="inputBox">
+            <h3 id="QDh3">Please list key words in the box so you can remember what you were thinking.</h3>
+            <textarea id="txt" rows="3" cols="80" placeholder="Please list any further thoughts you have here as key words"></textarea>
+            <br>
+            <button id="finish" class="button icon-right ion-android-create" onclick="location.href='#/menu';" href="#/menu">Finish Question</button>
+          </div>
+    </div>
+
+  </article>
+</ion-content>
+
+
+</div>
+<script>  $( "#accodion" ).accordion();</script>
+<script src="../Proj/node_modules/angular-1.6.1/angular.js"></script>
+<script src="./lib/ui-bootstrap-tpls.js"></script>
+<script src="../dist/rzslider.js"></script>
+<script src="demo2.js"></script>
+</ion-view>

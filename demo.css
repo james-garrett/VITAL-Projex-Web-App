@@ -1,0 +1,290 @@
+* { 
+	margin: 0; padding: 0; 
+}
+body { 
+	
+	/*font-family: 'Open Sans', sans-serif; color: #1f2636; */
+	font-family: 'Ubuntu', sans-serif; color: #1f2636; 
+	font-size: 14px; 
+	background: #000; 
+	/*padding-bottom: 40px; */
+
+}
+
+#mainh1 { 
+	font-weight: 300; 
+	background: rgba(0,0,0, 0);
+	color: #FFFFFF;
+	/*text-align: center;*/
+}
+
+#mainh4 { 
+	background: rgba(0,0,0, 0);
+	color: #FFFFFF;
+	/*text-align: center;*/
+}
+
+.wrapper { 
+	background: rgba(0,0,0, 0.7);
+	padding-bottom: 30px;
+	padding-top: 30px;
+	margin: 30px;
+	color: #FFFFFF;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.scroll, ion-content.scroll-content.ionic-scroll {
+	background-image: url("lib/images/gradient-wallpaper-4.jpg");
+}
+
+.hehch1 {
+	font-family: 'Ubuntu'; 
+	color: #1f2636; 
+}
+
+/*article {
+	margin-left: 10%;
+	margin-right: 10%;
+}*/
+
+/* QUESTION 1 CSS */
+
+header, h2 { 
+	background: rgba(0,0,0, 0.7);
+	color: #FFFFFF; 
+	margin-top: -40px; 
+	margin-bottom: 40px; 
+	text-align: center; 
+	padding: 15px 0; 
+	font-size: 28px;
+	}
+
+#questionHeading {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+    margin-top: -5px;
+
+}
+
+h3#questionHeading {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+    margin-top: 0px;
+}
+
+#valueExplanation {
+	background: none;
+	text-align: center;
+	color: #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+    line-height: 1.2;
+}
+
+#shapeContainer {
+	background-image: none;
+	/*These two lines below center-align the svg*/
+	display: block;
+	margin: auto;
+	height: 700px;
+}
+
+
+#QshapeContainer {
+	background-image: none;
+	/*These two lines below center-align the svg*/
+	display: block;
+	margin: auto;
+	/*height: 80px;*/
+}
+
+#gemLabel {
+	font-family: "Ubuntu";
+	font-style: bold;
+
+/*	text-align: center;
+	word-wrap: break-word;
+	color: #000000;*/
+}
+
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    visibility: visible; 
+}
+
+.scroll .environments-image .gem {
+  -webkit-animation-delay: 0s;
+  -webkit-animation-duration: 9s;
+  -webkit-animation-name: rotateCounter;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 9s;
+  -moz-animation-name: rotateCounter;
+  -moz-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -o-animation-delay: 0s;
+  -o-animation-duration: 9s;
+  -o-animation-name: rotateCounter;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-duration: 9s;
+  animation-name: rotateCounter;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-transform-origin: 43.9px 141.9px;
+  -ms-transform-origin: 43.9px 141.9px;
+  -webkit-transform-origin: 43.9px 141.9px;
+  transform-origin: 43.9px 141.9px;
+  fill: #DA126D;
+}
+
+.rz-pointer.rz-pointer-min {
+	background-color: #DA126D;
+}
+
+.rzslider .rz-pointer{
+	background-color:#0db9f0;
+}
+
+.rzslider .rz-ticks .rz-tick .rz-tick-value {
+	max-width: 100px;
+	white-space: normal;
+	visibility: hidden;
+}
+
+.Q1slider {
+	text-align: center;
+	background: none;
+}
+
+.rz-tick-legend.ng-binding {
+	background: none;
+}
+
+.rz-tick-value.ng-binding {
+	/*background: none;*/
+}
+
+.rz-bar-wrapper {
+	background: none;
+}
+
+h3#QDh3 {
+	/*padding-top: 25px;*/
+	font-size: 20px;
+	background: none;
+	color: #FFFFFF;
+}
+
+.inputBox {
+	background: none;
+	margin-top: 5%;
+
+	text-align: center;
+	width: 100%;
+	/*height: 20%;*/
+	vertical-align: middle;
+}
+
+.button-ion-button-round {
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: center;	
+}
+
+.button.icon-right.ion-android-create {
+	background-color: #33CD5F;
+	color: white;
+	-webkit-border-radius: 15px;
+  	-moz-border-radius: 15px;
+  	border-radius: 15px;
+  	-webkit-box-shadow: 0 10px #009C2F;
+  	-moz-box-shadow: 0 10px #009C2F;
+  	box-shadow: 0 10px #009C2F;
+	text-align: center;
+
+}
+
+article.DescriptionBox {
+	padding: 10px;
+	background: rgba(0,0,0, 0.7);
+	padding-bottom: 15px;
+	padding-top: 15px;
+	margin: 10px;
+	color: #FFFFFF;
+	border-radius: 15px;
+	text-align: center;
+
+	/*background-image: url("lib/images/4gTNThG.png");*/
+	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
+	/*background-image: url("lib/images/nice green to orange.jpg");*/
+}
+
+/*article { 
+*/	/*margin-bottom: 10px; */
+/*}*/
+
+
+.tab-pane{
+  padding-top: 10px;
+}
+.field-title {
+  width: 100px;
+}
+
+.vertical-sliders {
+  margin: 0;
+}
+.vertical-sliders > div {
+  height: 250px;
+}
+
+#txt {
+	text-align: center;
+	height: 40px;
+	width: inherit;
+}
+
+.rzslider .rz-ticks .rz-tick .rz-tick-legend { /*Stolen from rzslider.css to be modified for more room*/
+  font-size: 12px;
+  max-width: 100px;
+  margin-top: -70px; /*Lazy solution - should pick another slider showing legend/ticks at top IN FUTURE */
+}
+
+#finish {
+	margin-bottom: 10px;
+}
