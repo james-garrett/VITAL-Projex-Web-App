@@ -142,6 +142,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
   $scope.changeGemLabel = function(value) {
     // console.log(value, $scope.Q1LegendArray[value-1]);
+    console.log(value);
     var gem = document.getElementsByClassName("gem");
     var gemTxt = document.getElementById("gemLabel");
     var gemTxt2 = document.getElementById("subGemLabel");
@@ -149,7 +150,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
     var desc = document.getElementById("valueExplanation");
     console.log(gem);
-    gem[0].style.fill= "blue";
+    // gem[0].style.fill= "blue";
+    gem[0].style.fill= $scope.gemColor;
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
     var val = $scope.Q1LegendArray[value-1][0];
