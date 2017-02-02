@@ -49,13 +49,17 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ['You are Honest but...', 'inconsiderate; insensitive; tactless; inappropriate; too modest'],
       ['You Gossip', 'true but destructive to relationships'],
       ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
-  // $(function changeHREF() {
-  //   $("#theLink").click(function(){
-  //       $(this).attr("href","http://tnbelt.com");
-  //   });
-  // // http://stackoverflow.com/questions/9933835/modify-target-url-in-onclick-handler  
-  // // http://jsbin.com/icUTUjI/1/edit?html,js,output  
-  // });
+
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
 
 
   //Slider with ticks values and legend
