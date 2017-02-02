@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <html ng-app="rzSliderDemo">
 
 <head>
@@ -6,9 +7,9 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>VITAL Survey</title>
   <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="demo.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
   <link rel="stylesheet" href="../dist/rzslider.css"/>
-  <link rel="stylesheet" href="demo.css"/>
   <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
   <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/> -->
   <script src="./lib/ionic.bundle.js"></script>
@@ -16,6 +17,10 @@
 
   <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu"> -->
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 </head>
