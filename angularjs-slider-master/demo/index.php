@@ -35,7 +35,7 @@
           <h4 id="mainh4">Hello <span style="color:#FF0000">INSERT-NAME-HERE. </span> You have been granted access to VITAL's self-assessment survey as a <span style="color:#FF0000"> USER-TYPE.</span>
           </h4>
         <!-- <a class="button icon-right ion-checkmark" href="#/first">Let's Begin!</a> -->
-        <button class="button icon-right ion-android-create" onclick="location.href='#/first';" href="#/first">Let's Begin! </button>
+        <button class="button icon-right ion-android-create" onclick="location.href='#/menu';" href="#/menu">Let's Begin! </button>
         <!-- <a class="button icon-right ion-android-create" onclick="location.href='#/first';">Let's Begin! </a> -->
         <!-- http://stackoverflow.com/questions/13425833/how-can-i-change-the-pages-url-when-a-visitor-clicks-a-button -->
         </div>

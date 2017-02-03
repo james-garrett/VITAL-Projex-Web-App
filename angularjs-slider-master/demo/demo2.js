@@ -37,6 +37,10 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.minSlider = {
     value: 10
   };
+// Below is just a JSON template of what data a question should hold
+  // $scope.valueQuestion = $.getJSON("questions.json", function(json) {
+  //   console.log($scope.valueQuestion);
+  // })
 
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
@@ -61,6 +65,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     return $scope.shownGroup === group;
   };
 
+
+  $scope.storedValue = '';
 
   //Slider with ticks values and legend
   $scope.slider_ticks_legend = {
@@ -176,6 +182,12 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       gemTxt3.textContent = '';
     }
     desc.innerText = $scope.Q1LegendArray[value-1][1];
+    $scope.storeAnswer($scope.Q1LegendArray[value-1][1]);
+  }
+
+  $scope.storeAnswer = function(answer) {
+    sessionStorage.setItem("Q1", answer); /*Store answer*/
+    console.log(sessionStorage.getItem("Q1"));
   }
 
   $scope.toggleHighValue = function() {
