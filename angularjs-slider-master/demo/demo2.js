@@ -37,11 +37,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.minSlider = {
     value: 10
   };
-// Below is just a JSON template of what data a question should hold
-  // $scope.valueQuestion = $.getJSON("questions.json", function(json) {
-  //   console.log($scope.valueQuestion);
-  // })
 
+  $scope.valueQuestion = new Array();
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
   $scope.start = true;
@@ -65,6 +62,22 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     return $scope.shownGroup === group;
   };
 
+  // Below is just a JSON template of what data a question should hold
+  $scope.loadJSON = function() {
+    var returnJSON = [];
+    $.getJSON("questions.json", function(json) {
+      $.each(json.Questions, function(k, v) {
+        console.log(k, v);
+      })
+        $scope.valueQuestion.push(json.Questions);
+      // $scope.valueQuestion = json.Questions[0].Question;
+      return json;
+    });
+    console.log($scope.valueQuestion);
+    
+  }
+  $scope.loadJSON();
+  console.log($scope.valueQuestion);
 
   $scope.storedValue = '';
 
