@@ -81,11 +81,11 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   console.log($scope.valueQuestion);
   console.log($scope.valueQuestion[0]);
 
-  setQuestionSelected = function(index){
+  $scope.setQuestionSelected = function(index){
     console.log("Index selected:" + index);
     location.href='#/first';
     $scope.questionSelectedIndex = index;
-    changeGemLabel($scope.gemColor);
+    $scope.changeGemLabel($scope.gemColor);
     $scope.questionHeading = document.getElementById("questionHeading");
     console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
     $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
