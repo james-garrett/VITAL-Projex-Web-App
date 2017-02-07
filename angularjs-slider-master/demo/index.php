@@ -25,9 +25,9 @@
 
 </head>
 
-<body> 
+<body ng-controller="MainCtrl"> 
 
-  <div ng-controller="MainCtrl">
+  <div>
     <ion-nav-view animation="slide-left-right">
       <ion-content>
         <div class="wrapper">
