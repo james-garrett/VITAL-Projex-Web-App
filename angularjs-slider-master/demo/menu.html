@@ -8,40 +8,26 @@
 <!-- <header><h2 id="questionHeading">QUESTION 1</h2></header> -->
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
   <h3 id="questionHeading">Once all questions are complete you may finish the survey</h3>
-    
-  <div id="shapeContainer" width="auto" height="700px" fill="none">
+  <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"></span>
 
-    <svg class="environments-image" x="300" width="20%" viewBox="0 0 300 300"> 
-    <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-        <polygon class="Q1gem" fill="#DA126D" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" onclick="location.href='#/first';">
-        <animateTransform attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="0 150 150"
-                          to="360 150 150"
-                          dur="10s"
-                          repeatCount="indefinite"/>
-      <!-- https://codepen.io/cwmanning/pen/Hugye -->
-      </polygon>
-      <text id="Q1gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">You are Honest</text>
-        <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
-        <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
-    </svg>
-    
-    <svg class="environments-image" x="300" y="550" width="20%" viewBox="0 0 300 300"> 
-      <polygon class="Q2gem" fill="#FF593F" stroke="#FF593F" x="60" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
-        <animateTransform attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="0 150 150"
-                          to="360 150 150"
-                          dur="10s"
-                          repeatCount="indefinite"/>    
-      </polygon>
-      <text id="Q2gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">You Panic</text>
-        <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
-        <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
-    </svg >
+    <div id="shapeContainer{{$index}}" width="auto" height="700px" fill="none">
+      <svg class="environments-image{{$index}}" x="300" width="20%" viewBox="0 0 300 300"> 
+      <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+          <polygon class="Q1gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" onclick="location.href='#/first';">
+          <animateTransform attributeName="transform"
+                            attributeType="XML"
+                            type="rotate"
+                            from="0 150 150"
+                            to="360 150 150"
+                            dur="10s"
+                            repeatCount="indefinite"/>
+        <!-- https://codepen.io/cwmanning/pen/Hugye -->
+        </polygon>
+        <text id="Q1gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>
+          <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
+          <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
+      </svg>
+    </div>
   </div>
   <!-- </svg> -->
 </ion-content>
@@ -51,5 +37,5 @@
 <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script>
 <script src="./lib/ui-bootstrap-tpls.js"></script>
 <script src="../dist/rzslider.js"></script>
-<script src="demo2.js"></script>
+<!-- <script src="demo2.js"></script> -->
 </ion-view>

@@ -106,8 +106,9 @@
             ]
          },
          "defaultColor":"red",
-         "Basic Label":"Honesty",
+         "BasicLabel":"Honesty",
          "AnswerValue":"",
+         "href": "#/first",
          "AnswerKeyWords":""
       },
       {
@@ -227,8 +228,9 @@
             ]
          },
          "defaultColor":"green",
-         "Basic Label":"Courage",
+         "BasicLabel":"Courage",
          "AnswerValue":"",
+         "href": "#/first",
          "AnswerKeyWords":""
       }
    ]

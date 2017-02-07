@@ -38,7 +38,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     value: 10
   };
 
-  $scope.valueQuestion = new Array();
+  $scope.valueQuestion = new Array(0);
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
   $scope.start = true;
@@ -67,17 +67,19 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     var returnJSON = [];
     $.getJSON("questions.json", function(json) {
       $.each(json.Questions, function(k, v) {
-        console.log(k, v);
+        // console.log(k, v);
       })
         $scope.valueQuestion.push(json.Questions);
       // $scope.valueQuestion = json.Questions[0].Question;
-      return json;
+      // return json;
     });
-    console.log($scope.valueQuestion);
-    
+    // console.log($scope.valueQuestion);   
   }
+
   $scope.loadJSON();
   console.log($scope.valueQuestion);
+  console.log($scope.valueQuestion[0]);
+
 
   $scope.storedValue = '';
 
@@ -90,13 +92,6 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       floor: 1,
 
       stepsArray: [
-        // {value: 1, legend: 'Lie; Dishonest; Untrustworthy'},
-        // {value: 2, legend: 'Cheat; Deceive'},
-        // {value: 3, legend: 'White Lies'},
-        // {value: 4, legend: 'Honest'},
-        // {value: 5, legend: 'Honest but...'},
-        // {value: 6, legend: 'Gossip'},
-        // {value: 7, legend: 'Hard Hearted or Idealistic'},
         {value: 1, legend: 'Dishonest'},
         {value: 2, legend: 'Cheat'},
         {value: 3, legend: 'White Liar'},
