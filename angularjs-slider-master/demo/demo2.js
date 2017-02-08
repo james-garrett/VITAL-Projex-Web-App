@@ -177,11 +177,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     var gemTxt3 = document.getElementById("subGemLabel2");
 
     var desc = document.getElementById("valueExplanation");
-    console.log(gem);
+    console.log(gem[0]);
     // gem[0].style.fill= "blue";
     gem[0].style.fill= $scope.gemColor;
+    gem[0].style.stroke= $scope.gemColor;
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
+    var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
+    for(x = 0; x < legend.length; x++)
+    $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
     var val = $scope.Q1LegendArray[value-1][0];
     console.log(val.length);
     if(val.length > 14) {
