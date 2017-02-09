@@ -52,6 +52,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ['You Gossip', 'true but destructive to relationships'],
       ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
 
+  $scope.LegendArray = [
+    'Dishonest',
+    'Cheat',
+    'White Liar',
+    'Honest',
+    'Honest but...',
+    'Gossip',
+    'Idealistic'];
+
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup = null;
@@ -85,10 +94,11 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     console.log("Index selected:" + index);
     location.href='#/first';
     $scope.questionSelectedIndex = index;
-    $scope.changeGemLabel($scope.gemColor);
-    $scope.questionHeading = document.getElementById("questionHeading");
+    $scope.changeGemLabel($scope.gemColor, true);
+    // $scope.questionHeading = document.getElementById("questionHeading");
     console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
-    $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
+    // $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
+    // $scope.quest
   }
 
   $scope.storedValue = '';
@@ -102,13 +112,13 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       floor: 1,
 
       stepsArray: [
-        {value: 1, legend: 'Dishonest'},
-        {value: 2, legend: 'Cheat'},
-        {value: 3, legend: 'White Liar'},
-        {value: 4, legend: 'Honest'},
-        {value: 5, legend: 'Honest but...'},
-        {value: 6, legend: 'Gossip'},
-        {value: 7, legend: 'Idealistic'},
+        {value: 1, legend: $scope.LegendArray[0]},
+        {value: 2, legend: $scope.LegendArray[1]},
+        {value: 3, legend: $scope.LegendArray[2]},
+        {value: 4, legend: $scope.LegendArray[3]},
+        {value: 5, legend: $scope.LegendArray[4]},
+        {value: 6, legend: $scope.LegendArray[5]},
+        {value: 7, legend: $scope.LegendArray[6]},
         
       ],
       getPointerColor: function(value) {
@@ -152,7 +162,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             break;
         }
         // console.log($scope.gemColor);
-        $scope.changeGemLabel(value);
+        $scope.changeGemLabel(value, false);
         var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
         // console.log(pointer);
 
@@ -168,8 +178,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       
   };
 
-  $scope.changeGemLabel = function(value) {
+  $scope.setLegend = function(index, array) {
+    for(x = 0; x < array.length) {
+      $scope.LegendArray[i] = array[i];
+    }
+  }
+
+  $scope.changeGemLabel = function(value, init) {
     // console.log(value, $scope.Q1LegendArray[value-1]);
+    setLegend()
     console.log(value);
     var gem = document.getElementsByClassName("gem");
     var gemTxt = document.getElementById("gemLabel");
@@ -179,14 +196,16 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     var desc = document.getElementById("valueExplanation");
     console.log(gem[0]);
     // gem[0].style.fill= "blue";
-    gem[0].style.fill= $scope.gemColor;
-    gem[0].style.stroke= $scope.gemColor;
+    if(!init) {
+      gem[0].style.fill= $scope.gemColor;
+      gem[0].style.stroke= $scope.gemColor;
+    }
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
-    var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
-    for(x = 0; x < legend.length; x++)
-    $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
-    var val = $scope.Q1LegendArray[value-1][0];
+    // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
+    // for(x = 0; x < legend.length; x++)
+    // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
+    // var val = $scope.Q1LegendArray[value-1][0];
     console.log(val.length);
     if(val.length > 14) {
         var split = val.match(/.{1,14}/g);
