@@ -52,7 +52,18 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ['You Gossip', 'true but destructive to relationships'],
       ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
 
+<<<<<<< HEAD
   $scope.LegendArray = new Array(0);
+=======
+  $scope.LegendArray = [
+    'Dishonest',
+    'Cheat',
+    'White Liar',
+    'Honest',
+    'Honest but...',
+    'Gossip',
+    'Idealistic'];
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -81,7 +92,22 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
   $scope.loadJSON();
   console.log($scope.valueQuestion);
+<<<<<<< HEAD
   // console.log($scope.valueQuestion[0]);
+=======
+  console.log($scope.valueQuestion[0]);
+
+  $scope.setQuestionSelected = function(index){
+    console.log("Index selected:" + index);
+    location.href='#/first';
+    $scope.questionSelectedIndex = index;
+    $scope.changeGemLabel($scope.gemColor, true);
+    // $scope.questionHeading = document.getElementById("questionHeading");
+    console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
+    // $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
+    // $scope.quest
+  }
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
 
   $scope.storedValue = '';
 
@@ -144,7 +170,11 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             break;
         }
         // console.log($scope.gemColor);
+<<<<<<< HEAD
         $scope.changeGemLabel(value, false, $scope.LegendArray);
+=======
+        $scope.changeGemLabel(value, false);
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
         var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
         // console.log(pointer);
 
@@ -160,6 +190,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       
   };
 
+<<<<<<< HEAD
   $scope.loadForm = function(index, array, title) {
     // console.log(array, typeof title);
     location.href='#/first';
@@ -192,6 +223,17 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.changeGemLabel = function(value, init, descriptionArray) {
     // console.log(value, $scope.Q1LegendArray[value-1]);
     
+=======
+  $scope.setLegend = function(index, array) {
+    for(x = 0; x < array.length) {
+      $scope.LegendArray[i] = array[i];
+    }
+  }
+
+  $scope.changeGemLabel = function(value, init) {
+    // console.log(value, $scope.Q1LegendArray[value-1]);
+    setLegend()
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
     console.log(value);
     var gem = document.getElementsByClassName("gem");
     var gemTxt = document.getElementById("gemLabel");
@@ -204,6 +246,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     // console.log(gem[0]);
     // console.log(gemTxt);
     // gem[0].style.fill= "blue";
+<<<<<<< HEAD
     var description = "You are honest";
     if(!init) {
       gem[0].style.fill= $scope.gemColor;
@@ -214,12 +257,18 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
     } else {
       description = descriptionArray[4].action;
+=======
+    if(!init) {
+      gem[0].style.fill= $scope.gemColor;
+      gem[0].style.stroke= $scope.gemColor;
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
     }
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
     // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
     // for(x = 0; x < legend.length; x++)
     // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
+<<<<<<< HEAD
     // var val = $scope.LegendArray;
     // console.log(val, val.length);
     console.log(description);
@@ -227,6 +276,12 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     gemTxt.textContent = description;
     if(description.length > 14) {
         var split = description.match(/.{1,14}/g);
+=======
+    // var val = $scope.Q1LegendArray[value-1][0];
+    console.log(val.length);
+    if(val.length > 14) {
+        var split = val.match(/.{1,14}/g);
+>>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
         console.log(split);
         gemTxt.textContent = split[0];
         gemTxt2.textContent = split[1];
