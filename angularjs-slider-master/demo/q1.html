@@ -4,7 +4,7 @@
     <h1>Question One</h1>
   
 </ion-header-bar> -->
-<ion-content>
+<ion-content ng-repeat="x in valueQuestion[0]">
 <header><h3 id="questionHeading"></3></header>
     <!-- Only adjust width for shape size -->
   <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
@@ -21,7 +21,7 @@
                           repeatCount="indefinite"/>
       <!-- https://codepen.io/cwmanning/pen/Hugye -->
       </polygon>
-      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
+      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white">You are Honest</text>
         <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
         <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
     </svg>

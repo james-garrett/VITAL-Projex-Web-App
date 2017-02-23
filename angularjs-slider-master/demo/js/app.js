@@ -37,7 +37,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.minSlider = {
     value: 10
   };
-
+  console.log($(window).width());
   $scope.questionSelectedIndex = -1;
   $scope.valueQuestion = new Array(0);
   $scope.gemColor = 'purple';
@@ -51,6 +51,8 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ['You are Honest but...', 'inconsiderate; insensitive; tactless; inappropriate; too modest'],
       ['You Gossip', 'true but destructive to relationships'],
       ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
+
+  $scope.LegendArray = new Array(0);
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -79,17 +81,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
   $scope.loadJSON();
   console.log($scope.valueQuestion);
-  console.log($scope.valueQuestion[0]);
-
-  $scope.setQuestionSelected = function(index){
-    console.log("Index selected:" + index);
-    location.href='#/first';
-    $scope.questionSelectedIndex = index;
-    $scope.changeGemLabel($scope.gemColor);
-    $scope.questionHeading = document.getElementById("questionHeading");
-    console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
-    $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
-  }
+  // console.log($scope.valueQuestion[0]);
 
   $scope.storedValue = '';
 
@@ -102,13 +94,13 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       floor: 1,
 
       stepsArray: [
-        {value: 1, legend: 'Dishonest'},
-        {value: 2, legend: 'Cheat'},
-        {value: 3, legend: 'White Liar'},
-        {value: 4, legend: 'Honest'},
-        {value: 5, legend: 'Honest but...'},
-        {value: 6, legend: 'Gossip'},
-        {value: 7, legend: 'Idealistic'},
+        {value: 1, legend: $scope.LegendArray[0]},
+        {value: 2, legend: $scope.LegendArray[1]},
+        {value: 3, legend: $scope.LegendArray[2]},
+        {value: 4, legend: $scope.LegendArray[3]},
+        {value: 5, legend: $scope.LegendArray[4]},
+        {value: 6, legend: $scope.LegendArray[5]},
+        {value: 7, legend: $scope.LegendArray[6]},
         
       ],
       getPointerColor: function(value) {
@@ -152,7 +144,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             break;
         }
         // console.log($scope.gemColor);
-        $scope.changeGemLabel(value);
+        $scope.changeGemLabel(value, false, $scope.LegendArray);
         var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
         // console.log(pointer);
 
@@ -168,28 +160,73 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       
   };
 
-  $scope.changeGemLabel = function(value) {
+  $scope.loadForm = function(index, array, title) {
+    // console.log(array, typeof title);
+    location.href='#/first';
+    $scope.setQuestionSelected(index);
+    $scope.setLegend(array);
+    document.getElementById("questionHeading").innerText = title;
+    $scope.changeGemLabel(index , true, array);
+  }
+
+  $scope.setQuestionSelected = function(index){
+    // console.log("Index selected:" + index);
+    
+    $scope.questionSelectedIndex = index;
+    
+    // $scope.questionHeading = document.getElementById("questionHeading");
+    // console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
+    // $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
+    // $scope.quest
+  }
+
+  $scope.setLegend = function(array) {
+    console.log(array.value);
+    for(x = 0; x < array.length; x++) {
+      console.log(array.value[x]);
+      $scope.LegendArray[x] = array.value[x].definition;
+    }
+    console.log($scope.LegendArray);
+  }
+
+  $scope.changeGemLabel = function(value, init, descriptionArray) {
     // console.log(value, $scope.Q1LegendArray[value-1]);
+    
     console.log(value);
     var gem = document.getElementsByClassName("gem");
     var gemTxt = document.getElementById("gemLabel");
     var gemTxt2 = document.getElementById("subGemLabel");
     var gemTxt3 = document.getElementById("subGemLabel2");
-
-    var desc = document.getElementById("valueExplanation");
-    console.log(gem[0]);
+    var descContainer = document.getElementById("valueExplanation");
+    console.log(descriptionArray[4].action);
+    // console.log($scope.LegendArray);
+    console.log(gemTxt);
+    // console.log(gem[0]);
+    // console.log(gemTxt);
     // gem[0].style.fill= "blue";
-    gem[0].style.fill= $scope.gemColor;
-    gem[0].style.stroke= $scope.gemColor;
+    var description = "You are honest";
+    if(!init) {
+      gem[0].style.fill= $scope.gemColor;
+      gem[0].style.stroke= $scope.gemColor;
+      $scope.LegendArray = descriptionArray;
+      console.log(value, descriptionArray[value-1].action);
+      description = descriptionArray[value-1].action;
+
+    } else {
+      description = descriptionArray[4].action;
+    }
     // gem.fill = '#000000';
     // gem.setAttribute("fill", $scope.gemValueText);
-    var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
-    for(x = 0; x < legend.length; x++)
-    $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
-    var val = $scope.Q1LegendArray[value-1][0];
-    console.log(val.length);
-    if(val.length > 14) {
-        var split = val.match(/.{1,14}/g);
+    // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
+    // for(x = 0; x < legend.length; x++)
+    // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
+    // var val = $scope.LegendArray;
+    // console.log(val, val.length);
+    console.log(description);
+    console.log(gemTxt.textContent);
+    gemTxt.textContent = description;
+    if(description.length > 14) {
+        var split = description.match(/.{1,14}/g);
         console.log(split);
         gemTxt.textContent = split[0];
         gemTxt2.textContent = split[1];
@@ -199,12 +236,12 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
 
         // Need for loop for larger split arrays that also make the containing gem larger
     } else {
-      gemTxt.textContent = $scope.Q1LegendArray[value-1][0];
+      gemTxt.textContent = description;
       gemTxt2.textContent = '';
       gemTxt3.textContent = '';
     }
-    desc.innerText = $scope.Q1LegendArray[value-1][1];
-    $scope.storeAnswer($scope.Q1LegendArray[value-1][1]);
+    descContainer.innerText = description;
+    $scope.storeAnswer(description);
   }
 
   $scope.storeAnswer = function(answer) {

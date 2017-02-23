@@ -7,7 +7,9 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>VITAL Survey</title>
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="demo.css"/>
+  <link rel="stylesheet" href="css/app_stylesheet_mobile.css"/>
+  <link rel="stylesheet" href="css/app_stylesheet.css"/>
+  <link rel="stylesheet" href="css/app_stylesheet_highres.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
   <link rel="stylesheet" href="../dist/rzslider.css"/>
   <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
@@ -46,5 +48,5 @@
 <!-- <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script> -->
 <script src="./lib/ui-bootstrap-tpls.js"></script>
 <script src="../dist/rzslider.js"></script>
-<script src="demo2.js"></script>
+<script src="js/app.js"></script>
 </html>

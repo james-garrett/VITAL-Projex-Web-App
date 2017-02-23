@@ -214,6 +214,8 @@ h3#QDh3 {
 
 }
 
+
+
 article.DescriptionBox {
 	padding: 10px;
 	background: rgba(0,0,0, 0.7);
@@ -228,7 +230,6 @@ article.DescriptionBox {
 	/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
 	/*background-image: url("lib/images/nice green to orange.jpg");*/
 }
-
 /*article { 
 */	/*margin-bottom: 10px; */
 /*}*/
