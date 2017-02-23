@@ -10,7 +10,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('first', {
     url: '/first',
-    templateUrl: 'q1.html'
+    templateUrl: 'q1.html',
+    controller: 'FormController'
   })
   .state('second', {
     url: '/second',
@@ -25,14 +26,145 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('last', {
     url: '/last',
     templateUrl: 'last.html'
-  })
-  ;
+  });
+
   $urlRouterProvider.otherwise('/');  
 });
 
 
 
-app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
+app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', function($scope, $rootScope, $timeout, $uibModal) {
+  $scope.form = null;
+
+  //Minimal slider config
+  $scope.minSlider = {
+    value: 10
+  };
+
+  $scope.valueQuestion = new Array(0);
+
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+
+  // Below is just a JSON template of what data a question should hold
+  $scope.loadJSON = function() {
+    var returnJSON = [];
+    $.getJSON("questions.json", function(json) {
+      $.each(json.Questions, function(k, v) {
+        // console.log(k, v);
+      })
+      $scope.valueQuestion.push(json.Questions);
+      // $scope.valueQuestion = json.Questions[0].Question;
+      // return json;
+    });
+    // console.log($scope.valueQuestion);   
+  }
+
+  $scope.loadJSON();
+
+  // $scope.storedValue = '';
+
+
+  $scope.loadForm = function(index, array, title) {
+    $scope.form = new SurveyQuestionForm(index, array, title);
+    // console.log(array, typeof title);
+    // $scope.setQuestionSelected(index);
+    // $scope.setLegend(array);
+    // $scope.setDefinition(array);
+    // console.log(document.getElementsByClassName("formHeading"));
+    // $scope.changeGemLabel(4 , true, $scope.DefinitionArray);
+    // document.getElementById("questionHeading").innerText = title;
+  }
+
+}]);
+
+app.factory('SurveyQuestionForm', function($http) {
+  
+  var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading) {
+      this.initialize = function() {
+          console.log(questionJSONData, typeof title);
+          location.href='#/first';
+          $scope.setQuestionSelected(questionNumber);
+          $scope.setLegend(questionJSONData);
+          $scope.setDefinition(questionJSONData);
+          // console.log($scope.DefinitionArray);
+          console.log(document.getElementsByClassName("formHeading"));
+          $scope.changeGemLabel(4 , true, $scope.DefinitionArray);
+          document.getElementById("questionHeading").innerText = QuestionHeading;
+      };
+      this.initialize();
+    };
+
+  // $scope.formInit = function() {
+  //   console.log(questionJSONData, typeof title);
+    
+  //   location.href='#/first';
+  //   $scope.setQuestionSelected(questionNumber);
+  //   $scope.setLegend(questionJSONData);
+  //   $scope.setDefinition(questionJSONData);
+  //   // console.log($scope.DefinitionArray);
+  //   console.log(document.getElementsByClassName("formHeading"));
+  //   $scope.changeGemLabel(4 , true, $scope.DefinitionArray);
+  //   document.getElementById("questionHeading").innerText = QuestionHeading;
+
+  // }
+
+  $scope.changeGemLabel = function(value, init, description) {
+    // console.log(value, $scope.DefinitionArray[value-1]);
+    
+    // console.log(description);
+    console.log(value);
+    var gem = document.getElementsByClassName("gem");
+    var gemTxt = document.getElementById("actionLabel");
+    var gemTxt2 = document.getElementById("subGemLabel");
+    var gemTxt3 = document.getElementById("subGemLabel2");
+    var descContainer = document.getElementById("valueExplanation");
+    console.log(gemTxt);
+    
+    if(!init) {
+      gem[0].style.fill= $scope.gemColor;
+      gem[0].style.stroke= $scope.gemColor;
+      gemTxt = description;
+      console.log(description, $scope.DefinitionArray[value-1]);
+      if(description.length > 14) {
+        var split = description.match(/.{1,14}/g);
+        console.log(split);
+        gemTxt.textContent = split[0];
+        gemTxt2.textContent = split[1];
+        if(split.length > 2) {
+          gemTxt3.textContent = split[2];
+        }
+        // Need for loop for larger split arrays that also make the containing gem larger
+        } else {
+          gemTxt.textContent = description;
+          gemTxt2.textContent = '';
+          gemTxt3.textContent = '';
+        }
+
+    } else {
+      console.log($scope.DefinitionArray[4]);
+      // description = $scope.DefinitionArray[4];
+    }
+
+    console.log(value);
+    descContainer.innerText = description;
+    $scope.storeAnswer(description);
+  }
+
+  $scope.storeAnswer = function(answer) {
+    sessionStorage.setItem("Q1", answer); /*Store answer*/
+    console.log(sessionStorage.getItem("Q1"));
+  }
+
   //Minimal slider config
   $scope.minSlider = {
     value: 10
@@ -43,7 +175,7 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.gemColor = 'purple';
   $scope.gemValueText = 'purple';
   $scope.start = true;
-  $scope.Q1LegendArray = [
+  $scope.DefinitionArray = [
       ['You Lie; You are Dishonest; You are Untrustworthy', 'untruthful; unfair; corrupt'],
       ['You Cheat; You Deceive', 'avoids consequences; rumours; exaggerate answers'],
       ['You tell White Lies', 'tell minor lies to avoid hurting someones feelings'],
@@ -52,18 +184,15 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ['You Gossip', 'true but destructive to relationships'],
       ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
 
-<<<<<<< HEAD
-  $scope.LegendArray = new Array(0);
-=======
   $scope.LegendArray = [
-    'Dishonest',
-    'Cheat',
-    'White Liar',
-    'Honest',
-    'Honest but...',
-    'Gossip',
-    'Idealistic'];
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8'];
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -77,37 +206,10 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   };
 
   // Below is just a JSON template of what data a question should hold
-  $scope.loadJSON = function() {
-    var returnJSON = [];
-    $.getJSON("questions.json", function(json) {
-      $.each(json.Questions, function(k, v) {
-        // console.log(k, v);
-      })
-        $scope.valueQuestion.push(json.Questions);
-      // $scope.valueQuestion = json.Questions[0].Question;
-      // return json;
-    });
-    // console.log($scope.valueQuestion);   
-  }
 
-  $scope.loadJSON();
-  console.log($scope.valueQuestion);
-<<<<<<< HEAD
+  // $scope.loadJSON();
+  // console.log($scope.valueQuestion);
   // console.log($scope.valueQuestion[0]);
-=======
-  console.log($scope.valueQuestion[0]);
-
-  $scope.setQuestionSelected = function(index){
-    console.log("Index selected:" + index);
-    location.href='#/first';
-    $scope.questionSelectedIndex = index;
-    $scope.changeGemLabel($scope.gemColor, true);
-    // $scope.questionHeading = document.getElementById("questionHeading");
-    console.log($scope.valueQuestion[$scope.questionSelectedIndex].Question);
-    // $scope.questionHeading.innerText = $scope.valueQuestion[$scope.questionSelectedIndex].Question;
-    // $scope.quest
-  }
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
 
   $scope.storedValue = '';
 
@@ -170,35 +272,22 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
             break;
         }
         // console.log($scope.gemColor);
-<<<<<<< HEAD
-        $scope.changeGemLabel(value, false, $scope.LegendArray);
-=======
-        $scope.changeGemLabel(value, false);
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
-        var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
-        // console.log(pointer);
-
+        var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
+        console.log(pointer);
         // document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
         //
         // "Pointer" actually returns an array where the first element is the actual pointer!
         // pointer.style.backgroundColor=$scope.gemColor;
         // pointer.setStyle({fillColor: '#dddddd'})
         // pointer.style.fill="red";
+        console.log($scope.questionSelectedIndex, $scope.DefinitionArray[$scope.questionSelectedIndex]);
+        $scope.changeGemLabel(value, false, $scope.DefinitionArray[$scope.questionSelectedIndex]);
         return $scope.gemColor;
       }
     }
       
   };
 
-<<<<<<< HEAD
-  $scope.loadForm = function(index, array, title) {
-    // console.log(array, typeof title);
-    location.href='#/first';
-    $scope.setQuestionSelected(index);
-    $scope.setLegend(array);
-    document.getElementById("questionHeading").innerText = title;
-    $scope.changeGemLabel(index , true, array);
-  }
 
   $scope.setQuestionSelected = function(index){
     // console.log("Index selected:" + index);
@@ -211,90 +300,91 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
     // $scope.quest
   }
 
+  $scope.redrawSlider = function() {
+    $scope.slider_ticks_legend.refreshSlider = function () {
+    $timeout(function () {
+        $scope.$broadcast('rzSliderForceRender');
+      });
+    };
+  }
+
   $scope.setLegend = function(array) {
-    console.log(array.value);
-    for(x = 0; x < array.length; x++) {
-      console.log(array.value[x]);
-      $scope.LegendArray[x] = array.value[x].definition;
+    // console.log(array.value);
+    for(x = 0; x < array.value.length; x++) {
+      // console.log(array.value[x].name);
+      $scope.LegendArray[x] = array.value[x].name;
+      $scope.slider_ticks_legend.options.stepsArray[x] = array.value[x].name;
     }
-    console.log($scope.LegendArray);
+    $scope.redrawSlider();
+    // console.log($scope.LegendArray);
   }
 
-  $scope.changeGemLabel = function(value, init, descriptionArray) {
-    // console.log(value, $scope.Q1LegendArray[value-1]);
+  $scope.setDefinition = function(array) {
+    // console.log(array.value);
+    for(x = 0; x < array.value.length; x++) {
+      // console.log(array.value[x].definition);
+      $scope.DefinitionArray[x] = array.value[x].definition;
+    }
+    // console.log($scope.DefinitionArray);
+  }
+
+  $scope.changeGemLabel = function(value, init, description) {
+    // console.log(value, $scope.DefinitionArray[value-1]);
     
-=======
-  $scope.setLegend = function(index, array) {
-    for(x = 0; x < array.length) {
-      $scope.LegendArray[i] = array[i];
-    }
-  }
-
-  $scope.changeGemLabel = function(value, init) {
-    // console.log(value, $scope.Q1LegendArray[value-1]);
-    setLegend()
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
+    // console.log(description);
     console.log(value);
     var gem = document.getElementsByClassName("gem");
-    var gemTxt = document.getElementById("gemLabel");
+    var gemTxt = document.getElementById("actionLabel");
     var gemTxt2 = document.getElementById("subGemLabel");
     var gemTxt3 = document.getElementById("subGemLabel2");
     var descContainer = document.getElementById("valueExplanation");
-    console.log(descriptionArray[4].action);
     // console.log($scope.LegendArray);
-    console.log(gemTxt);
     // console.log(gem[0]);
-    // console.log(gemTxt);
+    console.log(gemTxt);
     // gem[0].style.fill= "blue";
-<<<<<<< HEAD
-    var description = "You are honest";
+    // var description = "You are honest";
+    
     if(!init) {
       gem[0].style.fill= $scope.gemColor;
       gem[0].style.stroke= $scope.gemColor;
-      $scope.LegendArray = descriptionArray;
-      console.log(value, descriptionArray[value-1].action);
-      description = descriptionArray[value-1].action;
-
-    } else {
-      description = descriptionArray[4].action;
-=======
-    if(!init) {
-      gem[0].style.fill= $scope.gemColor;
-      gem[0].style.stroke= $scope.gemColor;
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
-    }
-    // gem.fill = '#000000';
-    // gem.setAttribute("fill", $scope.gemValueText);
-    // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
-    // for(x = 0; x < legend.length; x++)
-    // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
-<<<<<<< HEAD
-    // var val = $scope.LegendArray;
-    // console.log(val, val.length);
-    console.log(description);
-    console.log(gemTxt.textContent);
-    gemTxt.textContent = description;
-    if(description.length > 14) {
+      // $scope.LegendArray = $scope.DefinitionArray;
+      // console.log(value, $scope.DefinitionArray[value-1]);
+      // description = $scope.DefinitionArray[value-1];
+      gemTxt = description;
+      console.log(description, $scope.DefinitionArray[value-1]);
+      // console.log(gemTxt.textContent);
+      if(description.length > 14) {
         var split = description.match(/.{1,14}/g);
-=======
-    // var val = $scope.Q1LegendArray[value-1][0];
-    console.log(val.length);
-    if(val.length > 14) {
-        var split = val.match(/.{1,14}/g);
->>>>>>> d1dfd7f7c8154a63f7089b06536d5ceca5d47e06
         console.log(split);
         gemTxt.textContent = split[0];
         gemTxt2.textContent = split[1];
         if(split.length > 2) {
           gemTxt3.textContent = split[2];
         }
-
         // Need for loop for larger split arrays that also make the containing gem larger
+        } else {
+          gemTxt.textContent = description;
+          gemTxt2.textContent = '';
+          gemTxt3.textContent = '';
+        }
+
     } else {
-      gemTxt.textContent = description;
-      gemTxt2.textContent = '';
-      gemTxt3.textContent = '';
+      console.log($scope.DefinitionArray[4]);
+      // description = $scope.DefinitionArray[4];
+      
     }
+    
+    
+
+    // gem.fill = '#000000';
+    // gem.setAttribute("fill", $scope.gemValueText);
+    // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
+    // for(x = 0; x < legend.length; x++)
+    // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
+    // var val = $scope.LegendArray;
+    // console.log(val, val.length);
+    console.log(value);
+    // console.log(gemTxt.textContent);
     descContainer.innerText = description;
     $scope.storeAnswer(description);
   }
@@ -311,6 +401,9 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       $scope.slider_all_options.maxValue = 8;
     }
   }
+
+  return(SurveyQuestionForm);
+
 });
 
 app.directive('clickableLabel', function() {
@@ -326,3 +419,6 @@ app.directive('clickableLabel', function() {
     }
   };
 });
+
+//Use $rootScope to contain data from multiple controllers --> each controller should be for each state
+//https://forum.ionicframework.com/t/multiple-controllers-per-view-global-app-controller-wtf-is-a-controller/1070/2
