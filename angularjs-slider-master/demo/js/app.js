@@ -40,8 +40,27 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
   $scope.minSlider = {
     value: 10
   };
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
 
   $scope.valueQuestion = new Array(0);
+=======
+  console.log($(window).width());
+  $scope.questionSelectedIndex = -1;
+  $scope.valueQuestion = new Array(0);
+  $scope.gemColor = 'purple';
+  $scope.gemValueText = 'purple';
+  $scope.start = true;
+  $scope.Q1LegendArray = [
+      ['You Lie; You are Dishonest; You are Untrustworthy', 'untruthful; unfair; corrupt'],
+      ['You Cheat; You Deceive', 'avoids consequences; rumours; exaggerate answers'],
+      ['You tell White Lies', 'tell minor lies to avoid hurting someones feelings'],
+      ['You are Honest', 'Everything said is right and true and considerate; trustworthy; genuine; reliable'],
+      ['You are Honest but...', 'inconsiderate; insensitive; tactless; inappropriate; too modest'],
+      ['You Gossip', 'true but destructive to relationships'],
+      ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
+
+  $scope.LegendArray = new Array(0);
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -70,6 +89,7 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
   }
 
   $scope.loadJSON();
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
 
   // $scope.storedValue = '';
 
@@ -209,6 +229,9 @@ app.factory('SurveyQuestionForm', function($http) {
 
   // $scope.loadJSON();
   // console.log($scope.valueQuestion);
+=======
+  console.log($scope.valueQuestion);
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
   // console.log($scope.valueQuestion[0]);
 
   $scope.storedValue = '';
@@ -272,8 +295,15 @@ app.factory('SurveyQuestionForm', function($http) {
             break;
         }
         // console.log($scope.gemColor);
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
         var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
         console.log(pointer);
+=======
+        $scope.changeGemLabel(value, false, $scope.LegendArray);
+        var pointer = document.getElementsByClassName("rz-pointer rz-pointer-min rz:active");
+        // console.log(pointer);
+
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
         // document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
         //
         // "Pointer" actually returns an array where the first element is the actual pointer!
@@ -288,6 +318,17 @@ app.factory('SurveyQuestionForm', function($http) {
       
   };
 
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
+=======
+  $scope.loadForm = function(index, array, title) {
+    // console.log(array, typeof title);
+    location.href='#/first';
+    $scope.setQuestionSelected(index);
+    $scope.setLegend(array);
+    document.getElementById("questionHeading").innerText = title;
+    $scope.changeGemLabel(index , true, array);
+  }
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
 
   $scope.setQuestionSelected = function(index){
     // console.log("Index selected:" + index);
@@ -319,6 +360,7 @@ app.factory('SurveyQuestionForm', function($http) {
     // console.log($scope.LegendArray);
   }
 
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
   $scope.setDefinition = function(array) {
     // console.log(array.value);
     for(x = 0; x < array.value.length; x++) {
@@ -332,6 +374,11 @@ app.factory('SurveyQuestionForm', function($http) {
     // console.log(value, $scope.DefinitionArray[value-1]);
     
     // console.log(description);
+=======
+  $scope.changeGemLabel = function(value, init, descriptionArray) {
+    // console.log(value, $scope.Q1LegendArray[value-1]);
+    
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
     console.log(value);
     var gem = document.getElementsByClassName("gem");
     var gemTxt = document.getElementById("actionLabel");
@@ -342,6 +389,7 @@ app.factory('SurveyQuestionForm', function($http) {
     // console.log(gem[0]);
     console.log(gemTxt);
     // gem[0].style.fill= "blue";
+<<<<<<< HEAD:angularjs-slider-master/demo/demo2.js
     // var description = "You are honest";
     
     if(!init) {
@@ -354,6 +402,30 @@ app.factory('SurveyQuestionForm', function($http) {
       console.log(description, $scope.DefinitionArray[value-1]);
       // console.log(gemTxt.textContent);
       if(description.length > 14) {
+=======
+    var description = "You are honest";
+    if(!init) {
+      gem[0].style.fill= $scope.gemColor;
+      gem[0].style.stroke= $scope.gemColor;
+      $scope.LegendArray = descriptionArray;
+      console.log(value, descriptionArray[value-1].action);
+      description = descriptionArray[value-1].action;
+
+    } else {
+      description = descriptionArray[4].action;
+    }
+    // gem.fill = '#000000';
+    // gem.setAttribute("fill", $scope.gemValueText);
+    // var legend = $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions;
+    // for(x = 0; x < legend.length; x++)
+    // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
+    // var val = $scope.LegendArray;
+    // console.log(val, val.length);
+    console.log(description);
+    console.log(gemTxt.textContent);
+    gemTxt.textContent = description;
+    if(description.length > 14) {
+>>>>>>> d7e6605b0b825c3ba9e6da77b58f68ea4ffe32ef:angularjs-slider-master/demo/js/app.js
         var split = description.match(/.{1,14}/g);
         console.log(split);
         gemTxt.textContent = split[0];
