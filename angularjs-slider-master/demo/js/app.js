@@ -56,9 +56,10 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
   };
 
   // Below is just a JSON template of what data a question should hold
+  $scope.questionsPath = "../questions.json";
   $scope.loadJSON = function() {
     var returnJSON = [];
-    $.getJSON("questions.json", function(json) {
+    $.getJSON($scope.questionsPath, function(json) {
       $.each(json.Questions, function(k, v) {
         // console.log(k, v);
       })
