@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('first', {
     url: '/first',
     templateUrl: 'q1.html',
-    controller: 'FormController'
+    controller: 'MainCtrl'
   })
   .state('second', {
     url: '/second',
@@ -33,7 +33,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
-app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', function($scope, $rootScope, $timeout, $uibModal) {
+app.controller('MainCtrl', 
+	['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', 
+		function($scope, $rootScope, $timeout, $uibModal, SurveyQuestionForm) {
   $scope.form = null;
 
   //Minimal slider config
@@ -56,9 +58,10 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
   };
 
   // Below is just a JSON template of what data a question should hold
+  // $scope.questionsPath = "../questions.json";
   $scope.loadJSON = function() {
     var returnJSON = [];
-    $.getJSON("questions.json", function(json) {
+    $.getJSON("json/questions.json", function(json) {
       $.each(json.Questions, function(k, v) {
         // console.log(k, v);
       })
@@ -75,8 +78,8 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
 
 
   $scope.loadForm = function(index, array, title) {
+    console.log(index, array, typeof title);
     $scope.form = new SurveyQuestionForm(index, array, title);
-    // console.log(array, typeof title);
     // $scope.setQuestionSelected(index);
     // $scope.setLegend(array);
     // $scope.setDefinition(array);
@@ -87,16 +90,17 @@ app.controller('MainCtrl', ['$rootScope','$scope','$timeout', '$uibModal', 'Surv
 
 }]);
 
-app.factory('SurveyQuestionForm', function($http) {
+app.factory('SurveyQuestionForm', ['$http', function($http) {
   
   var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading) {
       this.initialize = function() {
-          console.log(questionJSONData, typeof title);
+          console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           location.href='#/first';
           setQuestionSelected(questionNumber);
           setLegend(questionJSONData);
           setDefinition(questionJSONData);
           // console.log($scope.DefinitionArray);
+          console.log(DefinitionArray, LegendArray);
           console.log(document.getElementsByClassName("formHeading"));
           changeGemLabel(4 , true, DefinitionArray);
           document.getElementById("questionHeading").innerText = QuestionHeading;
@@ -165,11 +169,10 @@ app.factory('SurveyQuestionForm', function($http) {
     console.log(sessionStorage.getItem("Q1"));
   }
 
-  //Minimal slider config
-  minSlider = {
-    value: 10
-  };
-
+//   //Minimal slider config
+//   minSlider = {
+//     value: 10
+// };
   questionSelectedIndex = -1;
   valueQuestion = new Array(0);
   gemColor = 'purple';
@@ -402,9 +405,9 @@ app.factory('SurveyQuestionForm', function($http) {
     }
   }
 
-  return(SurveyQuestionForm);
+  return SurveyQuestionForm;
 
-});
+}]);
 
 app.directive('clickableLabel', function() {
   return {

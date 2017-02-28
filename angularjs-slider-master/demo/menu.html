@@ -11,9 +11,10 @@
   <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"><!-- {{x.ValueOptions.value[4].definition}} --></span>
 
     <div id="shapeContainer{{$index}}" width="auto" height="700px" fill="none">
+          <!-- <p>{{$index}}</p> -->
       <svg class="environments-image{{$index}}" x="300" width="20%" viewBox="0 0 300 300"> 
       <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-          <polygon class="Q1gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" ng-click="loadForm($index, x.ValueOptions, x.Question)">
+          <polygon class="Q1gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20" ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)">
           <animateTransform attributeName="transform"
                             attributeType="XML"
                             type="rotate"

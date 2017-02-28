@@ -1,4 +1,4 @@
-@media screen and (min-width: 901px) {
+@media screen and (max-width: 480px) {
 
 	* { 
 		margin: 0; padding: 0; 
@@ -37,7 +37,7 @@
 	}
 
 	.scroll, ion-content.scroll-content.ionic-scroll {
-		background-image: url("../lib/images/gradient-wallpaper-4.jpg");
+		background-image: url("lib/images/gradient-wallpaper-4.jpg");
 	}
 
 	.hehch1 {
@@ -109,7 +109,7 @@
 		/*These two lines below center-align the svg*/
 		display: block;
 		margin: auto;
-		height: 400px;
+		/*height: 80px;*/
 	}
 
 	#gemLabel {
@@ -223,9 +223,7 @@
 		background: rgba(0,0,0, 0.7);
 		padding-bottom: 15px;
 		padding-top: 15px;
-		margin-top: 10px;
-		margin-right: 100px;
-		margin-left: 100px;
+		margin: 10px;
 		color: #FFFFFF;
 		border-radius: 15px;
 		text-align: center;
