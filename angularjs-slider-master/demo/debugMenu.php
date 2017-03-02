@@ -31,16 +31,14 @@
 
   <div>
     <ion-nav-view animation="slide-left-right">
-      <ion-content><p style="font-size: 64px; text-align: center; font-family: Title; color: white;">Character Selfie</p>
+      <ion-content>
         <div class="wrapper">
           <h1 id="mainh1" style="font-family:'Ubuntu'; color:white;">Welcome!</h1>
           <h4 id="mainh4">Choose a user type to begin.
           </h4>
         <!-- <a class="button icon-right ion-checkmark" href="#/first">Let's Begin!</a> -->
-        <button class="button icon-right ion-android-clipboard" onclick="location.href='#/ParticipantStart';" href="#/ParticipantStart">Participant</button>
-        <button class="button icon-right ion-hammer" onclick="location.href='#/menu';" href="#/index">Facilitator </button>
-        <button class="button icon-right ion-wrench" onclick="location.href='#/menu';" href="#/ParticipantStart">Admin</button>
-        <button class="button icon-right ion-settings" onclick="location.href='#/menu';" href="#/ParticipantStart">System Admin</button>
+        <button class="button icon-right ion-android-hammer" onclick="location.href='#/menu';" href="#/index">Admin </button>
+        <button class="button icon-right ion-android-clipboard" onclick="location.href='#/menu';" href="#/index">Participant</button>
         <!-- <a class="button icon-right ion-android-create" onclick="location.href='#/first';">Let's Begin! </a> -->
         <!-- http://stackoverflow.com/questions/13425833/how-can-i-change-the-pages-url-when-a-visitor-clicks-a-button -->
         </div>

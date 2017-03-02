@@ -26,6 +26,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('last', {
     url: '/last',
     templateUrl: 'last.html'
+  })
+
+  .state('ParticipantStart', {
+    url: '/ParticipantStart',
+    templateUrl: 'ParticipantStart.php'
+  })
+
+  .state('debugMenu', {
+    url: '/debugMenu',
+    templateUrl: 'debugMenu.php'
   });
 
   $urlRouterProvider.otherwise('/');  
@@ -95,7 +105,7 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
 
   var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading) {
       this.initialize = function() {
-          $scope.qData = questionJSONData;
+          qData = questionJSONData;
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           location.href='#/first';
           setQuestionSelected(questionNumber);
@@ -229,13 +239,13 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
       floor: 1,
 
       stepsArray: [
-        {value: 1, legend: qData.value[0].name},
-        {value: 2, legend: qData.value[1].name},
-        {value: 3, legend: qData.value[2].name},
-        {value: 4, legend: qData.value[3].name},
-        {value: 5, legend: qData.value[4].name},
-        {value: 6, legend: qData.value[5].name},
-        {value: 7, legend: qData.value[6].name},
+        {value: 1, legend: LegendArray[0]},
+        {value: 2, legend: LegendArray[1]},
+        {value: 3, legend: LegendArray[2]},
+        {value: 4, legend: LegendArray[3]},
+        {value: 5, legend: LegendArray[4]},
+        {value: 6, legend: LegendArray[5]},
+        {value: 7, legend: LegendArray[6]},
         
       ],
       getPointerColor: function(value) {
