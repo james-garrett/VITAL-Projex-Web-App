@@ -130,7 +130,36 @@
       //    },
       //    defaultColor:"red",
       //    BasicLabel:"Honesty",
-      // }
+    items: [{
+        properties: [{
+          "Question Prompt": "This is a question?",
+          "Default Color": "red",
+          
+          "Basic Label": "q1",
+          valueArray: {                      
+              items: 
+                {
+                  properties: [{
+                    name: "Name1",
+                    action: "nameaction1",
+                    definition: "definiton1",
+                    default: true,
+                    
+                    synonyms: [{
+                      items: [{
+                        properties: [{
+                            name: "synname1",
+                            action: "synaction1",
+                            definition: "syndefinition"
+                            }]
+                        }]
+                      }]
+                    }]
+                  }
+                }
+            }]
+        }]
+      }
       ];
       
       // Initialize the editor
@@ -140,50 +169,30 @@
         
         // The schema for the editor
         schema: {
-  type: "array",
-  title: "Survey Questions",
-  items: {
-    title: "Question",
-    properties: {
-      "Question Prompt": {
-        type: "string"
-      },
-      "Default Color": {
-        type: "string"
-      },
-      "Basic Label": {
-        type: "string"
-      },
-      valueArray: {
-          title: "Values",
           type: "array",
-
-          
-          items: 
-            {
-              title: "Value",
-              type: "object",
-              properties: {
-                name: {
-                  type: "string"
-                },
-                action: {
-                  type: "string"
-                },
-                definition: {
-                  type: "string"
-                },
-                default: {
-                  type: "boolean"
-                },
-                synonyms: {
-                  title: "Synonyms",
+          title: "Survey Questions",
+          items: {
+            title: "Question",
+            properties: {
+              "Question Prompt": {
+                type: "string"
+              },
+              "Default Color": {
+                type: "string"
+              },
+              "Basic Label": {
+                type: "string"
+              },
+              valueArray: {
+                  title: "Values",
                   type: "array",
 
-                  items: {
-                    title: "synonym",
-                    type: "object",
-                    properties: {
+                  
+                  items: 
+                    {
+                      title: "Value",
+                      type: "object",
+                      properties: {
                         name: {
                           type: "string"
                         },
@@ -192,16 +201,35 @@
                         },
                         definition: {
                           type: "string"
+                        },
+                        default: {
+                          type: "boolean"
+                        },
+                        synonyms: {
+                          title: "Synonyms",
+                          type: "array",
+
+                          items: {
+                            title: "synonym",
+                            type: "object",
+                            properties: {
+                                name: {
+                                  type: "string"
+                                },
+                                action: {
+                                  type: "string"
+                                },
+                                definition: {
+                                  type: "string"
+                                }
+                            }
+                          }
                         }
+                      }
                     }
-                  }
                 }
-              }
             }
-          
-        }
-    }
-  }
+          }
 },
 
         
@@ -219,6 +247,7 @@
       document.getElementById('submit').addEventListener('click',function() {
         // Get the value from the editor
         console.log(editor.getValue());
+
       });
       
       // Hook up the Restore to Default button
