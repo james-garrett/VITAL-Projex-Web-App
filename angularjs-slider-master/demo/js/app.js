@@ -33,6 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'ParticipantStart.php'
   })
 
+  .state('AdminStart', {
+    url: '/AdminStart',
+    templateUrl: 'AdminStart.php'
+  })
+
   .state('debugMenu', {
     url: '/debugMenu',
     templateUrl: 'debugMenu.php'

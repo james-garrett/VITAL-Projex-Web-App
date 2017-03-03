@@ -2,21 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Advanced JSON Editor Example</title>
+    <title>Survey Creator and Editor</title>
     
     <script src="../js/jsoneditor.js"></script>
   </head>
   <body>
-    <h1>Advanced JSON Editor Example</h1>
+    <h1>Survey Creator and Editor</h1>
     
-    <p>This example demonstrates the following:</p>
-    <ul>
-      <li>Loading external schemas via ajax (using $ref)</li>
-      <li>Setting the editor's value from javascript (try the Restore to Default button)</li>
-      <li>Validating the editor's contents (try setting name to an empty string)</li>
-      <li>Macro templates (try changing the city or state fields and watch the citystate field update automatically)</li>
-      <li>Enabling and disabling editor fields</li>
-    </ul>
+    <p>This form allows you to take edit or create surveys:</p>
+    
     
     <button id='submit'>Submit (console.log)</button>
     <button id='restore'>Restore to Default</button>
@@ -31,111 +25,111 @@
       // and to provide a "Restore to Default" button.
       var starting_value = [
         {
-         Question:"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
-         ValueOptions:{
-            value:[
-               {
-                  name:"Lie",
-                  action:"You Tell Lies",
-                  definition:"Untruthful; Unfair; Corrupt",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
-                           name:"Dishonest",
-                           action:"You are Dishonest"
-                        },
-                        {
-                           name:"Untrustworthy",
-                           action:"You are Untrustworthy"
-                        }
-                     ]
-                  }
-               },
-               {                  name:"Cheat",
-                  action:"You are a Cheater",
-                  definition:"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
-                           name:"Deceive",
-                           action:"You are Deceptive"
-                        }
-                     ]
-                  }
-               },
-               {
-                  name:"White Lies",
-                  action:"You Tell White Lies",
-                  definition:"Telling minor lies to avoid hurting someone's feelings",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
+      //    Question:"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+      //    ValueOptions:{
+      //       value:[
+      //          {
+      //             name:"Lie",
+      //             action:"You Tell Lies",
+      //             definition:"Untruthful; Unfair; Corrupt",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
+      //                      name:"Dishonest",
+      //                      action:"You are Dishonest"
+      //                   },
+      //                   {
+      //                      name:"Untrustworthy",
+      //                      action:"You are Untrustworthy"
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {                  name:"Cheat",
+      //             action:"You are a Cheater",
+      //             definition:"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
+      //                      name:"Deceive",
+      //                      action:"You are Deceptive"
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {
+      //             name:"White Lies",
+      //             action:"You Tell White Lies",
+      //             definition:"Telling minor lies to avoid hurting someone's feelings",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
 
-                        }
-                     ]
-                  }
-               },
-               {
-                  name:"Honest",
-                  action:"You are Honest",
-                  definition:"Everything said is right and true and considereate; trustworthy; genuine; reliable",
-                  default:true,
-                  synonyms:{
-                     synonym:[
-                        {
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {
+      //             name:"Honest",
+      //             action:"You are Honest",
+      //             definition:"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+      //             default:true,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
 
-                        }
-                     ]
-                  }
-               },
-               {
-                  name:"Honest but Inconsiderate",
-                  action:"You are Honest But Inconsiderate",
-                  definition:"Insensitive; tactless; inappropriate; too modest",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {
+      //             name:"Honest but Inconsiderate",
+      //             action:"You are Honest But Inconsiderate",
+      //             definition:"Insensitive; tactless; inappropriate; too modest",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
 
-                        }
-                     ]
-                  }
-               },
-               {
-                  name:"Gossip",
-                  action:"You are a Gossiper",
-                  definition:"True but destructive to relationships",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {
+      //             name:"Gossip",
+      //             action:"You are a Gossiper",
+      //             definition:"True but destructive to relationships",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
 
-                        }
-                     ]
-                  }
-               },
-               {
-                  name:"Hard-Hearted",
-                  action:"You are Hard Hearted",
-                  definition:"Honest but cruel; Unrealistically aiming for perfection",
-                  default:false,
-                  synonyms:{
-                     synonym:[
-                        {
-                           name:"Idealistic",
-                           action:"You are Idealistic"
-                        }
-                     ]
-                  }
-               }
-            ]
-         },
-         defaultColor:"red",
-         BasicLabel:"Honesty",
-      }
+      //                   }
+      //                ]
+      //             }
+      //          },
+      //          {
+      //             name:"Hard-Hearted",
+      //             action:"You are Hard Hearted",
+      //             definition:"Honest but cruel; Unrealistically aiming for perfection",
+      //             default:false,
+      //             synonyms:{
+      //                synonym:[
+      //                   {
+      //                      name:"Idealistic",
+      //                      action:"You are Idealistic"
+      //                   }
+      //                ]
+      //             }
+      //          }
+      //       ]
+      //    },
+      //    defaultColor:"red",
+      //    BasicLabel:"Honesty",
+      // }
       ];
       
       // Initialize the editor
