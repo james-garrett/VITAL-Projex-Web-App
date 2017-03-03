@@ -112,7 +112,7 @@
          "AnswerKeyWords":""
       },
       {
-         "id":"0002",
+         "id":"0001",
          "Question":"Think of somehing stressful you have done recently or need to do.",
          "ValueOptions":{
             "value":[
@@ -229,6 +229,319 @@
          },
          "defaultColor":"green",
          "BasicLabel":"Courage",
+         "AnswerValue":"",
+         "href": "#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "id":"0002",
+         "Question":"List something you do that could risk hurting yourself, or others regarding their feelings or physically",
+         "ValueOptions":{
+            "value":[
+               {
+                  "name":"Dread",
+                  "action":"You are Full of Dread",
+                  "definition":"Dry mouth; heart racing; trembling",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Panic",
+                           "action":"You are Panicking"
+                        },
+                        {
+                           "name":"Distressed",
+                           "action":"You are Distressed"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Highly Anxious",
+                  "action":"You are Highly Anxious",
+                  "definition":"Worried; afraid; upset",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Fearful",
+                           "action":"You are Fearful"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Nervous",
+                  "action":"You are Nervous",
+                  "definition":"Hesitant; concerned; can't perform to potential",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Timid",
+                           "action":"You are Timid"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Courageous",
+                  "action":"You are Courageous",
+                  "definition":"Bravery in the face of fear; closed 'GAPS",
+                  "default?":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Brave",
+                           "action":"You are Brave"
+                        },
+                        {
+                           "name":"Assertive",
+                           "action":"You are Assertive"
+                        },
+                        {
+                           "name":"Thoughtful",
+                           "action":"You are Thoughtful"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Unaware of other's feelings",
+                  "action":"You are Unaware of Other's Feelings",
+                  "definition":"Take over; talk over the top of others; butt in conversations; put down; rude",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Overconfident",
+                  "action":"You are Overconfident",
+                  "definition":"Opinionated; over-compensate; ego; proud; hasty",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Careless",
+                           "action":"You are Careless"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Rash",
+                  "action":"You are Rash",
+                  "definition":"Irresponsible; lose control; extremely bold",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Reckless",
+                           "action":"You are Reckless"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"green",
+         "BasicLabel":"Courage",
+         "AnswerValue":"",
+         "href": "#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "id":"0003",
+         "Question":"Where do you see yourself when it comes to trusting dn believing people?",
+         "ValueOptions":{
+            "value":[
+               {
+                  "name":"Paranoid",
+                  "action":"You are Paranoid",
+                  "definition":"Fearfuk",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Distrusting",
+                  "action":"You are Distrusting",
+                  "definition":"Not believing what is said",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Suspicious",
+                  "action":"You are Suspicious",
+                  "definition":"Guarded; Doubtful",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Trusting",
+                  "action":"You are Trusting",
+                  "definition":"Firm belief in someone or something being reliable and true",
+                  "default?":true,
+                  "synonyms":{
+                     "synonym":[
+                     ]
+                  }
+               },
+               {
+                  "name":"Susceptible",
+                  "action":"You are Susceptible",
+                  "definition":"Vulnerable; Being Subtly controlled",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+      
+                           "name":"Influenced",
+                           "action":"You are Influenced by others."
+                              
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gullible",
+                  "action":"You are Gullible",
+                  "definition":"Easy to fool",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Naive",
+                  "action":"You are Naive",
+                  "definition":"Inexperienced; too trusting",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"Blue",
+         "BasicLabel":"Trust",
+         "AnswerValue":"",
+         "href": "#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "id":"0004",
+         "Question":"How much can you trust your peers with your physical safety??",
+         "ValueOptions":{
+            "value":[
+               {
+                  "name":"Paranoid",
+                  "action":"You are Paranoid",
+                  "definition":"Fearfuk",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Distrusting",
+                  "action":"You are Distrusting",
+                  "definition":"Not believing what is said",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Suspicious",
+                  "action":"You are Suspicious",
+                  "definition":"Guarded; Doubtful",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Trusting",
+                  "action":"You are Trusting",
+                  "definition":"Firm belief in someone or something being reliable and true",
+                  "default?":true,
+                  "synonyms":{
+                     "synonym":[
+                     ]
+                  }
+               },
+               {
+                  "name":"Susceptible",
+                  "action":"You are Susceptible",
+                  "definition":"Vulnerable; Being Subtly controlled",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+      
+                           "name":"Influenced",
+                           "action":"You are Influenced by others."
+                              
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gullible",
+                  "action":"You are Gullible",
+                  "definition":"Easy to fool",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               },
+               {
+                  "name":"Naive",
+                  "action":"You are Naive",
+                  "definition":"Inexperienced; too trusting",
+                  "default?":false,
+                  "synonyms":{
+                     "synonym":[
+                        
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"Blue",
+         "BasicLabel":"Trust and Physical Safety",
          "AnswerValue":"",
          "href": "#/first",
          "AnswerKeyWords":""

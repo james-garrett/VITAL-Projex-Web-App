@@ -26,6 +26,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('last', {
     url: '/last',
     templateUrl: 'last.html'
+  })
+
+  .state('ParticipantStart', {
+    url: '/ParticipantStart',
+    templateUrl: 'ParticipantStart.php'
+  })
+
+  .state('debugMenu', {
+    url: '/debugMenu',
+    templateUrl: 'debugMenu.php'
   });
 
   $urlRouterProvider.otherwise('/');  
@@ -90,10 +100,12 @@ app.controller('MainCtrl',
 
 }]);
 
-app.factory('SurveyQuestionForm', ['$http', function($http) {
+app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
   
+
   var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading) {
       this.initialize = function() {
+          qData = questionJSONData;
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           location.href='#/first';
           setQuestionSelected(questionNumber);
@@ -101,9 +113,10 @@ app.factory('SurveyQuestionForm', ['$http', function($http) {
           setDefinition(questionJSONData);
           // console.log($scope.DefinitionArray);
           console.log(DefinitionArray, LegendArray);
-          console.log(document.getElementsByClassName("formHeading"));
+          console.log(document.getElementsByClassName("questionHeading"));
           changeGemLabel(4 , true, DefinitionArray);
           document.getElementById("questionHeading").innerText = QuestionHeading;
+          redrawSlider();
       };
       this.initialize();
     };
@@ -133,6 +146,7 @@ app.factory('SurveyQuestionForm', ['$http', function($http) {
     var gemTxt3 = document.getElementById("subGemLabel2");
     var descContainer = document.getElementById("valueExplanation");
     console.log(gemTxt);
+    console.log(descContainer);
     
     if(!init) {
       gem[0].style.fill= gemColor;
@@ -331,51 +345,51 @@ app.factory('SurveyQuestionForm', ['$http', function($http) {
     // console.log($scope.DefinitionArray);
   }
 
-  changeGemLabel = function(value, init, description) {
-    // console.log(value, $scope.DefinitionArray[value-1]);
+  // changeGemLabel = function(value, init, description) {
+  //   // console.log(value, $scope.DefinitionArray[value-1]);
     
-    // console.log(description);
-    console.log(value);
-    var gem = document.getElementsByClassName("gem");
-    var gemTxt = document.getElementById("actionLabel");
-    var gemTxt2 = document.getElementById("subGemLabel");
-    var gemTxt3 = document.getElementById("subGemLabel2");
-    var descContainer = document.getElementById("valueExplanation");
-    // console.log($scope.LegendArray);
-    // console.log(gem[0]);
-    console.log(gemTxt);
-    // gem[0].style.fill= "blue";
-    // var description = "You are honest";
+  //   // console.log(description);
+  //   console.log(value);
+  //   var gem = document.getElementsByClassName("gem");
+  //   var gemTxt = document.getElementById("actionLabel");
+  //   var gemTxt2 = document.getElementById("subGemLabel");
+  //   var gemTxt3 = document.getElementById("subGemLabel2");
+  //   var descContainer = document.getElementById("valueExplanation");
+  //   // console.log($scope.LegendArray);
+  //   // console.log(gem[0]);
+  //   console.log(gemTxt);
+  //   // gem[0].style.fill= "blue";
+  //   // var description = "You are honest";
     
-    if(!init) {
-      gem[0].style.fill= gemColor;
-      gem[0].style.stroke= gemColor;
-      // $scope.LegendArray = $scope.DefinitionArray;
-      // console.log(value, $scope.DefinitionArray[value-1]);
-      // description = $scope.DefinitionArray[value-1];
-      gemTxt = description;
-      console.log(description, DefinitionArray[value-1]);
-      // console.log(gemTxt.textContent);
-      if(description.length > 14) {
-        var split = description.match(/.{1,14}/g);
-        console.log(split);
-        gemTxt.textContent = split[0];
-        gemTxt2.textContent = split[1];
-        if(split.length > 2) {
-          gemTxt3.textContent = split[2];
-        }
-        // Need for loop for larger split arrays that also make the containing gem larger
-        } else {
-          gemTxt.textContent = description;
-          gemTxt2.textContent = '';
-          gemTxt3.textContent = '';
-        }
+  //   if(!init) {
+  //     gem[0].style.fill= gemColor;
+  //     gem[0].style.stroke= gemColor;
+  //     // $scope.LegendArray = $scope.DefinitionArray;
+  //     // console.log(value, $scope.DefinitionArray[value-1]);
+  //     // description = $scope.DefinitionArray[value-1];
+  //     gemTxt = description;
+  //     console.log(description, DefinitionArray[value-1]);
+  //     // console.log(gemTxt.textContent);
+  //     if(description.length > 14) {
+  //       var split = description.match(/.{1,14}/g);
+  //       console.log(split);
+  //       gemTxt.textContent = split[0];
+  //       gemTxt2.textContent = split[1];
+  //       if(split.length > 2) {
+  //         gemTxt3.textContent = split[2];
+  //       }
+  //       // Need for loop for larger split arrays that also make the containing gem larger
+  //       } else {
+  //         gemTxt.textContent = description;
+  //         gemTxt2.textContent = '';
+  //         gemTxt3.textContent = '';
+  //       }
 
-    } else {
-      console.log(DefinitionArray[4]);
-      // description = $scope.DefinitionArray[4];
+  //   } else {
+  //     console.log(DefinitionArray[4]);
+  //     // description = $scope.DefinitionArray[4];
       
-    }
+  //   }
     
     
 
@@ -386,11 +400,11 @@ app.factory('SurveyQuestionForm', ['$http', function($http) {
     // $scope.valueQuestion[$scope.questionSelectedIndex].ValueOptions.value.name;
     // var val = $scope.LegendArray;
     // console.log(val, val.length);
-    console.log(value);
-    // console.log(gemTxt.textContent);
-    descContainer.innerText = description;
-    storeAnswer(description);
-  }
+  //   console.log(value);
+  //   // console.log(gemTxt.textContent);
+  //   descContainer.innerText = description;
+  //   storeAnswer(description);
+  // }
 
   storeAnswer = function(answer) {
     sessionStorage.setItem("Q1", answer); /*Store answer*/
