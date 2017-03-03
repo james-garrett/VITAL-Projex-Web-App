@@ -130,12 +130,12 @@
       //    },
       //    defaultColor:"red",
       //    BasicLabel:"Honesty",
-    items: [{
-        properties: [{
-          "Question Prompt": "This is a question?",
-          "Default Color": "red",
-          
+    items: {
+        properties: {
           "Basic Label": "q1",
+          "Default Color": "red",
+          "Question Prompt": "This is a question?",
+          
           valueArray: {                      
               items: 
                 {
@@ -157,11 +157,11 @@
                     }]
                   }
                 }
-            }]
-        }]
-      }
-      ];
+            }
       
+      }
+        }
+      ];
       // Initialize the editor
       var editor = new JSONEditor(document.getElementById('editor_holder'),{
         // Enable fetching schemas via ajax
@@ -246,7 +246,8 @@
       // Hook up the submit button to log to the console
       document.getElementById('submit').addEventListener('click',function() {
         // Get the value from the editor
-        console.log(editor.getValue());
+        console.log("Editor empty", editor.getValue());
+        console.log("Starting val", starting_value);
 
       });
       
