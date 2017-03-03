@@ -159,18 +159,10 @@
       "Basic Label": {
         type: "string"
       },
-      value: {
+      valueArray: {
           title: "Values",
           type: "array",
-          value: {
-            type: "string"
-          },
-          action: {
-            type: "string"
-          },
-          definition: {
-            type: "string"
-          },
+
           
           items: 
             {
@@ -188,6 +180,26 @@
                 },
                 default: {
                   type: "boolean"
+                },
+                synonyms: {
+                  title: "Synonyms",
+                  type: "array",
+
+                  items: {
+                    title: "synonym",
+                    type: "object",
+                    properties: {
+                        name: {
+                          type: "string"
+                        },
+                        action: {
+                          type: "string"
+                        },
+                        definition: {
+                          type: "string"
+                        }
+                    }
+                  }
                 }
               }
             }
