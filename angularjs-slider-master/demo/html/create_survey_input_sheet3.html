@@ -5,6 +5,10 @@
     <title>Survey Creator and Editor</title>
     
     <script src="../js/jsoneditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    
   </head>
   <body>
     <h1>Survey Creator and Editor</h1>
@@ -24,112 +28,10 @@
       // We will use this to seed the initial editor 
       // and to provide a "Restore to Default" button.
       
+      var valueQuestion = [];
+      var entered_value = [];
       var starting_value = [
         {
-      //    Question:"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
-      //    ValueOptions:{
-      //       value:[
-      //          {
-      //             name:"Lie",
-      //             action:"You Tell Lies",
-      //             definition:"Untruthful; Unfair; Corrupt",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-      //                      name:"Dishonest",
-      //                      action:"You are Dishonest"
-      //                   },
-      //                   {
-      //                      name:"Untrustworthy",
-      //                      action:"You are Untrustworthy"
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {                  name:"Cheat",
-      //             action:"You are a Cheater",
-      //             definition:"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-      //                      name:"Deceive",
-      //                      action:"You are Deceptive"
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {
-      //             name:"White Lies",
-      //             action:"You Tell White Lies",
-      //             definition:"Telling minor lies to avoid hurting someone's feelings",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {
-      //             name:"Honest",
-      //             action:"You are Honest",
-      //             definition:"Everything said is right and true and considereate; trustworthy; genuine; reliable",
-      //             default:true,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {
-      //             name:"Honest but Inconsiderate",
-      //             action:"You are Honest But Inconsiderate",
-      //             definition:"Insensitive; tactless; inappropriate; too modest",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {
-      //             name:"Gossip",
-      //             action:"You are a Gossiper",
-      //             definition:"True but destructive to relationships",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-
-      //                   }
-      //                ]
-      //             }
-      //          },
-      //          {
-      //             name:"Hard-Hearted",
-      //             action:"You are Hard Hearted",
-      //             definition:"Honest but cruel; Unrealistically aiming for perfection",
-      //             default:false,
-      //             synonyms:{
-      //                synonym:[
-      //                   {
-      //                      name:"Idealistic",
-      //                      action:"You are Idealistic"
-      //                   }
-      //                ]
-      //             }
-      //          }
-      //       ]
-      //    },
-      //    defaultColor:"red",
-      //    BasicLabel:"Honesty",
           "Basic Label": "q1",
           "Default Color": "red",
           "Question Prompt": "This is a question?",
@@ -232,11 +134,141 @@
         required_by_default: true
       });
       
+
+
+  	var appendToJSONData = function(JSONFile, newJSONData) {
+  		console.log(valueQuestion.length, valueQuestion[valueQuestion.length]);
+  		questions.json.push({
+  			"id":"0001",
+	         "Question":"Think of somehing stressful you have done recently or need to do.",
+	         "ValueOptions":{
+	            "value":[
+	               {
+	                  "name":"Dread",
+	                  "action":"You are Full of Dread",
+	                  "definition":"Dry mouth; heart racing; trembling",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Panic",
+	                           "action":"You are Panicking"
+	                        },
+	                        {
+	                           "name":"Distressed",
+	                           "action":"You are Distressed"
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Highly Anxious",
+	                  "action":"You are Highly Anxious",
+	                  "definition":"Worried; afraid; upset",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Fearful",
+	                           "action":"You are Fearful"
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Nervous",
+	                  "action":"You are Nervous",
+	                  "definition":"Hesitant; concerned; can't perform to potential",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Timid",
+	                           "action":"You are Timid"
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Courageous",
+	                  "action":"You are Courageous",
+	                  "definition":"Bravery in the face of fear; closed 'GAPS",
+	                  "default?":true,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Brave",
+	                           "action":"You are Brave"
+	                        },
+	                        {
+	                           "name":"Assertive",
+	                           "action":"You are Assertive"
+	                        },
+	                        {
+	                           "name":"Thoughtful",
+	                           "action":"You are Thoughtful"
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Unaware of other's feelings",
+	                  "action":"You are Unaware of Other's Feelings",
+	                  "definition":"Take over; talk over the top of others; butt in conversations; put down; rude",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Overconfident",
+	                  "action":"You are Overconfident",
+	                  "definition":"Opinionated; over-compensate; ego; proud; hasty",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Careless",
+	                           "action":"You are Careless"
+	                        }
+	                     ]
+	                  }
+	               },
+	               {
+	                  "name":"Rash",
+	                  "action":"You are Rash",
+	                  "definition":"Irresponsible; lose control; extremely bold",
+	                  "default?":false,
+	                  "synonyms":{
+	                     "synonym":[
+	                        {
+	                           "name":"Reckless",
+	                           "action":"You are Reckless"
+	                        }
+	                     ]
+	                  }
+	               }
+	            ]
+	         },
+	         "defaultColor":"green",
+	         "BasicLabel":"Courage",
+	         "AnswerValue":"",
+	         "href": "#/first",
+	         "AnswerKeyWords":""	
+	  		});
+  	}
+
       // Hook up the submit button to log to the console
       document.getElementById('submit').addEventListener('click',function() {
         // Get the value from the editor
+        entered_value = editor.getValue();
         console.log("Editor empty", editor.getValue());
         console.log("Starting val", starting_value);
+        console.log("questions_id", valueQuestion);
 
       });
       
@@ -256,7 +288,23 @@
           editor.disable();
         }
       });
-      
+    
+    loadJSON = function() {
+	
+	var returnJSON = [];
+	$.getJSON("../json/questions.json", function(json) {
+	  $.each(json.Questions, function(k, v) {
+	    // console.log(k, v);
+	  })
+	  valueQuestion.push(json.Questions);
+	  // $scope.valueQuestion = json.Questions[0].Question;
+	  // return json;
+	});
+	// console.log($scope.valueQuestion);   
+	}
+
+	loadJSON();
+
       // Hook up the validation indicator to update its 
       // status whenever the editor changes
       editor.on('change',function() {

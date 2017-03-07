@@ -105,6 +105,19 @@ app.controller('MainCtrl',
 
 }]);
 
+app.factory('SurveyCreator', ['$rootScope', '$http', function($http) {
+
+  var SurveyCreator = function() {
+      this.initialize = function() {
+      
+      };
+      this.initialize();
+  }
+
+  return SurveyCreator;
+
+}]);
+
 app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
   
 
