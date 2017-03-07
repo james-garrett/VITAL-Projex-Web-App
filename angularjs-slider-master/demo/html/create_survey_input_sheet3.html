@@ -146,8 +146,7 @@
       var newID = new String("000").concat(valueQuestion[0].length.toString());
       
       // var JSON = [{}];
-      var JSONArr = new Object(
-        "Questions": [{}]);
+      var JSONArr = new Object({"Questions": []});
       // var questionTemplate = new Array();
       // var valueTemplate = new Array();
       // var synonymTemplate = new Array();
@@ -157,30 +156,37 @@
         
         for(var questionIndex = 0; questionIndex < newJSONData.length; questionIndex++) {
   			   // var questionTemplate[questionIndex]["id"] = newID;
-           var Questions = new Array();
-            questionTemplate = [{
+           // var Questions = new Array();
+            var questionTemplate = {
               "id": newID,
               "Question": newJSONData[questionIndex]["Question Prompt"],
+              "defaultColor": newJSONData[questionIndex]["defaultColor"],
+              "BasicLabel":newJSONData[questionIndex]["defaultColor"],
+              "AnswerValue":"",
+              "href":newJSONData[questionIndex]["href"],
+              "AnswerKeyWords":"",
               "ValueOptions": {
-                "value": [{}]}
-              }];
+                "value": []}
+              };
             
-
-	         // JSONArr[questionIndex]['Question'] = newJSONData[questionIndex]["Question Prompt"];
-           JSONArr[questionIndex]["Question"].push(newJSONData[questionIndex]["Question Prompt"]);
+           JSONArr["Questions"][questionIndex] = questionTemplate; 
+	         // JSONArr["Questions"].push(questionTemplate);
+           console.log(questionTemplate, JSONArr);
+           // JSONArr[questionIndex]['Question'] = newJSONData[questionIndex]["Question Prompt"];
+           // JSONArr[questionIndex]["Question"].push(newJSONData[questionIndex]["Question Prompt"]);
 	         // "ValueOptions":{
             for(var valueIndex = 0; valueIndex < newJSONData[questionIndex].valueArray.length; valueIndex++) {
 	            // var ValueOptions = new Object();
-               valueTemplate = [{
+               var valueTemplate = {
                   "name": newJSONData[questionIndex].valueArray[valueIndex].name,
                   "action": newJSONData[questionIndex].valueArray[valueIndex].action,
                   "definition": newJSONData[questionIndex].valueArray[valueIndex].definition,
                   "default": newJSONData[questionIndex].valueArray[valueIndex].default,
                   "synonyms": {
-                    "synonym":[{}]}
+                    "synonym":[]}
                   }
-              }];
-              
+                            
+
               // JSON[questionIndex]["ValueOptions"][valueIndex].name = newJSONData[questionIndex].valueArray[valueIndex].name;
               // JSON[questionIndex]["ValueOptions"][valueIndex].action = newJSONData[questionIndex].valueArray[valueIndex].action;
               // JSON[questionIndex]["ValueOptions"][valueIndex].definition = newJSONData[questionIndex].valueArray[valueIndex].definition;
@@ -191,12 +197,14 @@
 	                  // "action":"You are Full of Dread",
 	                  // "definition":"Dry mouth; heart racing; trembling",
 	                  // "default":false,
+              JSONArr["Questions"][questionIndex]["ValueOptions"]["value"][valueIndex] = valueTemplate;
+              console.log(JSONArr);
               for(var synonymIndex = 0; synonymIndex < newJSONData[questionIndex].valueArray[valueIndex].synonyms.length; synonymIndex++) {
                 
-                 synonymTemplate = [{
+                 var synonymTemplate = {
                   "name": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name,
                   "action": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action
-                }];
+                };
                   // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].name = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name;
 
                   // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].action = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action;
@@ -205,7 +213,10 @@
               // var synonyms = {
               //     "synonyms": synonymTemplate   
               // };
-              JSONArrsynonyms.push(synonymTemplate);
+              
+              JSONArr["Questions"][questionIndex]["ValueOptions"]["value"][valueIndex]["synonyms"]["synonym"][synonymIndex] = synonymTemplate;
+              console.log(JSONArr);
+              // synonyms.push(synonymTemplate);
               }
               
               
@@ -227,22 +238,23 @@
 	         // },
            
            // console.log(valueTemplate);
-          ValueOptions = {
-              value  
-          }
-          valueTemplate.push(synonyms);
-          ValueOptions.push(valueTemplate);
+          // ValueOptions = {
+          //     value  
+          // }
+          // valueTemplate.push(synonyms);
+          // ValueOptions.push(valueTemplate);
         }
-        questionTemplate.push(ValueOptions);
+        // questionTemplate.push(ValueOptions);
         
             
-        var extraQuestionDetails = {
-          "defaultColor": newJSONData[questionIndex]["defaultColor"],
-          "BasicLabel":newJSONData[questionIndex]["defaultColor"],
-          "AnswerValue":"",
-          "href":newJSONData[questionIndex]["href"],
-          "AnswerKeyWords":""
-        }
+        // var extraQuestionDetails = {
+        //   "defaultColor": newJSONData[questionIndex]["defaultColor"],
+        //   "BasicLabel":newJSONData[questionIndex]["defaultColor"],
+        //   "AnswerValue":"",
+        //   "href":newJSONData[questionIndex]["href"],
+        //   "AnswerKeyWords":""
+        // }
+        // JSONArr["Questions"][questionIndex].push(extraQuestionDetails);
             // JSON[questionIndex]["defaultColor"] = newJSONData[questionIndex]["defaultColor"];  
             // JSON[questionIndex]["BasicLabel"] = newJSONData[questionIndex]["defaultColor"];  
             // JSON[questionIndex]["AnswerValue"] = "";
@@ -255,15 +267,15 @@
 	         // "AnswerKeyWords":""	
          
 	  		// });
-        questionTemplate.push(extraQuestionDetails);
-        Questions.push(questionTemplate);
+        // questionTemplate.push(extraQuestionDetails);
+        // Questions.push(questionTemplate);
 
-        JSONArr.push(Questions);
+        // JSONArr.push(Questions);
         // console.log(questionTemplate);
         // console.log(extraQuestionDetails);
   	   }
        // JSONArr.push('}');
-       var ach = JSON.stringify(["1", "2", "3"]);
+       // var ach = JSON.stringify(["1", "2", "3"]);
        var returnJSON = JSON.stringify(JSONArr);
        console.log(JSONArr);
        console.log(returnJSON);
