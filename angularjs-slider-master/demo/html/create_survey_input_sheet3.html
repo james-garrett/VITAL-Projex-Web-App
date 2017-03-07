@@ -7,7 +7,7 @@
     <script src="../js/jsoneditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     
   </head>
   <body>
@@ -137,130 +137,139 @@
 
 
   	var appendToJSONData = function(JSONFile, newJSONData) {
-  		console.log(valueQuestion.length, valueQuestion[valueQuestion.length]);
-  		questions.json.push({
-  			"id":"0001",
-	         "Question":"Think of somehing stressful you have done recently or need to do.",
-	         "ValueOptions":{
-	            "value":[
-	               {
-	                  "name":"Dread",
-	                  "action":"You are Full of Dread",
-	                  "definition":"Dry mouth; heart racing; trembling",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Panic",
-	                           "action":"You are Panicking"
-	                        },
-	                        {
-	                           "name":"Distressed",
-	                           "action":"You are Distressed"
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Highly Anxious",
-	                  "action":"You are Highly Anxious",
-	                  "definition":"Worried; afraid; upset",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Fearful",
-	                           "action":"You are Fearful"
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Nervous",
-	                  "action":"You are Nervous",
-	                  "definition":"Hesitant; concerned; can't perform to potential",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Timid",
-	                           "action":"You are Timid"
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Courageous",
-	                  "action":"You are Courageous",
-	                  "definition":"Bravery in the face of fear; closed 'GAPS",
-	                  "default?":true,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Brave",
-	                           "action":"You are Brave"
-	                        },
-	                        {
-	                           "name":"Assertive",
-	                           "action":"You are Assertive"
-	                        },
-	                        {
-	                           "name":"Thoughtful",
-	                           "action":"You are Thoughtful"
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Unaware of other's feelings",
-	                  "action":"You are Unaware of Other's Feelings",
-	                  "definition":"Take over; talk over the top of others; butt in conversations; put down; rude",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
+  		console.log(valueQuestion, valueQuestion[0].length, valueQuestion[valueQuestion.length]);
+  		console.log(newJSONData["0"]["Question Prompt"]);
+      console.log(newJSONData["0"].valueArray.length);
+      console.log(newJSONData.length, 
+        newJSONData["0"].valueArray.length, 
+        newJSONData["0"].valueArray["0"].synonyms.length);
+      var newID = new String("000").concat(valueQuestion[0].length.toString());
+      
+      // var JSON = [{}];
+      var JSONArr = new Object(
+        "Questions": [{}]);
+      // var questionTemplate = new Array();
+      // var valueTemplate = new Array();
+      // var synonymTemplate = new Array();
+      // JSONArr.push('{');
+      // valueQuestion.json.push({
+        // JSON.push({'{'});
+        
+        for(var questionIndex = 0; questionIndex < newJSONData.length; questionIndex++) {
+  			   // var questionTemplate[questionIndex]["id"] = newID;
+           var Questions = new Array();
+            questionTemplate = [{
+              "id": newID,
+              "Question": newJSONData[questionIndex]["Question Prompt"],
+              "ValueOptions": {
+                "value": [{}]}
+              }];
+            
 
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Overconfident",
-	                  "action":"You are Overconfident",
-	                  "definition":"Opinionated; over-compensate; ego; proud; hasty",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Careless",
-	                           "action":"You are Careless"
-	                        }
-	                     ]
-	                  }
-	               },
-	               {
-	                  "name":"Rash",
-	                  "action":"You are Rash",
-	                  "definition":"Irresponsible; lose control; extremely bold",
-	                  "default?":false,
-	                  "synonyms":{
-	                     "synonym":[
-	                        {
-	                           "name":"Reckless",
-	                           "action":"You are Reckless"
-	                        }
-	                     ]
-	                  }
-	               }
-	            ]
-	         },
-	         "defaultColor":"green",
-	         "BasicLabel":"Courage",
-	         "AnswerValue":"",
-	         "href": "#/first",
-	         "AnswerKeyWords":""	
-	  		});
-  	}
+	         // JSONArr[questionIndex]['Question'] = newJSONData[questionIndex]["Question Prompt"];
+           JSONArr[questionIndex]["Question"].push(newJSONData[questionIndex]["Question Prompt"]);
+	         // "ValueOptions":{
+            for(var valueIndex = 0; valueIndex < newJSONData[questionIndex].valueArray.length; valueIndex++) {
+	            // var ValueOptions = new Object();
+               valueTemplate = [{
+                  "name": newJSONData[questionIndex].valueArray[valueIndex].name,
+                  "action": newJSONData[questionIndex].valueArray[valueIndex].action,
+                  "definition": newJSONData[questionIndex].valueArray[valueIndex].definition,
+                  "default": newJSONData[questionIndex].valueArray[valueIndex].default,
+                  "synonyms": {
+                    "synonym":[{}]}
+                  }
+              }];
+              
+              // JSON[questionIndex]["ValueOptions"][valueIndex].name = newJSONData[questionIndex].valueArray[valueIndex].name;
+              // JSON[questionIndex]["ValueOptions"][valueIndex].action = newJSONData[questionIndex].valueArray[valueIndex].action;
+              // JSON[questionIndex]["ValueOptions"][valueIndex].definition = newJSONData[questionIndex].valueArray[valueIndex].definition;
+              // JSON[questionIndex]["ValueOptions"][valueIndex].default = newJSONData[questionIndex].valueArray[valueIndex].default;
+              // "value":[
+	               // {
+	                  // "name":"Dread",
+	                  // "action":"You are Full of Dread",
+	                  // "definition":"Dry mouth; heart racing; trembling",
+	                  // "default":false,
+              for(var synonymIndex = 0; synonymIndex < newJSONData[questionIndex].valueArray[valueIndex].synonyms.length; synonymIndex++) {
+                
+                 synonymTemplate = [{
+                  "name": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name,
+                  "action": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action
+                }];
+                  // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].name = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name;
+
+                  // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].action = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action;
+              
+               // console.log(synonymTemplate);
+              // var synonyms = {
+              //     "synonyms": synonymTemplate   
+              // };
+              JSONArrsynonyms.push(synonymTemplate);
+              }
+              
+              
+	         //          "synonyms":{
+	         //             "synonym":[
+	         //                {
+	         //                   "name":"Panic",
+	         //                   "action":"You are Panicking"
+	         //                },
+	         //                {
+	         //                   "name":"Distressed",
+	         //                   "action":"You are Distressed"
+	         //                }
+	         //             ]
+	         //          }
+	         //       }
+	         //    ]
+          //   }
+	         // },
+           
+           // console.log(valueTemplate);
+          ValueOptions = {
+              value  
+          }
+          valueTemplate.push(synonyms);
+          ValueOptions.push(valueTemplate);
+        }
+        questionTemplate.push(ValueOptions);
+        
+            
+        var extraQuestionDetails = {
+          "defaultColor": newJSONData[questionIndex]["defaultColor"],
+          "BasicLabel":newJSONData[questionIndex]["defaultColor"],
+          "AnswerValue":"",
+          "href":newJSONData[questionIndex]["href"],
+          "AnswerKeyWords":""
+        }
+            // JSON[questionIndex]["defaultColor"] = newJSONData[questionIndex]["defaultColor"];  
+            // JSON[questionIndex]["BasicLabel"] = newJSONData[questionIndex]["defaultColor"];  
+            // JSON[questionIndex]["AnswerValue"] = "";
+            // JSON[questionIndex]["href"] = newJSONData[questionIndex]["href"];  
+            // JSON[questionIndex]["AnswerKeyWords"] = "";  
+	         // "defaultColor":"green",
+	         // "BasicLabel":"Courage",
+	         // "AnswerValue":"",
+	         // "href": "#/first",
+	         // "AnswerKeyWords":""	
+         
+	  		// });
+        questionTemplate.push(extraQuestionDetails);
+        Questions.push(questionTemplate);
+
+        JSONArr.push(Questions);
+        // console.log(questionTemplate);
+        // console.log(extraQuestionDetails);
+  	   }
+       // JSONArr.push('}');
+       var ach = JSON.stringify(["1", "2", "3"]);
+       var returnJSON = JSON.stringify(JSONArr);
+       console.log(JSONArr);
+       console.log(returnJSON);
+
+       // console.log(returnJSON);
+     }
 
       // Hook up the submit button to log to the console
       document.getElementById('submit').addEventListener('click',function() {
@@ -269,6 +278,8 @@
         console.log("Editor empty", editor.getValue());
         console.log("Starting val", starting_value);
         console.log("questions_id", valueQuestion);
+        entered_value = editor.getValue();
+        appendToJSONData(valueQuestion, entered_value);
 
       });
       
