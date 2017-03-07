@@ -136,27 +136,17 @@
       
 
 
-  	var appendToJSONData = function(JSONFile, newJSONData) {
-  		console.log(valueQuestion, valueQuestion[0].length, valueQuestion[valueQuestion.length]);
-  		console.log(newJSONData["0"]["Question Prompt"]);
-      console.log(newJSONData["0"].valueArray.length);
-      console.log(newJSONData.length, 
-        newJSONData["0"].valueArray.length, 
-        newJSONData["0"].valueArray["0"].synonyms.length);
+  	var CreateSurveyData = function(JSONFile, newJSONData) {
+  		// console.log(valueQuestion, valueQuestion[0].length, valueQuestion[valueQuestion.length]);
+  		// console.log(newJSONData["0"]["Question Prompt"]);
+    //   console.log(newJSONData["0"].valueArray.length);
+    //   console.log(newJSONData.length, 
+        // newJSONData["0"].valueArray.length, 
+        // newJSONData["0"].valueArray["0"].synonyms.length);
       var newID = new String("000").concat(valueQuestion[0].length.toString());
-      
-      // var JSON = [{}];
       var JSONArr = new Object({"Questions": []});
-      // var questionTemplate = new Array();
-      // var valueTemplate = new Array();
-      // var synonymTemplate = new Array();
-      // JSONArr.push('{');
-      // valueQuestion.json.push({
-        // JSON.push({'{'});
-        
         for(var questionIndex = 0; questionIndex < newJSONData.length; questionIndex++) {
-  			   // var questionTemplate[questionIndex]["id"] = newID;
-           // var Questions = new Array();
+
             var questionTemplate = {
               "id": newID,
               "Question": newJSONData[questionIndex]["Question Prompt"],
@@ -170,13 +160,9 @@
               };
             
            JSONArr["Questions"][questionIndex] = questionTemplate; 
-	         // JSONArr["Questions"].push(questionTemplate);
-           console.log(questionTemplate, JSONArr);
-           // JSONArr[questionIndex]['Question'] = newJSONData[questionIndex]["Question Prompt"];
-           // JSONArr[questionIndex]["Question"].push(newJSONData[questionIndex]["Question Prompt"]);
-	         // "ValueOptions":{
+           // console.log(questionTemplate, JSONArr);
             for(var valueIndex = 0; valueIndex < newJSONData[questionIndex].valueArray.length; valueIndex++) {
-	            // var ValueOptions = new Object();
+	            
                var valueTemplate = {
                   "name": newJSONData[questionIndex].valueArray[valueIndex].name,
                   "action": newJSONData[questionIndex].valueArray[valueIndex].action,
@@ -185,103 +171,31 @@
                   "synonyms": {
                     "synonym":[]}
                   }
-                            
 
-              // JSON[questionIndex]["ValueOptions"][valueIndex].name = newJSONData[questionIndex].valueArray[valueIndex].name;
-              // JSON[questionIndex]["ValueOptions"][valueIndex].action = newJSONData[questionIndex].valueArray[valueIndex].action;
-              // JSON[questionIndex]["ValueOptions"][valueIndex].definition = newJSONData[questionIndex].valueArray[valueIndex].definition;
-              // JSON[questionIndex]["ValueOptions"][valueIndex].default = newJSONData[questionIndex].valueArray[valueIndex].default;
-              // "value":[
-	               // {
-	                  // "name":"Dread",
-	                  // "action":"You are Full of Dread",
-	                  // "definition":"Dry mouth; heart racing; trembling",
-	                  // "default":false,
               JSONArr["Questions"][questionIndex]["ValueOptions"]["value"][valueIndex] = valueTemplate;
-              console.log(JSONArr);
+              // console.log(JSONArr);
               for(var synonymIndex = 0; synonymIndex < newJSONData[questionIndex].valueArray[valueIndex].synonyms.length; synonymIndex++) {
                 
                  var synonymTemplate = {
                   "name": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name,
                   "action": newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action
                 };
-                  // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].name = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].name;
-
-                  // JSON[questionIndex]["ValueOptions"][valueIndex]["synonyms"][synonymIndex].action = newJSONData[questionIndex].valueArray[valueIndex].synonyms[synonymIndex].action;
-              
-               // console.log(synonymTemplate);
-              // var synonyms = {
-              //     "synonyms": synonymTemplate   
-              // };
+                  
               
               JSONArr["Questions"][questionIndex]["ValueOptions"]["value"][valueIndex]["synonyms"]["synonym"][synonymIndex] = synonymTemplate;
-              console.log(JSONArr);
-              // synonyms.push(synonymTemplate);
-              }
+              // console.log(JSONArr);
               
-              
-	         //          "synonyms":{
-	         //             "synonym":[
-	         //                {
-	         //                   "name":"Panic",
-	         //                   "action":"You are Panicking"
-	         //                },
-	         //                {
-	         //                   "name":"Distressed",
-	         //                   "action":"You are Distressed"
-	         //                }
-	         //             ]
-	         //          }
-	         //       }
-	         //    ]
-          //   }
-	         // },
-           
-           // console.log(valueTemplate);
-          // ValueOptions = {
-          //     value  
-          // }
-          // valueTemplate.push(synonyms);
-          // ValueOptions.push(valueTemplate);
-        }
-        // questionTemplate.push(ValueOptions);
-        
-            
-        // var extraQuestionDetails = {
-        //   "defaultColor": newJSONData[questionIndex]["defaultColor"],
-        //   "BasicLabel":newJSONData[questionIndex]["defaultColor"],
-        //   "AnswerValue":"",
-        //   "href":newJSONData[questionIndex]["href"],
-        //   "AnswerKeyWords":""
-        // }
-        // JSONArr["Questions"][questionIndex].push(extraQuestionDetails);
-            // JSON[questionIndex]["defaultColor"] = newJSONData[questionIndex]["defaultColor"];  
-            // JSON[questionIndex]["BasicLabel"] = newJSONData[questionIndex]["defaultColor"];  
-            // JSON[questionIndex]["AnswerValue"] = "";
-            // JSON[questionIndex]["href"] = newJSONData[questionIndex]["href"];  
-            // JSON[questionIndex]["AnswerKeyWords"] = "";  
-	         // "defaultColor":"green",
-	         // "BasicLabel":"Courage",
-	         // "AnswerValue":"",
-	         // "href": "#/first",
-	         // "AnswerKeyWords":""	
-         
-	  		// });
-        // questionTemplate.push(extraQuestionDetails);
-        // Questions.push(questionTemplate);
-
-        // JSONArr.push(Questions);
-        // console.log(questionTemplate);
-        // console.log(extraQuestionDetails);
+              }       
+        }   
   	   }
-       // JSONArr.push('}');
-       // var ach = JSON.stringify(["1", "2", "3"]);
        var returnJSON = JSON.stringify(JSONArr);
-       console.log(JSONArr);
+       // console.log(JSONArr);
        console.log(returnJSON);
-
-       // console.log(returnJSON);
      }
+
+    storeSurvey = function(survey) {
+      sessionStorage.setItem("savedSurvey", survey);
+    }
 
       // Hook up the submit button to log to the console
       document.getElementById('submit').addEventListener('click',function() {
@@ -291,7 +205,7 @@
         console.log("Starting val", starting_value);
         console.log("questions_id", valueQuestion);
         entered_value = editor.getValue();
-        appendToJSONData(valueQuestion, entered_value);
+        CreateSurveyData(valueQuestion, entered_value);
 
       });
       
