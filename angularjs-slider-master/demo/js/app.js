@@ -50,7 +50,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('MainCtrl', 
 	['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', 
-		function($scope, $rootScope, $timeout, $uibModal, SurveyQuestionForm) {
+		function($rootScope, $scope, $timeout, $uibModal, SurveyQuestionForm) {
   $scope.form = null;
 
   //Minimal slider config
@@ -158,6 +158,7 @@ app.controller('MainCtrl',
     }
       
   };
+  console.log($scope.slider_ticks_legend.options);
 
   $scope.loadForm = function(index, array, title) {
     console.log(index, array, typeof title);
@@ -180,7 +181,7 @@ app.factory('SurveyCreator', ['$rootScope', '$http', function($http) {
 
 }]);
 
-app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
+app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $http) {
   
 
   var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading) {
@@ -189,7 +190,7 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           location.href='#/first';
           setQuestionSelected(questionNumber);
-          // setLegend(questionJSONData);
+          setLegend(questionJSONData);
           setDefinition(questionJSONData);
           // console.log($scope.DefinitionArray);
           console.log(DefinitionArray, LegendArray);
@@ -329,12 +330,13 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
     // console.log(array.value);
     for(x = 0; x < array.value.length; x++) {
       console.log(array.value[x].name);
-      console.log(slider_ticks_legend.options.stepsArray[x]);
+      console.log($rootScope.slider_ticks_legend.options.stepsArray[x]);
       LegendArray[x] = array.value[x].name;
-      slider_ticks_legend.options.stepsArray[x] = array.value[x].name;
+      $rootScope.slider_ticks_legend.options.stepsArray[x] = array.value[x].name;
     }
     // redrawSlider();
     // console.log(LegendArray);
+    // console.log($rootScope.$on().slider_ticks_legend.options.stepsArray);
   }
 
   setDefinition = function(array) {
