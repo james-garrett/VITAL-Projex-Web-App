@@ -90,17 +90,79 @@ app.controller('MainCtrl',
   $scope.loadJSON();
 
   // $scope.storedValue = '';
+  //Slider with ticks values and legend
+  $scope.slider_ticks_legend = {
+    value: 4,
+    options: {
+      showTicksValues: true,
+      ceil: 7,
+      floor: 1,
 
+      stepsArray: [
+        {value: 1, legend: 1},
+        {value: 2, legend: 2},
+        {value: 3, legend: 3},
+        {value: 4, legend: 4},
+        {value: 5, legend: 5},
+        {value: 6, legend: 6},
+        {value: 7, legend: 7}
+        
+      ],
+      getPointerColor: function(value) {
+        if(start == true) {
+            start = false;
+            return;
+        }
+        switch(value) {
+          
+          case 1:
+            gemColor = 'green';
+            break;
+          
+          case 2:
+            gemColor = 'green';
+            break;
+          
+          case 3:
+            gemColor = 'blue';
+            break;
+
+          case 4:
+            gemColor = 'blue';
+            break;
+
+          case 5:
+            gemColor = 'blue';
+            break;
+
+          case 6:
+            gemColor = 'purple';
+            break;
+
+          case 7:
+            gemColor = 'purple';
+            break;
+
+
+          default:
+            console.log("Starting off");
+            break;
+        }
+        // console.log($scope.gemColor);
+        // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
+        // console.log(pointer);
+        // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
+        // changeGemLabel(value, false, DefinitionArray[questionSelectedIndex]);
+        return gemColor;
+      }
+    }
+      
+  };
 
   $scope.loadForm = function(index, array, title) {
     console.log(index, array, typeof title);
     $scope.form = new SurveyQuestionForm(index, array, title);
-    // $scope.setQuestionSelected(index);
-    // $scope.setLegend(array);
-    // $scope.setDefinition(array);
-    // console.log(document.getElementsByClassName("formHeading"));
-    // $scope.changeGemLabel(4 , true, $scope.DefinitionArray);
-    // document.getElementById("questionHeading").innerText = title;
+    
   }
 
 }]);
@@ -127,31 +189,24 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           location.href='#/first';
           setQuestionSelected(questionNumber);
-          setLegend(questionJSONData);
+          // setLegend(questionJSONData);
           setDefinition(questionJSONData);
           // console.log($scope.DefinitionArray);
           console.log(DefinitionArray, LegendArray);
-          console.log(document.getElementsByClassName("questionHeading"));
+          console.log(document.getElementById("questionHeading").innerText);
+
+          console.log("window loaded");
+          document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
+          console.log(document.getElementById("valueExplanation").innerText);
           changeGemLabel(4 , true, DefinitionArray);
           document.getElementById("questionHeading").innerText = QuestionHeading;
-          redrawSlider();
+          // redrawSlider();
+          
       };
       this.initialize();
+
     };
 
-  // $scope.formInit = function() {
-  //   console.log(questionJSONData, typeof title);
-    
-  //   location.href='#/first';
-  //   $scope.setQuestionSelected(questionNumber);
-  //   $scope.setLegend(questionJSONData);
-  //   $scope.setDefinition(questionJSONData);
-  //   // console.log($scope.DefinitionArray);
-  //   console.log(document.getElementsByClassName("formHeading"));
-  //   $scope.changeGemLabel(4 , true, $scope.DefinitionArray);
-  //   document.getElementById("questionHeading").innerText = QuestionHeading;
-
-  // }
 
   changeGemLabel = function(value, init, description) {
     // console.log(value, $scope.DefinitionArray[value-1]);
@@ -248,82 +303,9 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
 
   storedValue = '';
 
-  //Slider with ticks values and legend
-  slider_ticks_legend = {
-    value: 4,
-    options: {
-      showTicksValues: true,
-      ceil: 7,
-      floor: 1,
+  
 
-      stepsArray: [
-        {value: 1, legend: LegendArray[0]},
-        {value: 2, legend: LegendArray[1]},
-        {value: 3, legend: LegendArray[2]},
-        {value: 4, legend: LegendArray[3]},
-        {value: 5, legend: LegendArray[4]},
-        {value: 6, legend: LegendArray[5]},
-        {value: 7, legend: LegendArray[6]},
-        
-      ],
-      getPointerColor: function(value) {
-        if(start == true) {
-            start = false;
-            return;
-        }
-        switch(value) {
-          
-          case 1:
-            gemColor = 'green';
-            break;
-          
-          case 2:
-            gemColor = 'green';
-            break;
-          
-          case 3:
-            gemColor = 'blue';
-            break;
-
-          case 4:
-            gemColor = 'blue';
-            break;
-
-          case 5:
-            gemColor = 'blue';
-            break;
-
-          case 6:
-            gemColor = 'purple';
-            break;
-
-          case 7:
-            gemColor = 'purple';
-            break;
-
-
-          default:
-            console.log("Starting off");
-            break;
-        }
-        // console.log($scope.gemColor);
-        var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
-        console.log(pointer);
-        // document.getElementsByClassName("rz-pointer rz-pointer-min")[0].style.backgroundColor= "red";
-        //
-        // "Pointer" actually returns an array where the first element is the actual pointer!
-        // pointer.style.backgroundColor=$scope.gemColor;
-        // pointer.setStyle({fillColor: '#dddddd'})
-        // pointer.style.fill="red";
-        console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
-        changeGemLabel(value, false, DefinitionArray[questionSelectedIndex]);
-        return gemColor;
-      }
-    }
-      
-  };
-
-
+  // console.log(slider_ticks_legend);
   setQuestionSelected = function(index){
     // console.log("Index selected:" + index);
     
@@ -346,11 +328,12 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($http) {
   setLegend = function(array) {
     // console.log(array.value);
     for(x = 0; x < array.value.length; x++) {
-      // console.log(array.value[x].name);
+      console.log(array.value[x].name);
+      console.log(slider_ticks_legend.options.stepsArray[x]);
       LegendArray[x] = array.value[x].name;
       slider_ticks_legend.options.stepsArray[x] = array.value[x].name;
     }
-    redrawSlider();
+    // redrawSlider();
     // console.log(LegendArray);
   }
 
