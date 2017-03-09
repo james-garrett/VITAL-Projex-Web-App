@@ -33,6 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'ParticipantStart.php'
   })
 
+  .state('CreateSurvey', {
+    url: '/CreateSurvey',
+    templateUrl: 'CreateSurvey.php'
+  })
+
   .state('AdminStart', {
     url: '/AdminStart',
     templateUrl: 'AdminStart.php'
@@ -49,14 +54,76 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', 
-		function($rootScope, $scope, $timeout, $uibModal, SurveyQuestionForm) {
+	['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', 'Slider',
+		function($rootScope, $scope, $timeout, $uibModal, SurveyQuestionForm, Slider) {
   $scope.form = null;
 
   //Minimal slider config
   $scope.minSlider = {
     value: 10
   };
+  // $scope.slider_ticks_legend = {
+  //   value: 4,
+  //         options: {
+  //           showTicksValues: true,
+  //           ceil: 7,
+  //           floor: 1,
+
+  //           stepsArray: [
+  //             {value: 1, legend: 1},
+  //             {value: 2, legend: 2},
+  //             {value: 3, legend: 3},
+  //             {value: 4, legend: 4},
+  //             {value: 5, legend: 5},
+  //             {value: 6, legend: 6},
+  //             {value: 7, legend: 7}
+              
+  //           ],
+  //           getPointerColor: function(value) {
+  //             if(start == true) {
+  //                 start = false;
+  //                 return;
+  //             }
+  //             switch(value) {
+                
+  //               case 1:
+  //                 gemColor = 'green';
+  //                 break;
+                
+  //               case 2:
+  //                 gemColor = 'green';
+  //                 break;
+                
+  //               case 3:
+  //                 gemColor = 'blue';
+  //                 break;
+
+  //               case 4:
+  //                 gemColor = 'blue';
+  //                 break;
+
+  //               case 5:
+  //                 gemColor = 'blue';
+  //                 break;
+
+  //               case 6:
+  //                 gemColor = 'purple';
+  //                 break;
+
+  //               case 7:
+  //                 gemColor = 'purple';
+  //                 break;
+
+
+  //               default:
+  //                 console.log("Starting off");
+  //                 break;
+  //             }
+  //             return gemColor;
+  //           }
+  //         }
+  //     };
+  
 
   $scope.valueQuestion = new Array(0);
 
@@ -92,88 +159,19 @@ app.controller('MainCtrl',
   // $scope.storedValue = '';
   //Slider with ticks values and legend
   // $scope.slider_ticks_legend = SurveyQuestionForm.slider_ticks_legend;
-  
-  redrawSlider = function(slider) {
-    slider.refreshSlider = function () {
-    $timeout(function () {
-        $broadcast('rzSliderForceRender');
-      });
-    };
-  }
-
-  $scope.slider_ticks_legend = {
-    value: 4,
-    options: {
-      showTicksValues: true,
-      ceil: 7,
-      floor: 1,
-
-      stepsArray: [
-        {value: 1, legend: 'ach'},
-        {value: 2, legend: 2},
-        {value: 3, legend: 3},
-        {value: 4, legend: 4},
-        {value: 5, legend: 5},
-        {value: 6, legend: 6},
-        {value: 7, legend: 7}
         
-      ],
-      getPointerColor: function(value) {
-        if(start == true) {
-            start = false;
-            return;
-        }
-        switch(value) {
-          
-          case 1:
-            gemColor = 'green';
-            break;
-          
-          case 2:
-            gemColor = 'green';
-            break;
-          
-          case 3:
-            gemColor = 'blue';
-            break;
-
-          case 4:
-            gemColor = 'blue';
-            break;
-
-          case 5:
-            gemColor = 'blue';
-            break;
-
-          case 6:
-            gemColor = 'purple';
-            break;
-
-          case 7:
-            gemColor = 'purple';
-            break;
-
-
-          default:
-            console.log("Starting off");
-            break;
-        }
-        // console.log($scope.gemColor);
-        // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
-        // console.log(pointer);
-        // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
-        // changeGemLabel(value, false, DefinitionArray[questionSelectedIndex]);
-        return gemColor;
-      }
-    }
-      
-  };
-  console.log($scope.slider_ticks_legend.options.stepsArray);
+  
+  // console.log($scope.slider_ticks_legend.options.stepsArray);
 
   $scope.loadForm = function(index, array, title) {
     console.log(index, array, typeof title);
     // SurveyQuestionForm.slider_ticks_legend = $scope.slider_ticks_legend;
+    // console.log($scope.slider_ticks_legend);
+    var slider = new Slider(array);
+    $scope.slider_ticks_legend = slider.sliderGet();
+    console.log($scope.slider_ticks_legend, slider);
     $scope.form = new SurveyQuestionForm(index, array, title, $scope.slider_ticks_legend);
+    console.log($scope.form);
     redrawSlider($scope.slider_ticks_legend);
   }
 
@@ -190,6 +188,96 @@ app.factory('SurveyCreator', ['$rootScope', '$http', function($http) {
 
   return SurveyCreator;
 
+}]);
+
+app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
+    
+    var Slider = function(questionJSONData) {
+      this.initialize = function() {
+
+        this.slider_ticks_legend = {};
+      console.log(this.slider_ticks_legend);
+    };
+    
+
+    this.setSlider = function(questionJSONData) {
+      this.slider_ticks_legend = {
+          value: 4,
+          options: {
+            showTicksValues: true,
+            ceil: 7,
+            floor: 1,
+
+            stepsArray: [
+              {value: 1, legend: questionJSONData.value[0].name},
+              {value: 2, legend: questionJSONData.value[1].name},
+              {value: 3, legend: questionJSONData.value[2].name},
+              {value: 4, legend: questionJSONData.value[3].name},
+              {value: 5, legend: questionJSONData.value[4].name},
+              {value: 6, legend: questionJSONData.value[5].name},
+              {value: 7, legend: questionJSONData.value[6].name}
+              
+            ],
+            getPointerColor: function(value) {
+              if(start == true) {
+                  start = false;
+                  return;
+              }
+              switch(value) {
+                
+                case 1:
+                  gemColor = 'green';
+                  break;
+                
+                case 2:
+                  gemColor = 'green';
+                  break;
+                
+                case 3:
+                  gemColor = 'blue';
+                  break;
+
+                case 4:
+                  gemColor = 'blue';
+                  break;
+
+                case 5:
+                  gemColor = 'blue';
+                  break;
+
+                case 6:
+                  gemColor = 'purple';
+                  break;
+
+                case 7:
+                  gemColor = 'purple';
+                  break;
+
+
+                default:
+                  console.log("Starting off");
+                  break;
+              }
+              // console.log($scope.gemColor);
+              // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
+              // console.log(pointer);
+              // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
+              // changeGemLabel(value, false, DefinitionArray[questionSelectedIndex]);
+              return gemColor;
+            }
+          }
+      };
+    }
+
+    this.sliderGet = function() {
+        return this.slider_ticks_legend;
+    }
+
+    this.initialize();
+    this.setSlider(questionJSONData);
+
+  };
+  return Slider;
 }]);
 
 app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $http) {
@@ -333,7 +421,7 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $
       LegendArray[x] = array.value[x].name;
       slider.options.stepsArray[x].legend = array.value[x].name;
     }
-    redrawSlider(slider);
+    // redrawSlider(slider);
     console.log(slider.options.stepsArray);
     // console.log($rootScope.$on().slider_ticks_legend.options.stepsArray);
   }

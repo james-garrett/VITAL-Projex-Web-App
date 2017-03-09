@@ -38,7 +38,7 @@
           </h4>
         <!-- <a class="button icon-right ion-checkmark" href="#/first">Let's Begin!</a> -->
         <button class="button icon-right ion-android-clipboard" onclick="location.href='#/ParticipantStart';" href="#/ParticipantStart">Participant</button>
-        <button class="button icon-right ion-hammer" onclick="location.href='#/menu';" href="#/index">Facilitator </button>
+        <button class="button icon-right ion-hammer" onclick="location.href='#/CreateSurvey';" href="#/CreateSurvey">Facilitator </button>
         <button class="button icon-right ion-wrench" onclick="location.href='#/menu';" href="#/ParticipantStart">Admin</button>
         <button class="button icon-right ion-settings" onclick="location.href='#/menu';" href="#/ParticipantStart">System Admin</button>
         <!-- <a class="button icon-right ion-android-create" onclick="location.href='#/first';">Let's Begin! </a> -->
