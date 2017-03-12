@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('first', {
     url: '/first',
     templateUrl: 'q1.html',
-    controller: 'MainCtrl'
+    controller: 'QuestionController'
   })
   .state('second', {
     url: '/second',
@@ -52,78 +52,64 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
+app.controller('QuestionForm', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 
+  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider) {
+    // $scope.form = null;
+  $scope.$on('JSONDATA', function(event, array) {
+    console.log(array);
+  });
+  }]);
+
+app.service('JSONData', function() {
+    var questionJSONData = new Array(0);
+    // $scope.loadJSON();
+    var getJSONDataFromFile = function(filename) {
+        var returnJSON = [];
+        $.getJSON(filename, function(json) {
+          $.each(json.Questions, function(k, v) {
+            // console.log(k, v);
+          })
+          questionJSONData.push(json.Questions);
+        });
+    console.log(questionJSONData);
+    returnQuestionJSONData();
+    }
+
+    var returnQuestionJSONData = function() {
+      return questionJSONData;
+    }
+
+    return {
+      getJSONDataFromFile: getJSONDataFromFile,
+      returnQuestionJSONData: returnQuestionJSONData
+    };
+
+});
+
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'SurveyQuestionForm', 'Slider',
-		function($rootScope, $scope, $timeout, $uibModal, SurveyQuestionForm, Slider) {
-  $scope.form = null;
+	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData',
+		function($rootScope, $scope, $timeout, $uibModal, JSONData, filename) {
+      
+      // console.log(JSONData);
+      $scope.valueQuestion = new Array(0);
+      $scope.jsonData = {};
+      console.log(JSONData.returnQuestionJSONData());
+      JSONData.getJSONDataFromFile('json/questions.json');
+      $scope.valueQuestion = JSONData.returnQuestionJSONData();
+      console.log($scope.jsonData, JSONData.returnQuestionJSONData(), $scope.valueQuestion);
+      $scope.callToGetJSONDATA = function() {
+        console.log(JSONData.getJSONDataFromFile('json/questions.json'));
+      }
 
+
+  // $scope.callToGetJSONDATA();
   //Minimal slider config
   $scope.minSlider = {
     value: 10
   };
-  // $scope.slider_ticks_legend = {
-  //   value: 4,
-  //         options: {
-  //           showTicksValues: true,
-  //           ceil: 7,
-  //           floor: 1,
 
-  //           stepsArray: [
-  //             {value: 1, legend: 1},
-  //             {value: 2, legend: 2},
-  //             {value: 3, legend: 3},
-  //             {value: 4, legend: 4},
-  //             {value: 5, legend: 5},
-  //             {value: 6, legend: 6},
-  //             {value: 7, legend: 7}
-              
-  //           ],
-  //           getPointerColor: function(value) {
-  //             if(start == true) {
-  //                 start = false;
-  //                 return;
-  //             }
-  //             switch(value) {
-                
-  //               case 1:
-  //                 gemColor = 'green';
-  //                 break;
-                
-  //               case 2:
-  //                 gemColor = 'green';
-  //                 break;
-                
-  //               case 3:
-  //                 gemColor = 'blue';
-  //                 break;
-
-  //               case 4:
-  //                 gemColor = 'blue';
-  //                 break;
-
-  //               case 5:
-  //                 gemColor = 'blue';
-  //                 break;
-
-  //               case 6:
-  //                 gemColor = 'purple';
-  //                 break;
-
-  //               case 7:
-  //                 gemColor = 'purple';
-  //                 break;
-
-
-  //               default:
-  //                 console.log("Starting off");
-  //                 break;
-  //             }
-  //             return gemColor;
-  //           }
-  //         }
-  //     };
-  
+  $scope.form = null;
 
   $scope.valueQuestion = new Array(0);
 
@@ -141,52 +127,28 @@ app.controller('MainCtrl',
 
   // Below is just a JSON template of what data a question should hold
   // $scope.questionsPath = "../questions.json";
-  $scope.loadJSON = function() {
-    var returnJSON = [];
-    $.getJSON("json/questions.json", function(json) {
-      $.each(json.Questions, function(k, v) {
-        // console.log(k, v);
-      })
-      $scope.valueQuestion.push(json.Questions);
-      // $scope.valueQuestion = json.Questions[0].Question;
-      // return json;
-    });
-    // console.log($scope.valueQuestion);   
-  }
+  // $scope.loadJSON = function() {
+  //   var returnJSON = [];
+  //   $.getJSON("json/questions.json", function(json) {
+  //     $.each(json.Questions, function(k, v) {
+  //       // console.log(k, v);
+  //     })
+  //     $scope.valueQuestion.push(json.Questions);
+  //   });
+  // }
 
-  $scope.loadJSON();
-
-  // $scope.storedValue = '';
-  //Slider with ticks values and legend
-  // $scope.slider_ticks_legend = SurveyQuestionForm.slider_ticks_legend;
-        
-  
-  // console.log($scope.slider_ticks_legend.options.stepsArray);
+  // $scope.loadJSON();
 
   $scope.loadForm = function(index, array, title) {
-    console.log(index, array, typeof title);
-    // SurveyQuestionForm.slider_ticks_legend = $scope.slider_ticks_legend;
-    // console.log($scope.slider_ticks_legend);
+    $rootScope.$broadcast('JSONDATA', array);
+    
+
+    location.href='#/first';
     var slider = new Slider(array);
     $scope.slider_ticks_legend = slider.sliderGet();
-    console.log($scope.slider_ticks_legend, slider);
-    $scope.form = new SurveyQuestionForm(index, array, title, $scope.slider_ticks_legend);
+    $scope.form = new QuestionForm(index, array, title, $scope.slider_ticks_legend);
     console.log($scope.form);
-    redrawSlider($scope.slider_ticks_legend);
   }
-
-}]);
-
-app.factory('SurveyCreator', ['$rootScope', '$http', function($http) {
-
-  var SurveyCreator = function() {
-      this.initialize = function() {
-      
-      };
-      this.initialize();
-  }
-
-  return SurveyCreator;
 
 }]);
 
@@ -196,7 +158,7 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
       this.initialize = function() {
 
         this.slider_ticks_legend = {};
-      console.log(this.slider_ticks_legend);
+      // console.log(this.slider_ticks_legend);
     };
     
 
@@ -280,14 +242,14 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
   return Slider;
 }]);
 
-app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $http) {
+app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) {
   
 
-  var SurveyQuestionForm = function(questionNumber, questionJSONData, QuestionHeading, slider) {
+  var QuestionForm = function(questionNumber, questionJSONData, QuestionHeading, slider) {
       this.initialize = function() {
           qData = questionJSONData;
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
-          location.href='#/first';
+          
           setQuestionSelected(questionNumber);
           setLegend(questionJSONData, slider);
           setDefinition(questionJSONData);
@@ -296,17 +258,24 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $
           // console.log(document.getElementById("questionHeading").innerText);
 
           // console.log("window loaded");
-          document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
+          console.log('elem', document.getElementById("valueExplanation"));
+          document.getElementById("valueExplanation").innerHTML = "fuck";
+          // var val = document.getElementsByClassName("valueExplanation1");
+          // val.innerText = "Where would you be on this scale?";
           // console.log(document.getElementById("valueExplanation").innerText);
-          changeGemLabel(4 , true, DefinitionArray);
-          document.getElementById("questionHeading").innerText = QuestionHeading;
+          // changeGemLabel(4 , true, DefinitionArray);
+          // document.getElementById("questionHeading").innerText = QuestionHeading;
           // redrawSlider();
           
       };
       this.initialize();
+      console.log(window.onload);
+      window.onload = alert("hi");
+          
+      // document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
+    
 
     };
-
 
   changeGemLabel = function(value, init, description) {
     // console.log(value, $scope.DefinitionArray[value-1]);
@@ -356,10 +325,7 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $
     console.log(sessionStorage.getItem("Q1"));
   }
 
-//   //Minimal slider config
-//   minSlider = {
-//     value: 10
-// };
+
   questionSelectedIndex = -1;
   valueQuestion = new Array(0);
   gemColor = 'purple';
@@ -415,14 +381,14 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $
 
   setLegend = function(array, slider) {
     // console.log(array.value);
-    console.log(slider.options.stepsArray);
+    // console.log(slider.options.stepsArray);
     for(x = 0; x < array.value.length; x++) {
-      console.log(slider.options.stepsArray[x].legend);
+      // console.log(slider.options.stepsArray[x].legend);
       LegendArray[x] = array.value[x].name;
       slider.options.stepsArray[x].legend = array.value[x].name;
     }
     // redrawSlider(slider);
-    console.log(slider.options.stepsArray);
+    // console.log(slider.options.stepsArray);
     // console.log($rootScope.$on().slider_ticks_legend.options.stepsArray);
   }
 
@@ -448,7 +414,7 @@ app.factory('SurveyQuestionForm', ['$rootScope', '$http', function($rootScope, $
     }
   }
 
-  return SurveyQuestionForm;
+  return QuestionForm;
 
 }]);
 

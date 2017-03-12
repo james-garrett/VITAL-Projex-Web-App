@@ -77,7 +77,8 @@
 		background: none;
 		text-align: center;
 		color: #FFFFFF;
-	    font-family: 'Ubuntu', sans-serif;
+	    /*font-family: 'Ubuntu', sans-serif;*/
+	    font-family: title;
 	    font-weight: 500;
 	    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
 	    line-height: 1.2;
@@ -85,18 +86,27 @@
 
 	}
 
+	h4#questionHeading {
+		/*background: rgba(0,0,0, 0.7);*/
+		padding-top: 15px;
+		margin-bottom: 0px;
+		background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7));
+		background-clip: content-box, padding-box;
+	}
+
 	h3#questionHeading {
-		background: none;
+		background: rgba(0,0,0, 0.7);
 		text-align: center;
 		color: #FFFFFF;
-	    font-family: 'Ubuntu', sans-serif;
+	    /*font-family: 'Ubuntu', sans-serif;*/
+	    font-family: title;
 	    font-weight: 500;
 	    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
 	    line-height: 1.2;
 	    margin-top: 0px;
 	}
 
-	#valueExplanation {
+	.valueExplanation {
 		background: none;
 		text-align: center;
 		color: #FFFFFF;
