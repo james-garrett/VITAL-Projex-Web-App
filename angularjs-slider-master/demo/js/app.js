@@ -95,8 +95,8 @@ app.controller('MainCtrl',
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
       console.log(JSONData.returnQuestionJSONData());
-      JSONData.getJSONDataFromFile('json/questions.json');
-      $scope.valueQuestion = JSONData.returnQuestionJSONData();
+      // JSONData.getJSONDataFromFile('json/questions.json');
+      // $scope.valueQuestion = JSONData.returnQuestionJSONData();
       console.log($scope.jsonData, JSONData.returnQuestionJSONData(), $scope.valueQuestion);
       $scope.callToGetJSONDATA = function() {
         console.log(JSONData.getJSONDataFromFile('json/questions.json'));
@@ -112,6 +112,8 @@ app.controller('MainCtrl',
   $scope.form = null;
 
   $scope.valueQuestion = new Array(0);
+  JSONData.getJSONDataFromFile('json/questions.json');
+  $scope.valueQuestion = JSONData.returnQuestionJSONData();
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
