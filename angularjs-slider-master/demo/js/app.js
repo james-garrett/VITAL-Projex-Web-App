@@ -63,11 +63,14 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
+        
+
         $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
         // console.log($scope.form);
+        
       } 
 
-      $scope.init();
+      // $scope.init();
 
       $scope.$on('JSONDATA', function(event, array) {
         console.log(array);
@@ -175,9 +178,9 @@ app.controller('MainCtrl',
 
 
 
-  //load data
-// var c = document.getElementById('canvas').getContext('2d');
-$scope.getPolyGon = function () {
+    //load data
+  // var c = document.getElementById('canvas').getContext('2d');
+  $scope.getPolyGon = function () {
     var width = $(window).height() - 100;
     var height = $(window).height() - 100;
     var corners = 5;
@@ -249,6 +252,7 @@ $scope.getPolyGon = function () {
         };
     }
     console.log(points);
+    return points;
 
     //draw path
     // c.beginPath();
@@ -264,9 +268,9 @@ $scope.getPolyGon = function () {
     //c.fill();
 
   
-}
+  }
 
-$scope.getPolyGon();
+  // $scope.getPolyGon();
 
 }]);
 
@@ -279,6 +283,12 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
       // console.log(this.slider_ticks_legend);
     };
     // console.log(questionJSONData);
+
+    this.slider_ticks_legend = {};
+
+    this.onChangeListener = function() {
+         console.log("change hannepednd!");
+    }
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -298,6 +308,9 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
               {value: 7, legend: questionJSONData.ValueOptions.value[6].name}
               
             ],
+
+            onChange: this.onChangeListener,
+
             getPointerColor: function(value) {
               if(start == true) {
                   start = false;
@@ -338,7 +351,7 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
                   console.log("Starting off");
                   break;
               }
-              // console.log($scope.gemColor);
+              // console.log(gemColor);
               // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
               // console.log(pointer);
               // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
@@ -366,7 +379,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
   var QuestionForm = function(questionNumber, questionJSONData, QuestionHeading, slider) {
       this.initialize = function() {
           qData = questionJSONData;
-          console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
+          // console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           
           setQuestionSelected(questionNumber);
           setLegend(questionJSONData.ValueOptions, slider);
@@ -376,19 +389,21 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
           // console.log(document.getElementById("questionHeading").innerText);
 
           // console.log("window loaded");
-          console.log('elem', document.getElementById("gem"));
+          // console.log('elem', document.getElementsByClassName("gem")[questionNumber]);
           document.getElementById("valueExplanation").innerHTML = "fuck";
           // var val = document.getElementsByClassName("valueExplanation1");
           // val.innerText = "Where would you be on this scale?";
           // console.log(document.getElementById("valueExplanation").innerText);
           // changeGemLabel(4 , true, DefinitionArray);
-          console.log(document.getElementById("questionHeading").innerText = "Hi");
+          // console.log(document.getElementById("valueExplanation").innerHTML);
+          // console.log(document.getElementById("questionHeading").innerText);
+          // console.log(document.getElementById("questionHeading").innerText);
           // redrawSlider();
           
       };
 
       this.initialize();
-      console.log(window.onload);
+      // console.log(window.onload);
       // window.onload = alert("hi");
           
       // document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
@@ -499,7 +514,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
   }
 
   setLegend = function(array, slider) {
-    console.log(array);
+    // console.log(array);
     // console.log(slider.options.stepsArray);
     for(x = 0; x < array.value.length; x++) {
       // console.log(slider.options.stepsArray[x].legend);
