@@ -1,0 +1,51 @@
+@media screen and (max-width: 900px) {
+	article.DescriptionBox {
+		margin:10px;
+		max-width: 50px;
+	}
+
+	#QshapeContainer {
+		width: 25%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		font-size: 12px;
+
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#QshapeContainer {
+		width: 40%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		max-width: 50px;
+		font-size: 8px;
+	}
+}
+
+@media screen and (min-width: 1130px) {
+	#QshapeContainer {
+		width: 20%;
+
+	}
+}
+
+@media screen and (min-width: 901px) {
+	article.DescriptionBox {
+		margin-top:10px;
+		margin-left: 50px;
+		margin-right: 50px;
+	}
+
+	#QshapeContainer {
+		width: 23%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		max-width: 50px;
+		font-size: 16px;
+	}
+}
+

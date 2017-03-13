@@ -56,13 +56,8 @@ app.controller('MainCtrl',
 	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData', 
 		function($rootScope, $scope, $timeout, $uibModal, JSONData, filename) {
       
-      // console.log(JSONData);
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
-      // console.log(JSONData.returnQuestionJSONData());
-      // JSONData.getJSONDataFromFile('json/questions.json');
-      // $scope.valueQuestion = JSONData.returnQuestionJSONData();
-      // console.log($scope.jsonData, JSONData.returnQuestionJSONData(), $scope.valueQuestion);
       $scope.callToGetJSONDATA = function() {
         console.log(JSONData.getJSONDataFromFile('json/questions.json'));
       }
@@ -86,11 +81,10 @@ app.controller('MainCtrl',
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    return {"left": $scope.hexArr[index].x, 
-            "top": $scope.hexArr[index].y,
+    console.log($scope.getPolyGon()[index]);
+    return {"left": $scope.getPolyGon()[index].x, 
+            "top": $scope.getPolyGon()[index].y,
             "position": "absolute"};
-    // return { transform: translate(hexArr[index], hexArr[index + 1]) };\
-    // return { transform: translate(hexArr[index], hexArr[index + 1]) };
   }
 
   $scope.toggleGroup = function(group) {
@@ -119,8 +113,11 @@ app.controller('MainCtrl',
     //load data
   // var c = document.getElementById('canvas').getContext('2d');
   $scope.getPolyGon = function () {
-    var width = $(window).height() - 100;
-    var height = $(window).height() - 100;
+    var width = $("#shapeContainer").width();
+    // var width = 800;
+    var height = $("#shapeContainer").height() -100;
+    // var height = 400;
+    console.log(width, height);
     var corners = 5;
     console.log($scope.valueQuestion, width, height);
     //initial calculation
@@ -132,6 +129,7 @@ app.controller('MainCtrl',
     for (var i=0; i<corners; i++) {
         a = angle * i;
         //sin and cos are swithced,point 0 is bottom one
+        // Adjusting these vals makes cluster tighter
         var x = (Math.sin(a)*radius);
         var y = (Math.cos(a)*radius);
         points.push({
@@ -184,9 +182,11 @@ app.controller('MainCtrl',
 
     for (var i=0; i<points.length; i++)
     {
+
+        //Adjusting these figures displaces the object array appropriately
         points[i] = {
-            x: (points[i].x * ratio)
-            ,y: (points[i].y * ratio)
+            x: ((points[i].x * ratio) + $("#shapeContainer").height()/7) 
+            ,y: ((points[i].y * ratio) + $("#shapeContainer").height()*0.2)
         };
     }
     console.log(points);
@@ -208,7 +208,7 @@ app.controller('MainCtrl',
   
   }
 
-  // $scope.getPolyGon();
+  $scope.getPolyGon();
 
 }]);
 
@@ -219,11 +219,6 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
         console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
-         // document.getElementsByClassName("valueExplanation")[0].innerHTML = "fuck";
-        // console.log($rootScope.$broadcast('JSONDATA', array));
-        // console.log(JSONData.returnQuestionJSONData()[0], array);
-        // console.log(JSONData.getIndex());
-        // console.log(JSONData.getIndex(), typeof JSONData.getIndex());
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
@@ -260,6 +255,11 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
     changeGemDefinition = function(value) {
        document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
+    }
+
+    storeAnswer = function(answer) {
+      sessionStorage.setItem("Q1", answer); /*Store answer*/
+      console.log(sessionStorage.getItem("Q1"));
     }
 
     changeGemLabel = function(value) {
@@ -319,10 +319,6 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
             // onChange: this.onChangeListener,
 
             getPointerColor: function(value) {
-              if(start == true) {
-                  start = false;
-                  return;
-              }
               switch(value) {
                 
                 case 1:
@@ -366,6 +362,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
               changeGemLabel(value);
               changeGemDefinition(value);
               AnswerListener.setInputValue(value);
+
               // console.log(AnswerListener.getInputValue());
               return gemColor;
             }
@@ -389,112 +386,15 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
 
   var QuestionForm = function(questionNumber, questionJSONData, QuestionHeading, slider) {
       this.initialize = function() {
-          qData = questionJSONData;
-          // console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
-          
-          setQuestionSelected(questionNumber);
-          setLegend(questionJSONData.ValueOptions, slider);
-          setDefinition(questionJSONData.ValueOptions);
-          // console.log($scope.DefinitionArray);
-          // console.log(DefinitionArray, LegendArray);
-          // console.log(document.getElementById("questionHeading").innerText);
-
-          // console.log("window loaded");
-          // console.log('elem', document.getElementsByClassName("gem")[questionNumber]);
-          console.log(questionNumber);
-         
-          // var val = document.getElementsByClassName("valueExplanation1");
-          // val.innerText = "Where would you be on this scale?";
-          // console.log(document.getElementById("valueExplanation").innerText);
-          // changeGemLabel(4 , true, DefinitionArray);
-          // console.log(document.getElementById("valueExplanation").innerHTML);
-          // console.log(document.getElementById("questionHeading").innerText);
-          // console.log(document.getElementById("questionHeading").innerText);
-          // redrawSlider();
           
       };
 
       this.initialize();
-      // console.log(window.onload);
-      // window.onload = alert("hi");
-          
-      // document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
     
 
     };
 
-  // changeGemLabel = function(value, init, description) {
-  //   // console.log(value, $scope.DefinitionArray[value-1]);
-    
-  //   // console.log(description);
-  //   console.log(value);
-  //   var gem = document.getElementsByClassName("gem")[questionNumber];
-  //   var gemTxt = document.getElementById("actionLabel");
-  //   var gemTxt2 = document.getElementById("subGemLabel");
-  //   var gemTxt3 = document.getElementById("subGemLabel2");
-  //   var descContainer = document.getElementById("valueExplanation");
-  //   console.log(gemTxt);
-  //   console.log(descContainer);
-    
-  //   if(!init) {
-  //     gem[0].style.fill= gemColor;
-  //     gem[0].style.stroke= gemColor;
-  //     gemTxt = description;
-  //     console.log(description, DefinitionArray[value-1]);
-  //     if(description.length > 14) {
-  //       var split = description.match(/.{1,14}/g);
-  //       console.log(split);
-  //       gemTxt.textContent = split[0];
-  //       gemTxt2.textContent = split[1];
-  //       if(split.length > 2) {
-  //         gemTxt3.textContent = split[2];
-  //       }
-  //       // Need for loop for larger split arrays that also make the containing gem larger
-  //       } else {
-  //         gemTxt.textContent = description;
-  //         gemTxt2.textContent = '';
-  //         gemTxt3.textContent = '';
-  //       }
-
-  //   } else {
-  //     console.log(DefinitionArray[4]);
-  //     // description = $scope.DefinitionArray[4];
-  //   }
-
-  //   console.log(value);
-  //   descContainer.innerText = description;
-  //   storeAnswer(description);
-  // }
-
-  storeAnswer = function(answer) {
-    sessionStorage.setItem("Q1", answer); /*Store answer*/
-    console.log(sessionStorage.getItem("Q1"));
-  }
-
-
-  questionSelectedIndex = -1;
-  valueQuestion = new Array(0);
-  gemColor = 'purple';
-  gemValueText = 'purple';
-  start = true;
-  DefinitionArray = [
-      ['You Lie; You are Dishonest; You are Untrustworthy', 'untruthful; unfair; corrupt'],
-      ['You Cheat; You Deceive', 'avoids consequences; rumours; exaggerate answers'],
-      ['You tell White Lies', 'tell minor lies to avoid hurting someones feelings'],
-      ['You are Honest', 'Everything said is right and true and considerate; trustworthy; genuine; reliable'],
-      ['You are Honest but...', 'inconsiderate; insensitive; tactless; inappropriate; too modest'],
-      ['You Gossip', 'true but destructive to relationships'],
-      ['You are Hard Hearted or Idealistic', 'Honest but cruel; Unrealistically aiming for perfection']];
-
-  LegendArray = [
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8'];
+  
 
   toggleGroup = function(group) {
     if (isGroupShown(group)) {

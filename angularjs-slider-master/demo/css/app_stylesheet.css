@@ -1,4 +1,4 @@
-@media screen and (max-width: 900px) {
+
 
 	* { 
 		margin: 0; padding: 0; 
@@ -132,8 +132,9 @@
 		background-image: none;
 		/*These two lines below center-align the svg*/
 		display: block;
+		/*width: 90vw;*/
 		margin: auto;
-		height: 700px;
+		height: 80vh;
 	}
 
 
@@ -315,7 +316,7 @@
 		background: rgba(0,0,0, 0.7);
 		padding-bottom: 15px;
 		padding-top: 15px;
-		margin: 10px;
+		/*margin: 10px;*/
 		color: #FFFFFF;
 		border-radius: 15px;
 		text-align: center;
@@ -358,4 +359,3 @@
 	#finish {
 		margin-bottom: 10px;
 	}
-}

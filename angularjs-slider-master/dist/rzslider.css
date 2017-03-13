@@ -173,7 +173,7 @@
 .rzslider .rz-ticks .rz-tick .rz-tick-legend {
   position: absolute;
   top: 24px;
-  max-width: 50px;
+  /*max-width: 50px;*/
   white-space: normal;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);

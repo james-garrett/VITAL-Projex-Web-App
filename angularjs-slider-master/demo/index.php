@@ -7,9 +7,9 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>VITAL Survey</title>
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="css/app_stylesheet_mobile.css"/>
+  <link rel="stylesheet" href="css/resolutionChanges.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
   <link rel="stylesheet" href="css/app_stylesheet.css"/>
-  <link rel="stylesheet" href="css/app_stylesheet_highres.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
   <link rel="stylesheet" href="../dist/rzslider.css"/>
   <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
