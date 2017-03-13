@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('first', {
     url: '/first',
     templateUrl: 'q1.html',
-    controller: 'QuestionForm'
+    controller: 'QuestionFormCreator'
   })
   .state('second', {
     url: '/second',
@@ -52,18 +52,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('QuestionForm', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
+app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
   function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider, JSONData) {
     // $scope.form = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
-        console.log($rootScope.$broadcast('JSONDATA', array));
-        console.log(JSONData.returnQuestionJSONData()[0], array);
-        console.log(JSONData.getIndex);
+        // console.log($rootScope.$broadcast('JSONDATA', array));
+        // console.log(JSONData.returnQuestionJSONData()[0], array);
+        // console.log(JSONData.getIndex());
         
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
-        // $scope.form = new QuestionForm(index, array, title, $scope.slider_ticks_legend);
+        $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
         // console.log($scope.form);
       } 
 
@@ -119,10 +119,10 @@ app.controller('MainCtrl',
       // console.log(JSONData);
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
-      console.log(JSONData.returnQuestionJSONData());
+      // console.log(JSONData.returnQuestionJSONData());
       // JSONData.getJSONDataFromFile('json/questions.json');
       // $scope.valueQuestion = JSONData.returnQuestionJSONData();
-      console.log($scope.jsonData, JSONData.returnQuestionJSONData(), $scope.valueQuestion);
+      // console.log($scope.jsonData, JSONData.returnQuestionJSONData(), $scope.valueQuestion);
       $scope.callToGetJSONDATA = function() {
         console.log(JSONData.getJSONDataFromFile('json/questions.json'));
       }
@@ -167,7 +167,7 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
         this.slider_ticks_legend = {};
       // console.log(this.slider_ticks_legend);
     };
-    console.log(questionJSONData);
+    // console.log(questionJSONData);
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -258,26 +258,27 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
           console.log(questionJSONData, typeof QuestionHeading, QuestionHeading);
           
           setQuestionSelected(questionNumber);
-          setLegend(questionJSONData, slider);
-          setDefinition(questionJSONData);
+          setLegend(questionJSONData.ValueOptions, slider);
+          setDefinition(questionJSONData.ValueOptions);
           // console.log($scope.DefinitionArray);
           // console.log(DefinitionArray, LegendArray);
           // console.log(document.getElementById("questionHeading").innerText);
 
           // console.log("window loaded");
-          console.log('elem', document.getElementById("valueExplanation"));
+          console.log('elem', document.getElementById("gem"));
           document.getElementById("valueExplanation").innerHTML = "fuck";
           // var val = document.getElementsByClassName("valueExplanation1");
           // val.innerText = "Where would you be on this scale?";
           // console.log(document.getElementById("valueExplanation").innerText);
           // changeGemLabel(4 , true, DefinitionArray);
-          // document.getElementById("questionHeading").innerText = QuestionHeading;
+          console.log(document.getElementById("questionHeading").innerText = "Hi");
           // redrawSlider();
           
       };
+      
       this.initialize();
       console.log(window.onload);
-      window.onload = alert("hi");
+      // window.onload = alert("hi");
           
       // document.getElementById("valueExplanation").innerText = "Where would you be on this scale?";
     
@@ -387,7 +388,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
   }
 
   setLegend = function(array, slider) {
-    // console.log(array.value);
+    console.log(array);
     // console.log(slider.options.stepsArray);
     for(x = 0; x < array.value.length; x++) {
       // console.log(slider.options.stepsArray[x].legend);
