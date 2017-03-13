@@ -141,13 +141,13 @@ app.controller('MainCtrl',
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
 
   $scope.hexArr = new Array(0);
-  $scope.hexArr = [0, 300, 150, 225, 280, 75, 280, 0, 150, 75, 20, 225, 0, 20];
+  $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
   
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    return {"left": $scope.hexArr[index], 
-            "top": $scope.hexArr[index + 1],
+    return {"left": $scope.hexArr[index].x, 
+            "top": $scope.hexArr[index].y,
             "position": "absolute"};
     // return { transform: translate(hexArr[index], hexArr[index + 1]) };\
     // return { transform: translate(hexArr[index], hexArr[index + 1]) };
@@ -169,6 +169,104 @@ app.controller('MainCtrl',
     JSONData.setIndex(index);
     location.href='#/first';
   } 
+
+
+  // console.log($scope.valueQuestion.length);
+
+
+
+  //load data
+// var c = document.getElementById('canvas').getContext('2d');
+$scope.getPolyGon = function () {
+    var width = $(window).height() - 100;
+    var height = $(window).height() - 100;
+    var corners = 5;
+    console.log($scope.valueQuestion, width, height);
+    //initial calculation
+    var radius = 1;
+    var angle = (Math.PI * 2) / corners;
+
+    //build points 
+    var points = [];
+    for (var i=0; i<corners; i++) {
+        a = angle * i;
+        //sin and cos are swithced,point 0 is bottom one
+        var x = (Math.sin(a)*radius);
+        var y = (Math.cos(a)*radius);
+        points.push({
+            x:x
+            ,y:y
+        })
+    } 
+
+    console.log(points);
+
+    //get the angle of a side
+    var sideangle = Math.atan2(points[1].y-points[0].y, points[1].x-points[0].x)
+    //rotate point around bottom one
+    var o = points[0];
+    for (var i=1; i<points.length; i++)
+    {
+        points[i] = {
+            x:Math.cos(sideangle) * (points[i].x - o.x) - Math.sin(sideangle) * (points[i].y-o.y) + o.x
+            ,y:Math.sin(sideangle) * (points[i].x - o.x) + Math.cos(sideangle) * (points[i].y - o.y) + o.y
+        };
+    }
+    //by this point the figure is "flat on the floor" lets measure its size
+    var rect = {top:2,left:2,right:-2,bottom:-2};
+
+    console.log(points);
+
+    for (var i=0; i<points.length; i++)
+    {
+        rect.top = Math.min(rect.top,points[i].y);
+        rect.bottom = Math.max(rect.bottom,points[i].y);
+        rect.left = Math.min(rect.left,points[i].x);
+        rect.right = Math.max(rect.right,points[i].x);
+    }
+    rect.width = Math.abs(rect.right - rect.left);
+    rect.height = Math.abs(rect.bottom - rect.top);
+    //make points relative to top left of rect
+    for (var i=0; i<points.length; i++)
+    {
+        points[i] = {
+            x: points[i].x - rect.left
+            ,y: points[i].y - rect.top
+        };
+    }
+    //lets scale and position the poly based on its rect
+    var ratioX = width / rect.width
+    var ratioY = height / rect.height
+    var ratio = Math.min(ratioX, ratioY);
+
+    console.log(points);
+
+    for (var i=0; i<points.length; i++)
+    {
+        points[i] = {
+            x: (points[i].x * ratio)
+            ,y: (points[i].y * ratio)
+        };
+    }
+    console.log(points);
+
+    //draw path
+    // c.beginPath();
+
+    // c.moveTo(points[0].x, points[0].y);
+    // for (var i=1; i<points.length; i++)
+    //     c.lineTo(points[i].x, points[i].y);
+    // c.closePath();
+    // //draw
+    // c.strokeStyle='#f00'
+    // c.stroke();
+    // c.fillStyle = '#f00';
+    //c.fill();
+
+  
+}
+
+$scope.getPolyGon();
 
 }]);
 

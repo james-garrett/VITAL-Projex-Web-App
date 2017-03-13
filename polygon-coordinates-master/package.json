@@ -1,0 +1,24 @@
+{
+  "name": "polygon-coordinates",
+  "version": "2.0.0",
+  "description": "Generate lat/long coordinates for equilateral polygons around a center point.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": {
+    "name": "Jeremy Ho",
+    "email": "jeremyho19@gmail.com"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Jeloi/polygon-coordinates.git"
+  },
+  "devDependencies": {
+    "tape": "^4.2.1"
+  },
+  "dependencies": {
+    "lodash.defaults": "^3.1.2"
+  }
+}
