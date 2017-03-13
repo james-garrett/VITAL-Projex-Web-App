@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('first', {
     url: '/first',
     templateUrl: 'q1.html',
-    controller: 'QuestionController'
+    controller: 'QuestionForm'
   })
   .state('second', {
     url: '/second',
@@ -52,17 +52,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('QuestionForm', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 
-  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider) {
+app.controller('QuestionForm', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
+  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider, JSONData) {
     // $scope.form = null;
-  $scope.$on('JSONDATA', function(event, array) {
-    console.log(array);
-  });
+      $scope.init = function() {
+        var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
+        console.log($rootScope.$broadcast('JSONDATA', array));
+        console.log(JSONData.returnQuestionJSONData()[0], array);
+        console.log(JSONData.getIndex);
+        
+        var slider = new Slider(array);
+        $scope.slider_ticks_legend = slider.sliderGet();
+        // $scope.form = new QuestionForm(index, array, title, $scope.slider_ticks_legend);
+        // console.log($scope.form);
+      } 
+
+      $scope.init();
+
+      $scope.$on('JSONDATA', function(event, array) {
+        console.log(array);
+      });
   }]);
 
 app.service('JSONData', function() {
     var questionJSONData = new Array(0);
     // $scope.loadJSON();
+    var indexChosen = -1;
     var getJSONDataFromFile = function(filename) {
         var returnJSON = [];
         $.getJSON(filename, function(json) {
@@ -79,9 +94,19 @@ app.service('JSONData', function() {
       return questionJSONData;
     }
 
+    var setIndex = function(field) {
+      indexChosen = field;
+    }
+
+    var getIndex = function(field) {
+      return indexChosen;
+    }
+
     return {
       getJSONDataFromFile: getJSONDataFromFile,
-      returnQuestionJSONData: returnQuestionJSONData
+      returnQuestionJSONData: returnQuestionJSONData,
+      getIndex: getIndex,
+      setIndex: setIndex,
     };
 
 });
@@ -127,30 +152,10 @@ app.controller('MainCtrl',
     return $scope.shownGroup === group;
   };
 
-  // Below is just a JSON template of what data a question should hold
-  // $scope.questionsPath = "../questions.json";
-  // $scope.loadJSON = function() {
-  //   var returnJSON = [];
-  //   $.getJSON("json/questions.json", function(json) {
-  //     $.each(json.Questions, function(k, v) {
-  //       // console.log(k, v);
-  //     })
-  //     $scope.valueQuestion.push(json.Questions);
-  //   });
-  // }
-
-  // $scope.loadJSON();
-
   $scope.loadForm = function(index, array, title) {
-    $rootScope.$broadcast('JSONDATA', array);
-    
-
+    JSONData.setIndex(index);
     location.href='#/first';
-    var slider = new Slider(array);
-    $scope.slider_ticks_legend = slider.sliderGet();
-    $scope.form = new QuestionForm(index, array, title, $scope.slider_ticks_legend);
-    console.log($scope.form);
-  }
+  } 
 
 }]);
 
@@ -162,7 +167,7 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
         this.slider_ticks_legend = {};
       // console.log(this.slider_ticks_legend);
     };
-    
+    console.log(questionJSONData);
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -173,13 +178,13 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
             floor: 1,
 
             stepsArray: [
-              {value: 1, legend: questionJSONData.value[0].name},
-              {value: 2, legend: questionJSONData.value[1].name},
-              {value: 3, legend: questionJSONData.value[2].name},
-              {value: 4, legend: questionJSONData.value[3].name},
-              {value: 5, legend: questionJSONData.value[4].name},
-              {value: 6, legend: questionJSONData.value[5].name},
-              {value: 7, legend: questionJSONData.value[6].name}
+              {value: 1, legend: questionJSONData.ValueOptions.value[0].name},
+              {value: 2, legend: questionJSONData.ValueOptions.value[1].name},
+              {value: 3, legend: questionJSONData.ValueOptions.value[2].name},
+              {value: 4, legend: questionJSONData.ValueOptions.value[3].name},
+              {value: 5, legend: questionJSONData.ValueOptions.value[4].name},
+              {value: 6, legend: questionJSONData.ValueOptions.value[5].name},
+              {value: 7, legend: questionJSONData.ValueOptions.value[6].name}
               
             ],
             getPointerColor: function(value) {
