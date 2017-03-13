@@ -106,7 +106,7 @@
 	    margin-top: 0px;
 	}
 
-	.valueExplanation {
+	.valueExplanation1 {
 		background: none;
 		text-align: center;
 		color: #FFFFFF;
@@ -131,6 +131,7 @@
 		display: block;
 		margin: auto;
 		/*height: 80px;*/
+
 	}
 
 	#gemLabel {
@@ -140,6 +141,11 @@
 	/*	text-align: center;
 		word-wrap: break-word;
 		color: #000000;*/
+	}
+
+	.Q1gem {
+		/*transform: translate(200px, 300px);*/
+		position: absolute;
 	}
 
 	.scroll .environments-image .gem {
@@ -168,6 +174,7 @@
 	  -webkit-transform-origin: 43.9px 141.9px;
 	  transform-origin: 43.9px 141.9px;
 	  fill: #DA126D;
+	  transform: translate(200px, 300px);
 	}
 
 	.rz-pointer.rz-pointer-min {

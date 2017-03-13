@@ -113,7 +113,7 @@ app.service('JSONData', function() {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData',
+	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData', 
 		function($rootScope, $scope, $timeout, $uibModal, JSONData, filename) {
       
       // console.log(JSONData);
@@ -139,6 +139,19 @@ app.controller('MainCtrl',
   $scope.valueQuestion = new Array(0);
   JSONData.getJSONDataFromFile('json/questions.json');
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
+
+  $scope.hexArr = new Array(0);
+  $scope.hexArr = [0, 300, 150, 225, 280, 75, 280, 0, 150, 75, 20, 225, 0, 20];
+  
+  $scope.getCoord = function(index) {
+  
+    // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
+    return {"left": $scope.hexArr[index], 
+            "top": $scope.hexArr[index + 1],
+            "position": "absolute"};
+    // return { transform: translate(hexArr[index], hexArr[index + 1]) };\
+    // return { transform: translate(hexArr[index], hexArr[index + 1]) };
+  }
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -275,7 +288,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
           // redrawSlider();
           
       };
-      
+
       this.initialize();
       console.log(window.onload);
       // window.onload = alert("hi");
