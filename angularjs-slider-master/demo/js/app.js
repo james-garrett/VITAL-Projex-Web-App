@@ -106,7 +106,7 @@ app.controller('MainCtrl',
   };
 
   $scope.loadForm = function(index, array, title) {
-    console.log(index);
+    // console.log(index);
     JSONData.setIndex(index);
     location.href='#/first';
   } 
@@ -217,10 +217,13 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
     // $scope.form = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
+        console.log(array);
+        document.getElementById("questionHeadingOnForm").innerText = array.Question;
+         document.getElementsByClassName("valueExplanation")[0].innerHTML = "fuck";
         // console.log($rootScope.$broadcast('JSONDATA', array));
         // console.log(JSONData.returnQuestionJSONData()[0], array);
         // console.log(JSONData.getIndex());
-        console.log(JSONData.getIndex(), typeof JSONData.getIndex());
+        // console.log(JSONData.getIndex(), typeof JSONData.getIndex());
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
@@ -243,64 +246,52 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       this.initialize = function() {
 
         this.slider_ticks_legend = {};
-        // this.questionNumber = questionNumber;
-      // console.log(this.slider_ticks_legend);
+
     };
-    // console.log(questionJSONData);
+
 
     this.slider_ticks_legend = {};
 
-    // this.onChangeListener = function() {
-    //     console.log(this.slider_ticks_legend);
-    //     // AnswerListener.setInputValue(this.slider_ticks_legend.value);
-    //     console.log("change hannepednd!");
-    // }
-
-    changeGemLabel = function(gemColor, init) {
-      // console.log(value, $scope.DefinitionArray[value-1]);
-      
-      // console.log(description);
-      console.log(JSONData.getIndex(), gemColor, document.getElementsByClassName("gem")[JSONData.getIndex()]);
+    changeGemColor = function(gemColor) {
       var gem = document.getElementsByClassName("gem")[0];
-      var gemTxt = document.getElementById("actionLabel");
-      var gemTxt2 = document.getElementById("subGemLabel");
-      var gemTxt3 = document.getElementById("subGemLabel2");
-      var descContainer = document.getElementById("valueExplanation");
-      console.log(gemTxt, gem);
+      gem.style.fill= gemColor;
+      gem.style.stroke= gemColor;
+    }
+
+    changeGemLabel = function(value) {
+      var gemTxt = document.getElementById("gemLabel");
+      
+      // ["0"]["0"].ValueOptions.value[3].action
+      // console.log(gemTxt, JSONData.getIndex(), value, JSONData.returnQuestionJSONData(), JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value].action);
       // console.log(descContainer);
-      gem.fill= "#FFFFFF";
+      var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+      
+      // document.getElementById("subGemLabel2").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+      
+      // console.log(description, DefinitionArray[value-1]);
+      if(description.length > 14) {
+        var split = description.match(/.{1,14}/g);
+        console.log(split);
+        document.getElementById("gemLabel").textContent = split[0];
+        document.getElementById("subGemLabel21").textContent =split[1];
+        console.log(split.length);
+        if(split.length > 2) {
+          document.getElementById("subGemLabel22").textContent = split[2];
+        } else {
+          document.getElementById("subGemLabel22").textContent = '';
 
-
-      if(!init) {
-        // gem.setOptions({fillColor: gemColor});
-        gem.style.fill= gemColor;
-        // gem.stroke= gemColor;
-        // gemTxt = description;
-        // console.log(description, DefinitionArray[value-1]);
-        // if(description.length > 14) {
-          // var split = description.match(/.{1,14}/g);
-          // console.log(split);
-          // gemTxt.textContent = split[0];
-          // gemTxt2.textContent = split[1];
-          // if(split.length > 2) {
-            // gemTxt3.textContent = split[2];
-          // }
-          // Need for loop for larger split arrays that also make the containing gem larger
-          // } else {
-            // gemTxt.textContent = description;
-            // gemTxt2.textContent = '';
-            // gemTxt3.textContent = '';
-          // }
-
-      } else {
-        // console.log(DefinitionArray[4]);
-        // description = $scope.DefinitionArray[4];
-      }
+        }
+        // Need for loop for larger split arrays that also make the containing gem larger
+        } else {
+          document.getElementById("gemLabel").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+          document.getElementById("subGemLabel21").textContent = '';
+          document.getElementById("subGemLabel22").textContent = '';
+        }
 
       // console.log(value);
       // descContainer.innerText = description;
       // storeAnswer(description);
-  }
+    }
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -367,7 +358,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
               // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
               // console.log(pointer);
               // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
-              changeGemLabel(gemColor, false);
+              changeGemColor(gemColor);
+              changeGemLabel(value)
               AnswerListener.setInputValue(value);
               // console.log(AnswerListener.getInputValue());
               return gemColor;
@@ -404,7 +396,8 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
 
           // console.log("window loaded");
           // console.log('elem', document.getElementsByClassName("gem")[questionNumber]);
-          document.getElementsByClassName("valueExplanation")[questionNumber].innerHTML = "fuck";
+          console.log(questionNumber);
+         
           // var val = document.getElementsByClassName("valueExplanation1");
           // val.innerText = "Where would you be on this scale?";
           // console.log(document.getElementById("valueExplanation").innerText);
@@ -425,48 +418,48 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
 
     };
 
-  changeGemLabel = function(value, init, description) {
-    // console.log(value, $scope.DefinitionArray[value-1]);
+  // changeGemLabel = function(value, init, description) {
+  //   // console.log(value, $scope.DefinitionArray[value-1]);
     
-    // console.log(description);
-    console.log(value);
-    var gem = document.getElementsByClassName("gem")[questionNumber];
-    var gemTxt = document.getElementById("actionLabel");
-    var gemTxt2 = document.getElementById("subGemLabel");
-    var gemTxt3 = document.getElementById("subGemLabel2");
-    var descContainer = document.getElementById("valueExplanation");
-    console.log(gemTxt);
-    console.log(descContainer);
+  //   // console.log(description);
+  //   console.log(value);
+  //   var gem = document.getElementsByClassName("gem")[questionNumber];
+  //   var gemTxt = document.getElementById("actionLabel");
+  //   var gemTxt2 = document.getElementById("subGemLabel");
+  //   var gemTxt3 = document.getElementById("subGemLabel2");
+  //   var descContainer = document.getElementById("valueExplanation");
+  //   console.log(gemTxt);
+  //   console.log(descContainer);
     
-    if(!init) {
-      gem[0].style.fill= gemColor;
-      gem[0].style.stroke= gemColor;
-      gemTxt = description;
-      console.log(description, DefinitionArray[value-1]);
-      if(description.length > 14) {
-        var split = description.match(/.{1,14}/g);
-        console.log(split);
-        gemTxt.textContent = split[0];
-        gemTxt2.textContent = split[1];
-        if(split.length > 2) {
-          gemTxt3.textContent = split[2];
-        }
-        // Need for loop for larger split arrays that also make the containing gem larger
-        } else {
-          gemTxt.textContent = description;
-          gemTxt2.textContent = '';
-          gemTxt3.textContent = '';
-        }
+  //   if(!init) {
+  //     gem[0].style.fill= gemColor;
+  //     gem[0].style.stroke= gemColor;
+  //     gemTxt = description;
+  //     console.log(description, DefinitionArray[value-1]);
+  //     if(description.length > 14) {
+  //       var split = description.match(/.{1,14}/g);
+  //       console.log(split);
+  //       gemTxt.textContent = split[0];
+  //       gemTxt2.textContent = split[1];
+  //       if(split.length > 2) {
+  //         gemTxt3.textContent = split[2];
+  //       }
+  //       // Need for loop for larger split arrays that also make the containing gem larger
+  //       } else {
+  //         gemTxt.textContent = description;
+  //         gemTxt2.textContent = '';
+  //         gemTxt3.textContent = '';
+  //       }
 
-    } else {
-      console.log(DefinitionArray[4]);
-      // description = $scope.DefinitionArray[4];
-    }
+  //   } else {
+  //     console.log(DefinitionArray[4]);
+  //     // description = $scope.DefinitionArray[4];
+  //   }
 
-    console.log(value);
-    descContainer.innerText = description;
-    storeAnswer(description);
-  }
+  //   console.log(value);
+  //   descContainer.innerText = description;
+  //   storeAnswer(description);
+  // }
 
   storeAnswer = function(answer) {
     sessionStorage.setItem("Q1", answer); /*Store answer*/
@@ -578,7 +571,7 @@ app.service('JSONData', function() {
           })
           questionJSONData.push(json.Questions);
         });
-    console.log(questionJSONData);
+    // console.log(questionJSONData);
     returnQuestionJSONData();
     }
 

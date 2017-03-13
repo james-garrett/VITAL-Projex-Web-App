@@ -106,6 +106,18 @@
 	    margin-top: 0px;
 	}
 
+	h3#questionHeadingOnForm {
+		background: rgba(0,0,0, 0.7);
+		text-align: center;
+		color: #FFFFFF;
+	    /*font-family: 'Ubuntu', sans-serif;*/
+	    font-family: title;
+	    font-weight: 500;
+	    /*font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;*/
+	    line-height: 1.2;
+	    margin-top: 0px;
+	}
+
 	.valueExplanation {
 		background: none;
 		text-align: center;
