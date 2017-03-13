@@ -10,8 +10,17 @@
   <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
     
     <svg class="environments-image1" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-      
-        <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+      <svg width="100" height="100">
+          <defs>
+            <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
+              <image x="0" y="0" height="100" width="100" xlink:href="http://i.imgur.com/7Nlcay7.jpg"></image>
+            </pattern>
+          </defs>
+          <circle id='top' cx="50" cy="50" r="50" fill="url(#image)"/>
+        </svg>
+
+        <polygon class="gem" fill="url(#image)" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+        <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
           <animateTransform attributeName="transform"
                           attributeType="XML"
                           type="rotate"
@@ -53,6 +62,8 @@
 
 
 </div>
+
+
 <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script>
 <script src="./lib/ui-bootstrap-tpls.js"></script>
 <script src="../dist/rzslider.js"></script>

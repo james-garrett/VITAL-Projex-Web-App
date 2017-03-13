@@ -81,7 +81,7 @@ app.controller('MainCtrl',
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    console.log($scope.getPolyGon()[index]);
+    // console.log($scope.getPolyGon()[index]);
     return {"left": $scope.getPolyGon()[index].x, 
             "top": $scope.getPolyGon()[index].y,
             "position": "absolute"};
@@ -117,9 +117,9 @@ app.controller('MainCtrl',
     // var width = 800;
     var height = $("#shapeContainer").height() -100;
     // var height = 400;
-    console.log(width, height);
+    // console.log(width, height);
     var corners = 5;
-    console.log($scope.valueQuestion, width, height);
+    // console.log($scope.valueQuestion, width, height);
     //initial calculation
     var radius = 1;
     var angle = (Math.PI * 2) / corners;
@@ -138,7 +138,7 @@ app.controller('MainCtrl',
         })
     } 
 
-    console.log(points);
+    // console.log(points);
 
     //get the angle of a side
     var sideangle = Math.atan2(points[1].y-points[0].y, points[1].x-points[0].x)
@@ -154,7 +154,7 @@ app.controller('MainCtrl',
     //by this point the figure is "flat on the floor" lets measure its size
     var rect = {top:2,left:2,right:-2,bottom:-2};
 
-    console.log(points);
+    // console.log(points);
 
     for (var i=0; i<points.length; i++)
     {
@@ -178,7 +178,7 @@ app.controller('MainCtrl',
     var ratioY = height / rect.height
     var ratio = Math.min(ratioX, ratioY);
 
-    console.log(points);
+    // console.log(points);
 
     for (var i=0; i<points.length; i++)
     {
@@ -189,7 +189,7 @@ app.controller('MainCtrl',
             ,y: ((points[i].y * ratio) + $("#shapeContainer").height()*0.2)
         };
     }
-    console.log(points);
+    // console.log(points);
     return points;
 
     //draw path
@@ -217,7 +217,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
     // $scope.form = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
-        console.log(array);
+        // console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
@@ -248,8 +248,53 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
     this.slider_ticks_legend = {};
 
     changeGemColor = function(gemColor) {
+
+
+
+    // var h = window.innerHeight, w = window.innerWidth;
+    // var center_y = h * 0.5, center_x = w * 0.5;
+    
+    // var points = [];
+    // var spacing = 20;
+    // var t = 0;
+    // // generate a sine wave of points
+    // for(var x = spacing; x < w - (spacing*2); x += spacing) {
+    //   var y = center_y + Math.sin(t) * (center_y - spacing);
+    //   points.push([x, y]);
+    //   t += 0.5;
+    // }
+
+    // // // set up the base pattern
+    // var pattern = Trianglify({
+    //   height: h,
+    //   width: w,
+    //   points: points,
+    //   cell_size: 30 + Math.random() * 100});
+
+    // // canvas
+    // // document.body.appendChild(pattern.canvas())
+
+    // // svg
+    // // document.body.appendChild(pattern.svg())
+
+    // // png
+    // // var png = document.createElement('img')
+    // // png.src = pattern.png()
+    // // document.body.appendChild(png)
+    // console.log(pattern);
+
+    var pattern = Trianglify({
+      height: window.innerHeight,
+      width: window.innerWidth,
+      cell_size: 30 + Math.random() * 100})
+
+    var png = document.createElement('img')
+    png.src = pattern.png()
+
+
       var gem = document.getElementsByClassName("gem")[0];
-      gem.style.fill= gemColor;
+      // gem.style.fill= gemColor;
+      gem.style.fill= pattern.svg();
       gem.style.stroke= gemColor;
     }
 
@@ -275,10 +320,10 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       // console.log(description, DefinitionArray[value-1]);
       if(description.length > 14) {
         var split = description.match(/.{1,14}/g);
-        console.log(split);
+        // console.log(split);
         document.getElementById("gemLabel").textContent = split[0];
         document.getElementById("subGemLabel21").textContent =split[1];
-        console.log(split.length);
+        // console.log(split.length);
         if(split.length > 2) {
           document.getElementById("subGemLabel22").textContent = split[2];
         } else {
