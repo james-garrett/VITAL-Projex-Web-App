@@ -52,69 +52,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
-  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider, JSONData) {
-    // $scope.form = null;
-      $scope.init = function() {
-        var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
-        // console.log($rootScope.$broadcast('JSONDATA', array));
-        // console.log(JSONData.returnQuestionJSONData()[0], array);
-        // console.log(JSONData.getIndex());
-        
-        var slider = new Slider(array);
-        $scope.slider_ticks_legend = slider.sliderGet();
-        
-
-        $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
-        // console.log($scope.form);
-        
-      } 
-
-      // $scope.init();
-
-      $scope.$on('JSONDATA', function(event, array) {
-        console.log(array);
-      });
-  }]);
-
-app.service('JSONData', function() {
-    var questionJSONData = new Array(0);
-    // $scope.loadJSON();
-    var indexChosen = -1;
-    var getJSONDataFromFile = function(filename) {
-        var returnJSON = [];
-        $.getJSON(filename, function(json) {
-          $.each(json.Questions, function(k, v) {
-            // console.log(k, v);
-          })
-          questionJSONData.push(json.Questions);
-        });
-    console.log(questionJSONData);
-    returnQuestionJSONData();
-    }
-
-    var returnQuestionJSONData = function() {
-      return questionJSONData;
-    }
-
-    var setIndex = function(field) {
-      indexChosen = field;
-    }
-
-    var getIndex = function(field) {
-      return indexChosen;
-    }
-
-    return {
-      getJSONDataFromFile: getJSONDataFromFile,
-      returnQuestionJSONData: returnQuestionJSONData,
-      getIndex: getIndex,
-      setIndex: setIndex,
-    };
-
-});
-
-
 app.controller('MainCtrl', 
 	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData', 
 		function($rootScope, $scope, $timeout, $uibModal, JSONData, filename) {
@@ -169,6 +106,7 @@ app.controller('MainCtrl',
   };
 
   $scope.loadForm = function(index, array, title) {
+    console.log(index);
     JSONData.setIndex(index);
     location.href='#/first';
   } 
@@ -274,21 +212,95 @@ app.controller('MainCtrl',
 
 }]);
 
-app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
+app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
+  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider, JSONData) {
+    // $scope.form = null;
+      $scope.init = function() {
+        var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
+        // console.log($rootScope.$broadcast('JSONDATA', array));
+        // console.log(JSONData.returnQuestionJSONData()[0], array);
+        // console.log(JSONData.getIndex());
+        console.log(JSONData.getIndex(), typeof JSONData.getIndex());
+        var qNum = JSONData.getIndex();
+        var slider = new Slider(array);
+        $scope.slider_ticks_legend = slider.sliderGet();
+        
+
+        $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
+        // console.log($scope.form);
+        
+      } 
+    // $scope.init();
+
+      $scope.$on('JSONDATA', function(event, array) {
+        console.log(array);
+      });
+  }]);
+
+app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', function($rootScope, $http, AnswerListener, JSONData) {
     
     var Slider = function(questionJSONData) {
       this.initialize = function() {
 
         this.slider_ticks_legend = {};
+        // this.questionNumber = questionNumber;
       // console.log(this.slider_ticks_legend);
     };
     // console.log(questionJSONData);
 
     this.slider_ticks_legend = {};
 
-    this.onChangeListener = function() {
-         console.log("change hannepednd!");
-    }
+    // this.onChangeListener = function() {
+    //     console.log(this.slider_ticks_legend);
+    //     // AnswerListener.setInputValue(this.slider_ticks_legend.value);
+    //     console.log("change hannepednd!");
+    // }
+
+    changeGemLabel = function(gemColor, init) {
+      // console.log(value, $scope.DefinitionArray[value-1]);
+      
+      // console.log(description);
+      console.log(JSONData.getIndex(), gemColor, document.getElementsByClassName("gem")[JSONData.getIndex()]);
+      var gem = document.getElementsByClassName("gem")[0];
+      var gemTxt = document.getElementById("actionLabel");
+      var gemTxt2 = document.getElementById("subGemLabel");
+      var gemTxt3 = document.getElementById("subGemLabel2");
+      var descContainer = document.getElementById("valueExplanation");
+      console.log(gemTxt, gem);
+      // console.log(descContainer);
+      gem.fill= "#FFFFFF";
+
+
+      if(!init) {
+        // gem.setOptions({fillColor: gemColor});
+        gem.style.fill= gemColor;
+        // gem.stroke= gemColor;
+        // gemTxt = description;
+        // console.log(description, DefinitionArray[value-1]);
+        // if(description.length > 14) {
+          // var split = description.match(/.{1,14}/g);
+          // console.log(split);
+          // gemTxt.textContent = split[0];
+          // gemTxt2.textContent = split[1];
+          // if(split.length > 2) {
+            // gemTxt3.textContent = split[2];
+          // }
+          // Need for loop for larger split arrays that also make the containing gem larger
+          // } else {
+            // gemTxt.textContent = description;
+            // gemTxt2.textContent = '';
+            // gemTxt3.textContent = '';
+          // }
+
+      } else {
+        // console.log(DefinitionArray[4]);
+        // description = $scope.DefinitionArray[4];
+      }
+
+      // console.log(value);
+      // descContainer.innerText = description;
+      // storeAnswer(description);
+  }
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -309,7 +321,7 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
               
             ],
 
-            onChange: this.onChangeListener,
+            // onChange: this.onChangeListener,
 
             getPointerColor: function(value) {
               if(start == true) {
@@ -355,7 +367,9 @@ app.factory('Slider', ['$rootScope', '$http', function($rootScope, $http) {
               // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
               // console.log(pointer);
               // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
-              // changeGemLabel(value, false, DefinitionArray[questionSelectedIndex]);
+              changeGemLabel(gemColor, false);
+              AnswerListener.setInputValue(value);
+              // console.log(AnswerListener.getInputValue());
               return gemColor;
             }
           }
@@ -390,7 +404,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
 
           // console.log("window loaded");
           // console.log('elem', document.getElementsByClassName("gem")[questionNumber]);
-          document.getElementById("valueExplanation").innerHTML = "fuck";
+          document.getElementsByClassName("valueExplanation")[questionNumber].innerHTML = "fuck";
           // var val = document.getElementsByClassName("valueExplanation1");
           // val.innerText = "Where would you be on this scale?";
           // console.log(document.getElementById("valueExplanation").innerText);
@@ -416,7 +430,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
     
     // console.log(description);
     console.log(value);
-    var gem = document.getElementsByClassName("gem");
+    var gem = document.getElementsByClassName("gem")[questionNumber];
     var gemTxt = document.getElementById("actionLabel");
     var gemTxt2 = document.getElementById("subGemLabel");
     var gemTxt3 = document.getElementById("subGemLabel2");
@@ -551,6 +565,61 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
   return QuestionForm;
 
 }]);
+
+app.service('JSONData', function() {
+    var questionJSONData = new Array(0);
+    // $scope.loadJSON();
+    var indexChosen = -1;
+    var getJSONDataFromFile = function(filename) {
+        var returnJSON = [];
+        $.getJSON(filename, function(json) {
+          $.each(json.Questions, function(k, v) {
+            // console.log(k, v);
+          })
+          questionJSONData.push(json.Questions);
+        });
+    console.log(questionJSONData);
+    returnQuestionJSONData();
+    }
+
+    var returnQuestionJSONData = function() {
+      return questionJSONData;
+    }
+
+    var setIndex = function(field) {
+      indexChosen = field;
+    }
+
+    var getIndex = function(field) {
+      return indexChosen;
+    }
+
+    return {
+      getJSONDataFromFile: getJSONDataFromFile,
+      returnQuestionJSONData: returnQuestionJSONData,
+      getIndex: getIndex,
+      setIndex: setIndex,
+    };
+
+});
+
+app.service('AnswerListener', function() {
+  var inputValue = -1;
+
+  var setInputValue = function(value) {
+    inputValue = value;
+  }
+
+  var getInputValue = function(){
+    return inputValue;
+  }
+
+  return {
+    setInputValue: setInputValue,
+    getInputValue: getInputValue,
+  };
+
+});
 
 app.directive('clickableLabel', function() {
   return {
