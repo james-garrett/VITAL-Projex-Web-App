@@ -219,7 +219,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
         console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
-         document.getElementsByClassName("valueExplanation")[0].innerHTML = "fuck";
+         // document.getElementsByClassName("valueExplanation")[0].innerHTML = "fuck";
         // console.log($rootScope.$broadcast('JSONDATA', array));
         // console.log(JSONData.returnQuestionJSONData()[0], array);
         // console.log(JSONData.getIndex());
@@ -256,6 +256,10 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       var gem = document.getElementsByClassName("gem")[0];
       gem.style.fill= gemColor;
       gem.style.stroke= gemColor;
+    }
+
+    changeGemDefinition = function(value) {
+       document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
     }
 
     changeGemLabel = function(value) {
@@ -359,7 +363,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
               // console.log(pointer);
               // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
               changeGemColor(gemColor);
-              changeGemLabel(value)
+              changeGemLabel(value);
+              changeGemDefinition(value);
               AnswerListener.setInputValue(value);
               // console.log(AnswerListener.getInputValue());
               return gemColor;
