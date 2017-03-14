@@ -68,15 +68,15 @@ app.controller('MainCtrl',
   //upon the controller being opened, execute this function
   $scope.$on('$ionicView.afterEnter', function(){
  //run something :smile: 
-    console.log(document.getElementById("Q3Gem"));
-    console.log(document.getElementById("Q1gemLabel"));
-    console.log(document.getElementById("Q3gemLabel"));
-    console.log("onMainCtrl open function trigger");
-    console.log("AnswerIndex:" + AnswerListener.getInputValue());
+    // console.log(document.getElementById("Q3Gem"));
+    // console.log(document.getElementById("Q1gemLabel"));
+    // console.log(document.getElementById("Q3gemLabel"));
+    // console.log("onMainCtrl open function trigger");
+    // console.log("AnswerIndex:" + AnswerListener.getInputValue());
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
-      console.log(JSONData.getIndex());
+      // console.log(JSONData.getIndex());
       // var elem_Name = "shapeContainer > svg.environments-image" + JSONData.getIndex();
       var text_elem_Name = "Q" + JSONData.getIndex() + "gemLabel";
       var poly_elem_Name = "environments-image" + JSONData.getIndex();
@@ -91,13 +91,13 @@ app.controller('MainCtrl',
   });
 
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
-    console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
-    console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
+    // console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
+    // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
     textElem.innerText = "fuck";
     textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
-    console.log(JSONData.returnQuestionJSONData());
+    // console.log(JSONData.returnQuestionJSONData());
     // textElem.innerText = 
-    console.log(polyElem.innerText);
+    // console.log(polyElem.innerText);
   }
 
   //Minimal slider config
@@ -290,49 +290,50 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
 
 
-    // var h = window.innerHeight, w = window.innerWidth;
-    // var center_y = h * 0.5, center_x = w * 0.5;
-    
-    // var points = [];
-    // var spacing = 20;
-    // var t = 0;
-    // // generate a sine wave of points
-    // for(var x = spacing; x < w - (spacing*2); x += spacing) {
-    //   var y = center_y + Math.sin(t) * (center_y - spacing);
-    //   points.push([x, y]);
-    //   t += 0.5;
-    // }
+    var h = window.innerHeight, w = window.innerWidth;
+    var center_y = h * 0.5, center_x = w * 0.5;
+  
+    var points = [];
+    var spacing = 20;
+    var t = 0;
+    // generate a sine wave of points
+    for(var x = spacing; x < w - (spacing*2); x += spacing) {
+        var y = center_y + Math.sin(t) * (center_y - spacing);
+        points.push([x, y]);
+        t += 0.5;
+    }
 
-    // // // set up the base pattern
-    // var pattern = Trianglify({
-    //   height: h,
-    //   width: w,
-    //   points: points,
-    //   cell_size: 30 + Math.random() * 100});
-
-    // // canvas
-    // // document.body.appendChild(pattern.canvas())
-
-    // // svg
-    // // document.body.appendChild(pattern.svg())
-
-    // // png
-    // // var png = document.createElement('img')
-    // // png.src = pattern.png()
-    // // document.body.appendChild(png)
-    // console.log(pattern);
-
+  // set up the base pattern
+  var pattern = Trianglify({
+    height: h,
+    width: w,
+    points: points,
+    cell_size: 30 + Math.random() * 100})
+    document.body.appendChild(pattern.svg());
+    console.log(pattern);
+    console.log(points);
+    console.log(document.getElementsByClassName("svgBg")[0]);
+    var bg = document.getElementsByClassName("svgBg")[0];
     var pattern = Trianglify({
       height: window.innerHeight,
       width: window.innerWidth,
-      cell_size: 30 + Math.random() * 100})
+      points: points,
+      cell_size: 30 + Math.random() * 100});
 
     var png = document.createElement('img');
     png.src = pattern.png();
-
+    bg.appendChild(pattern.svg());
 
       var gem = document.getElementsByClassName("gem")[0];
       gem.style.fill= gemColor;document.body.appendChild(pattern.svg());
+      // var bg = new Image();
+      // bg.src = './lib/images/gradient-wallpaper-4.jpg';
+      // bg.onload = function() {
+      //   var pattern = gem.createPattern(this, "no-repeat");
+      //   gem.fillStyle = pattern;
+      //   gem.fill();
+      // }
+      
       // gem.style.fill= pattern.svg();
       // console.log(png);
       // gem.style.fillStyle= pattern.svg();

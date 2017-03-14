@@ -9,7 +9,45 @@
     <!-- Only adjust width for shape size -->
   <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
     
-    <svg class="environments-image1" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+
+  <!-- <script src="trianglify.min.js"></script>   
+  <script type="text/javascript">
+
+  var h = window.innerHeight, w = window.innerWidth;
+  var center_y = h * 0.5, center_x = w * 0.5;
+  
+  var points = [];
+  var spacing = 20;
+  var t = 0;
+  // generate a sine wave of points
+  for(var x = spacing; x < w - (spacing*2); x += spacing) {
+  var y = center_y + Math.sin(t) * (center_y - spacing);
+  points.push([x, y]);
+  t += 0.5;
+  }
+
+  // set up the base pattern
+  var pattern = Trianglify({
+    height: h,
+    width: w,
+    points: points,
+    cell_size: 30 + Math.random() * 100})
+
+  // canvas
+  document.body.appendChild(pattern.canvas())
+
+  // svg
+  document.body.appendChild(pattern.svg())
+
+  // png
+  var png = document.createElement('img')
+  png.src = pattern.png()
+  document.body.appendChild(png)
+  console.log(pattern);
+  </script> -->
+
+
+    <svg class="svgBg" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
       <!-- <svg width="100" height="100">
           <defs>
             <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
@@ -58,11 +96,11 @@
           </div>
     </ion-list>
   </article>
+
 </ion-content>
 
 
 </div>
-
 
 <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script>
 <script src="./lib/ui-bootstrap-tpls.js"></script>
