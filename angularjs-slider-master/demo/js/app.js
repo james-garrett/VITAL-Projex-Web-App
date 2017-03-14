@@ -73,6 +73,7 @@ app.controller('MainCtrl',
     // console.log(document.getElementById("Q3gemLabel"));
     // console.log("onMainCtrl open function trigger");
     // console.log("AnswerIndex:" + AnswerListener.getInputValue());
+    $scope.drawBigHex();
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
@@ -118,8 +119,9 @@ app.controller('MainCtrl',
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
     // console.log($scope.getPolyGon()[index]);
-    return {"left": $scope.getPolyGon()[index].x, 
-            "top": $scope.getPolyGon()[index].y,
+    // console.log($("#shapeContainer").width(), $("#shapeContainer").height());
+    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height() - 200)[index].x, 
+            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height() -200)[index].y,
             "position": "absolute"};
   }
 
@@ -148,10 +150,15 @@ app.controller('MainCtrl',
 
     //load data
   // var c = document.getElementById('canvas').getContext('2d');
-  $scope.getPolyGon = function () {
-    var width = $("#shapeContainer").width();
+
+  $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
+    // var c= document.getElementsByClassName("hexCanvas")[0];
+    // console.log(c);
+    // var hex = $("#hexCanvas");
+    // var c = hex.getContext("2d");
+    var width = drawingAreaWidth;
     // var width = 800;
-    var height = $("#shapeContainer").height() -100;
+    var height = drawingAreaHeight;
     // var height = 400;
     // console.log(width, height);
     var corners = 5;
@@ -221,30 +228,56 @@ app.controller('MainCtrl',
 
         //Adjusting these figures displaces the object array appropriately
         points[i] = {
-            x: ((points[i].x * ratio) + $("#shapeContainer").height()/2) 
-            ,y: ((points[i].y * ratio) + $("#shapeContainer").height()*0.2)
+            x: ((points[i].x * ratio) + drawingAreaWidth/4) 
+            ,y: ((points[i].y * ratio) + drawingAreaHeight*0.2)
         };
     }
     // console.log(points);
     return points;
-
-    //draw path
-    // c.beginPath();
-
-    // c.moveTo(points[0].x, points[0].y);
-    // for (var i=1; i<points.length; i++)
-    //     c.lineTo(points[i].x, points[i].y);
-    // c.closePath();
-    // //draw
-    // c.strokeStyle='#f00'
-    // c.stroke();
-    // c.fillStyle = '#f00';
-    //c.fill();
-
-  
   }
 
   $scope.getPolyGon();
+
+  $scope.drawBigHex = function() {
+    console.log($("#shapeContainer").width(), $("#shapeContainer").height());
+    var c= document.getElementById("hexCanvas").getContext("2d");
+    var points = $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height() - 200);
+    console.log("start at ", points[0].x, points[0].y);
+    // c.beginPath();              
+    // c.lineWidth = "1";
+    // c.strokeStyle = "green";  // Green path
+    // // c.moveTo(437, 374);
+    // c.moveTo(points[0].x, points[0].y)
+    // // c.moveTo(0, 31);
+    // c.lineTo(400, 434);
+    // c.stroke();  // Draw it
+
+
+
+    // c.beginPath();
+    // c.lineWidth="5";
+    // c.strokeStyle="green";
+          
+    console.log(points);
+    //draw path
+    
+      for(var i = 0; i < points.length; i++) {
+        // console.log(i, "Move to", points[i].x, points[i].y, " Line to", points[i+1].x, points[i+1].y)
+        c.beginPath();
+        c.moveTo(0, 0);
+        c.lineTo(points[i].x, points[i].y);
+        c.strokeStyle = "#00f";
+        c.lineWidth = "5";
+        c.stroke();
+        // c.fill();
+        c.closePath();
+        c.moveTo(points[i].x, points[i].y);
+      }
+    
+    // 
+    //draw
+    
+  }
 
 }]);
 

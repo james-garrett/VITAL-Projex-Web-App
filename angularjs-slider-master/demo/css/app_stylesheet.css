@@ -135,6 +135,7 @@
 		/*width: 90vw;*/
 		margin: auto;
 		height: 80vh;
+		width: 100vw;
 	}
 
 
@@ -144,6 +145,13 @@
 		display: block;
 		margin: auto;
 		/*height: 80px;*/
+
+	}
+
+	#hexCanvas {
+		height: inherit;
+		width: inherit;
+
 
 	}
 
