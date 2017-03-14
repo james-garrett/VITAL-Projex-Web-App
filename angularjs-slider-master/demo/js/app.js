@@ -112,8 +112,9 @@ app.controller('MainCtrl',
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
 
   $scope.hexArr = new Array(0);
-  $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
-  
+  // $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
+  // $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
+
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
@@ -294,34 +295,36 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         // var h = height; var w = width;
         // // var height = 400;
         // // console.log(width, height);
-        // var corners = 5;
+        // var corners = 6;
         // // console.log($scope.valueQuestion, width, height);
         // //initial calculation
-        // var radius = 1;
+        // var radius = 192;
         // var angle = (Math.PI * 2) / corners;
 
         // //build points 
-        // var points = [];
+        // var points2 = [];
         // for (var i=0; i<corners; i++) {
         //     a = angle * i;
         //     //sin and cos are swithced,point 0 is bottom one
         //     // Adjusting these vals makes cluster tighter
-        //     var x = ((Math.sin(a)*radius) -5);
+        //     var x = ((Math.sin(a)*radius));
         //     var y = (Math.cos(a)*radius);
-        //     points.push([x, y]);
+        //     points2.push([x, y]);
         // } 
 
-        // console.log(points);
+        // console.log("Points generated from polyCoordCode", points2);
         //------------POLYCOORDCODE-------------------
       
       // var h = window.innerHeight, w = window.innerWidth;
-      // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
-      // var h = $("#QshapeContainer").width(), w = $("#QshapeContainer").height();
+      console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
+      var h = $("#QshapeContainer").height(), w = $("#QshapeContainer").width();
+
       // var center_y = h * 0.5, center_x = w * 0.5;
     
       // var points = [];
       // var spacing = 20;
       // var t = 0;
+      
       // // generate a sine wave of points
       // for(var x = spacing; x < w - (spacing*2); x += spacing) {
       //     var y = center_y + Math.sin(t) * (center_y - spacing);
@@ -330,25 +333,35 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       // }
 
       // set up the base pattern
-      // var pattern = Trianglify({
-      //   height: h,
-      //   width: w,
-      //   points: points,
-      //   cell_size: 30 + Math.random() * 100});
-      //   document.body.appendChild(pattern.svg());
-      //   console.log(pattern);
-      //   console.log(points);
-      //   console.log(document.getElementsByClassName("svgBg")[0]);
-      //   var bg = document.getElementsByClassName("svgBg")[0];
-      //   var pattern = Trianglify({
-      //     height: window.innerHeight,
-      //     width: window.innerWidth,
-      //     points: points,
-      //     cell_size: 30 + Math.random() * 100});
+      var pattern = Trianglify({
+        height: h,
+        width: w,
+        // points: points,
+        cell_size: 3 + Math.random() * 100});
+        // document.body.appendChild(pattern.svg());
+        console.log("Pattern in object", pattern);
+        // console.log("Points generated from trainglify", points);
+        console.log(document.getElementsByClassName("svgBg")[0]);
+        console.log(document.getElementById("QshapeContainer"));
+        // var bg = document.getElementsByClassName("svgBg")[0];
+        var bg = document.getElementById("QshapeContainer");
 
-      //   var png = document.createElement('img');
-      //   png.src = pattern.png();
-      //   bg.appendChild(pattern.svg());
+        var png = document.createElement('img');
+        png.src = pattern.png();
+        var svg = pattern.svg();
+        var canvas = pattern.canvas();
+
+        svg.setAttribute("id","prettyGem"); //Set path's data
+        svg.setAttribute("height","200px");
+        svg.setAttribute("border-radius","50%");
+
+        canvas.setAttribute("id","prettyGem"); //Set path's data
+        canvas.setAttribute("height","200px");
+        canvas.setAttribute("border-radius","50%");
+
+        // svg.style.borderRadius= "50%";
+        // bg.appendChild(svg);
+        bg.appendChild(pattern.canvas());
 
       var gem = document.getElementsByClassName("gem")[0];
       gem.style.fill= gemColor;
