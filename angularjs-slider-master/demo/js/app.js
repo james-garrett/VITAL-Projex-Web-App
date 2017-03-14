@@ -345,15 +345,15 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         console.log(document.getElementById("QshapeContainer"));
         // var bg = document.getElementsByClassName("svgBg")[0];
         var bg = document.getElementById("QshapeContainer");
+        var prettyGem = document.getElementById("prettyGem");
 
         var png = document.createElement('img');
         png.src = pattern.png();
         var svg = pattern.svg();
         var canvas = pattern.canvas();
 
-        svg.setAttribute("id","prettyGem"); //Set path's data
-        svg.setAttribute("height","200px");
-        svg.setAttribute("border-radius","50%");
+        // svg.setAttribute("id","prettyGem"); //Set path's data
+        // svg.setAttribute("height","200px");
 
         canvas.setAttribute("id","prettyGem"); //Set path's data
         canvas.setAttribute("height","200px");
@@ -361,10 +361,13 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
         // svg.style.borderRadius= "50%";
         // bg.appendChild(svg);
-        bg.appendChild(pattern.canvas());
+        prettyGem.appendChild(pattern.svg());
+        prettyGem.setAttribute("border-radius","50%");
+        prettyGem.setAttribute("height","100%");
+        // bg.appendChild(pattern.canvas());
 
-      var gem = document.getElementsByClassName("gem")[0];
-      gem.style.fill= gemColor;
+      // var gem = document.getElementsByClassName("gem")[0];
+      // gem.style.fill= gemColor;
       // document.body.appendChild(pattern.svg());
       // var bg = new Image();
       // bg.src = './lib/images/gradient-wallpaper-4.jpg';
@@ -377,7 +380,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       // gem.style.fill= pattern.svg();
       // console.log(png);
       // gem.style.fillStyle= pattern.svg();
-      gem.style.stroke= gemColor;
+      // gem.style.stroke= gemColor;
     }
 
     changeGemDefinition = function(value) {

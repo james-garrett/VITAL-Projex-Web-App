@@ -8,57 +8,9 @@
 <header><h3 id="questionHeadingOnForm">a</h3></header>
     <!-- Only adjust width for shape size -->
   <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
-    
-
-  <!-- <script src="trianglify.min.js"></script>   
-  <script type="text/javascript">
-
-  var h = window.innerHeight, w = window.innerWidth;
-  var center_y = h * 0.5, center_x = w * 0.5;
   
-  var points = [];
-  var spacing = 20;
-  var t = 0;
-  // generate a sine wave of points
-  for(var x = spacing; x < w - (spacing*2); x += spacing) {
-  var y = center_y + Math.sin(t) * (center_y - spacing);
-  points.push([x, y]);
-  t += 0.5;
-  }
-
-  // set up the base pattern
-  var pattern = Trianglify({
-    height: h,
-    width: w,
-    points: points,
-    cell_size: 30 + Math.random() * 100})
-
-  // canvas
-  document.body.appendChild(pattern.canvas())
-
-  // svg
-  document.body.appendChild(pattern.svg())
-
-  // png
-  var png = document.createElement('img')
-  png.src = pattern.png()
-  document.body.appendChild(png)
-  console.log(pattern);
-  </script> -->
-
-
-    <svg class="svgBg" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-      <!-- <svg width="100" height="100">
-          <defs>
-            <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
-              <image x="0" y="0" height="100" width="100" xlink:href="http://i.imgur.com/7Nlcay7.jpg"></image>
-            </pattern>
-          </defs>
-          <circle id='top' cx="50" cy="50" r="50" fill="url(#image)"/>
-        </svg> -->
-
-        <!-- <polygon class="gem" fill="url(#image)" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
-        <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+        <svg id ="prettyGem">
+        <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
           <animateTransform attributeName="transform"
                           attributeType="XML"
                           type="rotate"
@@ -67,12 +19,13 @@
                           dur="10s"
                           repeatCount="indefinite"/>
       <!-- https://codepen.io/cwmanning/pen/Hugye -->
-      </polygon>
+      </svg>
+      <!-- </polygon> -->
       <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
         <text id="subGemLabel21" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
         <text id="subGemLabel22" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
     </svg>
-  </svg>
+  <!-- </svg> -->
   <h5 class="valueExplanation">aaaaa</h5>
 
   <article class="DescriptionBox">
