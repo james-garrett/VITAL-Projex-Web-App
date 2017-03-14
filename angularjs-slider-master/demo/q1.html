@@ -10,17 +10,17 @@
   <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
     
     <svg class="environments-image1" > <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-      <svg width="100" height="100">
+      <!-- <svg width="100" height="100">
           <defs>
             <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
               <image x="0" y="0" height="100" width="100" xlink:href="http://i.imgur.com/7Nlcay7.jpg"></image>
             </pattern>
           </defs>
           <circle id='top' cx="50" cy="50" r="50" fill="url(#image)"/>
-        </svg>
+        </svg> -->
 
-        <polygon class="gem" fill="url(#image)" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
-        <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
+        <!-- <polygon class="gem" fill="url(#image)" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
+        <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           <animateTransform attributeName="transform"
                           attributeType="XML"
                           type="rotate"
@@ -54,7 +54,7 @@
             <h3 id="QDh3">Please list key words in the box so you can remember what you were thinking.</h3>
             <textarea id="txt" rows="3" cols="80" placeholder="Please list any further thoughts you have here as key words"></textarea>
             <br>
-            <button id="finish" class="button icon-right ion-android-create" onclick="location.href='#/menu';" href="#/menu">Finish Question</button>
+            <button id="finish" class="button icon-right ion-android-create" onclick="backToMenu()">Finish Question</button>
           </div>
     </ion-list>
   </article>

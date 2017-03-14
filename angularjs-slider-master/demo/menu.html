@@ -16,7 +16,7 @@
             ng-repeat="x in valueQuestion[0]" ng-style="getCoord({{$index}})"
       > 
       <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-          <polygon class="Q1gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"
+          <polygon id="Q{{$index}}gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"
           cx="{{$index}}"
           
           ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
@@ -31,7 +31,7 @@
                             />
         <!-- https://codepen.io/cwmanning/pen/Hugye -->
         </polygon>
-        <text id="Q1gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>{{$index}}
+        <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>{{$index}}
           <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
           <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
       </svg>

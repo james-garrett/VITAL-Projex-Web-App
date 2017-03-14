@@ -1,7 +1,6 @@
 @media screen and (max-width: 900px) {
 	article.DescriptionBox {
 		margin:10px;
-		max-width: 50px;
 	}
 
 	#QshapeContainer {
@@ -27,7 +26,7 @@
 
 @media screen and (min-width: 1130px) {
 	#QshapeContainer {
-		width: 20%;
+		width: 15%;
 
 	}
 }

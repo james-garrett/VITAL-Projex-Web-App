@@ -53,8 +53,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'JSONData', 
-		function($rootScope, $scope, $timeout, $uibModal, JSONData, filename) {
+	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 
+		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, filename) {
       
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
@@ -64,6 +64,42 @@ app.controller('MainCtrl',
 
 
   // $scope.callToGetJSONDATA();
+
+  //upon the controller being opened, execute this function
+  $scope.$on('$ionicView.afterEnter', function(){
+ //run something :smile: 
+    console.log(document.getElementById("Q3Gem"));
+    console.log(document.getElementById("Q1gemLabel"));
+    console.log(document.getElementById("Q3gemLabel"));
+    console.log("onMainCtrl open function trigger");
+    console.log("AnswerIndex:" + AnswerListener.getInputValue());
+    if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
+      // AnswerListener.clearAnswerListener();  
+      
+      console.log(JSONData.getIndex());
+      // var elem_Name = "shapeContainer > svg.environments-image" + JSONData.getIndex();
+      var text_elem_Name = "Q" + JSONData.getIndex() + "gemLabel";
+      var poly_elem_Name = "environments-image" + JSONData.getIndex();
+      // console.log(elem_Name, typeof elem_Name);
+      $scope.changeCompletedGem(JSONData.getIndex(), 
+                                  AnswerListener.getInputValue(), 
+                                  document.getElementById(poly_elem_Name),
+                                  document.getElementById(text_elem_Name));
+      AnswerListener.setQuestionAnswered(false);
+    } 
+    // console.log(typeof sessionStorage.getItem("Q1"));
+  });
+
+  $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
+    console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
+    console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
+    textElem.innerText = "fuck";
+    textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
+    console.log(JSONData.returnQuestionJSONData());
+    // textElem.innerText = 
+    console.log(polyElem.innerText);
+  }
+
   //Minimal slider config
   $scope.minSlider = {
     value: 10
@@ -130,7 +166,7 @@ app.controller('MainCtrl',
         a = angle * i;
         //sin and cos are swithced,point 0 is bottom one
         // Adjusting these vals makes cluster tighter
-        var x = (Math.sin(a)*radius);
+        var x = ((Math.sin(a)*radius) -5);
         var y = (Math.cos(a)*radius);
         points.push({
             x:x
@@ -185,7 +221,7 @@ app.controller('MainCtrl',
 
         //Adjusting these figures displaces the object array appropriately
         points[i] = {
-            x: ((points[i].x * ratio) + $("#shapeContainer").height()/7) 
+            x: ((points[i].x * ratio) + $("#shapeContainer").height()/2) 
             ,y: ((points[i].y * ratio) + $("#shapeContainer").height()*0.2)
         };
     }
@@ -212,8 +248,8 @@ app.controller('MainCtrl',
 
 }]);
 
-app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'QuestionForm', 'Slider', 'JSONData',
-  function($rootScope, $scope, $timeout, $uibModal, QuestionForm, Slider, JSONData) {
+app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'QuestionForm', 'Slider', 'JSONData',
+  function($rootScope, $scope, $timeout, $uibModal, AnswerListener, QuestionForm, Slider, JSONData) {
     // $scope.form = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
@@ -222,13 +258,16 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
-        
-
+        AnswerListener.setInputValue(4);
+        console.log(AnswerListener.getInputValue());
         $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
         // console.log($scope.form);
         
       } 
     // $scope.init();
+    
+    
+
 
       $scope.$on('JSONDATA', function(event, array) {
         console.log(array);
@@ -288,13 +327,15 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       width: window.innerWidth,
       cell_size: 30 + Math.random() * 100})
 
-    var png = document.createElement('img')
-    png.src = pattern.png()
+    var png = document.createElement('img');
+    png.src = pattern.png();
 
 
       var gem = document.getElementsByClassName("gem")[0];
-      // gem.style.fill= gemColor;
-      gem.style.fill= pattern.svg();
+      gem.style.fill= gemColor;document.body.appendChild(pattern.svg());
+      // gem.style.fill= pattern.svg();
+      // console.log(png);
+      // gem.style.fillStyle= pattern.svg();
       gem.style.stroke= gemColor;
     }
 
@@ -302,7 +343,15 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
        document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
     }
 
+    backToMenu = function() {
+      console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
+      storeAnswer(AnswerListener.getInputValue());
+      AnswerListener.setQuestionAnswered(true);
+      location.href='#/menu';
+    }
+
     storeAnswer = function(answer) {
+      // console.log(answer);
       sessionStorage.setItem("Q1", answer); /*Store answer*/
       console.log(sessionStorage.getItem("Q1"));
     }
@@ -403,11 +452,13 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
               // var pointer = document.getElementsByClassName("rz-pointer.rz-pointer-min.rz:active");
               // console.log(pointer);
               // console.log(questionSelectedIndex, DefinitionArray[questionSelectedIndex]);
+              
               changeGemColor(gemColor);
               changeGemLabel(value);
               changeGemDefinition(value);
               AnswerListener.setInputValue(value);
-
+              // AnswerListener.getInputValue();
+              console.log("haha", value, AnswerListener.getInputValue());
               // console.log(AnswerListener.getInputValue());
               return gemColor;
             }
@@ -492,10 +543,7 @@ app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) 
     // console.log($scope.DefinitionArray);
   }
 
-  storeAnswer = function(answer) {
-    sessionStorage.setItem("Q1", answer); /*Store answer*/
-    console.log(sessionStorage.getItem("Q1"));
-  }
+  
 
   toggleHighValue = function() {
     if (slider_all_options.maxValue != null) {
@@ -548,18 +596,39 @@ app.service('JSONData', function() {
 
 app.service('AnswerListener', function() {
   var inputValue = -1;
-
+  var questionAnswered = false;
+  // console.log("initializing AnswerListener");
   var setInputValue = function(value) {
+    // console.log("setting input from ", inputValue, "to ", value);
+    
     inputValue = value;
+
   }
 
   var getInputValue = function(){
+    // console.log("returning", inputValue);
     return inputValue;
+  }
+
+  var clearAnswerListener = function() {
+    console.log("Clearning answer");
+    inputValue = -1;
+  }
+
+  var setQuestionAnswered = function(setting) {
+      questionAnswered = setting;
+  }
+
+  var getQuestionAnswered = function() {
+    return questionAnswered;
   }
 
   return {
     setInputValue: setInputValue,
     getInputValue: getInputValue,
+    clearAnswerListener: clearAnswerListener,
+    setQuestionAnswered: setQuestionAnswered,
+    getQuestionAnswered: getQuestionAnswered,
   };
 
 });
