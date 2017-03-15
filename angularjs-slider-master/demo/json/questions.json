@@ -105,7 +105,7 @@
                }
             ]
          },
-         "defaultColor":"red",
+         "defaultColor":"#C555F6",
          "BasicLabel":"Honesty",
          "AnswerValue":"",
          "href": "#/first",
@@ -227,7 +227,7 @@
                }
             ]
          },
-         "defaultColor":"green",
+         "defaultColor":"#33CD5F",
          "BasicLabel":"Courage",
          "AnswerValue":"",
          "href": "#/first",
@@ -350,7 +350,7 @@
                }
             ]
          },
-         "defaultColor":"green",
+         "defaultColor":"#81c9de",
          "BasicLabel":"Courage",
          "AnswerValue":"",
          "href": "#/first",
@@ -445,7 +445,7 @@
                }
             ]
          },
-         "defaultColor":"Blue",
+         "defaultColor":"#81c9de",
          "BasicLabel":"Trust",
          "AnswerValue":"",
          "href": "#/first",
@@ -540,7 +540,7 @@
                }
             ]
          },
-         "defaultColor":"Blue",
+         "defaultColor":"#81c9de",
          "BasicLabel":"Trust and Physical Safety",
          "AnswerValue":"",
          "href": "#/first",

@@ -429,31 +429,38 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
               switch(value) {
                 
                 case 1:
-                  gemColor = 'green';
+                  // gemColor = 'green';
+                  gemColor = '#33CD5F';
                   break;
                 
                 case 2:
-                  gemColor = 'green';
+                  // gemColor = 'green'; //#33CD5F
+                  gemColor = '#33CD5F';
                   break;
                 
                 case 3:
-                  gemColor = 'blue';
+                  // gemColor = 'blue'; //#81c9de
+                  gemColor = '#81c9de'; 
                   break;
 
                 case 4:
-                  gemColor = 'blue';
+                  // gemColor = 'blue';
+                  gemColor = '#81c9de'; 
                   break;
 
                 case 5:
-                  gemColor = 'blue';
+                  // gemColor = 'blue';
+                  gemColor = '#81c9de'; 
                   break;
 
                 case 6:
-                  gemColor = 'purple';
+                  // gemColor = 'purple'; //#C555F6
+                  gemColor = '#C555F6'; 
                   break;
 
                 case 7:
-                  gemColor = 'purple';
+                  // gemColor = 'purple';
+                  gemColor = '#C555F6'; 
                   break;
 
 
