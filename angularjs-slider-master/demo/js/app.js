@@ -345,25 +345,25 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         console.log(document.getElementById("QshapeContainer"));
         // var bg = document.getElementsByClassName("svgBg")[0];
         var bg = document.getElementById("QshapeContainer");
-        var prettyGem = document.getElementById("prettyGem");
+        // var prettyGem = document.getElementById("prettyGem");
 
-        var png = document.createElement('img');
-        png.src = pattern.png();
-        var svg = pattern.svg();
-        var canvas = pattern.canvas();
+        // var png = document.createElement('img');
+        // png.src = pattern.png();
+        var gem = pattern.svg();
+        // var canvas = pattern.canvas();
 
         // svg.setAttribute("id","prettyGem"); //Set path's data
         // svg.setAttribute("height","200px");
 
-        canvas.setAttribute("id","prettyGem"); //Set path's data
-        canvas.setAttribute("height","200px");
-        canvas.setAttribute("border-radius","50%");
+        // canvas.setAttribute("id","prettyGem"); //Set path's data
+        // canvas.setAttribute("height","200px");
+        // canvas.setAttribute("border-radius","50%");
 
         // svg.style.borderRadius= "50%";
         // bg.appendChild(svg);
-        prettyGem.appendChild(pattern.svg());
-        prettyGem.setAttribute("border-radius","50%");
-        prettyGem.setAttribute("height","100%");
+        gem.style.borderRadius ="50%";
+        // prettyGem.setAttribute("height","100%");
+        bg.appendChild(gem);
         // bg.appendChild(pattern.canvas());
 
       // var gem = document.getElementsByClassName("gem")[0];

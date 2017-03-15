@@ -137,17 +137,18 @@
 		height: 80vh;
 	}
 
-	#prettyGem {
-		/*border-radius: 50%;*/
+	/*#prettyGem {
+		border-radius: 50%;
 		height: 100%;
 		width: 100%;
-	}
+	}*/
 
 	#QshapeContainer {
 		background-image: none;
 		/*These two lines below center-align the svg*/
 		display: block;
 		margin: auto;
+		border-radius: 50%;
 		/*height: 80px;*/
 
 	}
