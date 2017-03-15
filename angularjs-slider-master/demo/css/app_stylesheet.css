@@ -132,20 +132,23 @@
 		background-image: none;
 		/*These two lines below center-align the svg*/
 		display: block;
-		/*width: 90vw;*/
-		margin: auto;
+		margin-left: 10vw;
+		margin-right: 10vw;
 		height: 80vh;
-		width: 100vw;
+		width: 80vw;
+		position: absolute;
+		/*position: relative;*/
 	}
 
 	#hexCanvas {
-		height: inherit;
-		width: inherit;
 		background-image: none;
 		/*These two lines below center-align the svg*/
-		display: block;
-		/*width: 90vw;*/
+		display: inline;
+		height: 80vh;
+		width: 80vw;
 		margin: auto;
+		position: absolute;
+		/*position: relative;*/
 
 	}
 

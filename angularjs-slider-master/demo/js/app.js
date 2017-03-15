@@ -119,10 +119,19 @@ app.controller('MainCtrl',
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
     // console.log($("#shapeContainer").width(), $("#shapeContainer").height());
-    // console.log($scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height() - 200));
+    var elem = document.getElementById("shapeContainer");
+    console.log("width: ", window.getComputedStyle(elem).width, " height: ", window.getComputedStyle(elem).height);
+    console.log(document.getElementById("shapeContainer").clientWidth, document.getElementById("shapeContainer").clientHeight);
+    console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
+    console.log($scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x);
     return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
-            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y,
-            "position": "absolute"};
+            // "right": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
+            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y -100,
+            // "bottom": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y,
+            "position": "absolute",
+            // "display": "block"
+            // "float": "left"
+          };
   }
 
   $scope.toggleGroup = function(group) {
@@ -238,20 +247,31 @@ app.controller('MainCtrl',
   }
 
   // $scope.getPolyGon();
-
+  $scope.setHexCanvasStyle = function(hex, shapeContainer) {
+    console.log(shapeContainer.width())
+    hex.style.width = shapeContainer.width();
+    hex.style.height = shapeContainer.height();
+    hex.width = hex.offSetWidth;
+    hex.height = hex.offSetHeight;
+    return hex;
+  }
 
   $scope.drawBigHex = function() {
     console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
-    console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
     var hex= document.getElementById("hexCanvas");
+    var shapeContainer = document.getElementById("shapeContainer");
+    console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
+    // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
     var c = hex.getContext("2d");
-    var points = $scope.getPolyGon($("#hexCanvas").width() , $("#hexCanvas").height());
+    c.width = shapeContainer.innerWidth;
+    c.height = shapeContainer.innerHeight;
+    var points = $scope.getPolyGon($("#hexCanvas").width(), $("#hexCanvas").height());
     // var points = $scope.getPolyGon(300, 300);
     console.log("start at ", points[0].x, points[0].y);
     // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
     // console.log($("#Q1gem")[0].points);
     // c.beginPath();              
-    // c.lineWidth = "1";
+    // c.lineWidth = "5";
     // c.strokeStyle = "green";  // Green path
     // // c.moveTo(200, 0);
     // c.moveTo(points[0].x/2, points[0].y/2);
@@ -271,11 +291,11 @@ app.controller('MainCtrl',
     //draw path
     
       c.beginPath();
-      c.moveTo(points[0].x/2, points[0].y/2);
+      c.moveTo(points[0].x, points[0].y);
       for(var i = 1; i < points.length; i++) {
         console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
         
-        c.lineTo(points[i].x/2, points[i].y/2);
+        c.lineTo(points[i].x, points[i].y);
       }
       c.strokeStyle = "#000000";
       c.lineWidth = "0";
