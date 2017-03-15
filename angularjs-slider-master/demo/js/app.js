@@ -118,10 +118,10 @@ app.controller('MainCtrl',
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    // console.log($scope.getPolyGon()[index]);
     // console.log($("#shapeContainer").width(), $("#shapeContainer").height());
-    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height() - 200)[index].x, 
-            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height() -200)[index].y,
+    // console.log($scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height() - 200));
+    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
+            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y,
             "position": "absolute"};
   }
 
@@ -232,52 +232,63 @@ app.controller('MainCtrl',
             ,y: ((points[i].y * ratio) + drawingAreaHeight*0.2)
         };
     }
-    // console.log(points);
+
+
     return points;
   }
 
-  $scope.getPolyGon();
+  // $scope.getPolyGon();
+
 
   $scope.drawBigHex = function() {
-    console.log($("#shapeContainer").width(), $("#shapeContainer").height());
-    var c= document.getElementById("hexCanvas").getContext("2d");
-    var points = $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height() - 200);
+    console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
+    console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
+    var hex= document.getElementById("hexCanvas");
+    var c = hex.getContext("2d");
+    var points = $scope.getPolyGon($("#hexCanvas").width() , $("#hexCanvas").height());
+    // var points = $scope.getPolyGon(300, 300);
     console.log("start at ", points[0].x, points[0].y);
+    // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
+    // console.log($("#Q1gem")[0].points);
     // c.beginPath();              
     // c.lineWidth = "1";
     // c.strokeStyle = "green";  // Green path
-    // // c.moveTo(437, 374);
-    // c.moveTo(points[0].x, points[0].y)
+    // // c.moveTo(200, 0);
+    // c.moveTo(points[0].x/2, points[0].y/2);
     // // c.moveTo(0, 31);
-    // c.lineTo(400, 434);
-    // c.stroke();  // Draw it
+    // c.lineTo(points[1].x/2, points[1].y/2);
+    // c.stroke();  
+    // c.closePath();
+    // Draw it
 
 
 
-    // c.beginPath();
-    // c.lineWidth="5";
-    // c.strokeStyle="green";
+    c.beginPath();
+    c.lineWidth="5";
+    c.strokeStyle="green";
           
-    console.log(points);
+    console.log(points, $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height()));
     //draw path
     
-      for(var i = 0; i < points.length; i++) {
-        // console.log(i, "Move to", points[i].x, points[i].y, " Line to", points[i+1].x, points[i+1].y)
-        c.beginPath();
-        c.moveTo(0, 0);
-        c.lineTo(points[i].x, points[i].y);
-        c.strokeStyle = "#00f";
-        c.lineWidth = "5";
-        c.stroke();
-        // c.fill();
-        c.closePath();
-        c.moveTo(points[i].x, points[i].y);
+      c.beginPath();
+      c.moveTo(points[0].x/2, points[0].y/2);
+      for(var i = 1; i < points.length; i++) {
+        console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
+        
+        c.lineTo(points[i].x/2, points[i].y/2);
       }
+      c.strokeStyle = "#000000";
+      c.lineWidth = "0";
+      c.stroke();
+      c.fill();
+      c.closePath();
     
     // 
     //draw
     
   }
+
+
 
 }]);
 
@@ -320,83 +331,10 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
     this.slider_ticks_legend = {};
 
     changeGemColor = function(gemColor) {
-        //------------POLYCOORDCODE-------------------
-        // var width = $("#QshapeContainer").width();
-        // // var width = 800;
-        // var height = $("#QshapeContainer").height() -100;
-        // var h = height; var w = width;
-        // // var height = 400;
-        // // console.log(width, height);
-        // var corners = 5;
-        // // console.log($scope.valueQuestion, width, height);
-        // //initial calculation
-        // var radius = 1;
-        // var angle = (Math.PI * 2) / corners;
-
-        // //build points 
-        // var points = [];
-        // for (var i=0; i<corners; i++) {
-        //     a = angle * i;
-        //     //sin and cos are swithced,point 0 is bottom one
-        //     // Adjusting these vals makes cluster tighter
-        //     var x = ((Math.sin(a)*radius) -5);
-        //     var y = (Math.cos(a)*radius);
-        //     points.push([x, y]);
-        // } 
-
-        // console.log(points);
-        //------------POLYCOORDCODE-------------------
-      
-      // var h = window.innerHeight, w = window.innerWidth;
-      // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
-      // var h = $("#QshapeContainer").width(), w = $("#QshapeContainer").height();
-      // var center_y = h * 0.5, center_x = w * 0.5;
-    
-      // var points = [];
-      // var spacing = 20;
-      // var t = 0;
-      // // generate a sine wave of points
-      // for(var x = spacing; x < w - (spacing*2); x += spacing) {
-      //     var y = center_y + Math.sin(t) * (center_y - spacing);
-      //     points.push([x, y]);
-      //     t += 0.5;
-      // }
-
-      // set up the base pattern
-      // var pattern = Trianglify({
-      //   height: h,
-      //   width: w,
-      //   points: points,
-      //   cell_size: 30 + Math.random() * 100});
-      //   document.body.appendChild(pattern.svg());
-      //   console.log(pattern);
-      //   console.log(points);
-      //   console.log(document.getElementsByClassName("svgBg")[0]);
-      //   var bg = document.getElementsByClassName("svgBg")[0];
-      //   var pattern = Trianglify({
-      //     height: window.innerHeight,
-      //     width: window.innerWidth,
-      //     points: points,
-      //     cell_size: 30 + Math.random() * 100});
-
-      //   var png = document.createElement('img');
-      //   png.src = pattern.png();
-      //   bg.appendChild(pattern.svg());
 
       var gem = document.getElementsByClassName("gem")[0];
       gem.style.fill= gemColor;
-      // document.body.appendChild(pattern.svg());
-      // var bg = new Image();
-      // bg.src = './lib/images/gradient-wallpaper-4.jpg';
-      // bg.onload = function() {
-      //   var pattern = gem.createPattern(this, "no-repeat");
-      //   gem.fillStyle = pattern;
-      //   gem.fill();
-      // }
-      
-      // gem.style.fill= pattern.svg();
-      // console.log(png);
-      // gem.style.fillStyle= pattern.svg();
+
       gem.style.stroke= gemColor;
     }
 
@@ -420,9 +358,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
     changeGemLabel = function(value) {
       var gemTxt = document.getElementById("gemLabel");
       
-      // ["0"]["0"].ValueOptions.value[3].action
-      // console.log(gemTxt, JSONData.getIndex(), value, JSONData.returnQuestionJSONData(), JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value].action);
-      // console.log(descContainer);
+
       var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
       
       // document.getElementById("subGemLabel2").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
@@ -446,10 +382,6 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
           document.getElementById("subGemLabel21").textContent = '';
           document.getElementById("subGemLabel22").textContent = '';
         }
-
-      // console.log(value);
-      // descContainer.innerText = description;
-      // storeAnswer(description);
     }
 
     this.setSlider = function(questionJSONData) {

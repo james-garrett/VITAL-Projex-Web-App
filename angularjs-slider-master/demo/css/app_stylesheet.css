@@ -138,6 +138,17 @@
 		width: 100vw;
 	}
 
+	#hexCanvas {
+		height: inherit;
+		width: inherit;
+		background-image: none;
+		/*These two lines below center-align the svg*/
+		display: block;
+		/*width: 90vw;*/
+		margin: auto;
+
+	}
+
 
 	#QshapeContainer {
 		background-image: none;
@@ -148,12 +159,11 @@
 
 	}
 
-	#hexCanvas {
-		height: inherit;
-		width: inherit;
-
-
+	#bigPoly {
+		position: absolute;
 	}
+
+	
 
 	#gemLabel {
 		font-family: "Ubuntu";

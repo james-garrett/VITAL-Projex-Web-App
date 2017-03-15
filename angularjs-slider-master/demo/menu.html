@@ -8,14 +8,16 @@
 <!-- <header><h2 id="questionHeading">QUESTION 1</h2></header> -->
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
   <h3 id="questionHeading">Once all questions are complete you may finish the survey</h3>
-  <div id="shapeContainer" fill="none">
-      <canvas id="hexCanvas"> aaa
+    <canvas id="hexCanvas"> 
         
-
-      </canvas>
+    </canvas>
+  <div id="shapeContainer" fill="none">
     <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"><!-- {{x.ValueOptions.value[4].definition}} </span> -->  
 
           <!-- <p>{{$index}}</p> -->
+      
+
+
       <svg class="environments-image{{$index}}"  width="15%" viewBox="0 0 300 300" 
             ng-repeat="x in valueQuestion[0]" ng-style="getCoord({{$index}})"
       > 
@@ -39,6 +41,8 @@
           <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
           <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
       </svg>
+      <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+        </polygon>
   <!-- </svg> -->
   
 </div>
