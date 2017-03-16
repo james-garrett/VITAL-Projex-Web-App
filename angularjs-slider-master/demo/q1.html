@@ -7,7 +7,7 @@
 <ion-content data-ng-controller="QuestionFormCreator" data-ng-init="init()" >
 <header><h3 id="questionHeadingOnForm">a</h3></header>
     <!-- Only adjust width for shape size -->
-  <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300">
+  <svg id="QshapeContainer" width="40%" height="20%" viewBox="0 0 300 300" z-index>
   
         <!-- <svg id ="prettyGem"> -->
         <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
@@ -21,10 +21,10 @@
       <!-- https://codepen.io/cwmanning/pen/Hugye -->
       <!-- </svg> -->
       <!-- </polygon> -->
-      <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
+    </svg>
+    <text id="gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white"></text>
         <text id="subGemLabel21" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
         <text id="subGemLabel22" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
-    </svg>
   <!-- </svg> -->
   <h5 class="valueExplanation">aaaaa</h5>
 
