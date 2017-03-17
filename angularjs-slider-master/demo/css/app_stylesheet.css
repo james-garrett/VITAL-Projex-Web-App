@@ -94,6 +94,16 @@
 		background-clip: content-box, padding-box;
 	}
 
+	#gemLabel {
+		font-size: 26px;
+	    position: absolute;
+	    top: 22%;
+	    margin: auto;
+	    color: white;
+	    /* display: inline; */
+	    left: 43%;
+	}
+
 	h3#questionHeading {
 		background: rgba(0,0,0, 0.7);
 		text-align: center;
@@ -150,12 +160,16 @@
 		margin: auto;
 		border-radius: 50%;
 		/*height: 80px;*/
-
+		z-index: -1;
+		/*transform-origin: 50% 50%;*/
+		/*transform: translate(200px, 300px);*/
 	}
 
-	#gemLabel {
+	#gemLabel, #subGemLabel21, #subGemLabel22 {
 		font-family: "Ubuntu";
 		font-style: bold;
+		z-index: 5;
+
 
 	/*	text-align: center;
 		word-wrap: break-word;

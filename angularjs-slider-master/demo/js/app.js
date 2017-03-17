@@ -332,9 +332,11 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         y_colors: y,
         cell_size: 75});
         // Put the cell size any higher and the browser will slow down
-        var bg = document.getElementById("QshapeContainer");
+        var bg = document.getElementById("spinObj");
         var gem = pattern.svg();
         gem.setAttribute("id", "prettyGem");
+        // gem.style.transform ="rotate(360deg)";
+        gem.setAttribute("transform", "rotate(360 150 150)");
         gem.style.borderRadius ="50%";
         $('#prettyGem').remove();
         bg.appendChild(gem);
@@ -368,23 +370,24 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       // document.getElementById("subGemLabel2").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
       
       // console.log(description, DefinitionArray[value-1]);
+      document.getElementById("gemLabel").textContent = description;
       if(description.length > 14) {
         var split = description.match(/.{1,14}/g);
         // console.log(split);
-        document.getElementById("gemLabel").textContent = split[0];
-        document.getElementById("subGemLabel21").textContent =split[1];
-        // console.log(split.length);
-        if(split.length > 2) {
-          document.getElementById("subGemLabel22").textContent = split[2];
-        } else {
-          document.getElementById("subGemLabel22").textContent = '';
+        // document.getElementById("gemLabel").textContent = split[0];
+        // document.getElementById("subGemLabel21").textContent =split[1];
+        // // console.log(split.length);
+        // if(split.length > 2) {
+        //   document.getElementById("subGemLabel22").textContent = split[2];
+        // } else {
+        //   document.getElementById("subGemLabel22").textContent = '';
 
-        }
-        // Need for loop for larger split arrays that also make the containing gem larger
-        } else {
-          document.getElementById("gemLabel").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
-          document.getElementById("subGemLabel21").textContent = '';
-          document.getElementById("subGemLabel22").textContent = '';
+        // }
+        // // Need for loop for larger split arrays that also make the containing gem larger
+        // } else {
+        //   document.getElementById("gemLabel").textContent = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+        //   document.getElementById("subGemLabel21").textContent = '';
+        //   document.getElementById("subGemLabel22").textContent = '';
         }
 
       // console.log(value);
