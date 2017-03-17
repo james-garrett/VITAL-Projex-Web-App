@@ -1,34 +1,14 @@
-@media screen and (max-width: 900px) {
-	article.DescriptionBox {
-		margin:10px;
-	}
-
-	#QshapeContainer {
-		width: 25%;
-	}
-
-	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
-		font-size: 12px;
-
-	}
-}
-
-@media screen and (max-width: 480px) {
-	#QshapeContainer {
-		width: 40%;
-	}
-
-	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
-		max-width: 50px;
-		font-size: 8px;
-	}
-}
-
 @media screen and (min-width: 1130px) {
 	#QshapeContainer {
 		width: 15%;
 
 	}
+	#gemLabel {
+		font-size: 26px;
+		top: 22%;
+		left: 43%;
+	}
+	
 }
 
 @media screen and (min-width: 901px) {
@@ -46,5 +26,48 @@
 		max-width: 50px;
 		font-size: 16px;
 	}
+
+	#gemLabel {
+		font-size: 22px;
+		top: 20%;
+		left: 39%;
+
+	}
 }
+
+@media screen and (max-width: 900px) {
+	article.DescriptionBox {
+		margin:10px;
+	}
+
+	#QshapeContainer {
+		width: 40%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		font-size: 12px;
+
+	}
+
+	#gemLabel {
+		font-size: 20px;
+		top: 22%;
+		left: 33%;
+
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#QshapeContainer {
+		width: 40%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		max-width: 50px;
+		font-size: 8px;
+	}
+}
+
+
+
 

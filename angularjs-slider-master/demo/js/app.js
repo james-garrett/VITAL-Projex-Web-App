@@ -316,18 +316,32 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       }
     }
 
+
+    determineGemRadius = function(height, width) {
+      switch(height) {
+        case height > 800:
+            return [height+100, width+100];
+        default:
+            return [height+200, width+200]
+      }
+    }
+
     changeGemColor = function(gemColor) {
 
       console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
-      var h = $("#QshapeContainer").height(), w = $("#QshapeContainer").width();
+      var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
 
+      var dimensions = determineGemRadius(h, w);
+
+      // h*=0.7;
+      // w*=0.7;
       var x = setGemColorPalette(gemColor)[0];
       var y = setGemColorPalette(gemColor)[1];
       console.log(x,y);
       // set up the base pattern
       var pattern = Trianglify({
-        height: h,
-        width: w,
+        height: dimensions[0],
+        width: dimensions[1],
         x_colors: x,
         y_colors: y,
         cell_size: 75});
@@ -336,8 +350,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         var gem = pattern.svg();
         gem.setAttribute("id", "prettyGem");
         // gem.style.transform ="rotate(360deg)";
-        gem.setAttribute("transform", "rotate(360 150 150)");
-        gem.style.borderRadius ="50%";
+        // gem.setAttribute("transform", "rotate(360 150 150)");
+        // gem.style.borderRadius ="100%";
         $('#prettyGem').remove();
         bg.appendChild(gem);
     }
