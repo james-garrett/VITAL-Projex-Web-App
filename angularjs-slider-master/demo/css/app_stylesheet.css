@@ -95,13 +95,13 @@
 	}
 
 	#gemLabel {
-		font-size: 26px;
+		
 	    position: absolute;
-	    top: 22%;
+	    
 	    margin: auto;
 	    color: white;
 	    /* display: inline; */
-	    left: 43%;
+	    
 	}
 
 	h3#questionHeading {
