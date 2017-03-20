@@ -4,9 +4,9 @@
 
 	}
 	#gemLabel {
-		font-size: 26px;
-		top: 19%;
-		left: 40%;
+		font-size: 40px;
+		top: 24%;
+		left: 33%;
 		width: 20%;
 	}
 	
@@ -20,18 +20,19 @@
 	}
 
 	#QshapeContainer {
-		width: 23%;
+		width: 40%;
 	}
 
 	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
-		max-width: 50px;
-		font-size: 14px;
+		max-width: 100px;
+		font-size: 16px;
 	}
 
 	#gemLabel {
-		font-size: 22px;
-		top: 21%;
-		left: 40%;
+		font-size: 30px;
+		top: 22%;
+		left: 32%;
+		width: 35%;
 
 	}
 }
@@ -52,9 +53,9 @@
 
 	#gemLabel {
 		font-size: 24px;
-		top: 23%;
-		left: 40%;
-
+		top: 24%;
+		left: 32%;
+		width: 35%;
 	}
 }
 

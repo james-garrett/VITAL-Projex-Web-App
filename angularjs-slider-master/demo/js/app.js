@@ -411,6 +411,27 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       }
     }
 
+
+    createGem = function(height, width, x_color, y_color, background, solo) {
+      var pattern = Trianglify({
+          height: height,
+          width: width,
+          x_colors: x_color,
+          y_colors: y_color,
+          variance: 0.75,
+          cell_size: 60});  // Put the cell size any higher and the browser will slow down
+          var gem = pattern.svg();
+          // if(solo) {
+            // background.getElementById()
+          // } else {
+            gem.setAttribute("id", "prettyGem");
+            $('#prettyGem').remove();  
+          // }
+          
+          background.appendChild(gem);
+  
+    }
+
     changeGemColor = function(gemColor, currentIndex) {
 
       console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
@@ -425,23 +446,12 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
       colors.color2 = setColorPalette(currentIndex)[1];
       colors.color3 = setColorPalette(currentIndex)[2];
 
-      var x = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[0];
-      var y = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[1];
-      console.log(gemColor, currentIndex%7, x,y);
+      var x = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[0];
+      var y = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[1];
+      var bg = document.getElementById("spinObj");
+      // console.log(gemColor, currentIndex%7, x,y);
       // set up the base pattern
-      var pattern = Trianglify({
-        height: dimensions[0],
-        width: dimensions[1],
-        x_colors: x,
-        y_colors: y,
-        variance: 0.75,
-        cell_size: 60});  // Put the cell size any higher and the browser will slow down
-        var bg = document.getElementById("spinObj");
-        var gem = pattern.svg();
-        gem.setAttribute("id", "prettyGem");
-        $('#prettyGem').remove();
-        bg.appendChild(gem);
-
+      createGem(dimensions[0], dimensions[1], x, y, bg, true);
     }
 
     changeGemDefinition = function(value) {
