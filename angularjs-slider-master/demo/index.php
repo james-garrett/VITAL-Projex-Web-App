@@ -8,19 +8,22 @@
   <title>VITAL Survey</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="css/resolutionChanges.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script> -->
   <link rel="stylesheet" href="css/app_stylesheet.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
   <link rel="stylesheet" href="../dist/rzslider.css"/>
   <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
-  <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/> -->
-  <script src="./lib/ionic.bundle.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+  <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/> -->
 
   <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu"> -->
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+  
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+  <script src="./lib/ionic.bundle.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="hexagonGenerator.js"></script>
@@ -31,7 +34,9 @@
 
   <div>
     <ion-nav-view animation="slide-left-right">
-      <ion-content><p style="font-size: 64px; text-align: center; font-family: Title; color: white;">Character Selfie</p>
+      <ion-content>
+      <!-- <p style="font-size: 64px; text-align: center; font-family: Title; color: white;">Character Selfie</p> -->
+      <img src="lib/images/BasicLogo.png" height="300px" width="350px" style="margin-left:30%; margin-right:30%;"></img>
         <div class="wrapper">
           <h1 id="mainh1" style="font-family:'Ubuntu'; color:white;">Welcome!</h1>
           <h4 id="mainh4">Choose a user type to begin.

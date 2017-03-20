@@ -7,22 +7,22 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>VITAL Survey</title>
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="css/app_stylesheet_mobile.css"/>
-  <link rel="stylesheet" href="css/app_stylesheet.css"/>
+  <!-- <link rel="stylesheet" href="css/app_stylesheet_mobile.css"/> -->
+  <!-- <link rel="stylesheet" href="css/app_stylesheet.css"/>
   <link rel="stylesheet" href="css/app_stylesheet_highres.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
-  <link rel="stylesheet" href="../dist/rzslider.css"/>
-  <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../dist/rzslider.css"/> -->
   <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/> -->
-  <script src="./lib/ionic.bundle.js"></script>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+  <!-- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/> -->
+  <!-- <script src="./lib/ionic.bundle.js"></script> -->
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'> -->
 
   <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu"> -->
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+  <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">  -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
 </head>
@@ -46,7 +46,7 @@
   </div>
 </body>
 <!-- <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script> -->
-<script src="./lib/ui-bootstrap-tpls.js"></script>
-<script src="../dist/rzslider.js"></script>
-<script src="js/app.js"></script>
+<!-- <script src="./lib/ui-bootstrap-tpls.js"></script> -->
+<!-- <script src="../dist/rzslider.js"></script> -->
+<!-- <script src="js/app.js"></script> -->
 </html>

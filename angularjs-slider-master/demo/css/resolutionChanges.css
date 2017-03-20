@@ -1,17 +1,18 @@
 @media screen and (min-width: 1130px) {
 	#QshapeContainer {
-		width: 15%;
+		width: 23%;
 
 	}
 	#gemLabel {
 		font-size: 26px;
-		top: 21%;
+		top: 19%;
 		left: 40%;
+		width: 20%;
 	}
 	
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (max-width: 1129px) {
 	article.DescriptionBox {
 		margin-top:10px;
 		margin-left: 50px;
@@ -24,18 +25,40 @@
 
 	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
 		max-width: 50px;
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	#gemLabel {
 		font-size: 22px;
-		top: 19%;
+		top: 21%;
 		left: 40%;
 
 	}
 }
 
 @media screen and (max-width: 900px) {
+	article.DescriptionBox {
+		margin:10px;
+	}
+
+	#QshapeContainer {
+		width: 40%;
+	}
+
+	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
+		font-size: 12px;
+
+	}
+
+	#gemLabel {
+		font-size: 24px;
+		top: 23%;
+		left: 40%;
+
+	}
+}
+
+@media screen and (max-width: 750) {
 	article.DescriptionBox {
 		margin:10px;
 	}
@@ -60,9 +83,9 @@
 
 @media screen and (max-width: 600px) {
 #gemLabel {
-		font-size: 20px;
-		top: 23%;
-		left: 38%;
+		font-size: 18px;
+		top: 20%;
+		left: 40%;
 
 	}
 }
@@ -74,7 +97,7 @@
 	}
 
 	.rzslider .rz-ticks .rz-tick .rz-tick-legend {
-		max-width: 50px;
+		max-width: 30px;
 		font-size: 8px;
 	}
 

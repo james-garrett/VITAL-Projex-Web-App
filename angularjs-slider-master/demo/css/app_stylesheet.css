@@ -142,9 +142,24 @@
 		background-image: none;
 		/*These two lines below center-align the svg*/
 		display: block;
-		/*width: 90vw;*/
-		margin: auto;
+		margin-left: 10vw;
+		margin-right: 10vw;
 		height: 80vh;
+		width: 80vw;
+		position: absolute;
+		/*position: relative;*/
+	}
+
+	#hexCanvas {
+		background-image: none;
+		/*These two lines below center-align the svg*/
+		display: inline;
+		height: 80vh;
+		width: 80vw;
+		margin: auto;
+		position: absolute;
+		/*position: relative;*/
+
 	}
 
 	/*#prettyGem {
@@ -164,15 +179,19 @@
 		text-align: center;
 	}
 
-	#gemLabel, #subGemLabel21, #subGemLabel22 {
+
+	#bigPoly {
+		position: absolute;
+	}
+
+	
+
+	#gemLabel {
 		font-family: "Ubuntu";
 		font-style: bold;
 		z-index: 5;
-
-
-	/*	text-align: center;
 		word-wrap: break-word;
-		color: #000000;*/
+		text-align: center;
 	}
 
 	.Q1gem {
@@ -340,14 +359,8 @@
 		color: #FFFFFF;
 		border-radius: 15px;
 		text-align: center;
-
-		/*background-image: url("lib/images/4gTNThG.png");*/
-		/*background-image: url("lib/images/gradient-wallpaper-4.jpg");*/
-		/*background-image: url("lib/images/nice green to orange.jpg");*/
 	}
-	/*article { 
-	*/	/*margin-bottom: 10px; */
-	/*}*/
+	
 
 
 	.tab-pane{

@@ -68,11 +68,8 @@ app.controller('MainCtrl',
   //upon the controller being opened, execute this function
   $scope.$on('$ionicView.afterEnter', function(){
  //run something :smile: 
-    // console.log(document.getElementById("Q3Gem"));
-    // console.log(document.getElementById("Q1gemLabel"));
-    // console.log(document.getElementById("Q3gemLabel"));
-    // console.log("onMainCtrl open function trigger");
-    // console.log("AnswerIndex:" + AnswerListener.getInputValue());
+
+    $scope.drawBigHex();
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
@@ -93,7 +90,7 @@ app.controller('MainCtrl',
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
     // console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
     // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
-    textElem.innerText = "fuck";
+    // textElem.innerText = "fuck";
     textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
     // console.log(JSONData.returnQuestionJSONData());
     // textElem.innerText = 
@@ -106,22 +103,28 @@ app.controller('MainCtrl',
   };
 
   $scope.form = null;
-
   $scope.valueQuestion = new Array(0);
   JSONData.getJSONDataFromFile('json/questions.json');
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
-
   $scope.hexArr = new Array(0);
-  // $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
-  // $scope.hexArr = [{x: 0,y: 300}, {x: 150, y: 225}, {x: 280, y: 75}, {x: 280, y: 0}, {x: 150, y: 75}, {x: 20, y:225}, {x: 0, y:20}];
 
   $scope.getCoord = function(index) {
   
     // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    // console.log($scope.getPolyGon()[index]);
-    return {"left": $scope.getPolyGon()[index].x, 
-            "top": $scope.getPolyGon()[index].y,
-            "position": "absolute"};
+    // console.log($("#shapeContainer").width(), $("#shapeContainer").height());
+    var elem = document.getElementById("shapeContainer");
+    console.log("width: ", window.getComputedStyle(elem).width, " height: ", window.getComputedStyle(elem).height);
+    console.log(document.getElementById("shapeContainer").clientWidth, document.getElementById("shapeContainer").clientHeight);
+    console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
+    console.log($scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x);
+    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
+            // "right": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
+            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y -100,
+            // "bottom": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y,
+            "position": "absolute",
+            // "display": "block"
+            // "float": "left"
+          };
   }
 
   $scope.toggleGroup = function(group) {
@@ -149,10 +152,15 @@ app.controller('MainCtrl',
 
     //load data
   // var c = document.getElementById('canvas').getContext('2d');
-  $scope.getPolyGon = function () {
-    var width = $("#shapeContainer").width();
+
+  $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
+    // var c= document.getElementsByClassName("hexCanvas")[0];
+    // console.log(c);
+    // var hex = $("#hexCanvas");
+    // var c = hex.getContext("2d");
+    var width = drawingAreaWidth;
     // var width = 800;
-    var height = $("#shapeContainer").height() -100;
+    var height = drawingAreaHeight;
     // var height = 400;
     // console.log(width, height);
     var corners = 5;
@@ -222,30 +230,78 @@ app.controller('MainCtrl',
 
         //Adjusting these figures displaces the object array appropriately
         points[i] = {
-            x: ((points[i].x * ratio) + $("#shapeContainer").height()/2) 
-            ,y: ((points[i].y * ratio) + $("#shapeContainer").height()*0.2)
+            x: ((points[i].x * ratio) + drawingAreaWidth/4) 
+            ,y: ((points[i].y * ratio) + drawingAreaHeight*0.2)
         };
     }
-    // console.log(points);
+
+
     return points;
-
-    //draw path
-    // c.beginPath();
-
-    // c.moveTo(points[0].x, points[0].y);
-    // for (var i=1; i<points.length; i++)
-    //     c.lineTo(points[i].x, points[i].y);
-    // c.closePath();
-    // //draw
-    // c.strokeStyle='#f00'
-    // c.stroke();
-    // c.fillStyle = '#f00';
-    //c.fill();
-
-  
   }
 
-  $scope.getPolyGon();
+  // $scope.getPolyGon();
+  $scope.setHexCanvasStyle = function(hex, shapeContainer) {
+    console.log(shapeContainer.width())
+    hex.style.width = shapeContainer.width();
+    hex.style.height = shapeContainer.height();
+    hex.width = hex.offSetWidth;
+    hex.height = hex.offSetHeight;
+    return hex;
+  }
+
+  $scope.drawBigHex = function() {
+    console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
+    var hex= document.getElementById("hexCanvas");
+    var shapeContainer = document.getElementById("shapeContainer");
+    console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
+    // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
+    var c = hex.getContext("2d");
+    c.width = shapeContainer.innerWidth;
+    c.height = shapeContainer.innerHeight;
+    var points = $scope.getPolyGon($("#hexCanvas").width(), $("#hexCanvas").height());
+    // var points = $scope.getPolyGon(300, 300);
+    console.log("start at ", points[0].x, points[0].y);
+    // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
+    // console.log($("#Q1gem")[0].points);
+    // c.beginPath();              
+    // c.lineWidth = "5";
+    // c.strokeStyle = "green";  // Green path
+    // // c.moveTo(200, 0);
+    // c.moveTo(points[0].x/2, points[0].y/2);
+    // // c.moveTo(0, 31);
+    // c.lineTo(points[1].x/2, points[1].y/2);
+    // c.stroke();  
+    // c.closePath();
+    // Draw it
+
+
+
+    c.beginPath();
+    c.lineWidth="5";
+    c.strokeStyle="green";
+          
+    console.log(points, $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height()));
+    //draw path
+    
+      c.beginPath();
+      c.moveTo(points[0].x, points[0].y);
+      for(var i = 1; i < points.length; i++) {
+        console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
+        
+        c.lineTo(points[i].x, points[i].y);
+      }
+      c.strokeStyle = "#000000";
+      c.lineWidth = "0";
+      c.stroke();
+      c.fill();
+      c.closePath();
+    
+    // 
+    //draw
+    
+  }
+
+
 
 }]);
 
@@ -385,6 +441,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         gem.setAttribute("id", "prettyGem");
         $('#prettyGem').remove();
         bg.appendChild(gem);
+
     }
 
     changeGemDefinition = function(value) {
@@ -406,11 +463,13 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
     changeGemLabel = function(value) {
       var gemTxt = document.getElementById("gemLabel");
+
       var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
       document.getElementById("gemLabel").textContent = description;
       if(description.length > 14) {
         var split = description.match(/.{1,14}/g);
         }
+
     }
 
     this.setSlider = function(questionJSONData) {
@@ -434,8 +493,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
             // onChange: this.onChangeListener,
 
-            getPointerColor: function(value) {
-              
+            getPointerColor: function(value) {              
               changeGemColor(value, JSONData.getIndex());
               changeGemLabel(value);
               changeGemDefinition(value);
