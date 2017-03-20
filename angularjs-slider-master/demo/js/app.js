@@ -324,25 +324,25 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         
         case 0:
         case 1:
-            return [color1, 'match_x'];
+          return [color1, 'match_x'];
           
-          case 2:
-          case 3:
-            return [color1, color2];
+        case 2:
+        case 3:
+          return [color1, color2];
 
-          case 4:
-            // return ['Blues', 'match_x'];
-            return [color2, 'match_x'];
-          
-          case 5: 
-          case 6:
-            return [color2, color3];
+        case 4:
+          // return ['Blues', 'match_x'];
+          return [color2, 'match_x'];
+        
+        case 5: 
+        case 6:
+          return [color2, color3];
 
-          case 7:
-            return [color3, 'match_x'];
-          default:
-            return ['Random', 'match_x'];
-        }
+        case 7:
+          return [color3, 'match_x'];
+        default:
+          return ['Random', 'match_x'];
+      }
     }
 
 
