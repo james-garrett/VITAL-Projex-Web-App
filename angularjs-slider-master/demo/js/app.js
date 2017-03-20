@@ -58,6 +58,7 @@ app.controller('MainCtrl',
       
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
+
       $scope.callToGetJSONDATA = function() {
         console.log(JSONData.getJSONDataFromFile('json/questions.json'));
       }
@@ -70,6 +71,7 @@ app.controller('MainCtrl',
  //run something :smile: 
 
     $scope.drawBigHex();
+    
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
@@ -108,24 +110,6 @@ app.controller('MainCtrl',
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
   $scope.hexArr = new Array(0);
 
-  $scope.getCoord = function(index) {
-  
-    // console.log({ transform: translate(hexArr[index], hexArr[index + 1]) });
-    // console.log($("#shapeContainer").width(), $("#shapeContainer").height());
-    var elem = document.getElementById("shapeContainer");
-    console.log("width: ", window.getComputedStyle(elem).width, " height: ", window.getComputedStyle(elem).height);
-    console.log(document.getElementById("shapeContainer").clientWidth, document.getElementById("shapeContainer").clientHeight);
-    console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
-    console.log($scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x);
-    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
-            // "right": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x, 
-            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y -100,
-            // "bottom": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y,
-            "position": "absolute",
-            // "display": "block"
-            // "float": "left"
-          };
-  }
 
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
@@ -145,13 +129,20 @@ app.controller('MainCtrl',
     location.href='#/first';
   } 
 
+  $scope.getCoord = function(index) {
+  
+    var elem = document.getElementById("shapeContainer");
+    var gContainer = document.getElementById("environments-image" + JSONData.getIndex());
 
-  // console.log($scope.valueQuestion.length);
+    createGem(gContainer.width(), gContainer.height(), 'Greys', 'Greys', gContainer, false);
+    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x,           
+            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y -100,
+            "position": "absolute",
+            // "display": "block"
+            // "float": "left"
+          };
+  }
 
-
-
-    //load data
-  // var c = document.getElementById('canvas').getContext('2d');
 
   $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
     // var c= document.getElementsByClassName("hexCanvas")[0];
@@ -241,7 +232,7 @@ app.controller('MainCtrl',
 
   // $scope.getPolyGon();
   $scope.setHexCanvasStyle = function(hex, shapeContainer) {
-    console.log(shapeContainer.width())
+    // console.log(shapeContainer.width())
     hex.style.width = shapeContainer.width();
     hex.style.height = shapeContainer.height();
     hex.width = hex.offSetWidth;
@@ -250,17 +241,17 @@ app.controller('MainCtrl',
   }
 
   $scope.drawBigHex = function() {
-    console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
+    // console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
     var hex= document.getElementById("hexCanvas");
     var shapeContainer = document.getElementById("shapeContainer");
-    console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
+    // console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
     // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
     var c = hex.getContext("2d");
     c.width = shapeContainer.innerWidth;
     c.height = shapeContainer.innerHeight;
     var points = $scope.getPolyGon($("#hexCanvas").width(), $("#hexCanvas").height());
     // var points = $scope.getPolyGon(300, 300);
-    console.log("start at ", points[0].x, points[0].y);
+    // console.log("start at ", points[0].x, points[0].y);
     // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
     // console.log($("#Q1gem")[0].points);
     // c.beginPath();              
@@ -280,13 +271,13 @@ app.controller('MainCtrl',
     c.lineWidth="5";
     c.strokeStyle="green";
           
-    console.log(points, $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height()));
+    // console.log(points, $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height()));
     //draw path
     
       c.beginPath();
       c.moveTo(points[0].x, points[0].y);
       for(var i = 1; i < points.length; i++) {
-        console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
+        // console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
         
         c.lineTo(points[i].x, points[i].y);
       }
@@ -295,8 +286,6 @@ app.controller('MainCtrl',
       c.stroke();
       c.fill();
       c.closePath();
-    
-    // 
     //draw
     
   }
@@ -316,10 +305,6 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var slider = new Slider(array);
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
-        console.log(AnswerListener.getInputValue());
-        $scope.form = new QuestionForm(JSONData.getIndex(), array, array.Question, $scope.slider_ticks_legend);
-        // console.log($scope.form);
-        
       } 
     // $scope.init();
     
@@ -327,33 +312,19 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
 
 
       $scope.$on('JSONDATA', function(event, array) {
-        console.log(array);
+        // console.log(array);
       });
   }]);
 
-app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', function($rootScope, $http, AnswerListener, JSONData) {
+app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
+var Gem = function() {
+  this.initialize = function() {
     
-    var Slider = function(questionJSONData) {
-      this.initialize = function() {
-
-        this.slider_ticks_legend = {};
-        this.indexChosen = JSONData.getIndex();
-
-    };
+  }
 
 
-    this.slider_ticks_legend = {};
-
-    clearDiv = function(div) {
-      
-
-      // while(div.firstChild) {
-      //   div.removeChild(div.firstChild);
-      // }
-    }
-
-    setColorPalette = function(index) {
-      var palette = [['Greens','YlGnBu','Purples'],
+  setColorPalette = function(index) {
+    var palette = [['Greens','YlGnBu','Purples'],
 
                      ['YIGnBu','BuGn', 'PuGn'],
 
@@ -370,96 +341,131 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
                      ['RdGy', 'RdYIBu', 'Spectral'],
 
                      ['Accent', 'Dark2', 'Paired']];
-      console.log("colors chosen ", palette[index]);
+      // console.log("colors chosen ", palette[index]);
       return palette[index];
     }
 
-    setGemColorRange = function(gemColor, color1, color2, color3) {
-      console.log(gemColor);
-      switch(gemColor) {
+  setGemColorRange = function(gemColor, color1, color2, color3) {
+    // console.log(gemColor);
+    switch(gemColor) {
+      
+      case 0:
+      case 1:
+        return [color1, 'match_x'];
         
-        case 0:
-        case 1:
-          return [color1, 'match_x'];
-          
-        case 2:
-        case 3:
-          return [color1, color2];
+      case 2:
+      case 3:
+        return [color1, color2];
 
-        case 4:
-          // return ['Blues', 'match_x'];
-          return [color2, 'match_x'];
+      case 4:
+        // return ['Blues', 'match_x'];
+        return [color2, 'match_x'];
+      
+      case 5: 
+      case 6:
+        return [color2, color3];
+
+      case 7:
+        return [color3, 'match_x'];
+      default:
+        return ['Random', 'match_x'];
+    }
+  }
+
+
+  determineGemRadius = function(height, width) {
+    switch(height) {
+      case height > 800:
+          return [height+100, width+100];
+      default:
+          return [height+200, width+200]
+    }
+  }
+
+
+  createGem = function(height, width, x_color, y_color, background, solo) {
+    var pattern = Trianglify({
+        height: height,
+        width: width,
+        x_colors: x_color,
+        y_colors: y_color,
+        variance: 0.75,
+        cell_size: 60});  // Put the cell size any higher and the browser will slow down
+        var gem = pattern.svg();
+        // if(solo) {
+          // background.getElementById()
+        // } else {
+          gem.setAttribute("id", "prettyGem");
+          $('#prettyGem').remove();  
+        // }
         
-        case 5: 
-        case 6:
-          return [color2, color3];
+        background.appendChild(gem);
 
-        case 7:
-          return [color3, 'match_x'];
-        default:
-          return ['Random', 'match_x'];
-      }
+  }
+
+  changeGemColor = function(gemColor, currentIndex) {
+
+    // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
+    var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
+
+    var dimensions = determineGemRadius(h, w);
+
+    // h*=0.7;
+    // w*=0.7; 
+    var colors = {color1: '', color2: '', color3:''};
+    colors.color1 = setColorPalette(currentIndex)[0];
+    colors.color2 = setColorPalette(currentIndex)[1];
+    colors.color3 = setColorPalette(currentIndex)[2];
+
+    var x = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[0];
+    var y = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[1];
+    var bg = document.getElementById("spinObj");
+    // console.log(gemColor, currentIndex%7, x,y);
+    // set up the base pattern
+    createGem(dimensions[0], dimensions[1], x, y, bg, true);
+  }
+
+  changeGemDefinition = function(value) {
+     document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
+  }
+  changeGemLabel = function(value) {
+    var gemTxt = document.getElementById("gemLabel");
+
+    var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+    document.getElementById("gemLabel").textContent = description;
+    if(description.length > 14) {
+      var split = description.match(/.{1,14}/g);
     }
 
+  }
 
-    determineGemRadius = function(height, width) {
-      switch(height) {
-        case height > 800:
-            return [height+100, width+100];
-        default:
-            return [height+200, width+200]
-      }
+  return Gem;
+
+}]);
+
+app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', function($rootScope, $http, AnswerListener, JSONData) {
+    
+    var Slider = function(questionJSONData) {
+      this.initialize = function() {
+        this.slider_ticks_legend = {};
+        this.indexChosen = JSONData.getIndex();
+        this.valueSelected = 4;
+    };
+
+
+    this.slider_ticks_legend = {};
+
+    clearDiv = function(div) {
+      
+
+      // while(div.firstChild) {
+      //   div.removeChild(div.firstChild);
+      // }
     }
 
-
-    createGem = function(height, width, x_color, y_color, background, solo) {
-      var pattern = Trianglify({
-          height: height,
-          width: width,
-          x_colors: x_color,
-          y_colors: y_color,
-          variance: 0.75,
-          cell_size: 60});  // Put the cell size any higher and the browser will slow down
-          var gem = pattern.svg();
-          // if(solo) {
-            // background.getElementById()
-          // } else {
-            gem.setAttribute("id", "prettyGem");
-            $('#prettyGem').remove();  
-          // }
-          
-          background.appendChild(gem);
-  
-    }
-
-    changeGemColor = function(gemColor, currentIndex) {
-
-      console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
-      var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
-
-      var dimensions = determineGemRadius(h, w);
-
-      // h*=0.7;
-      // w*=0.7; 
-      var colors = {color1: '', color2: '', color3:''};
-      colors.color1 = setColorPalette(currentIndex)[0];
-      colors.color2 = setColorPalette(currentIndex)[1];
-      colors.color3 = setColorPalette(currentIndex)[2];
-
-      var x = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[0];
-      var y = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[1];
-      var bg = document.getElementById("spinObj");
-      // console.log(gemColor, currentIndex%7, x,y);
-      // set up the base pattern
-      createGem(dimensions[0], dimensions[1], x, y, bg, true);
-    }
-
-    changeGemDefinition = function(value) {
-       document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
-    }
 
     backToMenu = function() {
-      console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
+      // console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
       storeAnswer(AnswerListener.getInputValue());
       AnswerListener.setQuestionAnswered(true);
       location.href='#/menu';
@@ -468,19 +474,9 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
     storeAnswer = function(answer) {
       // console.log(answer);
       sessionStorage.setItem("Q1", answer); /*Store answer*/
-      console.log(sessionStorage.getItem("Q1"));
+      // console.log(sessionStorage.getItem("Q1"));
     }
 
-    changeGemLabel = function(value) {
-      var gemTxt = document.getElementById("gemLabel");
-
-      var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
-      document.getElementById("gemLabel").textContent = description;
-      if(description.length > 14) {
-        var split = description.match(/.{1,14}/g);
-        }
-
-    }
 
     this.setSlider = function(questionJSONData) {
       this.slider_ticks_legend = {
@@ -526,86 +522,6 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
   };
   return Slider;
-}]);
-
-app.factory('QuestionForm', ['$rootScope', '$http', function($rootScope, $http) {
-  
-
-  var QuestionForm = function(questionNumber, questionJSONData, QuestionHeading, slider) {
-      this.initialize = function() {
-          
-      };
-
-      this.initialize();
-    
-
-    };
-
-  
-
-  toggleGroup = function(group) {
-    if (isGroupShown(group)) {
-      shownGroup = null;
-    } else {
-      shownGroup = group;
-    }
-  };
-  isGroupShown = function(group) {
-    return shownGroup === group;
-  };
-
-  storedValue = '';
-
-  // console.log(slider_ticks_legend);
-  setQuestionSelected = function(index){
-    // console.log("Index selected:" + index);
-    
-    questionSelectedIndex = index;
-    
-  }
-
-  redrawSlider = function() {
-    slider.refreshSlider = function () {
-    $timeout(function () {
-        $broadcast('rzSliderForceRender');
-      });
-    };
-  }
-
-  setLegend = function(array, slider) {
-    // console.log(array);
-    // console.log(slider.options.stepsArray);
-    for(x = 0; x < array.value.length; x++) {
-      // console.log(slider.options.stepsArray[x].legend);
-      LegendArray[x] = array.value[x].name;
-      slider.options.stepsArray[x].legend = array.value[x].name;
-    }
-    // redrawSlider(slider);
-    // console.log(slider.options.stepsArray);
-    // console.log($rootScope.$on().slider_ticks_legend.options.stepsArray);
-  }
-
-  setDefinition = function(array) {
-    // console.log(array.value);
-    for(x = 0; x < array.value.length; x++) {
-      // console.log(array.value[x].definition);
-      DefinitionArray[x] = array.value[x].definition;
-    }
-    // console.log($scope.DefinitionArray);
-  }
-
-  
-
-  toggleHighValue = function() {
-    if (slider_all_options.maxValue != null) {
-      slider_all_options.maxValue = undefined;
-    } else {
-      slider_all_options.maxValue = 8;
-    }
-  }
-
-  return QuestionForm;
-
 }]);
 
 app.service('JSONData', function() {
@@ -662,7 +578,7 @@ app.service('AnswerListener', function() {
   }
 
   var clearAnswerListener = function() {
-    console.log("Clearning answer");
+    // console.log("Clearning answer");
     inputValue = -1;
   }
 
