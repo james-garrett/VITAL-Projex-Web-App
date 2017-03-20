@@ -100,7 +100,7 @@
 	    
 	    margin: auto;
 	    color: white;
-	    /* display: inline; */
+	     display: block; 
 	    
 	}
 
@@ -159,10 +159,9 @@
 		display: block;
 		margin: auto;
 		border-radius: 50%;
-		/*height: 80px;*/
 		z-index: -1;
-		/*transform-origin: 50% 50%;*/
-		/*transform: translate(200px, 300px);*/
+		width: 20%
+		text-align: center;
 	}
 
 	#gemLabel, #subGemLabel21, #subGemLabel22 {
@@ -372,9 +371,10 @@
 	}
 
 	.rzslider .rz-ticks .rz-tick .rz-tick-legend { /*Stolen from rzslider.css to be modified for more room*/
-	  font-size: 12px;
+	  /*font-size: 12px;
 	  max-width: 100px;
-	  margin-top: -70px; /*Lazy solution - should pick another slider showing legend/ticks at top IN FUTURE */
+	  margin-top: -70px; */
+	  /*Lazy solution - should pick another slider showing legend/ticks at top IN FUTURE */
 	}
 
 	#finish {
