@@ -305,7 +305,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
                      ['RdPu', 'PuRd', 'OrRd'],
 
-                     ['YIOrRd', 'YIOrBr', 'Oranges'],
+                     ['Blues', 'Reds', 'Oranges'],
 
                      ['Reds', 'PuOr', 'BrBG'],
 
@@ -321,27 +321,28 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
     setGemColorRange = function(gemColor, color1, color2, color3) {
       console.log(gemColor);
       switch(gemColor) {
-    
-      case 1:
-          return [color1, 'match_x'];
         
-        case 2:
-        case 3:
-          return [color1, color2];
+        case 0:
+        case 1:
+            return [color1, 'match_x'];
+          
+          case 2:
+          case 3:
+            return [color1, color2];
 
-        case 4:
-          // return ['Blues', 'match_x'];
-          return [color2, 'match_x'];
-        
-        case 5: 
-        case 6:
-          return [color2, color3];
+          case 4:
+            // return ['Blues', 'match_x'];
+            return [color2, 'match_x'];
+          
+          case 5: 
+          case 6:
+            return [color2, color3];
 
-        case 7:
-          return [color3, 'match_x'];
-        default:
-          return ['Random', 'match_x'];
-      }
+          case 7:
+            return [color3, 'match_x'];
+          default:
+            return ['Random', 'match_x'];
+        }
     }
 
 
@@ -370,7 +371,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
 
       var x = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[0];
       var y = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[1];
-      console.log(gemColor, currentIndex, x,y);
+      console.log(gemColor, currentIndex%7, x,y);
       // set up the base pattern
       var pattern = Trianglify({
         height: dimensions[0],
