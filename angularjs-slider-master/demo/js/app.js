@@ -108,7 +108,7 @@ app.controller('MainCtrl',
   $scope.valueQuestion = new Array(0);
   JSONData.getJSONDataFromFile('json/questions.json');
   $scope.valueQuestion = JSONData.returnQuestionJSONData();
-  $scope.hexArr = new Array(0);
+  
 
 
   $scope.toggleGroup = function(group) {
@@ -128,21 +128,6 @@ app.controller('MainCtrl',
     JSONData.setIndex(index);
     location.href='#/first';
   } 
-
-  $scope.getCoord = function(index) {
-  
-    var elem = document.getElementById("shapeContainer");
-    var gContainer = document.getElementById("environments-image" + JSONData.getIndex());
-
-    createGem(gContainer.width(), gContainer.height(), 'Greys', 'Greys', gContainer, false);
-    return {"left": $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height())[index].x,           
-            "top": $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height())[index].y -100,
-            "position": "absolute",
-            // "display": "block"
-            // "float": "left"
-          };
-  }
-
 
   $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
     // var c= document.getElementsByClassName("hexCanvas")[0];
@@ -294,8 +279,10 @@ app.controller('MainCtrl',
 
 }]);
 
-app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'QuestionForm', 'Slider', 'JSONData',
-  function($rootScope, $scope, $timeout, $uibModal, AnswerListener, QuestionForm, Slider, JSONData) {
+app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 
+                                        'Slider', 'JSONData', 'NotifyingService', 'Gem',
+  function($rootScope, $scope, $timeout, $uibModal, AnswerListener, Slider, 
+                                        JSONData, NotifyingService, Gem) {
     // $scope.form = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
@@ -303,24 +290,34 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
+        var gem = new Gem();
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
     // $scope.init();
+      
     
-    
+      NotifyingService.subscribe($scope, function somethingChanged() {
+        Gem.changeGemColor
+          console.log("NotifyingService caught call");
 
+      });
+      
 
       $scope.$on('JSONDATA', function(event, array) {
         // console.log(array);
       });
   }]);
 
+
 app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
-var Gem = function() {
-  this.initialize = function() {
-    
-  }
+  var Gem = function() {
+      this.initialize = function() {
+        console.log("Gem", JSONData.getIndex());
+        getCoord("QshapeContainer", "spinObj");
+      }
+      this.initialize();
+  };
 
 
   setColorPalette = function(index) {
@@ -383,6 +380,20 @@ var Gem = function() {
   }
 
 
+  getCoord = function(inputElem, inputGContainer) {
+  
+    var elem = $("#" + inputElem);
+    var gContainer = $("#" + inputGContainer);
+    // console.log("args",)
+    createGem(elem.width(), elem.height(), 'Greys', 'Greys', inputGContainer, false);
+    return {"left": $scope.getPolyGon(elem.width(), elem.height())[index].x,           
+            "top": $scope.getPolyGon(elem.width() , elem.height())[index].y -100,
+            "position": "absolute",
+            // "display": "block"
+            // "float": "left"
+          };
+  }
+
   createGem = function(height, width, x_color, y_color, background, solo) {
     var pattern = Trianglify({
         height: height,
@@ -443,7 +454,8 @@ var Gem = function() {
 
 }]);
 
-app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', function($rootScope, $http, AnswerListener, JSONData) {
+app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'NotifyingService', 
+              function($rootScope, $http, AnswerListener, JSONData, NotifyingService) {
     
     var Slider = function(questionJSONData) {
       this.initialize = function() {
@@ -452,6 +464,9 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
         this.valueSelected = 4;
     };
 
+    notify = function() {
+        NotifyingService.notify();
+    }
 
     this.slider_ticks_legend = {};
 
@@ -500,13 +515,14 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
             // onChange: this.onChangeListener,
 
             getPointerColor: function(value) {              
-              changeGemColor(value, JSONData.getIndex());
-              changeGemLabel(value);
-              changeGemDefinition(value);
+              // changeGemColor(value, JSONData.getIndex());
+              // changeGemLabel(value);
+              // changeGemDefinition(value);
               AnswerListener.setInputValue(value);
               // AnswerListener.getInputValue();
               // console.log("haha", value, AnswerListener.getInputValue());
               // console.log(AnswerListener.getInputValue());
+              notify();
               return value;
             }
           }
@@ -523,6 +539,20 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', func
   };
   return Slider;
 }]);
+
+app.factory('NotifyingService', function($rootScope) {
+    return {
+        subscribe: function(scope, callback) {
+            var handler = $rootScope.$on('notifying-service-event', callback);
+            scope.$on('$destroy', handler);
+        },
+
+        notify: function() {
+            $rootScope.$emit('notifying-service-event');
+        }
+    };
+});
+
 
 app.service('JSONData', function() {
     var questionJSONData = new Array(0);
