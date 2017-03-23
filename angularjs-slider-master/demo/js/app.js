@@ -294,11 +294,12 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
-    // $scope.init();
+    $scope.init();
       
     
       NotifyingService.subscribe($scope, function somethingChanged() {
-        Gem.changeGemColor
+        gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex());
+        gem.changeGemLabel(AnswerListener.getInputValue());
           console.log("NotifyingService caught call");
 
       });
@@ -314,7 +315,16 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   var Gem = function() {
       this.initialize = function() {
         console.log("Gem", JSONData.getIndex());
-        getCoord("QshapeContainer", "spinObj");
+        // getCoord("QshapeContainer", "spinObj");
+        // var elem = $("#" + "QshapeContainer");
+        // var elem = document.getElementById("QshapeContainer");
+        var elem = document.getElementById("QshapeContainer");
+        // var gContainer = $("#" + inputGContainer);
+        console.log(elem.clientHeight);
+		this.gem = createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
+    			document.getElementById("spinObj"), false);
+		console.log(this.gem);
+
       }
       this.initialize();
   };
@@ -385,16 +395,17 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     var elem = $("#" + inputElem);
     var gContainer = $("#" + inputGContainer);
     // console.log("args",)
-    createGem(elem.width(), elem.height(), 'Greys', 'Greys', inputGContainer, false);
-    return {"left": $scope.getPolyGon(elem.width(), elem.height())[index].x,           
-            "top": $scope.getPolyGon(elem.width() , elem.height())[index].y -100,
+    createGem(elem.width(), elem.height(), 'Greys', 'Greys', 
+    			document.getElementById(inputGContainer), false);
+    return {"left": $rootScope.getPolyGon(elem.width(), elem.height())[index].x,           
+            "top": $rootScope.getPolyGon(elem.width() , elem.height())[index].y -100,
             "position": "absolute",
             // "display": "block"
             // "float": "left"
           };
   }
 
-  createGem = function(height, width, x_color, y_color, background, solo) {
+  createGem = function(height, width, x_color, y_color, bg, solo) {
     var pattern = Trianglify({
         height: height,
         width: width,
@@ -410,7 +421,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
           $('#prettyGem').remove();  
         // }
         
-        background.appendChild(gem);
+        bg.appendChild(gem);
 
   }
 
@@ -515,13 +526,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
             // onChange: this.onChangeListener,
 
             getPointerColor: function(value) {              
-              // changeGemColor(value, JSONData.getIndex());
-              // changeGemLabel(value);
-              // changeGemDefinition(value);
               AnswerListener.setInputValue(value);
-              // AnswerListener.getInputValue();
-              // console.log("haha", value, AnswerListener.getInputValue());
-              // console.log(AnswerListener.getInputValue());
               notify();
               return value;
             }
