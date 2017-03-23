@@ -69,7 +69,7 @@ app.controller('MainCtrl',
   $scope.$on('$ionicView.afterEnter', function(){
  //run something :smile: 
 
-    $scope.drawBigHex();
+    // $scope.drawBigHex();
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
