@@ -53,30 +53,29 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 
-		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, filename) {
-      
-      $scope.valueQuestion = new Array(0);
-      $scope.jsonData = {};
-
-      $scope.callToGetJSONDATA = function() {
-        console.log(JSONData.getJSONDataFromFile('json/questions.json'));
-      }
+	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem',
+		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem) {
+    $scope.valueQuestion = new Array(0);
+    $scope.jsonData = {};
+    
+    $scope.callToGetJSONDATA = function() {
+      console.log(JSONData.getJSONDataFromFile('json/questions.json'));
+    }
 
 
   // $scope.callToGetJSONDATA();
-
+  $scope.gem = null;
   //upon the controller being opened, execute this function
   $scope.$on('$ionicView.afterEnter', function(){
  //run something :smile: 
+    // $scope.gem = new Gem("shapeContainer", "shapeContainer");
+    // $scope.gem = new Gem("shapeContainer", "shapeContainer");
+    // $scope.drawBigHex();
 
-    $scope.drawBigHex();
-    
+    // console.log("hi");
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
       // AnswerListener.clearAnswerListener();  
       
-      // console.log(JSONData.getIndex());
-      // var elem_Name = "shapeContainer > svg.environments-image" + JSONData.getIndex();
       var text_elem_Name = "Q" + JSONData.getIndex() + "gemLabel";
       var poly_elem_Name = "environments-image" + JSONData.getIndex();
       // console.log(elem_Name, typeof elem_Name);
@@ -157,7 +156,28 @@ app.controller('MainCtrl',
             x:x
             ,y:y
         })
-    } 
+    }
+
+  $scope.appendToMenu = function(index) {
+    console.log("hi");
+    var container = document.getElementsByClassName("environments-image" + index.toString())[0];
+    // console.log(container.width(), container.height(), typeof index, "#environments-image" + index.toString());
+    // container.setAttribute("width", "45%");
+    // container.setAttribute("height", "45%");
+    // console.log(container.width.baseVal.value); 
+    var gem = new Gem(container, container);
+    var width = container.width.baseVal.value;
+    var height = container.height.baseVal.value
+    gem.createGem(width, height, 'Greys', 'Greys', 
+          container, false);
+    return {"left": $scope.getPolyGon(width, height)[index].x,           
+            "top": $scope.getPolyGon(width , height)[index].y -100,
+            "position": "absolute",
+            // "display": "block"
+            // "float": "left"
+          };
+    
+  } 
 
     // console.log(points);
 
@@ -215,7 +235,7 @@ app.controller('MainCtrl',
     return points;
   }
 
-  // $scope.getPolyGon();
+  
   $scope.setHexCanvasStyle = function(hex, shapeContainer) {
     // console.log(shapeContainer.width())
     hex.style.width = shapeContainer.width();
@@ -228,14 +248,14 @@ app.controller('MainCtrl',
   $scope.drawBigHex = function() {
     // console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
     var hex= document.getElementById("hexCanvas");
-    var shapeContainer = document.getElementById("shapeContainer");
+    var shapeContainer = document.getElementById("hexCanvas");
     // console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
     // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
     var c = hex.getContext("2d");
     c.width = shapeContainer.innerWidth;
     c.height = shapeContainer.innerHeight;
-    var points = $scope.getPolyGon($("#hexCanvas").width(), $("#hexCanvas").height());
-    // var points = $scope.getPolyGon(300, 300);
+    var points = $scope.getPolyGon($("#shapeContainer").width(), $("#shapeContainer").height());
+    
     // console.log("start at ", points[0].x, points[0].y);
     // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
     // console.log($("#Q1gem")[0].points);
@@ -256,7 +276,7 @@ app.controller('MainCtrl',
     c.lineWidth="5";
     c.strokeStyle="green";
           
-    // console.log(points, $scope.getPolyGon($("#shapeContainer").width() , $("#shapeContainer").height()));
+    
     //draw path
     
       c.beginPath();
@@ -291,7 +311,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
-        $scope.gem = new Gem();
+        $scope.gem = new Gem("QshapeContainer", "spinObj");
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
@@ -317,17 +337,14 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
 
 
 app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
-  var Gem = function() {
+  var Gem = function(container, appendingObj) {
       this.initialize = function() {
         console.log("Gem", JSONData.getIndex());
-        // getCoord("QshapeContainer", "spinObj");
-        // var elem = $("#" + "QshapeContainer");
-        // var elem = document.getElementById("QshapeContainer");
-        var elem = document.getElementById("QshapeContainer");
-        // var gContainer = $("#" + inputGContainer);
+        var elem = document.getElementById(container);
+        console.log(elem);
         console.log(elem.clientHeight);
-        createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
-        document.getElementById("spinObj"), false);
+        // createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
+        // document.getElementById(appendingObj), false);
 		// console.log(this.gem);
 
       }
@@ -391,7 +408,6 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     }
   }
 
-
   getCoord = function(inputElem, inputGContainer) {
   
     var elem = $("#" + inputElem);
@@ -407,7 +423,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
           };
   }
 
-  createGem = function(height, width, x_color, y_color, bg, solo) {
+  this.createGem = function(height, width, x_color, y_color, bg, solo) {
     var pattern = Trianglify({
         height: height,
         width: width,
@@ -446,7 +462,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     var bg = document.getElementById("spinObj");
     // console.log(gemColor, currentIndex%7, x,y);
     // set up the base pattern
-    createGem(dimensions[0], dimensions[1], x, y, bg, true);
+    this.createGem(dimensions[0], dimensions[1], x, y, bg, true);
   }
 
   this.changeGemDefinition = function(value) {
@@ -465,17 +481,6 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
   this.initialize();
 
- //  return {
- //  	setColorPalette: setColorPalette,
-	// setGemColorRange: setGemColorRange,
-	// determineGemRadius: determineGemRadius,
-	// getCoord: getCoord,
-	// createGem: createGem,
-	// changeGemColor: changeGemColor,
-	// changeGemDefinition: changeGemDefinition,
-	// changeGemLabel: changeGemLabel,
-	// Gem: Gem,
- //  };
  };
  return Gem;
 

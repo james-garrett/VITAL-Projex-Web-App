@@ -9,44 +9,41 @@
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
   <h3 id="questionHeading">Once all questions are complete you may finish the survey</h3>
     
-  <canvas id="hexCanvas" height="757" width="1028"> 
         
-    </canvas>
-  <div id="shapeContainer" fill="none">
-    <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"><!-- {{x.ValueOptions.value[4].definition}} </span> -->  
-
-          <!-- <p>{{$index}}</p> -->
+    
+    <div id="shapeContainer" fill="none">
       
+      <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"><!-- {{x.ValueOptions.value[4].definition}} </span> -->  
+
+            <!-- <p>{{$index}}</p> -->
+        
 
 
-      <svg class="environments-image{{$index}}"  width="15%" viewBox="0 0 300 300" 
-            ng-repeat="x in valueQuestion[0]" ng-style="getCoord({{$index}})"
-      > 
-      <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-          <polygon id="Q{{$index}}gem" fill="{{x.defaultColor}}" stroke="#DA126D" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"
-          cx="{{$index}}"
-          
-          ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
-          >
-          <animateTransform attributeName="transform"
-                            attributeType="XML"
-                            type="rotate"
-                            from="0 150 150"
-                            to="360 150 150"
-                            dur="10s"
-                            repeatCount="indefinite"
-                            />
-        <!-- https://codepen.io/cwmanning/pen/Hugye -->
-        </polygon>
-        <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>{{$index}}
-          <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
-          <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
-      </svg>
-      <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
-        </polygon>
-  <!-- </svg> -->
-  
-</div>
+        <!-- <svg class="environments-image{{$index}}"  width="15%" viewBox="0 0 300 300" 
+              ng-repeat="x in valueQuestion[0]" ng-style="getCoord(hexCanvas)" -->
+        <svg class="environments-image{{$index}}"  width="15%" height="15%" viewBox="0 0 300 300" 
+              ng-repeat="x in valueQuestion[0]" ng-style="appendToMenu({{$index}})" ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
+        > 
+        <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
+            <animateTransform attributeName="transform"
+                              attributeType="XML"
+                              type="rotate"
+                              from="0 150 150"
+                              to="360 150 150"
+                              dur="10s"
+                              repeatCount="indefinite"
+                              />
+          <!-- https://codepen.io/cwmanning/pen/Hugye -->
+          <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>{{$index}}
+            <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>
+            <text id="subGemLabel2" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></text>
+        </svg>
+        <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
+          </polygon> -->
+    <!-- </svg> -->
+    <canvas id="hexCanvas" height="75%" width="90%"> 
+      </canvas>
+    </div>
 </ion-content>
 
 
