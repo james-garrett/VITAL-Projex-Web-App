@@ -284,26 +284,31 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
   function($rootScope, $scope, $timeout, $uibModal, AnswerListener, Slider, 
                                         JSONData, NotifyingService, Gem) {
     // $scope.form = null;
+    // var gem = null;
       $scope.init = function() {
         var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
         // console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
-        var gem = new Gem();
+        $scope.gem = new Gem();
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
     $scope.init();
-      
+    
     
       NotifyingService.subscribe($scope, function somethingChanged() {
-        gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex());
-        gem.changeGemLabel(AnswerListener.getInputValue());
+        gemEvent();
           console.log("NotifyingService caught call");
 
       });
       
+      gemEvent = function() {
+      	$scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex());
+        $scope.gem.changeGemLabel(AnswerListener.getInputValue());
+        $scope.gem.changeGemDefinition(AnswerListener.getInputValue());
+      }
 
       $scope.$on('JSONDATA', function(event, array) {
         // console.log(array);
@@ -321,14 +326,11 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
         var elem = document.getElementById("QshapeContainer");
         // var gContainer = $("#" + inputGContainer);
         console.log(elem.clientHeight);
-		this.gem = createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
-    			document.getElementById("spinObj"), false);
-		console.log(this.gem);
+        createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
+        document.getElementById("spinObj"), false);
+		// console.log(this.gem);
 
       }
-      this.initialize();
-  };
-
 
   setColorPalette = function(index) {
     var palette = [['Greens','YlGnBu','Purples'],
@@ -412,7 +414,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
         x_colors: x_color,
         y_colors: y_color,
         variance: 0.75,
-        cell_size: 60});  // Put the cell size any higher and the browser will slow down
+        cell_size: 60 });  // Put the cell size any higher and the browser will slow down
         var gem = pattern.svg();
         // if(solo) {
           // background.getElementById()
@@ -425,7 +427,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
   }
 
-  changeGemColor = function(gemColor, currentIndex) {
+  this.changeGemColor = function(gemColor, currentIndex) {
 
     // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
     var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
@@ -447,10 +449,10 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     createGem(dimensions[0], dimensions[1], x, y, bg, true);
   }
 
-  changeGemDefinition = function(value) {
+  this.changeGemDefinition = function(value) {
      document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
   }
-  changeGemLabel = function(value) {
+  this.changeGemLabel = function(value) {
     var gemTxt = document.getElementById("gemLabel");
 
     var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
@@ -461,7 +463,21 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
   }
 
-  return Gem;
+  this.initialize();
+
+ //  return {
+ //  	setColorPalette: setColorPalette,
+	// setGemColorRange: setGemColorRange,
+	// determineGemRadius: determineGemRadius,
+	// getCoord: getCoord,
+	// createGem: createGem,
+	// changeGemColor: changeGemColor,
+	// changeGemDefinition: changeGemDefinition,
+	// changeGemLabel: changeGemLabel,
+	// Gem: Gem,
+ //  };
+ };
+ return Gem;
 
 }]);
 
