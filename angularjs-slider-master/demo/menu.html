@@ -25,14 +25,16 @@
               ng-repeat="x in valueQuestion[0]" ng-style="appendToMenu({{$index}})" ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
         > 
         <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-            <animateTransform attributeName="transform"
-                              attributeType="XML"
-                              type="rotate"
-                              from="0 150 150"
-                              to="360 150 150"
-                              dur="10s"
-                              repeatCount="indefinite"
-                              />
+            <g id="spinObj{{$index}}" width="20%" height="20%"> 
+                <animateTransform attributeName="transform"
+                                  attributeType="XML"
+                                  type="rotate"
+                                  from="0 150 150"
+                                  to="360 150 150"
+                                  dur="10s"
+                                  repeatCount="indefinite"
+                                  />
+            </g>
           <!-- https://codepen.io/cwmanning/pen/Hugye -->
           <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>{{$index}}
             <text id="subGemLabel" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></text>

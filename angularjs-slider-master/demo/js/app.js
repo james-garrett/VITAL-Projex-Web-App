@@ -67,13 +67,10 @@ app.controller('MainCtrl',
   $scope.gem = null;
   //upon the controller being opened, execute this function
   $scope.$on('$ionicView.afterEnter', function(){
- //run something :smile: 
-    // $scope.gem = new Gem("shapeContainer", "shapeContainer");
-    // $scope.gem = new Gem("shapeContainer", "shapeContainer");
     // $scope.drawBigHex();
 
-    // console.log("hi");
-    if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered()) {
+    console.log("gah");
+    if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() !=true) {
       // AnswerListener.clearAnswerListener();  
       
       var text_elem_Name = "Q" + JSONData.getIndex() + "gemLabel";
@@ -157,28 +154,6 @@ app.controller('MainCtrl',
             ,y:y
         })
     }
-
-  $scope.appendToMenu = function(index) {
-    console.log("hi");
-    var container = document.getElementsByClassName("environments-image" + index.toString())[0];
-    // console.log(container.width(), container.height(), typeof index, "#environments-image" + index.toString());
-    // container.setAttribute("width", "45%");
-    // container.setAttribute("height", "45%");
-    // console.log(container.width.baseVal.value); 
-    var gem = new Gem(container, container);
-    var width = container.width.baseVal.value;
-    var height = container.height.baseVal.value
-    gem.createGem(width, height, 'Greys', 'Greys', 
-          container, false);
-    return {"left": $scope.getPolyGon(width, height)[index].x,           
-            "top": $scope.getPolyGon(width , height)[index].y -100,
-            "position": "absolute",
-            // "display": "block"
-            // "float": "left"
-          };
-    
-  } 
-
     // console.log(points);
 
     //get the angle of a side
@@ -233,6 +208,32 @@ app.controller('MainCtrl',
 
 
     return points;
+  }
+
+  $scope.appendToMenu = function(index) {
+    // console.log("gi");
+    
+      var container = document.getElementsByClassName("environments-image" + index.toString())[0];
+      var g = document.getElementById("spinObj" + index.toString());
+      // console.log(container.width(), container.height(), typeof index, "#environments-image" + index.toString());
+      // container.setAttribute("width", "45%");
+      // container.setAttribute("height", "45%");
+      // console.log(container.width.baseVal.value); 
+      // console.log(container, g);
+      var gem = new Gem(container, g);
+      var width = container.width.baseVal.value;
+      var height = container.height.baseVal.value;
+      // console.log(container, g );
+      console.log(width, height);
+      gem.createGem(height, width, 'Greys', 'Greys', 
+            g, false);
+      return {"left": $scope.getPolyGon(width, height)[index].x,           
+              "top": $scope.getPolyGon(width , height)[index].y -100,
+              // "position": "absolute",
+              // "display": "block"
+              // "float": "left"
+            };
+      
   }
 
   
@@ -312,6 +313,9 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var qNum = JSONData.getIndex();
         var slider = new Slider(array);
         $scope.gem = new Gem("QshapeContainer", "spinObj");
+        var elem = document.getElementById("QshapeContainer");;
+        $scope.gem.createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
+        document.getElementById("spinObj"), false);
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
@@ -325,7 +329,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
       });
       
       gemEvent = function() {
-      	$scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex());
+      	$scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex(), document.getElementById("spinObj"));
         $scope.gem.changeGemLabel(AnswerListener.getInputValue());
         $scope.gem.changeGemDefinition(AnswerListener.getInputValue());
       }
@@ -339,11 +343,10 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
 app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
   var Gem = function(container, appendingObj) {
       this.initialize = function() {
-        console.log("Gem", JSONData.getIndex());
+        // console.log("Gem", JSONData.getIndex());
         var elem = document.getElementById(container);
-        console.log(elem);
-        console.log(elem.clientHeight);
-        // createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
+        // console.log(elem);
+        // console.log(elem.clientHeight);
         // document.getElementById(appendingObj), false);
 		// console.log(this.gem);
 
@@ -438,12 +441,12 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
           gem.setAttribute("id", "prettyGem");
           $('#prettyGem').remove();  
         // }
-        
+        // console.log(bg);
         bg.appendChild(gem);
 
   }
 
-  this.changeGemColor = function(gemColor, currentIndex) {
+  this.changeGemColor = function(gemColor, currentIndex, bg) {
 
     // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
     var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
@@ -459,7 +462,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
     var x = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[0];
     var y = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[1];
-    var bg = document.getElementById("spinObj");
+    // var bg = document.getElementById("spinObj");
     // console.log(gemColor, currentIndex%7, x,y);
     // set up the base pattern
     this.createGem(dimensions[0], dimensions[1], x, y, bg, true);
