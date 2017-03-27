@@ -212,7 +212,7 @@ app.controller('MainCtrl',
 
   $scope.appendToMenu = function(index) {
     // console.log("gi");
-    
+    $scope.$on('$ionicView.afterEnter', function(){
       var container = document.getElementsByClassName("environments-image" + index.toString())[0];
       var g = document.getElementById("spinObj" + index.toString());
       // console.log(container.width(), container.height(), typeof index, "#environments-image" + index.toString());
@@ -233,7 +233,7 @@ app.controller('MainCtrl',
               // "display": "block"
               // "float": "left"
             };
-      
+      });
   }
 
   
@@ -375,7 +375,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     }
 
   setGemColorRange = function(gemColor, color1, color2, color3) {
-    // console.log(gemColor);
+    console.log(gemColor);
     switch(gemColor) {
       
       case 0:
@@ -409,21 +409,6 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
       default:
           return [height+200, width+200]
     }
-  }
-
-  getCoord = function(inputElem, inputGContainer) {
-  
-    var elem = $("#" + inputElem);
-    var gContainer = $("#" + inputGContainer);
-    // console.log("args",)
-    createGem(elem.width(), elem.height(), 'Greys', 'Greys', 
-    			document.getElementById(inputGContainer), false);
-    return {"left": $rootScope.getPolyGon(elem.width(), elem.height())[index].x,           
-            "top": $rootScope.getPolyGon(elem.width() , elem.height())[index].y -100,
-            "position": "absolute",
-            // "display": "block"
-            // "float": "left"
-          };
   }
 
   this.createGem = function(height, width, x_color, y_color, bg, solo) {
@@ -460,8 +445,8 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     colors.color2 = setColorPalette(currentIndex)[1];
     colors.color3 = setColorPalette(currentIndex)[2];
 
-    var x = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[0];
-    var y = setGemColorRange(gemColor%7, colors.color1,colors.color2,colors.color3)[1];
+    var x = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[0];
+    var y = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[1];
     // var bg = document.getElementById("spinObj");
     // console.log(gemColor, currentIndex%7, x,y);
     // set up the base pattern
