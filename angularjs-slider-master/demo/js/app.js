@@ -66,9 +66,11 @@ app.controller('MainCtrl',
   // $scope.callToGetJSONDATA();
   $scope.gem = null;
   //upon the controller being opened, execute this function
+  window.onload=function() {  
+    $scope.appendToMenu();
+  }
   $scope.$on('$ionicView.afterEnter', function(){
     // $scope.drawBigHex();
-
     console.log("gah");
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() !=true) {
       // AnswerListener.clearAnswerListener();  
@@ -84,6 +86,8 @@ app.controller('MainCtrl',
     } 
     // console.log(typeof sessionStorage.getItem("Q1"));
   });
+
+
 
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
     // console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
@@ -210,30 +214,31 @@ app.controller('MainCtrl',
     return points;
   }
 
-  $scope.appendToMenu = function(index) {
-    // console.log("gi");
-    $scope.$on('$ionicView.afterEnter', function(){
-      var container = document.getElementsByClassName("environments-image" + index.toString())[0];
-      var g = document.getElementById("spinObj" + index.toString());
-      // console.log(container.width(), container.height(), typeof index, "#environments-image" + index.toString());
-      // container.setAttribute("width", "45%");
-      // container.setAttribute("height", "45%");
-      // console.log(container.width.baseVal.value); 
-      // console.log(container, g);
-      var gem = new Gem(container, g);
-      var width = container.width.baseVal.value;
-      var height = container.height.baseVal.value;
-      // console.log(container, g );
-      console.log(width, height);
-      gem.createGem(height, width, 'Greys', 'Greys', 
-            g, false);
-      return {"left": $scope.getPolyGon(width, height)[index].x,           
-              "top": $scope.getPolyGon(width , height)[index].y -100,
-              // "position": "absolute",
-              // "display": "block"
-              // "float": "left"
-            };
-      });
+  $scope.appendToMenu = function() {
+      // console.log("running");
+      var inputs = document.querySelectorAll('svg[class^="environments-image"]');
+      // var container = document.getElementById("shapeContainer");
+      // console.log(inputs, container, container.offSetWidth);
+      inputs.forEach(function(g, index) {
+        g = document.getElementById("spinObj" + index.toString());
+        var container = inputs[index];
+        // console.log(g, index, inputs[index].width.baseVal.valueAsString);
+        var gem = new Gem(container, g);
+        var width = container.width.baseVal.value;
+        var height = container.height.baseVal.value;
+
+        console.log(container, g);
+        // console.log(width, height);
+        gem.createGem(height, width, 'Greys', 'Greys', g, false);
+        // return {"left": $scope.getPolyGon(width, height)[index].x,           
+        //         "top": $scope.getPolyGon(width , height)[index].y -100,
+                // "position": "absolute",
+                // "display": "block"
+                // "float": "left"
+              // };
+        });
+        
+      // }
   }
 
   
@@ -315,7 +320,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         $scope.gem = new Gem("QshapeContainer", "spinObj");
         var elem = document.getElementById("QshapeContainer");;
         $scope.gem.createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
-        document.getElementById("spinObj"), false);
+        document.getElementById("spinObj"), true);
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
@@ -375,7 +380,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     }
 
   setGemColorRange = function(gemColor, color1, color2, color3) {
-    console.log(gemColor);
+    // console.log(gemColor);
     switch(gemColor) {
       
       case 0:
@@ -411,23 +416,27 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     }
   }
 
-  this.createGem = function(height, width, x_color, y_color, bg, solo) {
+  this.createGem = function(gheight, gwidth, x_color, y_color, bg, solo) {
+    console.log(gheight, gwidth, bg);
     var pattern = Trianglify({
-        height: height,
-        width: width,
+        height: gheight,
+        width: gwidth,
         x_colors: x_color,
         y_colors: y_color,
         variance: 0.75,
         cell_size: 60 });  // Put the cell size any higher and the browser will slow down
         var gem = pattern.svg();
-        // if(solo) {
-          // background.getElementById()
-        // } else {
+        if(solo) {
           gem.setAttribute("id", "prettyGem");
           $('#prettyGem').remove();  
-        // }
-        // console.log(bg);
+        } else {
+          var gemName = "prettyGem" + (bg.id).slice(-1);
+          gem.setAttribute("id", gemName);
+          $('#' + gemName).remove();  
+          // console.log((bg.id).slice(-1), gemName);
+        }
         bg.appendChild(gem);
+        console.log(bg);
 
   }
 
