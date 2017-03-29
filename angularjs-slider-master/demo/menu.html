@@ -13,7 +13,8 @@
     
     <div id="shapeContainer" fill="none">
       
-      <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF"><!-- {{x.ValueOptions.value[4].definition}} </span> -->  
+      <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF">
+       {{x.ValueOptions.value[4].definition}} </span> -->  
 
             <!-- <p>{{$index}}</p> -->
         
@@ -23,7 +24,7 @@
               ng-repeat="x in valueQuestion[0]" ng-style="getCoord(hexCanvas)" -->
         <svg class="environments-image{{$index}}" width="200px" height="200px" viewBox="0 0 300 300" 
               ng-repeat="x in valueQuestion[0]" 
-              style="border-radius: 50%;"
+              ng-style="placeGemOnDiv({{$index}})"
               ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
         > 
         <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
@@ -38,8 +39,8 @@
                                   />
             </g>
           <!-- https://codepen.io/cwmanning/pen/Hugye -->
-          <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white">{{x.BasicLabel}}</text>
         </svg>
+        <h3 id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white" style="display: block;">{{x.BasicLabel}}</h3>
         <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           </polygon> -->
     <!-- </svg> -->

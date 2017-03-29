@@ -232,18 +232,25 @@ AnswerListener.getQuestionAnswered());
         // console.log(width, height);
         // console.log($scope.valueQuestion);
         gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', g, false);
-        // return {"left": $scope.getPolyGon(width, height)[index].x,           
-        //         "top": $scope.getPolyGon(width , height)[index].y -100,
-                // "position": "absolute",
-                // "display": "block"
-                // "float": "left"
-              // };
+        
         });
         
       // }
   }
 
-  
+  $scope.placeGemOnDiv = function(index) {
+    var width = document.getElementById("shapeContainer").offsetWidth;
+    var height = document.getElementById("shapeContainer").offsetHeight;
+    console.log("Placing gem on div", width, height);
+    return {"left": $scope.getPolyGon(width, height)[index].x,           
+                "top": $scope.getPolyGon(width , height)[index].y -100,
+                "position": "absolute",
+                "display": "block",
+                "float": "left",
+                "border-radius": "50%",
+              };
+  }
+
   $scope.setHexCanvasStyle = function(hex, shapeContainer) {
     // console.log(shapeContainer.width())
     hex.style.width = shapeContainer.width();
