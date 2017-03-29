@@ -71,12 +71,14 @@ app.controller('MainCtrl',
   }
   $scope.$on('$ionicView.afterEnter', function(){
     // $scope.drawBigHex();
-    console.log("gah");
-    if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() !=true) {
+    console.log("gah", AnswerListener.getInputValue(),
+AnswerListener.getQuestionAnswered());
+    if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() ==true) {
       // AnswerListener.clearAnswerListener();  
       
       var text_elem_Name = "Q" + JSONData.getIndex() + "gemLabel";
-      var poly_elem_Name = "environments-image" + JSONData.getIndex();
+      // var poly_elem_Name = "environments-image" + JSONData.getIndex();
+      var poly_elem_Name = "spinObj" + JSONData.getIndex();
       // console.log(elem_Name, typeof elem_Name);
       $scope.changeCompletedGem(JSONData.getIndex(), 
                                   AnswerListener.getInputValue(), 
@@ -90,13 +92,12 @@ app.controller('MainCtrl',
 
 
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
-    // console.log(gemIndex, answerIndex, polyElem, textElem, "Elem has label") ;
-    // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
-    // textElem.innerText = "fuck";
+    // console.log(gemIndex, answerIndex, polyElem, textElem) ;
+    $scope.gem = new Gem();
     textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
-    // console.log(JSONData.returnQuestionJSONData());
-    // textElem.innerText = 
-    // console.log(polyElem.innerText);
+    console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
+    $scope.gem.changeGemColor(answerIndex, gemIndex, polyElem);
+    // $scope.gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', polyElem, false);
   }
 
   //Minimal slider config
@@ -226,10 +227,11 @@ app.controller('MainCtrl',
         var gem = new Gem(container, g);
         var width = container.width.baseVal.value;
         var height = container.height.baseVal.value;
-
-        console.log(container, g);
+        // console.log(g.getBBox(), container.getBBox().height, container.width);
+        // console.log(container, g);
         // console.log(width, height);
-        gem.createGem(height, width, 'Greys', 'Greys', g, false);
+        // console.log($scope.valueQuestion);
+        gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', g, false);
         // return {"left": $scope.getPolyGon(width, height)[index].x,           
         //         "top": $scope.getPolyGon(width , height)[index].y -100,
                 // "position": "absolute",
@@ -320,7 +322,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         $scope.gem = new Gem("QshapeContainer", "spinObj");
         var elem = document.getElementById("QshapeContainer");;
         $scope.gem.createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
-        document.getElementById("spinObj"), true);
+                              document.getElementById("spinObj"), true);
         $scope.slider_ticks_legend = slider.sliderGet();
         AnswerListener.setInputValue(4);
       } 
@@ -357,10 +359,10 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
       }
 
-  setColorPalette = function(index) {
+  this.setColorPalette = function(index) {
     var palette = [['Greens','YlGnBu','Purples'],
 
-                     ['YIGnBu','BuGn', 'PuGn'],
+                     ['Blues','BuGn', 'YlOrRd'],
 
                      ['PuBuGn', 'PuBu', 'BuPu'],
 
@@ -417,7 +419,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   }
 
   this.createGem = function(gheight, gwidth, x_color, y_color, bg, solo) {
-    console.log(gheight, gwidth, bg);
+    // console.log(gheight, gwidth, x_color, y_color, bg, solo);
     var pattern = Trianglify({
         height: gheight,
         width: gwidth,
@@ -436,7 +438,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
           // console.log((bg.id).slice(-1), gemName);
         }
         bg.appendChild(gem);
-        console.log(bg);
+        // console.log(bg);
 
   }
 
@@ -450,9 +452,9 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     // h*=0.7;
     // w*=0.7; 
     var colors = {color1: '', color2: '', color3:''};
-    colors.color1 = setColorPalette(currentIndex)[0];
-    colors.color2 = setColorPalette(currentIndex)[1];
-    colors.color3 = setColorPalette(currentIndex)[2];
+    colors.color1 = this.setColorPalette(currentIndex)[0];
+    colors.color2 = this.setColorPalette(currentIndex)[1];
+    colors.color3 = this.setColorPalette(currentIndex)[2];
 
     var x = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[0];
     var y = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[1];
