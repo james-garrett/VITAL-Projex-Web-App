@@ -34,13 +34,7 @@
       <ion-content>
         <div class="wrapper">
           <h1 id="mainh1" style="font-family:'Ubuntu'; color:white;">Welcome!</h1>
-          <h4 id="mainh4">Hello <span style="color:#FF0000">INSERT-NAME-HERE. </span> You have been granted access to VITAL's self-assessment survey as a <span style="color:#FF0000"> PARTICIPANT.</span><br>
-          Before beginning, please ensure you have cookies enabled in your browser, 
-          and that you are using either Firefox, Internet Explorer, Google Chrome, or 
-          Safari as your browser.<br><br> The survey you are about to begin needs to be 
-          completed in a single session, has <span style="color:#FF0000">5 QUESTIONS</span>, and should take approximately <span style="color:#FF0000">10 MINUTES</span> to complete. Please take your time to answer each question, as once an answer is submitted, it cannot be changed. After completing all of the questions, you will be provided a character profile summary which summarises your values and traits based on your answer.<br><br>
-          There are no right or wrong answers, so do not feel remorseful for answering honestly.<br><br>
-          Click the button below to begin the survey.
+          <h4 id="mainh4">Hello <span style="color:#FF0000">INSERT-NAME-HERE. </span> You have been granted access to VITAL's self-assessment survey as a <span style="color:#FF0000"> USER-TYPE.</span>
           </h4>
         <!-- <a class="button icon-right ion-checkmark" href="#/first">Let's Begin!</a> -->
         <button class="button icon-right ion-android-create" onclick="location.href='#/menu';" href="#/menu">Let's Begin! </button>

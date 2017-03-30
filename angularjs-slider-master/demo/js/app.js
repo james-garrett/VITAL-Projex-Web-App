@@ -66,13 +66,11 @@ app.controller('MainCtrl',
   // $scope.callToGetJSONDATA();
   $scope.gem = null;
   //upon the controller being opened, execute this function
-  window.onload=function() {  
-    $scope.appendToMenu();
-  }
+  
   $scope.$on('$ionicView.afterEnter', function(){
     // $scope.drawBigHex();
-    console.log("gah", AnswerListener.getInputValue(),
-AnswerListener.getQuestionAnswered());
+    $scope.appendToMenu();
+    console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() ==true) {
       // AnswerListener.clearAnswerListener();  
       
@@ -97,6 +95,7 @@ AnswerListener.getQuestionAnswered());
     textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
     console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
     $scope.gem.changeGemColor(answerIndex, gemIndex, polyElem);
+    $scope.callToGetJSONDATA();
     // $scope.gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', polyElem, false);
   }
 
@@ -105,14 +104,7 @@ AnswerListener.getQuestionAnswered());
     value: 10
   };
 
-  $scope.form = null;
-  $scope.valueQuestion = new Array(0);
-  JSONData.getJSONDataFromFile('json/questions.json');
-  $scope.valueQuestion = JSONData.returnQuestionJSONData();
-  
-
-
-  $scope.toggleGroup = function(group) {
+    $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup = null;
     } else {
@@ -126,6 +118,8 @@ AnswerListener.getQuestionAnswered());
 
   $scope.loadForm = function(index, array, title) {
     // console.log(index);
+    sessionStorage.setItem("currentIndex", index);
+    sessionStorage.setItem("questionJSONData", JSON.stringify($scope.valueQuestion));
     JSONData.setIndex(index);
     location.href='#/first';
   } 
@@ -216,6 +210,7 @@ AnswerListener.getQuestionAnswered());
   }
 
   $scope.appendToMenu = function() {
+    // console.log("pha");
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
       inputs.forEach(function(g, index) {
         g = document.getElementById("spinObj" + index.toString());
@@ -227,6 +222,8 @@ AnswerListener.getQuestionAnswered());
         
         });
   }
+
+  
 
   $scope.placeGemOnDiv = function(index) {
     var width = (document.getElementById("shapeContainer").offsetWidth)/2;
@@ -300,6 +297,13 @@ AnswerListener.getQuestionAnswered());
     
   }
 
+  $scope.form = null;
+  $scope.valueQuestion = new Array(0);
+  JSONData.getJSONDataFromFile('json/questions.json');
+  $scope.valueQuestion = JSONData.returnQuestionJSONData();
+  
+  // console.log(JSON.parse(sessionStorage.getItem("questionJSONData", $scope.valueQuestion)));
+
 
 
 }]);
@@ -310,8 +314,20 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
                                         JSONData, NotifyingService, Gem) {
     // $scope.form = null;
     // var gem = null;
+
       $scope.init = function() {
-        var array = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()];
+        // console.log(JSONData.getIndex());
+        var index = sessionStorage.getItem("currentIndex", index);
+        if(JSONData.getIndex() == -1) {
+          console.log("asdasda", JSON.parse(sessionStorage.getItem("questionJSONData"))[0]);
+          JSONData.setIndex(sessionStorage.getItem("currentIndex"));
+
+          var array =  JSON.parse(sessionStorage.getItem("questionJSONData"))[0][index];
+        } else {
+           var array = JSONData.returnQuestionJSONData()[0][index];
+        }
+        console.log("current question:", sessionStorage.getItem("currentIndex"), JSONData.getIndex());
+       
         // console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
         var qNum = JSONData.getIndex();
@@ -325,6 +341,9 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
       } 
     $scope.init();
     
+    // window.onbeforeunload = function() {
+    //   sessionStorage.setItem
+    // }
     
       NotifyingService.subscribe($scope, function somethingChanged() {
         gemEvent();
@@ -509,15 +528,15 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     backToMenu = function() {
       // console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
-      storeAnswer(AnswerListener.getInputValue());
+      storeAnswer(JSONData.getIndex(), AnswerListener.getInputValue());
       AnswerListener.setQuestionAnswered(true);
       location.href='#/menu';
     }
 
-    storeAnswer = function(answer) {
+    storeAnswer = function(index, answer) {
       // console.log(answer);
-      sessionStorage.setItem("Q1", answer); /*Store answer*/
-      // console.log(sessionStorage.getItem("Q1"));
+      sessionStorage.setItem(index.toString(), answer); /*Store answer*/
+      console.log(sessionStorage.getItem(index.toString()));
     }
 
 
@@ -588,8 +607,11 @@ app.service('JSONData', function() {
           })
           questionJSONData.push(json.Questions);
         });
-    // console.log(questionJSONData);
-    returnQuestionJSONData();
+      console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
+      if((typeof(questionJSONData) == "undefined") == true) {
+        console.log("qd is null");
+      }
+      returnQuestionJSONData();
     }
 
     var returnQuestionJSONData = function() {
@@ -616,7 +638,9 @@ app.service('JSONData', function() {
 app.service('AnswerListener', function() {
   var inputValue = -1;
   var questionAnswered = false;
+
   // console.log("initializing AnswerListener");
+
   var setInputValue = function(value) {
     // console.log("setting input from ", inputValue, "to ", value);
     

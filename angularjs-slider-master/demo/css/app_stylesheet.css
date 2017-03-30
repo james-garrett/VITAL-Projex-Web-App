@@ -34,7 +34,8 @@
 	#mainh4 { 
 		background: rgba(0,0,0, 0);
 		color: #FFFFFF;
-		/*text-align: center;*/
+		text-align: justify;
+		padding: 20px;
 	}
 
 	.wrapper { 
