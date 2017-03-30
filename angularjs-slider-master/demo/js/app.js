@@ -229,13 +229,37 @@ app.controller('MainCtrl',
     var width = (document.getElementById("shapeContainer").offsetWidth)/2;
     var height = (document.getElementById("shapeContainer").offsetHeight)/2;
     // console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x), ($scope.getPolyGon(width , height)[index].y -100));
+    // console.log(heading, $scope.getPolyGon(width, height)[index].x, $scope.getPolyGon(width , height)[index].y);
+
     return {"left": $scope.getPolyGon(width, height)[index].x,           
-                "top": $scope.getPolyGon(width , height)[index].y ,
+                "top": $scope.getPolyGon(width , height)[index].y,
                 "position": "absolute",
                 "display": "block",
                 "float": "left",
                 "border-radius": "50%",
               };
+  }
+
+  $scope.placeGemLabel = function(index) {
+    var width = (document.getElementById("shapeContainer").offsetWidth)/2;
+    var height = (document.getElementById("shapeContainer").offsetHeight)/2;
+    
+    var heading = document.getElementById("Q" + index.toString() + "gemLabel");
+    var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
+    // console.log(index.toString(), gemBox.width);
+    var left = ($scope.getPolyGon(width, height)[index].x) + (gemBox.width.baseVal.value)/4;
+    var top = ($scope.getPolyGon(width, height)[index].y) + (gemBox.height.baseVal.value)/3;
+    // console.log(left, top);
+    heading.style.left =  left + "px";
+    heading.style.top = top + "px";
+
+    return {"position": "absolute",
+            "font-size": "22",
+             "margin": "auto",
+             "color": "white",
+             "display": "block",
+             "width": ((gemBox.width.baseVal.value.toString()*0.8) + "px"),
+           };
   }
 
   $scope.setHexCanvasStyle = function(hex, shapeContainer) {
