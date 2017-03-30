@@ -22,13 +22,13 @@
 
         <!-- <svg class="environments-image{{$index}}"  width="15%" viewBox="0 0 300 300" 
               ng-repeat="x in valueQuestion[0]" ng-style="getCoord(hexCanvas)" -->
-        <svg class="environments-image{{$index}}" width="200px" height="200px" viewBox="0 0 300 300" 
+        <svg class="environments-image{{$index}}" width="100px" height="100px" viewBox="0 0 300 300" 
               ng-repeat="x in valueQuestion[0]" 
               ng-style="placeGemOnDiv({{$index}})"
               ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
         > 
         <!-- http://stackoverflow.com/questions/8515524/how-do-i-scale-an-svg-polygon-in-ems -->
-            <g id="spinObj{{$index}}" width="200px" height="200px" >  
+            <g id="spinObj{{$index}}" width="100px" height="100px" >  
                 <animateTransform attributeName="transform"
                                   attributeType="XML"
                                   type="rotate"
@@ -39,8 +39,8 @@
                                   />
             </g>
           <!-- https://codepen.io/cwmanning/pen/Hugye -->
+        <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white" style="display: block;">{{x.BasicLabel}}</text>
         </svg>
-        <h3 id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white" style="display: block;">{{x.BasicLabel}}</h3>
         <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           </polygon> -->
     <!-- </svg> -->
