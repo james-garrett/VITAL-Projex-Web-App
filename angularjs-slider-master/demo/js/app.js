@@ -216,33 +216,22 @@ AnswerListener.getQuestionAnswered());
   }
 
   $scope.appendToMenu = function() {
-      // console.log("running");
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
-      // var container = document.getElementById("shapeContainer");
-      // console.log(inputs, container, container.offSetWidth);
       inputs.forEach(function(g, index) {
         g = document.getElementById("spinObj" + index.toString());
         var container = inputs[index];
-        // console.log(g, index, inputs[index].width.baseVal.valueAsString);
         var gem = new Gem(container, g);
         var width = container.width.baseVal.value;
         var height = container.height.baseVal.value;
-        // console.log(g.getBBox(), container.getBBox().height, container.width);
-        // console.log(container, g);
-        // console.log(width, height);
-        // console.log($scope.valueQuestion);
         gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
-        
-      // }
   }
 
   $scope.placeGemOnDiv = function(index) {
     var width = (document.getElementById("shapeContainer").offsetWidth)/2;
     var height = (document.getElementById("shapeContainer").offsetHeight)/2;
-    console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x),
-($scope.getPolyGon(width , height)[index].y -100));
+    // console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x), ($scope.getPolyGon(width , height)[index].y -100));
     return {"left": $scope.getPolyGon(width, height)[index].x,           
                 "top": $scope.getPolyGon(width , height)[index].y ,
                 "position": "absolute",
@@ -270,7 +259,7 @@ AnswerListener.getQuestionAnswered());
     var c = hex.getContext("2d");
     c.width = shapeContainer.innerWidth;
     c.height = shapeContainer.innerHeight;
-    var points = ($scope.getPolyGon($("#shapeContainer").width()), ($("#shapeContainer").height()));
+    var points = $scope.getPolyGon($("#shapeContainer").width(), ($("#shapeContainer").height()));
     
     // console.log("start at ", points[0].x, points[0].y);
     // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
