@@ -6,9 +6,10 @@
 </ion-header-bar> -->
 <ion-content data-ng-controller="MainCtrl" >
 <!-- <header><h2 id="questionHeading">QUESTION 1</h2></header> -->
+  <div id="header">
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
   <h3 id="questionHeading">Once all questions are complete you may finish the survey</h3>
-    
+  </div>  
         
     
     <div id="shapeContainer" fill="none">
@@ -16,6 +17,7 @@
        {{x.ValueOptions.value[4].definition}} </span> -->  
 
             <!-- <p>{{$index}}</p> -->
+        
         <svg class="environments-image{{$index}}" width="100px" height="100px" viewBox="0 0 300 300" 
               ng-repeat="x in valueQuestion[0]" 
               ng-style="placeGemOnDiv({{$index}})"
@@ -43,11 +45,23 @@
         <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           </polygon> -->
     <!-- </svg> -->
-    <canvas id="hexCanvas" height="75%" width="90%" style="z-index: -1;"> 
-      </canvas>
+    <span id="questionProgressCounterHeading" ng-repeat="x in [1]" ng-style="placeProgress()">Select a Gem to Begin a Question</span>   
+    <svg id="bigPoly" style="z-index: 10;" ng-repeat="x in [1]" ng-style="hexStyle()" viewBox="0 0 300 300" > 
+      <g id="bigSpinObj" width="100px" height="100px" style="left:50%;">  
+                <animateTransform attributeName="transform"
+                                  attributeType="XML"
+                                  type="rotate"
+                                  from="0 150 150"
+                                  to="360 150 150"
+                                  dur="10s"
+                                  repeatCount="indefinite"
+                                  />
+            </g>
+      </svg>
+      
     </div>
-</ion-content>
 
+</ion-content>
 
 <!-- <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script> -->
 <!-- <script src="./lib/ui-bootstrap-tpls.js"></script> -->

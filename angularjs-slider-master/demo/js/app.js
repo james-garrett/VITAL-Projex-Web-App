@@ -59,7 +59,7 @@ app.controller('MainCtrl',
     $scope.jsonData = {};
     
     $scope.callToGetJSONDATA = function() {
-      console.log(JSONData.getJSONDataFromFile('json/questions.json'));
+      // console.log(JSONData.getJSONDataFromFile('json/questions.json'));
     }
 
 
@@ -68,9 +68,10 @@ app.controller('MainCtrl',
   //upon the controller being opened, execute this function
   
   $scope.$on('$ionicView.afterEnter', function(){
-    // $scope.drawBigHex();
+    $scope.drawBigHex();
     $scope.appendToMenu();
-    console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
+    $scope.GetColours("blar");
+    // console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() ==true) {
       // AnswerListener.clearAnswerListener();  
       
@@ -83,17 +84,23 @@ app.controller('MainCtrl',
                                   document.getElementById(poly_elem_Name),
                                   document.getElementById(text_elem_Name));
       AnswerListener.setQuestionAnswered(false);
+      $scope.showStorage();
     } 
     // console.log(typeof sessionStorage.getItem("Q1"));
   });
 
+  $scope.showStorage = function() {
+    Object.keys(sessionStorage).forEach(function(elem, index) {
+      console.log(index + " " + elem + " " +  sessionStorage.getItem(elem));
+    });
+  }
 
 
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
     // console.log(gemIndex, answerIndex, polyElem, textElem) ;
     $scope.gem = new Gem();
     textElem.textContent = JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action;
-    console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
+    // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
     $scope.gem.changeGemColor(answerIndex, gemIndex, polyElem);
     $scope.callToGetJSONDATA();
     // $scope.gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', polyElem, false);
@@ -123,6 +130,7 @@ app.controller('MainCtrl',
     JSONData.setIndex(index);
     location.href='#/first';
   } 
+
 
   $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
     // var c= document.getElementsByClassName("hexCanvas")[0];
@@ -247,7 +255,7 @@ app.controller('MainCtrl',
     var heading = document.getElementById("Q" + index.toString() + "gemLabel");
     var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
     // console.log(index.toString(), gemBox.width);
-    var left = ($scope.getPolyGon(width, height)[index].x) + (gemBox.width.baseVal.value)/4;
+    var left = ($scope.getPolyGon(width, height)[index].x) + (gemBox.width.baseVal.value)/5;
     var top = ($scope.getPolyGon(width, height)[index].y) + (gemBox.height.baseVal.value)/3;
     // console.log(left, top);
     heading.style.left =  left + "px";
@@ -258,8 +266,30 @@ app.controller('MainCtrl',
              "margin": "auto",
              "color": "white",
              "display": "block",
+             "text-align": "center",
              "width": ((gemBox.width.baseVal.value.toString()*0.8) + "px"),
            };
+  }
+
+  $scope.placeProgress = function() {
+    var progress = document.getElementById("questionProgressCounterHeading");
+    // console.log(progress);
+    // var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
+    var width = ((document.getElementById("shapeContainer").offsetWidth/3)) + "px";
+    var height = ((document.getElementById("shapeContainer").offsetHeight/4)) + "px";
+    // console.log(height, width);
+    // progress.setAttribute("top", (((document.getElementById("shapeContainer").offsetHeight)/2).toString() + "px"));
+    return {
+            "position": "absolute",
+            "font-size": "22",
+            "margin": "auto",
+            "color": "white",
+            "display": "block",
+            "top": height,
+            "left": width,
+            "width": ((document.getElementById("shapeContainer").offsetWidth/4)) + "px",
+            
+    };
   }
 
   $scope.setHexCanvasStyle = function(hex, shapeContainer) {
@@ -273,59 +303,88 @@ app.controller('MainCtrl',
 
   $scope.drawBigHex = function() {
     // console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
-    var hex= document.getElementById("hexCanvas");
-    var shapeContainer = document.getElementById("hexCanvas");
+    var hex= document.getElementById("bigPoly");
+    // var shapeContainer = document.getElementById("hexCanvas");
     // console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
     // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
-    var c = hex.getContext("2d");
-    c.width = shapeContainer.innerWidth;
-    c.height = shapeContainer.innerHeight;
-    var points = $scope.getPolyGon($("#shapeContainer").width(), ($("#shapeContainer").height()));
-    
+    // var c = hex.getContext("2d");
+    // c.width = shapeContainer.innerWidth;
+    // c.height = shapeContainer.innerHeight;
+    // var points = $scope.getPolyGon($("#shapeContainer").width(), ($("#shapeContainer").height()));
+    // console.log(points[0].x/2, points[0].y/2);
     // console.log("start at ", points[0].x, points[0].y);
     // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
     // console.log($("#Q1gem")[0].points);
     // c.beginPath();              
     // c.lineWidth = "5";
     // c.strokeStyle = "green";  // Green path
-    // // c.moveTo(200, 0);
-    // c.moveTo(points[0].x/2, points[0].y/2);
+    // c.moveTo(200, 0);
+    // // c.moveTo(points[0].x/2, points[0].y/2);
     // // c.moveTo(0, 31);
     // c.lineTo(points[1].x/2, points[1].y/2);
     // c.stroke();  
     // c.closePath();
-    // Draw it
+    // // Draw it
 
 
 
-    c.beginPath();
-    c.lineWidth="5";
-    c.strokeStyle="green";
+    // c.beginPath();
+    // c.lineWidth="5";
+    // c.strokeStyle="green";
           
     
-    //draw path
+    // //draw path
     
-      c.beginPath();
-      c.moveTo(points[0].x, points[0].y);
-      for(var i = 1; i < points.length; i++) {
-        // console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
+    //   c.beginPath();
+    //   c.moveTo(points[0].x, points[0].y);
+    //   for(var i = 1; i < points.length; i++) {
+    //     // console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
         
-        c.lineTo(points[i].x, points[i].y);
-      }
-      c.strokeStyle = "#000000";
-      c.lineWidth = "0";
-      c.stroke();
-      c.fill();
-      c.closePath();
+    //     c.lineTo(points[i].x, points[i].y);
+    //   }
+    //   c.strokeStyle = "#000000";
+    //   c.lineWidth = "0";
+    //   c.stroke();
+    //   c.fill();
+    //   c.closePath();
     //draw
-    
-  }
+    var width = (document.getElementById("shapeContainer").offsetWidth/2);
+    var height = (document.getElementById("shapeContainer").offsetHeight/2);
+    $scope.gem = new Gem("shapeContainer", "bigSpinObj");
+    $scope.gem.createGem(height, width, 'Greys', 'Greys', document.getElementById("bigSpinObj"), true);
+    // console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x), ($scope.getPolyGon(width , height)[index].y -100));
+    // console.log(heading, $scope.getPolyGon(width, height)[index].x, $scope.getPolyGon(width , height)[index].y);
+    }
 
+    $scope.hexStyle = function() {
+      var width = (document.getElementById("shapeContainer").offsetWidth)/2;
+      var height = (document.getElementById("shapeContainer").offsetHeight)/2;
+      var distance = (Math.abs($scope.getPolyGon(width, height)[3].x - $scope.getPolyGon(width, height)[1].x) + "px")
+      console.log(width, distance);
+      return {
+                // "left": ($scope.getPolyGon(width, height)[3].x + "px"),           
+                // "left": width - distance,           
+                // "top": (height + "px"),
+                // "width": "100%",
+                // "height": "100%",
+                "position": "absolute",
+                "display": "block",
+                "float": "left",
+                "border-radius": "50%",
+              };
+    }
+
+    $scope.GetColours = function(arrayOfGems){
+      console.log(document.querySelectorAll('svg[id^="prettyGem"]'));
+
+    }
+    
+     
+  
   $scope.form = null;
   $scope.valueQuestion = new Array(0);
   JSONData.getJSONDataFromFile('json/questions.json');
-  $scope.valueQuestion = JSONData.returnQuestionJSONData();
-  
+  $scope.valueQuestion = JSONData.returnQuestionJSONData();  
   // console.log(JSON.parse(sessionStorage.getItem("questionJSONData", $scope.valueQuestion)));
 
 
@@ -551,6 +610,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
 
     backToMenu = function() {
+      console.log("Storing answer of " + JSONData.getIndex());
       // console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
       storeAnswer(JSONData.getIndex(), AnswerListener.getInputValue());
       AnswerListener.setQuestionAnswered(true);
@@ -559,7 +619,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     storeAnswer = function(index, answer) {
       // console.log(answer);
-      sessionStorage.setItem(index.toString(), answer); /*Store answer*/
+      sessionStorage.setItem("Question: " + index.toString(), answer); /*Store answer*/
       console.log(sessionStorage.getItem(index.toString()));
     }
 
@@ -631,9 +691,9 @@ app.service('JSONData', function() {
           })
           questionJSONData.push(json.Questions);
         });
-      console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
+      // console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
       if((typeof(questionJSONData) == "undefined") == true) {
-        console.log("qd is null");
+        // console.log("qd is null");
       }
       returnQuestionJSONData();
     }
@@ -662,6 +722,7 @@ app.service('JSONData', function() {
 app.service('AnswerListener', function() {
   var inputValue = -1;
   var questionAnswered = false;
+  var answeredQuestions = 0;
 
   // console.log("initializing AnswerListener");
 
@@ -684,6 +745,12 @@ app.service('AnswerListener', function() {
 
   var setQuestionAnswered = function(setting) {
       questionAnswered = setting;
+      answeredQuestions++;
+      console.log(answeredQuestions);
+  }
+
+  var getQuestionsAnsweredCount = function() {
+    return answeredQuestions;
   }
 
   var getQuestionAnswered = function() {
