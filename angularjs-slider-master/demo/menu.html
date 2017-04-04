@@ -13,6 +13,8 @@
         
     
     <div id="shapeContainer" fill="none">
+
+    
       <!-- <div ng-repeat="x in valueQuestion[0]"><span style="color:#FFFFFF">
        {{x.ValueOptions.value[4].definition}} </span> -->  
 
@@ -41,13 +43,14 @@
         <h5 id="Q{{$index}}gemLabel" font-family="Ubuntu" fill="white" 
         ng-repeat="x in valueQuestion[0]"
         ng-style="placeGemLabel({{$index}})"
+        ng-click="loadForm({{$index}}, x.ValueOptions, x.Question)" 
         >{{x.BasicLabel}}</h5>
         <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           </polygon> -->
     <!-- </svg> -->
     <span id="questionProgressCounterHeading" ng-repeat="x in [1]" ng-style="placeProgress()">Select a Gem to Begin a Question</span>   
-    <svg id="bigPoly" style="z-index: 10;" ng-repeat="x in [1]" ng-style="hexStyle()" viewBox="0 0 300 300" > 
-      <g id="bigSpinObj" width="100px" height="100px" style="left:50%;">  
+    <svg id="bigPoly" ng-repeat="x in [1]" ng-style="hexStyle()" viewBox="0 0 300 300" > 
+      <g id="bigSpinObj" >  
                 <animateTransform attributeName="transform"
                                   attributeType="XML"
                                   type="rotate"

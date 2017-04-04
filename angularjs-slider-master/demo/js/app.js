@@ -68,7 +68,7 @@ app.controller('MainCtrl',
   //upon the controller being opened, execute this function
   
   $scope.$on('$ionicView.afterEnter', function(){
-    $scope.drawBigHex();
+    // $scope.drawBigHex();
     $scope.appendToMenu();
     $scope.GetColours("blar");
     // console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
@@ -84,7 +84,8 @@ app.controller('MainCtrl',
                                   document.getElementById(poly_elem_Name),
                                   document.getElementById(text_elem_Name));
       AnswerListener.setQuestionAnswered(false);
-      $scope.showStorage();
+      $scope.checkCompletionStatus();
+      // $scope.showStorage();
     } 
     // console.log(typeof sessionStorage.getItem("Q1"));
   });
@@ -95,6 +96,18 @@ app.controller('MainCtrl',
     });
   }
 
+  $scope.checkCompletionStatus = function() {
+     var answers = new Array(0);
+     Object.keys(sessionStorage).forEach(function(elem, index) {
+      
+      if(elem.indexOf("Question: ") != -1) {
+        console.log(elem);
+        answers.push(sessionStorage.getItem(elem));
+      }
+      console.log(answers);
+      
+    });
+  }
 
   $scope.changeCompletedGem = function(gemIndex, answerIndex, polyElem, textElem) {
     // console.log(gemIndex, answerIndex, polyElem, textElem) ;
@@ -226,6 +239,8 @@ app.controller('MainCtrl',
         var gem = new Gem(container, g);
         var width = container.width.baseVal.value;
         var height = container.height.baseVal.value;
+        container.style.height = "100px";
+        container.style.width = "100px";
         gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
@@ -244,9 +259,19 @@ app.controller('MainCtrl',
                 "position": "absolute",
                 "display": "block",
                 "float": "left",
+             //    "margin-left": "50vw",
+             // "margin-right": "50vw",
                 "border-radius": "50%",
               };
   }
+
+  $scope.return100 = function() {
+    return {
+            "width": "1000px",
+            "height": "1000px",
+    };
+  }
+
 
   $scope.placeGemLabel = function(index) {
     var width = (document.getElementById("shapeContainer").offsetWidth)/2;
@@ -262,8 +287,10 @@ app.controller('MainCtrl',
     heading.style.top = top + "px";
 
     return {"position": "absolute",
+            "width": "100px",
+            "height": "100px",
             "font-size": "22",
-             "margin": "auto",
+
              "color": "white",
              "display": "block",
              "text-align": "center",
@@ -304,73 +331,35 @@ app.controller('MainCtrl',
   $scope.drawBigHex = function() {
     // console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
     var hex= document.getElementById("bigPoly");
-    // var shapeContainer = document.getElementById("hexCanvas");
-    // console.log("hexCanvas dims:", $("#hexCanvas").width(), $("#hexCanvas").height());
-    // $scope.setHexCanvasStyle(hex, $("#shapeContainer"));
-    // var c = hex.getContext("2d");
-    // c.width = shapeContainer.innerWidth;
-    // c.height = shapeContainer.innerHeight;
-    // var points = $scope.getPolyGon($("#shapeContainer").width(), ($("#shapeContainer").height()));
-    // console.log(points[0].x/2, points[0].y/2);
-    // console.log("start at ", points[0].x, points[0].y);
-    // document.getElementById("bigPoly").setAttribute("points", "100,0 50,0 100,100");
-    // console.log($("#Q1gem")[0].points);
-    // c.beginPath();              
-    // c.lineWidth = "5";
-    // c.strokeStyle = "green";  // Green path
-    // c.moveTo(200, 0);
-    // // c.moveTo(points[0].x/2, points[0].y/2);
-    // // c.moveTo(0, 31);
-    // c.lineTo(points[1].x/2, points[1].y/2);
-    // c.stroke();  
-    // c.closePath();
-    // // Draw it
-
-
-
-    // c.beginPath();
-    // c.lineWidth="5";
-    // c.strokeStyle="green";
-          
-    
-    // //draw path
-    
-    //   c.beginPath();
-    //   c.moveTo(points[0].x, points[0].y);
-    //   for(var i = 1; i < points.length; i++) {
-    //     // console.log(i, "Move to", points[i-1].x, points[i-1].y, " Line to", points[i].x, points[i].y)
-        
-    //     c.lineTo(points[i].x, points[i].y);
-    //   }
-    //   c.strokeStyle = "#000000";
-    //   c.lineWidth = "0";
-    //   c.stroke();
-    //   c.fill();
-    //   c.closePath();
     //draw
     var width = (document.getElementById("shapeContainer").offsetWidth/2);
     var height = (document.getElementById("shapeContainer").offsetHeight/2);
     $scope.gem = new Gem("shapeContainer", "bigSpinObj");
-    $scope.gem.createGem(height, width, 'Greys', 'Greys', document.getElementById("bigSpinObj"), true);
-    // console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x), ($scope.getPolyGon(width , height)[index].y -100));
-    // console.log(heading, $scope.getPolyGon(width, height)[index].x, $scope.getPolyGon(width , height)[index].y);
+    $scope.gem.createGem(height, height, 'Greys', 'Greys', document.getElementById("bigSpinObj"), true);
     }
 
     $scope.hexStyle = function() {
       var width = (document.getElementById("shapeContainer").offsetWidth)/2;
       var height = (document.getElementById("shapeContainer").offsetHeight)/2;
-      var distance = (Math.abs($scope.getPolyGon(width, height)[3].x - $scope.getPolyGon(width, height)[1].x) + "px")
-      console.log(width, distance);
+      var float = 15e-1;
+      var distance = (Math.abs($scope.getPolyGon(width, height)[3].x - $scope.getPolyGon(width, height)[1].x)*float + "px")
+      // console.log(width, distance, float);
       return {
                 // "left": ($scope.getPolyGon(width, height)[3].x + "px"),           
                 // "left": width - distance,           
+                // "left": (($scope.getPolyGon(width, height)[1].x)*float) - ((document.getElementById("shapeContainer").offsetWidth)/2) - (Math.abs($scope.getPolyGon(width, height)[3].x)) + "px",
                 // "top": (height + "px"),
-                // "width": "100%",
-                // "height": "100%",
-                "position": "absolute",
-                "display": "block",
-                "float": "left",
-                "border-radius": "50%",
+                "z-index": "-1",
+                "margin-left": "10vw",
+                "margin-right": "10vw",
+                "margin-top": "10vh",
+                "margin-bottom": "10vh",
+                "width": distance,
+                "height": distance,
+                // "position": "absolute",
+                // "display": "block",
+                // "float": "left",
+                "border-radius": "100%",
               };
     }
 
