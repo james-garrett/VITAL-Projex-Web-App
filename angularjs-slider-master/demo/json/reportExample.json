@@ -1,0 +1,249 @@
+{
+  "Results":[
+    {
+      "Q": "Q01",
+      "Response": -2,
+      "ValueToGrowIn": "Courage",
+      "Rank": 1,
+      "Definition": "Bravery in the face of fear. You do and say the right thing even when it is hard or scary. You try new things and admit mistakes. courage is the fuel needed to grow in many other values."
+    },
+    {
+      "Q": "Q02",
+      "Response": 0,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q03",
+      "Response": -1,
+      "ValueToGrowIn": "Moderation",
+      "Rank": 2,
+      "Definition": "Recognising that too much of any good thing is bad. Avoiding the extremes in our actions or opinions and finding a balance between too much and too little."
+    },
+    {
+      "Q": "Q04",
+      "Response": -2,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q05",
+      "Response": 2,
+      "ValueToGrowIn": "Faith/Faithful",
+      "Rank": 3,
+      "Definition": "Complete confidence in what you believe and you are a person who does what they say or promise. Includes loyalty and being trustworthy."
+    },
+    {
+      "Q": "Q06",
+      "Response": -1,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q07",
+      "Response": -1,
+      "ValueToGrowIn": "Confidence",
+      "Rank": 4,
+      "Definition": "Feeling sure of yourself and enjoying trying new things without letting doubts and fears hold you back."
+    },
+    {
+      "Q": "Q08",
+      "Response": -1,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q09",
+      "Response": 1,
+      "ValueToGrowIn": "Responsibility",
+      "Rank": 5,
+      "Definition": "For yourself is to \"respond with ability\" after you have created a healthy balance between work and play, rest and excercise. If you say \"yes\" then people can count on you and you accept accountability for your actions. Responsibility for others can easily overstep boundaries. It is vitally important to develop good boundaries. boundaries allow you to be conceerned for others without becoming over involved or controlling on other's lives. This involves Detachment."
+    },
+    {
+      "Q": "Q10",
+      "Response": 1,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q11",
+      "Response": 2,
+      "ValueToGrowIn": "Determined",
+      "Rank": 6,
+      "Definition": "You focus your energy and efforts on a challenging task and stick with it until it is finished. Determination makes dreams come true."
+    },
+    {
+      "Q": "Q12",
+      "Response": -2,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q13",
+      "Response": -1,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q14",
+      "Response": 1,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q15",
+      "Response": 2,
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q16",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q17",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q18",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q19",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "Q20",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Strong values",
+      "Rank": "Rank",
+      "Definition": "Definition"
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Courage",
+      "Rank": 1,
+      "Definition": "Bravery in the face of fear. You do and say the right thing even when it is hard or scary. You try new things and admit mistakes. courage is the fuel needed to grow in many other values."
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Present, Mindfulness",
+      "Rank": 2,
+      "Definition": "Mindfulness focusses your full attention only on what is happening at the present time. Being aware of your own thoughts, feelings and sensations without judging them."
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Detachment",
+      "Rank": 3,
+      "Definition": "Experiencing your feelings without allowing your feelings to control you. It stops letting others have power over you. Instead of reacting, with detachment you are free to choose how you will act so you can make smart choices."
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Self-aware",
+      "Rank": 4,
+      "Definition": "Being aware of your guit feelings and conscious of your own abilities (or lack of), your likes and dislikes."
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Respectfulness",
+      "Rank": 5,
+      "Definition": "Speaking and acting kindly to others. Highly regarding and valuing others, treating them with dignity and being considerate."
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "",
+      "Rank": "",
+      "Definition": ""
+    },
+    {
+      "Q": "",
+      "Response": "",
+      "ValueToGrowIn": "Perspective",
+      "Rank": 6,
+      "Definition": "Using Detachment, this is gaining the proper or accurate point of view or the ability to see the big picture objectively. Collecting and accepting all the relevant data (negative and positive) towards normalising our feelings towards people and things. Often gained by believing people you trust."
+    }
+  ]
+}

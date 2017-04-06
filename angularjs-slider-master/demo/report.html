@@ -4,7 +4,7 @@
     <h1>Question One</h1>
   
 </ion-header-bar> -->
-<ion-content data-ng-controller="QuestionFormCreator" data-ng-init="init()" >
+<ion-content data-ng-controller="ReportCreator" data-ng-init="init()" >
 <header><h3 id="questionHeadingOnForm">a</h3></header>
     <!-- Only adjust width for shape size -->
   <h4>
@@ -35,19 +35,45 @@
   <h5 class="valueExplanation">aaaaa</h5>
 
   <article class="DescriptionBox">
-    <ion-list >
-      <ion-item ng-class="{active: isGroupShown(QDh3)}" id="pane1" >Slider Response
+    <ion-list>
+      <ion-item>Survey Report
         <ion-item ng-show="isGroupShown(pane1)" >
-        <div class="Q1slider" id="slider1">
-          <rzslider class="with-legend"
-            rz-slider-model="slider_ticks_legend.value"
-            rz-slider-options="slider_ticks_legend.options"
-            >
-          </rzslider>
+        <div class="BestValues">
+        <div class="row header">
+          <div class="col col-10">Q</div>
+          <div class="col col-10">Response</div>
+          <div class="col col-20" style="word-wrap: break-word; ">Value To Grow In</div>
+          <div class="col col-10">Rank</div>
+          <div class="col col-50">Definition</div>
+        </div>
+        <div class="row" ng-repeat="report in valueSummary[0]">
+          <div class="col col-10">{{report.Q}}</div>
+          <div class="col col-10">{{report.Response}}</div>
+          <div class="col col-20">{{report.ValueToGrowIn}}</div>
+          <div class="col col-10"">{{report.Rank}}</div>
+          <div class="col col-50">{{report.Definition}}</div>
+        </div>
+          <!-- <svg id="QshapeContainer" width="60%" height="20%" viewBox="0 0 300 300">
+        
+        <!-- <svg id ="prettyGem"> -->
+        <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
+            <!-- <g id="spinObj" width="60%" height="20%"> 
+              <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="0 150 150"
+                          to="360 150 150"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+
+            </g>
+          </svg>
+          <span>Rank</span>
+          <span>Value definition explanation</span> --> -->
         </div>
         </ion-item>
         </ion-item>
-          <div class="inputBox" >
+      <div class="WorstValues" >
             <h3 id="QDh3">Please list key words in the box so you can remember what you were thinking.</h3>
             <textarea id="txt" rows="3" cols="80" placeholder="Please list any further thoughts you have here as key words"></textarea>
             <br>

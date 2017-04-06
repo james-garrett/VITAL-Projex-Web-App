@@ -23,9 +23,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'menu.html'
   })
   
-  .state('last', {
-    url: '/last',
-    templateUrl: 'last.html'
+  .state('report', {
+    url: '/report',
+    templateUrl: 'report.html',
+    controller: 'ReportCreator'
   })
 
   .state('ParticipantStart', {
@@ -372,7 +373,7 @@ app.controller('MainCtrl',
   
   $scope.form = null;
   $scope.valueQuestion = new Array(0);
-  JSONData.getJSONDataFromFile('json/questions.json');
+  JSONData.getJSONDataFromFile('json/questions.json', "questions");
   $scope.valueQuestion = JSONData.returnQuestionJSONData();  
   // console.log(JSON.parse(sessionStorage.getItem("questionJSONData", $scope.valueQuestion)));
 
@@ -434,6 +435,22 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
       });
   }]);
 
+app.controller('ReportCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 
+                                        'Slider', 'JSONData', 'NotifyingService', 'Gem',
+  function($rootScope, $scope, $timeout, $uibModal, AnswerListener, Slider, 
+                                        JSONData, NotifyingService, Gem) {
+    // $scope.form = null;
+    // var gem = null;
+
+      $scope.init = function() {
+        JSONData.getJSONDataFromFile('json/reportExample.json', "report");         
+        $scope.valueSummary = JSONData.returnReportJSONData();
+        console.log($scope.valueSummary);
+      }
+
+      // $scope.init();
+
+}]);
 
 app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
   var Gem = function(container, appendingObj) {
@@ -573,6 +590,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 
 }]);
 
+
 app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'NotifyingService', 
               function($rootScope, $http, AnswerListener, JSONData, NotifyingService) {
     
@@ -670,25 +688,38 @@ app.factory('NotifyingService', function($rootScope) {
 
 app.service('JSONData', function() {
     var questionJSONData = new Array(0);
+    var reportJSONData = new Array(0);
     // $scope.loadJSON();
     var indexChosen = -1;
-    var getJSONDataFromFile = function(filename) {
+    var getJSONDataFromFile = function(filename, dataType) {
         var returnJSON = [];
         $.getJSON(filename, function(json) {
-          $.each(json.Questions, function(k, v) {
-            // console.log(k, v);
-          })
-          questionJSONData.push(json.Questions);
+          if(dataType == "questions") {
+            $.each(json.Questions, function(k, v) {
+              // console.log(k, v);
+            })
+            questionJSONData.push(json.Questions);
+          } else if(dataType == "report") {
+            console.log("report");
+            $.each(json.Results, function(k, v) {
+              // console.log(k, v);
+            })
+            reportJSONData.push(json.Results);
+          }
         });
       // console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
       if((typeof(questionJSONData) == "undefined") == true) {
         // console.log("qd is null");
       }
-      returnQuestionJSONData();
+      // returnQuestionJSONData();
     }
 
     var returnQuestionJSONData = function() {
       return questionJSONData;
+    }
+
+    var returnReportJSONData = function() {
+      return reportJSONData;
     }
 
     var setIndex = function(field) {
@@ -702,6 +733,7 @@ app.service('JSONData', function() {
     return {
       getJSONDataFromFile: getJSONDataFromFile,
       returnQuestionJSONData: returnQuestionJSONData,
+      returnReportJSONData: returnReportJSONData,
       getIndex: getIndex,
       setIndex: setIndex,
     };

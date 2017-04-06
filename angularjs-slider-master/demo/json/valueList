@@ -1,0 +1,702 @@
+[
+  {
+    "VID": 1,
+    "Value": "Courage",
+    "Score": 12,
+    "Unique Rank": 1,
+    "": ""
+  },
+  {
+    "VID": 2,
+    "Value": "Detachment",
+    "Score": 8,
+    "Unique Rank": 3,
+    "": ""
+  },
+  {
+    "VID": 3,
+    "Value": "Moderation",
+    "Score": 3,
+    "Unique Rank": 18,
+    "": ""
+  },
+  {
+    "VID": 4,
+    "Value": "Present, Mindfulness",
+    "Score": 9,
+    "Unique Rank": 2,
+    "": "CREATE A WORD CLOUD WITH THIS???"
+  },
+  {
+    "VID": 5,
+    "Value": "Respectfulness",
+    "Score": 6,
+    "Unique Rank": 6,
+    "": ""
+  },
+  {
+    "VID": 6,
+    "Value": "Acceptance",
+    "Score": 4,
+    "Unique Rank": 13,
+    "": ""
+  },
+  {
+    "VID": 7,
+    "Value": "Adaptable",
+    "Score": 3,
+    "Unique Rank": 17,
+    "": ""
+  },
+  {
+    "VID": 8,
+    "Value": "Self-discipline",
+    "Score": 6,
+    "Unique Rank": 5,
+    "": ""
+  },
+  {
+    "VID": 9,
+    "Value": "Determined",
+    "Score": 4,
+    "Unique Rank": 12,
+    "": ""
+  },
+  {
+    "VID": 10,
+    "Value": "Wisdom",
+    "Score": 5,
+    "Unique Rank": 9,
+    "": ""
+  },
+  {
+    "VID": 11,
+    "Value": "Self-aware",
+    "Score": 6,
+    "Unique Rank": 4,
+    "": ""
+  },
+  {
+    "VID": 12,
+    "Value": "Confidence",
+    "Score": 5,
+    "Unique Rank": 8,
+    "": ""
+  },
+  {
+    "VID": 13,
+    "Value": "Meekness",
+    "Score": 2,
+    "Unique Rank": 25,
+    "": ""
+  },
+  {
+    "VID": 14,
+    "Value": "Empathy",
+    "Score": 3,
+    "Unique Rank": 16,
+    "": ""
+  },
+  {
+    "VID": 15,
+    "Value": "Perspective",
+    "Score": 5,
+    "Unique Rank": 7,
+    "": ""
+  },
+  {
+    "VID": 16,
+    "Value": "Faith/Faithful",
+    "Score": 3,
+    "Unique Rank": 15,
+    "": ""
+  },
+  {
+    "VID": 17,
+    "Value": "Kindness",
+    "Score": 2,
+    "Unique Rank": 24,
+    "": ""
+  },
+  {
+    "VID": 18,
+    "Value": "Responsibility",
+    "Score": 3,
+    "Unique Rank": 14,
+    "": ""
+  },
+  {
+    "VID": 19,
+    "Value": "Humility",
+    "Score": 2,
+    "Unique Rank": 23,
+    "": ""
+  },
+  {
+    "VID": 20,
+    "Value": "Restraint",
+    "Score": 4,
+    "Unique Rank": 11,
+    "": ""
+  },
+  {
+    "VID": 21,
+    "Value": "Initiative",
+    "Score": 0,
+    "Unique Rank": 100,
+    "": ""
+  },
+  {
+    "VID": 22,
+    "Value": "Cooperation",
+    "Score": 2,
+    "Unique Rank": 22,
+    "": ""
+  },
+  {
+    "VID": 23,
+    "Value": "Optimism / Hope",
+    "Score": 0,
+    "Unique Rank": 99,
+    "": ""
+  },
+  {
+    "VID": 24,
+    "Value": "Cautious, alert",
+    "Score": 0,
+    "Unique Rank": 98,
+    "": ""
+  },
+  {
+    "VID": 25,
+    "Value": "Improvement",
+    "Score": 0,
+    "Unique Rank": 97,
+    "": ""
+  },
+  {
+    "VID": 26,
+    "Value": "Tenacity",
+    "Score": 0,
+    "Unique Rank": 96,
+    "": ""
+  },
+  {
+    "VID": 27,
+    "Value": "Assertiveness",
+    "Score": 0,
+    "Unique Rank": 95,
+    "": ""
+  },
+  {
+    "VID": 28,
+    "Value": "Self-control",
+    "Score": 1,
+    "Unique Rank": 30,
+    "": ""
+  },
+  {
+    "VID": 29,
+    "Value": "Willing",
+    "Score": 0,
+    "Unique Rank": 94,
+    "": ""
+  },
+  {
+    "VID": 30,
+    "Value": "Tactfulness",
+    "Score": 2,
+    "Unique Rank": 21,
+    "": ""
+  },
+  {
+    "VID": 31,
+    "Value": "Consideration",
+    "Score": 0,
+    "Unique Rank": 93,
+    "": ""
+  },
+  {
+    "VID": 32,
+    "Value": "Integrity",
+    "Score": 0,
+    "Unique Rank": 92,
+    "": ""
+  },
+  {
+    "VID": 33,
+    "Value": "Trust",
+    "Score": 1,
+    "Unique Rank": 29,
+    "": ""
+  },
+  {
+    "VID": 34,
+    "Value": "Compassion",
+    "Score": 0,
+    "Unique Rank": 91,
+    "": ""
+  },
+  {
+    "VID": 35,
+    "Value": "Sincerity",
+    "Score": 0,
+    "Unique Rank": 90,
+    "": ""
+  },
+  {
+    "VID": 36,
+    "Value": "Truthfulness",
+    "Score": 0,
+    "Unique Rank": 89,
+    "": ""
+  },
+  {
+    "VID": 37,
+    "Value": "Prudence",
+    "Score": 1,
+    "Unique Rank": 28,
+    "": ""
+  },
+  {
+    "VID": 38,
+    "Value": "Forgiveness",
+    "Score": 0,
+    "Unique Rank": 88,
+    "": ""
+  },
+  {
+    "VID": 39,
+    "Value": "Thoughtfulness",
+    "Score": 1,
+    "Unique Rank": 27,
+    "": ""
+  },
+  {
+    "VID": 40,
+    "Value": "Discernment",
+    "Score": 1,
+    "Unique Rank": 26,
+    "": ""
+  },
+  {
+    "VID": 41,
+    "Value": "Empowered",
+    "Score": 4,
+    "Unique Rank": 10,
+    "": ""
+  },
+  {
+    "VID": 42,
+    "Value": "Unoffendable",
+    "Score": 0,
+    "Unique Rank": 87,
+    "": ""
+  },
+  {
+    "VID": 43,
+    "Value": "Resolve",
+    "Score": 0,
+    "Unique Rank": 86,
+    "": ""
+  },
+  {
+    "VID": 44,
+    "Value": "Peacefulness",
+    "Score": 2,
+    "Unique Rank": 20,
+    "": ""
+  },
+  {
+    "VID": 45,
+    "Value": "Helpfulness",
+    "Score": 0,
+    "Unique Rank": 85,
+    "": ""
+  },
+  {
+    "VID": 46,
+    "Value": "SPARE",
+    "Score": 0,
+    "Unique Rank": 84,
+    "": ""
+  },
+  {
+    "VID": 47,
+    "Value": "Diligence",
+    "Score": 0,
+    "Unique Rank": 83,
+    "": ""
+  },
+  {
+    "VID": 48,
+    "Value": "Authenticity",
+    "Score": 0,
+    "Unique Rank": 82,
+    "": ""
+  },
+  {
+    "VID": 49,
+    "Value": "Reliable",
+    "Score": 0,
+    "Unique Rank": 81,
+    "": ""
+  },
+  {
+    "VID": 50,
+    "Value": "Resilience",
+    "Score": 0,
+    "Unique Rank": 80,
+    "": ""
+  },
+  {
+    "VID": 51,
+    "Value": "Courteousness",
+    "Score": 2,
+    "Unique Rank": 19,
+    "": ""
+  },
+  {
+    "VID": 52,
+    "Value": "Patience",
+    "Score": 0,
+    "Unique Rank": 79,
+    "": ""
+  },
+  {
+    "VID": 53,
+    "Value": "Motivation",
+    "Score": 0,
+    "Unique Rank": 78,
+    "": ""
+  },
+  {
+    "VID": 54,
+    "Value": "Openness, Transparency",
+    "Score": 0,
+    "Unique Rank": 77,
+    "": ""
+  },
+  {
+    "VID": 55,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 56,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 57,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 58,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 59,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 60,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 61,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 62,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 63,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 64,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 65,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 66,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 67,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 68,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 69,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 70,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 71,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 72,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 73,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 74,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 75,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 76,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 77,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 78,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 79,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 80,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 81,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 82,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 83,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 84,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 85,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 86,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 87,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 88,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 89,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 90,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 91,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 92,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 93,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 94,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 95,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 96,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 97,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 98,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 99,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  },
+  {
+    "VID": 100,
+    "Value": "",
+    "Score": 0,
+    "Unique Rank": "",
+    "": ""
+  }
+]
