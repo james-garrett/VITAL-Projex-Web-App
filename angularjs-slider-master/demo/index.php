@@ -36,7 +36,7 @@
     <ion-nav-view animation="slide-left-right">
       <ion-content>
       <!-- <p style="font-size: 64px; text-align: center; font-family: Title; color: white;">Character Selfie</p> -->
-      <img src="lib/images/BasicLogo.png" height="300px" width="350px" style="margin-left:30%; margin-right:30%;"></img>
+      <!-- <img src="lib/images/BasicLogo.png" height="300px" width="350px" style="margin-left:30%; margin-right:30%;"></img> -->
         <div class="wrapper">
           <h1 id="mainh1" style="font-family:'Ubuntu'; color:white;">Welcome!</h1>
           <h4 id="mainh4">Choose a user type to begin.
