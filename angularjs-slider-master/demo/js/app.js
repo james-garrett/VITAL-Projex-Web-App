@@ -454,14 +454,14 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
 
       $scope.init = function() {
         var trace1 = {
-          x: [1, 2, 3, 4],
-          y: [0, 2, 3, 5],
-          fill: 'tozeroy',
+          x: [0, -3, -5, -4],
+          y: [0, 1, 2, 3],
+          // fill: 'tozeroy',
           type: 'scatter'
         };
         var trace2 = {
-          x: [1, 2, 3, 4],
-          y: [3, 5, 1, 7],
+          x: [0, 3, 5, 4],
+          y: [0, 1, 2, 3],
           fill: 'tonexty',
           type: 'scatter'
         };
