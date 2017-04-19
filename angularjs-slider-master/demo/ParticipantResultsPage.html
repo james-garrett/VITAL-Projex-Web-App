@@ -1,0 +1,69 @@
+<ion-view>
+<!-- <ion-header-bar class="q1-header">
+  
+    <h1>Question One</h1>
+  
+</ion-header-bar> -->
+<ion-content data-ng-controller="ParticipantResultsCreator" data-ng-init="init()" >
+<header><h3 id="questionHeadingOnForm">a</h3></header>
+    <!-- Only adjust width for shape size -->
+  <h4>
+    <span id="gemLabel" width="35%" font-family="Ubuntu" font-size="33" font-style="bold" fill="white" ></span>
+  </h4>
+  <svg id="QshapeContainer" width="60%" height="20%" viewBox="0 0 300 300">
+        
+        <!-- <svg id ="prettyGem"> -->
+        <!-- <polygon class="gem" fill="#DA126D" stroke="#DA126D"  points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20"> -->
+        <g id="spinObj" width="60%" height="20%"> 
+          <animateTransform attributeName="transform"
+                          attributeType="XML"
+                          type="rotate"
+                          from="0 150 150"
+                          to="360 150 150"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+
+      </g>
+        <!-- <span id="subGemLabel21" x="13%" y="60%"  font-family="Ubuntu" font-size="33" fill="white"></span>
+        <span id="subGemLabel22" x="13%" y="70%" font-family="Ubuntu" font-size="33" fill="white"></span> -->
+      <!-- https://codepen.io/cwmanning/pen/Hugye -->
+      <!-- </svg> -->
+      <!-- </polygon> -->
+    </svg>
+        
+  <!-- </svg> -->
+  <h5 class="valueExplanation">aaaaa</h5>
+  <div id="myDiv" style="width: 100%;"></div>
+  
+  <!-- <article class="DescriptionBox">
+    <ion-list >
+      <ion-item ng-class="{active: isGroupShown(QDh3)}" id="pane1" >Slider Response
+        <ion-item ng-show="isGroupShown(pane1)" >
+        <div class="Q1slider" id="slider1">
+          <rzslider class="with-legend"
+            rz-slider-model="slider_ticks_legend.value"
+            rz-slider-options="slider_ticks_legend.options"
+            >
+          </rzslider>
+        </div>
+        </ion-item>
+        </ion-item>
+          <div class="inputBox" >
+            <h3 id="QDh3">Please list key words in the box so you can remember what you were thinking.</h3>
+            <textarea id="txt" rows="3" cols="80" placeholder="Please list any further thoughts you have here as key words"></textarea>
+            <br>
+            <button id="finish" class="button icon-right ion-android-create" onclick="backToMenu()">Finish Question</button>
+          </div>
+    </ion-list>
+  </article> -->
+
+</ion-content>
+
+
+</div>
+
+<script src="../Proj/node_modules/angular-1.6.1/angular.js"></script>
+<script src="./lib/ui-bootstrap-tpls.js"></script>
+<script src="../dist/rzslider.js"></script>
+<script src="demo2.js"></script>
+</ion-view>

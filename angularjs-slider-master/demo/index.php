@@ -28,6 +28,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="hexagonGenerator.js"></script>
   <script src="trianglify.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body ng-controller="MainCtrl"> 

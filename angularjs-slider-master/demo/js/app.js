@@ -29,6 +29,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'ReportCreator'
   })
 
+  .state('ParticipantResultsPage', {
+    url: '/ParticipantResultsPage',
+    templateUrl: 'ParticipantResultsPage.html',
+    controller: 'ParticipantResultsCreator'
+  })
+
+
   .state('ParticipantStart', {
     url: '/ParticipantStart',
     templateUrl: 'ParticipantStart.php'
@@ -434,6 +441,41 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         // console.log(array);
       });
   }]);
+
+
+
+
+app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 
+                                        'Slider', 'JSONData', 'NotifyingService', 'Gem',
+  function($rootScope, $scope, $timeout, $uibModal, AnswerListener, Slider, 
+                                        JSONData, NotifyingService, Gem) {
+    // $scope.form = null;
+    // var gem = null;
+
+      $scope.init = function() {
+        var trace1 = {
+          x: [1, 2, 3, 4],
+          y: [0, 2, 3, 5],
+          fill: 'tozeroy',
+          type: 'scatter'
+        };
+        var trace2 = {
+          x: [1, 2, 3, 4],
+          y: [3, 5, 1, 7],
+          fill: 'tonexty',
+          type: 'scatter'
+        };
+        var data = [trace1, trace2];
+
+        Plotly.newPlot('myDiv', data);
+        // JSONData.getJSONDataFromFile('json/reportExample.json', "report");         
+        // $scope.valueSummary = JSONData.returnReportJSONData();
+        // console.log($scope.valueSummary);
+      }
+
+      // $scope.init();
+
+}]);
 
 app.controller('ReportCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 
                                         'Slider', 'JSONData', 'NotifyingService', 'Gem',
