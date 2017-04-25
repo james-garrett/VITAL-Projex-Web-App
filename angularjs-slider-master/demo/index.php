@@ -54,6 +54,10 @@
     </ion-nav-view>
   </div>
 </body>
+<script type="text/javascript">
+	localStorage.clear();
+	sessionStorage.clear();	
+</script>
 <!-- <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script> -->
 <script src="./lib/ui-bootstrap-tpls.js"></script>
 <script src="../dist/rzslider.js"></script>

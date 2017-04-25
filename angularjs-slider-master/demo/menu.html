@@ -4,7 +4,7 @@
     <h1>Question One</h1>
   
 </ion-header-bar> -->
-<ion-content data-ng-controller="MainCtrl" >
+<ion-content data-ng-controller="MainCtrl" onkeypress="$scope.shortcut(event)">
 <!-- <header><h2 id="questionHeading">QUESTION 1</h2></header> -->
   <div id="header">
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
@@ -48,7 +48,7 @@
         <!-- <polygon id="bigPoly" points="300, 150 225, 280 75, 280 0, 150 75, 20 225, 20">
           </polygon> -->
     <!-- </svg> -->
-    <span id="questionProgressCounterHeading" ng-repeat="x in [1]" ng-style="placeProgress()">Select a Gem to Begin a Question</span>   
+    <!-- <span id="questionProgressCounterHeading" ng-repeat="x in [1]" ng-style="placeProgress()">Select a Gem to Begin a Question</span>    -->
     <svg id="bigPoly" ng-repeat="x in [1]" ng-style="hexStyle()" viewBox="0 0 300 300" > 
       <g id="bigSpinObj" >  
                 <animateTransform attributeName="transform"
@@ -63,6 +63,7 @@
       </svg>
       
     </div>
+
 
 </ion-content>
 

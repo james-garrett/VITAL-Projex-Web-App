@@ -422,12 +422,8 @@
   		border: solid 1px grey;
   		border-bottom-style: none;
   		border-right-style: none;
-  		/*		width: 8%;
-  		padding: 0%;
-  		margin: 0%;*/
-  		vertical-align: baseline;
-  		width: 50px;
-  }
+  		width: 8%;
+ 	}
 
 	.colResponse {
   		border: solid 1px grey;
@@ -451,17 +447,19 @@
   		border: solid 1px grey;
   		border-bottom-style: none;
   		border-right-style: none;
-  		word-wrap: break-word;
- }
+	}
 
 
 	.col:last-child {
   		border-right: solid 1px grey;
-  		word-wrap: break-word;
-  		/* height: 100%; */
-  		width: 100%;
- }
+	}
 
 	.row:last-child .col {
   		border-bottom: solid 1px grey;
+	}
+
+	.main-svg {
+		margin-left: 100px;
+		margin-right: 100px;
+		/* right: 1000px; */
 	}
