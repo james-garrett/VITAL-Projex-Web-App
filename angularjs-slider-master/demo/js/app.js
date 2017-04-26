@@ -475,30 +475,84 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
     var labels = new Array();
     var xAxis = new Array();
     var yAxis = new Array();
+      
       $scope.init = function() {
         $scope.generatePlot();
         var trace1 = {
           x: x,
           y: [0, 1, 2, 3, 4],
           // fill: 'tozeroy',
-          type: 'scatter'
+          type: 'scatter',
+          // name: 'Your Projection',
+          showlegend: false
         };
         var trace2 = {
           x: x2,
           y: [0, 1, 2, 3, 4],
           fill: 'tonexty',
+          type: 'scatter',
+          name: 'Your Projection'
+        };
+
+        var trace3 = {
+          x: [0, 1, 1, 1, 2],
+          y: [0, 1, 2, 3, 4],
+          showlegend: false,
+          // fill: 'tonexty',
+          // name: 'Ideal Projection',
           type: 'scatter'
         };
-        var data = [trace1, trace2];
+
+        var trace4 = {
+          x: [0, -1, -1, -1, -2],
+          y: [0, 1, 2, 3, 4],
+          fill: 'tonexty',
+          name: 'Ideal Projection',
+          type: 'scatter',
+          
+        };
+
+        var data = [trace1, trace2, trace3, trace4];
         var layout = {
           title: 'Your Values vs The Ideal Value Set',
-
+          titlefont:{ family: 'title', size: 18, color: '#FFFFFF'},
+          margin: {
+            l:200,
+            r:100,
+            b:100,
+            t:100,
+            pad:40          
+          },
           width: 700,
+          paper_bgcolor: 'rgba(0,0,0, 0.7)',
+          plot_bgcolor: '#FFFFFF',
+          gridcolor: '#FFFFFF',
           height: 500,
-          showlegend: false,
-          xaxis: {title: 'Deviation from Balanced Value', tickvals:['-3', '-2', '-1', '0', '1', '2', '3'], ticktext: [-3, -2, -1, 0, 1, 2, 3]},
-          yaxis: {title: 'Value', tickvals:['0', '1', '2', '3', '4'],
-        ticktext: yAxis},
+          showlegend: true, 
+          legend: {
+            y: 0.3,
+            x: 1.2,
+            // "orientation": "h",
+            "bgcolor": "#FFFFFF"
+          },
+          xaxis: {title: 'Deviation from Balanced Value', 
+                    titlefont:{ family: 'title', size: 18, color: '#FFFFFF'}, 
+                    // tickcolor: '#000000',
+                    tickfont: {family: 'title', size: 12, color: '#FFFFFF'},
+                    tickvals: [-3, -2, -1, 0, 1, 2, 3], 
+                    ticktext: [-3, -2, -1, 0, 1, 2, 3],
+                    // gridcolor: '#000000'
+                    // color: '#FFFFFF',
+                    },
+
+          yaxis: {title: 'Core Value', 
+                    titlefont:{ family: 'title', size: 18, color: '#FFFFFF'}, 
+                    tickvals:['0', '1', '2', '3', '4'],
+                    // tickcolor: '#FFFFFF',
+                    tickfont: {family: 'title', size: 12, color: '#FFFFFF'},
+                    ticktext: yAxis},
+                    // gridcolor: '#000000',
+                    color: '#FFFFFF',
           annotations: labels
         };
         
@@ -516,7 +570,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
             var questionIndex = elem.replace('Question: ', '');
             // console.log(questionIndex, (JSON.parse(sessionStorage.getItem("QuestionData")))[0][0].BasicLabel, elem.replace('Question: ', ''), elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
-            // console.log(sessionStorage.getItem(elem));
+            console.log(sessionStorage.getItem(elem));
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("QuestionData")))[0][questionIndex].BasicLabel, 
                 rating: JSON.parse(sessionStorage.getItem("QuestionData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
@@ -558,7 +612,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             text: temp[i][1].rating,
             showarrow: true,
             arrowhead: 7,
-            ax: 200,
+            ax: 100,
             ay: -30
           });
           } else {
