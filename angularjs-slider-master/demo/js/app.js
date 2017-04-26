@@ -171,7 +171,6 @@ app.controller('MainCtrl',
     // var height = 400;
     // console.log(width, height);
     var corners = 5;
-    // console.log($scope.valueQuestion, width, height);
     //initial calculation
     var radius = 1;
     var angle = (Math.PI * 2) / corners;
@@ -351,7 +350,7 @@ app.controller('MainCtrl',
     var height = (document.getElementById("shapeContainer").offsetHeight/2);
     $scope.gem = new Gem("shapeContainer", "bigSpinObj");
     $scope.gem.createGem(height, height, 'Greys', 'Greys', document.getElementById("bigSpinObj"), true);
-    }
+    } 
 
     $scope.hexStyle = function() {
       var width = (document.getElementById("shapeContainer").offsetWidth)/2;
@@ -381,31 +380,12 @@ app.controller('MainCtrl',
     console.log("shortcut");
     if(e.keyCode ==97) {
       var sortingArray = new Array();
-      sessionStorage.setItem("Question: " + "1", 6);
-      sessionStorage.setItem("Question: " + "2", 5);
-      sessionStorage.setItem("Question: " + "3", 4);
-      sessionStorage.setItem("Question: " + "4", 3);
-      sessionStorage.setItem("Question: " + "5", 2);
-      Object.keys(sessionStorage).forEach(function(elem, index) {
-        var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
-        console.log(elem, sessionStorage.getItem(elem), newIndex);
-        // if(sortingArray.length == 0 ) {
-          sortingArray.push({question: elem, rating: sessionStorage.getItem(elem), order: newIndex});
-          
-        // }
-      });
-      console.log(sortingArray);
-      items = Object.keys(sortingArray).map(function(key) {
-        console.log(key, sortingArray[key].rating);
-        return [key, sortingArray[key]];
-      });
-      items.sort(function(first, second) {
-        console.log(second[1], first[1], second[1].order - first[1].order);
-        return second[1].order - first[1].order;
-      });
-      
-      console.log(items);
-
+      sessionStorage.setItem("Question: " + "0", 6);
+      sessionStorage.setItem("Question: " + "1", 5);
+      sessionStorage.setItem("Question: " + "2", 4);
+      sessionStorage.setItem("Question: " + "3", 3);
+      sessionStorage.setItem("Question: " + "4", 2);
+      location.href='#/ParticipantResultsPage';
       // console.log(sessionStorage.getItem("Question"));
     }
   });   
@@ -414,7 +394,8 @@ app.controller('MainCtrl',
   $scope.valueQuestion = new Array(0);
   JSONData.getJSONDataFromFile('json/questions.json', "questions");
   $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
-  // console.log($scope.valueQuestion[0]);
+  sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
+
   
   // console.log(JSONData.returnQuestionJSONData()[0]); 
   // console.log(JSON.parse(sessionStorage.getItem("questionJSONData", $scope.valueQuestion)));
@@ -441,7 +422,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         } else {
            var array = JSONData.returnQuestionJSONData()[0][index];
         }
-        // console.log("current question:", sessionStorage.getItem("currentIndex"), JSONData.getIndex());
+       
        
         // console.log(array);
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
@@ -487,16 +468,24 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
     // $scope.form = null;
     // var gem = null;
 
+
+    var x = new Array();
+    var y = new Array();
+    var x2 = new Array();
+    var labels = new Array();
+    var xAxis = new Array();
+    var yAxis = new Array();
       $scope.init = function() {
+        $scope.generatePlot();
         var trace1 = {
-          x: [0, -3, -5, -4],
-          y: [0, 1, 2, 3],
+          x: x,
+          y: [0, 1, 2, 3, 4],
           // fill: 'tozeroy',
           type: 'scatter'
         };
         var trace2 = {
-          x: [0, 3, 5, 4],
-          y: [0, 1, 2, 3],
+          x: x2,
+          y: [0, 1, 2, 3, 4],
           fill: 'tonexty',
           type: 'scatter'
         };
@@ -505,20 +494,10 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           width: 700,
           height: 500,
           showlegend: false,
-          annotations: [
-          {
-            x: -3,
-            y: 1,
-            xref: 'x',
-            yref: 'y',
-            text: 'Honesty',
-            showarrow: true,
-            arrowhead: 7,
-            ax: 0,
-            ay: -40
-
-          }
-          ]
+          xaxis: {tickvals:['1', '2', '3', '4', '5'], ticktext: [-3, -2, -1, 0, 1, 2, 3]},
+          yaxis: {tickvals:['0', '1', '2', '3', '4'],
+        ticktext: xAxis},
+          annotations: labels
         };
         
         Plotly.newPlot('myDiv', data, layout);
@@ -527,7 +506,67 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         // console.log($scope.valueSummary);
       }
 
+      $scope.orderResults = function() {
+        sortingArray = new Array();
+        console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0]);
+        Object.keys(sessionStorage).forEach(function(elem, index) {
+          if(elem.indexOf("Question: ") != -1) {
+            var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
+            var questionIndex = elem.replace('Question: ', '');
+            // console.log(questionIndex, (JSON.parse(sessionStorage.getItem("QuestionData")))[0][0].BasicLabel, elem.replace('Question: ', ''), elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
+            // console.log(sessionStorage.getItem(elem));
+            sortingArray.push({question: elem.replace('Question: ', ''), 
+                discourse: (JSON.parse(sessionStorage.getItem("QuestionData")))[0][questionIndex].BasicLabel, 
+                rating: JSON.parse(sessionStorage.getItem("QuestionData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
+                distanceFrom4: newIndex});
+          }
+          
+        // }
+        });
+        console.log(sortingArray);
+        items = Object.keys(sortingArray).map(function(key) {
+          // console.log(key, sortingArray[key].rating);
+          return [key, sortingArray[key]];
+        });
+        items.sort(function(first, second) {
+          // console.log(second[1], first[1], second[1].distanceFrom4 - first[1].distanceFrom4);
+          return first[1].distanceFrom4 - second[1].distanceFrom4;
+        });
+        
+        console.log(items);
+        return items;
+      }
+
+      $scope.generatePlot = function() {
+        temp = $scope.orderResults();
+        var t = new Array();
+        console.log(temp);
+        for(i=0; i < temp.length; i++) {
+          x[i] = temp[i][1].distanceFrom4;
+          x2[i] = x[i]*-1;
+          y[i] = i;
+          xAxis[i] = temp[i][1].discourse;
+          
+          labels.push({
+            x: x[i],
+            y: i,
+            xref: 'x',
+            yref: 'y',
+            text: temp[i][1].rating,
+            showarrow: true,
+            arrowhead: 7,
+            ax: 100,
+            ay: 0
+          });
+        }
+        
+        console.log(x, xAxis, xAxis[0]);
+        // (Question number (y), Value slider (x), value chosen (text))
+      }
+
       $scope.init();
+
+
 
 }]);
 
@@ -715,6 +754,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
     backToMenu = function() {
       console.log("Storing answer of " + JSONData.getIndex() + " " + AnswerListener.getInputValue());
       // console.log("triggered", AnswerListener.getInputValue(), typeof AnswerListener.getInputValue());
+      console.log(JSONData.getIndex());
       storeAnswer(JSONData.getIndex(), AnswerListener.getInputValue());
       AnswerListener.setQuestionAnswered(true);
       location.href='#/menu';
