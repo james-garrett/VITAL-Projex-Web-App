@@ -491,12 +491,14 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         };
         var data = [trace1, trace2];
         var layout = {
+          title: 'Your Values vs The Ideal Value Set',
+
           width: 700,
           height: 500,
           showlegend: false,
-          xaxis: {tickvals:['1', '2', '3', '4', '5'], ticktext: [-3, -2, -1, 0, 1, 2, 3]},
-          yaxis: {tickvals:['0', '1', '2', '3', '4'],
-        ticktext: xAxis},
+          xaxis: {title: 'Deviation from Balanced Value', tickvals:['-3', '-2', '-1', '0', '1', '2', '3'], ticktext: [-3, -2, -1, 0, 1, 2, 3]},
+          yaxis: {title: 'Value', tickvals:['0', '1', '2', '3', '4'],
+        ticktext: yAxis},
           annotations: labels
         };
         
@@ -545,9 +547,10 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           x[i] = temp[i][1].distanceFrom4;
           x2[i] = x[i]*-1;
           y[i] = i;
-          xAxis[i] = temp[i][1].discourse;
-          
-          labels.push({
+
+          yAxis[i] = temp[i][1].discourse;
+          if(i == 0) {
+            labels.push({
             x: x[i],
             y: i,
             xref: 'x',
@@ -555,9 +558,23 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             text: temp[i][1].rating,
             showarrow: true,
             arrowhead: 7,
-            ax: 100,
-            ay: 0
+            ax: 200,
+            ay: -30
           });
+          } else {
+            labels.push({
+            x: x[i],
+            y: i,
+            xref: 'x',
+            yref: 'y',
+            text: temp[i][1].rating,
+            showarrow: true,
+            arrowhead: 7,
+            ax: 80,
+            ay: 0
+          }); 
+          }
+          
         }
         
         console.log(x, xAxis, xAxis[0]);
