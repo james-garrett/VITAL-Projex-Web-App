@@ -12,21 +12,25 @@ $query="SELECT Question_Data FROM questiondata";
 $result=mysql_query($query) or die ("Query to get data from firsttable failed: ".mysql_error());
 
 // echo "<p>$result</p>";
-
+$to_encode = array();
 $numrows=mysql_num_rows($result);
 // echo "<p>The number of CDs in your database is: $numrows</p>";
 error_reporting(E_ALL ^ E_DEPRECATED);
 
-while ($row=mysql_fetch_array($result)) {
+// while ($row=mysql_fetch_array($result)) {
+    
     // echo "<pre>";                
-    print_r($row);
+    // print_r($row);
     // echo "</pre>";
-}         
+// }         
 
-while ($row=mysql_fetch_array($result)) {
-    $json=$row[Question_Data];
+while ($row = mysql_fetch_array($result)) {
+    $to_encode[] = $row;
+    // $json=$row[Question_Data];
+    // echo($row);
     // echo "$json";                
 }        
+echo json_encode($to_encode);
 
 mysql_close($link);
 

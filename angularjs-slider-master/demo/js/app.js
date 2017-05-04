@@ -960,21 +960,28 @@ app.service('JSONData', function() {
 
 app.service('PHPData', function() {
     // handles the click event, sends the query
-  var data = "";
+  var data = new Array(0);
   var getOutput = function() {
     // console.log("Doin it");
-     $.ajax({
-        url:'php/fetchFromServer.php',
-        complete: function (response) {
-            data = response.responseText;
-            // console.log(data.slice(1528, data.length-2));
-            console.log(data);
-        },
-        error: function () {
-            console.log("PHP info read failed");
-        }
+
+    //  $.getJSON('php/fetchFromServer.php', function(response) {    
+    //     $.each(response, function(fieldName, fieldValue) {
+    //       // data.push(response.responseText);
+    //       console.log(response, fieldName, fieldValue, response.responseText);
+    //       // $("#" + fieldName).val(fieldValue);          
+    //         });
+    //     data.push(response);
+    // });
+    // return false;
+
+    $.ajax({
+      url: "php/fetchFromServer.php",
+      dataType: "json",
+      success: function(jsonStuff, textStatus, jqXHR) {
+        data.push(jsonStuff)
+        console.log(textStatus);
+      }
     });
-    return false;
   }
 
   var returnPHPData = function() {
