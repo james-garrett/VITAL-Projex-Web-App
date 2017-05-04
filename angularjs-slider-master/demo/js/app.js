@@ -61,10 +61,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem',
-		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem) {
-    $scope.valueQuestion = new Array(0);
-    $scope.jsonData = {};
+	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem', 'PHPData',
+		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData) {
+      $scope.valueQuestion = new Array(0);
+      $scope.jsonData = {};
     
     $scope.callToGetJSONDATA = function() {
       // console.log(JSONData.getJSONDataFromFile('json/questions.json'));
@@ -392,6 +392,8 @@ app.controller('MainCtrl',
   
   $scope.form = null;
   $scope.valueQuestion = new Array(0);
+  PHPData.getOutput();
+  console.log(PHPData.returnPHPData());
   JSONData.getJSONDataFromFile('json/questions.json', "questions");
   $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
   sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
@@ -954,6 +956,35 @@ app.service('JSONData', function() {
       setIndex: setIndex,
     };
 
+});
+
+app.service('PHPData', function() {
+    // handles the click event, sends the query
+  var data = "";
+  var getOutput = function() {
+    // console.log("Doin it");
+     $.ajax({
+        url:'php/fetchFromServer.php',
+        complete: function (response) {
+            data = response.responseText;
+            // console.log(data.slice(1528, data.length-2));
+            console.log(data);
+        },
+        error: function () {
+            console.log("PHP info read failed");
+        }
+    });
+    return false;
+  }
+
+  var returnPHPData = function() {
+    return data;
+  }
+
+  return {
+    getOutput: getOutput,
+    returnPHPData: returnPHPData,
+  };
 });
 
 app.service('AnswerListener', function() {
