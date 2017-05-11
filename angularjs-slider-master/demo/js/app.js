@@ -160,7 +160,7 @@ app.controller('MainCtrl',
   } 
 
 
-  $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight) {
+  $scope.getPolyGon = function (drawingAreaWidth, drawingAreaHeight, corners) {
     // var c= document.getElementsByClassName("hexCanvas")[0];
     // console.log(c);
     // var hex = $("#hexCanvas");
@@ -169,8 +169,9 @@ app.controller('MainCtrl',
     // var width = 800;
     var height = drawingAreaHeight;
     // var height = 400;
-    // console.log(width, height);
-    var corners = 5;
+    corners = 8;
+    // console.log(corners);
+    // var corners = 5;
     //initial calculation
     var radius = 1;
     var angle = (Math.PI * 2) / corners;
@@ -247,7 +248,9 @@ app.controller('MainCtrl',
   $scope.appendToMenu = function() {
     // console.log("pha");
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
+      console.log(inputs);
       inputs.forEach(function(g, index) {
+        console.log(index);
         g = document.getElementById("spinObj" + index.toString());
         var container = inputs[index];
         var gem = new Gem(container, g);
@@ -263,13 +266,12 @@ app.controller('MainCtrl',
   
 
   $scope.placeGemOnDiv = function(index) {
+    // console.log(index);
     var width = (document.getElementById("shapeContainer").offsetWidth)/2;
     var height = (document.getElementById("shapeContainer").offsetHeight)/2;
-    // console.log("Placing gem on div", ($scope.getPolyGon(width, height)[index].x), ($scope.getPolyGon(width , height)[index].y -100));
-    // console.log(heading, $scope.getPolyGon(width, height)[index].x, $scope.getPolyGon(width , height)[index].y);
 
-    return {"left": $scope.getPolyGon(width, height)[index].x,           
-                "top": $scope.getPolyGon(width , height)[index].y,
+    return {"left": $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x,           
+                "top": $scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y,
                 "position": "absolute",
                 "display": "block",
                 "float": "left",
@@ -294,8 +296,8 @@ app.controller('MainCtrl',
     var heading = document.getElementById("Q" + index.toString() + "gemLabel");
     var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
     // console.log(index.toString(), gemBox.width);
-    var left = ($scope.getPolyGon(width, height)[index].x) + (gemBox.width.baseVal.value)/10;
-    var top = ($scope.getPolyGon(width, height)[index].y) + (gemBox.height.baseVal.value)/4;
+    var left = ($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x) + (gemBox.width.baseVal.value)/10;
+    var top = ($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].y) + (gemBox.height.baseVal.value)/4;
     // console.log(left, top);
     heading.style.left =  left + "px";
     heading.style.top = top + "px";
@@ -356,7 +358,7 @@ app.controller('MainCtrl',
       var width = (document.getElementById("shapeContainer").offsetWidth)/2;
       var height = (document.getElementById("shapeContainer").offsetHeight)/2;
       var float = 15e-1;
-      var distance = (Math.abs($scope.getPolyGon(width, height)[3].x - $scope.getPolyGon(width, height)[1].x)*float + "px");
+      var distance = (Math.abs($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[3].x - $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[1].x)*float + "px");
       // console.log(width, distance, float);
       return {
 
@@ -394,7 +396,8 @@ app.controller('MainCtrl',
   $scope.valueQuestion = new Array(0);
   PHPData.getOutput();
   console.log(PHPData.returnPHPData());
-  JSONData.getJSONDataFromFile('json/questions.json', "questions");
+  // JSONData.getJSONDataFromFile('json/newQuestions2.json', "questions");
+  JSONData.getJSONDataFromFile('json/questions2.json', "questions");
   $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
   sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
 
@@ -571,7 +574,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           if(elem.indexOf("Question: ") != -1) {
             var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
             var questionIndex = elem.replace('Question: ', '');
-            // console.log(questionIndex, (JSON.parse(sessionStorage.getItem("QuestionData")))[0][0].BasicLabel, elem.replace('Question: ', ''), elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
+            console.log(questionIndex, sessionStorage.getItem(elem), (JSON.parse(sessionStorage.getItem("QuestionData")))[0][0].BasicLabel, elem.replace('Question: ', ''), elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
             console.log(sessionStorage.getItem(elem));
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("QuestionData")))[0][questionIndex].BasicLabel, 
@@ -673,23 +676,20 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
       }
 
   this.setColorPalette = function(index) {
+    // console.log(index);
+    // console.log(palette[index]);
     var palette = [['Greens','YlGnBu','Purples'],
-
                      ['Blues','BuGn', 'YlOrRd'],
-
                      ['PuBuGn', 'PuBu', 'BuPu'],
-
                      ['RdPu', 'PuRd', 'OrRd'],
-
                      ['Blues', 'Reds', 'Oranges'],
-
                      ['Reds', 'PuOr', 'BrBG'],
-
                      ['PRGn', 'PiYG', 'RdBu'],
-
-                     ['RdGy', 'RdYIBu', 'Spectral'],
-
-                     ['Accent', 'Dark2', 'Paired']];
+                     ['PRGn', 'PiYG', 'RdBu'],
+                     ['PRGn', 'PiYG', 'RdBu'],
+                     ['PRGn', 'PiYG', 'RdBu'],
+                     // ['RdGy', 'RdYIBu', 'Spectral'],
+                     ['Spectral', 'RdYIBu', 'Paired']];
       // console.log("colors chosen ", palette[index]);
       return palette[index];
     }
@@ -732,7 +732,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   }
 
   this.createGem = function(gheight, gwidth, x_color, y_color, bg, solo) {
-    // console.log(gheight, gwidth, x_color, y_color, bg, solo);
+    console.log(gheight, gwidth, x_color, y_color, bg, solo);
     var pattern = Trianglify({
         height: gheight,
         width: gwidth,
@@ -925,10 +925,11 @@ app.service('JSONData', function() {
         // console.log("qd is null");
       }
       // returnQuestionJSONData();
+      console.log(numberOfQuestions);
     }
 
     var returnQuestionLength = function() {
-      return numberOfQuestions/2;
+      return (numberOfQuestions/2);
     }
 
     var returnQuestionJSONData = function() {

@@ -1,0 +1,3247 @@
+{
+   "Questions":[
+ {
+   "VID": 1,
+   "id": 2,
+   "Question": "Think of situation that could lead to a risk to yourself or someone else either physically or emotionally. How would you act in this situation?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Dread",
+            "action": "You feel full of Dread",
+            "definition": "Dry mouth; heart racing; trembling",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Panic",
+                     "action": "You feel close to panic and/or in a state of distress. You can become helpless in the face of decisions, especially in stressful or risky situations."
+                  },
+                  {
+                     "name": "Distress",
+                     "action": "You feel close to panic and/or in a state of distress. You can become helpless in the face of decisions, especially in stressful or risky situations."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Highly Anxious",
+            "action": "You Feel Highly Anxious",
+            "definition": "Worried; afraid; upset",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Fearful",
+                     "action": "You feel fearful and worried. You can feel overwhelmed. You can find it hard to put yourself in someone else's shoes because you're so consumed by your own feelings."
+                  },
+                  {
+                     "name": "",
+                     "action": "You feel fearful and worried. You can feel overwhelmed. You can find it hard to put yourself in someone else's shoes because you're so consumed by your own feelings."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Nervous",
+            "action": "You Feel Nervous",
+            "definition": "Hesitant; concerned; can't perform to potential",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Timid",
+                     "action": "You can become paralysed with indecision as you can hesitate and become caught up in 'what ifs'"
+                  },
+                  {
+                     "name": "Risk-averse",
+                     "action": "You can become paralysed with indecision as you can hesitate and become caught up in 'what ifs'"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Courageous",
+            "action": "You Act Courageously",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Selfless",
+                     "action": "You can do what needs to be done, you can take others' needs and feelings into consideration, you can stand up for what you feel is right"
+                  },
+                  {
+                     "name": "Just",
+                     "action": "You can do what needs to be done, you can take others' needs and feelings into consideration, you can stand up for what you feel is right"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Unaware of other's feelings",
+            "action": "You are Unaware of Other's Feelings",
+            "definition": "Take over; talk over the top of others; butt in conversations; put down; rude",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Overbearing",
+                     "action": "You may believe that you are right and find it hard when people differ in opinion. You find criticism hard to take and can come across as arrogant."
+                  },
+                  {
+                     "name": "Unaware",
+                     "action": "You can assume a leadership role, but sometimes you can be inconsiderate or overbearing of others"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Overconfident",
+            "action": "You Act Arrogantly",
+            "definition": "Opinionated; over-compensate; ego; proud; hasty",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Careless"
+                  },
+                  {
+                     "name": "Unaware",
+                     "action": "You may believe that you are right and find it hard when people differ in opinion. You find criticism hard to take and can come across as arrogant."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Rash",
+            "action": "You are Rash",
+            "definition": "Irresponsible; lose control; extremely bold",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Reckless",
+                     "action": "People may say that you 'fly off the handle'. You find it hard to hesitate and think through decisions, preferring to act in the moment. You tend to 'shoot first, ask questions later'."
+                  },
+                  {
+                     "name": "Reckless",
+                     "action": "People may say that you 'fly off the handle'. You find it hard to hesitate and think through decisions, preferring to act in the moment. You tend to 'shoot first, ask questions later'."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Courage",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": 33,
+   "id": 3,
+   "Question": "Where do you see yourself when it comes to trusting and believing others?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Paranoid",
+            "action": "You are Paranoid",
+            "definition": "Fearful, Agitated",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Restless;",
+                     "action": "You may feel like the world is out to get you. You struggle to trust others and believe in their good intentions. You can often feel isolated from others."
+                  },
+                  {
+                     "name": "Isolated",
+                     "action": "You may feel like the world is out to get you. You struggle to trust others and believe in their good intentions. You can often feel isolated from others."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Distrusting",
+            "action": "You Distrust Others",
+            "definition": "Hyper-Vigilant; Uncomfortable",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Disregarding",
+                     "action": "You find it hard to believe what is said. You can often feel like you have to be hyper-vigilant of others in your surroundings as you don't trust what they present at face value."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Suspicious",
+            "action": "You Feel Suspicious of Others",
+            "definition": "Guarded; Doubtful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Uneasy;",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Trusting",
+            "action": "You Trust Others",
+            "definition": "Firm belief in someone or something being reliable and true",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Uneasy;",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Susceptible",
+            "action": "You Can Be Influenced",
+            "definition": "Vulnerable; Being Subtly Controlled",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Influenced",
+                     "action": "You trust others easily and often feel swayed or influenced by others' actions or opinions. "
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Gullible",
+            "action": "You Believe Freely",
+            "definition": "Easily trusting, credulous",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Unworldly"
+                  },
+                  {
+                     "name": "Easily Deceived",
+                     "action": "You trust others easily and often feel swayed or influenced by others' actions or opinions. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Naive",
+            "action": "You are Naive",
+            "definition": "Inexperienced; too trusting",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Innocent",
+                     "action": "You can be misled by others who may take advantage of your trusting nature and the fact that you may not know any better."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Trust",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": 4,
+   "id": 4,
+   "Question": "How much can you trust your peers with your physical safety?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Paranoid",
+            "action": "You are Paranoid",
+            "definition": "Fearful, Agitated",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Restless;",
+                     "action": "You may feel like the world is out to get you. You struggle to trust others and believe in their good intentions. You can often feel isolated from others."
+                  },
+                  {
+                     "name": "Isolated",
+                     "action": "You may feel like the world is out to get you. You struggle to trust others and believe in their good intentions. You can often feel isolated from others."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Distrusting",
+            "action": "You Distrust Others",
+            "definition": "Hyper-Vigilant; Uncomfortable",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Disregarding",
+                     "action": "You find it hard to believe what is said. You can often feel like you have to be hyper-vigilant of others in your surroundings as you don't trust what they present at face value."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Suspicious",
+            "action": "You Feel Suspicious of Others",
+            "definition": "Guarded; Doubtful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Uneasy;",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Trusting",
+            "action": "You Trust Others",
+            "definition": "Firm belief in someone or something being reliable and true",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Uneasy;",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Susceptible",
+            "action": "You Can Be Influenced",
+            "definition": "Vulnerable; Being Subtly Controlled",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Influenced",
+                     "action": "You trust others easily and often feel swayed or influenced by others' actions or opinions. "
+                  },
+                  {
+                     "name": "Disconnected",
+                     "action": "You can find it hard to relax around people as you often can feel uneasy or suspicious of others' actions or motives."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Gullible",
+            "action": "You Believe Freely",
+            "definition": "Easily trusting, credulous",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Unworldly"
+                  },
+                  {
+                     "name": "Easily Deceived",
+                     "action": "You trust others easily and often feel swayed or influenced by others' actions or opinions. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Naive",
+            "action": "You are Naive",
+            "definition": "Inexperienced; too trusting",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Innocent",
+                     "action": "You can be misled by others who may take advantage of your trusting nature and the fact that you may not know any better."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Trust and physical safety",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 5,
+   "Question": "When someone gives me a hard time, my usual response is??",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Disengaged or Avoidant",
+            "action": "You Avoid Others ",
+            "definition": "Fearful, Uncomfortable, Resentful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Disconnected",
+                     "action": "You tend to withdraw and avoid others when you feel threatened or attacked. This can lead to you feeling resentful or holding a grudge as well the issue not getting addressed or resolved."
+                  },
+                  {
+                     "name": "Isolated",
+                     "action": "You tend to withdraw and avoid others when you feel threatened or attacked. This can lead to you feeling resentful or holding a grudge as well the issue not getting addressed or resolved."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Passive Aggressive",
+            "action": "You Avoid the Issue",
+            "definition": "Revengeful, Spiteful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Ignoring",
+                     "action": "You feel aggrieved, but you don't explicitly address the issue. Instead, you can make snide comments, undermine others, give people the cold shoulder, all without resolving the issue. You can also plan to \"get payback\"."
+                  },
+                  {
+                     "name": "Two-Faced",
+                     "action": "You feel aggrieved, but you don't explicitly address the issue. Instead, you can make snide comments, undermine others, give people the cold shoulder, all without resolving the issue. You can also plan to \"get payback\"."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Passive",
+            "action": "You Let Things Happen",
+            "definition": "Standing by, Unconfident, Victim",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Inactive",
+                     "action": "You register the situation, but you are not confident or motivated enough to call them out. You often resign yourself to the situation and can feel victimised"
+                  },
+                  {
+                     "name": "Too Accepting",
+                     "action": "You register the situation, but you are not confident or motivated enough to call them out. You often resign yourself to the situation and can feel victimised"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Assertive",
+            "action": "You Assert Yourself",
+            "definition": "Self-confident, Calm, Patient",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Thoughtful",
+                     "action": "You can stand up for yourself in a calm and reasonable manner, setting clear boundaries and standards of behaviour. You have self-respect."
+                  },
+                  {
+                     "name": "Powerful",
+                     "action": "You can stand up for yourself in a calm and reasonable manner, setting clear boundaries and standards of behaviour. You have self-respect."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Bossy or Defensive",
+            "action": "You Defend Yourself",
+            "definition": "Controlling, Pushy",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Reactive",
+                     "action": "You feel angry and can hold a grudge. You may also lash out and attack the person physically or emotionally."
+                  },
+                  {
+                     "name": "Overbearing",
+                     "action": "You find criticism difficult, and you usually react with defensiveness and try to push that person away."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Aggressive",
+            "action": "You Are Angry",
+            "definition": "Resentful, Bitter",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Attacking"
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Bullying, Domineering, Abusive",
+            "action": "You Attack Others",
+            "definition": "Attacking, Cruel, Forceful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Uncaring",
+                     "action": "When you feel threatened, you lash out. This can take the form of a verbal or physical attack or through you exerting power and control over someone else."
+                  },
+                  {
+                     "name": "Superior",
+                     "action": "When you feel threatened, you lash out. This can take the form of a verbal or physical attack or through you exerting power and control over someone else."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Assertiveness",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 6,
+   "Question": "If someone was getting bullied in front of you, which word/s would describe your most extreme response?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Recoil, Avoid",
+            "action": "You Avoid",
+            "definition": "Fearful, Avoidant",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Withdraw",
+                     "action": "You may secretly identify with the person getting bullied, but you feel too fearful to intervene, as you don't want the bully's attention to turn on to you. You avoid confrontation."
+                  },
+                  {
+                     "name": "Passitivity",
+                     "action": "You may secretly identify with the person getting bullied, but you feel too fearful to intervene, as you don't want the bully's attention to turn on to you. You avoid confrontation."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Relieved",
+            "action": "You Play Along",
+            "definition": "Relieved it isn't you, feel embarrassed for the person being bullied",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Feel Awkward",
+                     "action": "You fear confrontation, so you don't intervene even though the situation makes you feel uncomfortable and you know that it isn't right. You try and blend into the crowd by copying the responses of others."
+                  },
+                  {
+                     "name": "Go along with the crowd",
+                     "action": "You fear confrontation, so you don't intervene even though the situation makes you feel uncomfortable and you know that it isn't right. You try and blend into the crowd by copying the responses of others."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Passive, Influenced",
+            "action": "You Watch",
+            "definition": "Unconfident, Submissive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Meek",
+                     "action": "You don't actively support, nor do you actively resist. You sit on the fence. You don't encourage the bully, yet you don't confront the bully either."
+                  },
+                  {
+                     "name": "Unassertive",
+                     "action": "You don't actively support, nor do you actively resist. You sit on the fence. You don't encourage the bully, yet you don't confront the bully either."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Empowered",
+            "action": "You Act",
+            "definition": "Confident, Humble, Capable",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Non-reactive",
+                     "action": "You feel confident enough in yourself that you can calmly intervene without becoming reactive or defensive."
+                  },
+                  {
+                     "name": "Calm",
+                     "action": "You feel confident enough in yourself that you can calmly intervene without becoming reactive or defensive."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Intimidate, Oppress",
+            "action": "You Subdue",
+            "definition": "Tease, Frighten",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Harass",
+                     "action": "You take over and begin to provoke and shame the bully. You initiate jeering and taunting towards the bully."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Jeer",
+            "action": "You Provoke",
+            "definition": "Provoke, Taunt, Dominating",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Dictate"
+                  },
+                  {
+                     "name": "Take Over",
+                     "action": "You take over and begin to provoke and shame the bully. You initiate jeering and taunting towards the bully."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Aggressive",
+            "action": "You Bully",
+            "definition": "Abusive, Violent",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Cruel",
+                     "action": "You behave aggressively and begin to bully. You may be physically and/or verbally violent."
+                  },
+                  {
+                     "name": "Vicious",
+                     "action": "You behave aggressively and begin to bully. You may be physically and/or verbally violent."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Empowered",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 7,
+   "Question": "If you were put in charge of a group of your peers, how would you handle the group?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Recoil, Avoid",
+            "action": "You Avoid",
+            "definition": "Fearful, Avoidant",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Withdraw",
+                     "action": "You may secretly identify with the person getting bullied, but you feel too fearful to intervene, as you don't want the bully's attention to turn on to you. You avoid confrontation."
+                  },
+                  {
+                     "name": "Passitivity",
+                     "action": "You may secretly identify with the person getting bullied, but you feel too fearful to intervene, as you don't want the bully's attention to turn on to you. You avoid confrontation."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Relieved",
+            "action": "You Play Along",
+            "definition": "Relieved it isn't you, feel embarrassed for the person being bullied",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Feel Awkward",
+                     "action": "You fear confrontation, so you don't intervene even though the situation makes you feel uncomfortable and you know that it isn't right. You try and blend into the crowd by copying the responses of others."
+                  },
+                  {
+                     "name": "Go along with the crowd",
+                     "action": "You fear confrontation, so you don't intervene even though the situation makes you feel uncomfortable and you know that it isn't right. You try and blend into the crowd by copying the responses of others."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Passive, Influenced",
+            "action": "You Watch",
+            "definition": "Unconfident, Submissive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Meek",
+                     "action": "You don't actively support, nor do you actively resist. You sit on the fence. You don't encourage the bully, yet you don't confront the bully either."
+                  },
+                  {
+                     "name": "Unassertive",
+                     "action": "You don't actively support, nor do you actively resist. You sit on the fence. You don't encourage the bully, yet you don't confront the bully either."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Empowered",
+            "action": "You Act",
+            "definition": "Confident, Humble, Capable",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Non-reactive",
+                     "action": "You feel confident enough in yourself that you can calmly intervene without becoming reactive or defensive."
+                  },
+                  {
+                     "name": "Calm",
+                     "action": "You feel confident enough in yourself that you can calmly intervene without becoming reactive or defensive."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Intimidate, Oppress",
+            "action": "You Subdue",
+            "definition": "Tease, Frighten",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Harass",
+                     "action": "You take over and begin to provoke and shame the bully. You initiate jeering and taunting towards the bully."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Jeer",
+            "action": "You Provoke",
+            "definition": "Provoke, Taunt, Dominating",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Dictate"
+                  },
+                  {
+                     "name": "Take Over",
+                     "action": "You take over and begin to provoke and shame the bully. You initiate jeering and taunting towards the bully."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Aggressive",
+            "action": "You Bully",
+            "definition": "Abusive, Violent",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Cruel",
+                     "action": "You behave aggressively and begin to bully. You may be physically and/or verbally violent."
+                  },
+                  {
+                     "name": "Vicious",
+                     "action": "You behave aggressively and begin to bully. You may be physically and/or verbally violent."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Empowered",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 8,
+   "Question": "What is your attitude towards people in authority?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Oppressed",
+            "action": "You Rebel",
+            "definition": "Destructive, Resentful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Villianise",
+                     "action": "You consider authority to be the enemy and you feel oppressed by it. You can rebel in physically and emotionally destructive ways. You may be rebelling out of fear."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Rude",
+            "action": "You Ignore",
+            "definition": "Disrespectful, Undermining",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Sabotaging",
+                     "action": "You don't engage with authority. You may feel like authority doesn't deserve your respect, so you can often be rude, undermining, or even sabotage authority."
+                  },
+                  {
+                     "name": "Disregard",
+                     "action": "You don't engage with authority. You may feel like authority doesn't deserve your respect, so you can often be rude, undermining, or even sabotage authority."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Apathetic",
+            "action": "You Detach",
+            "definition": "Uncaring, Ignorant, Unmotivated",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Non-commital",
+                     "action": "You don't resist authority, but you also don't embrace authority either. You demonstrate disinterest and don't make things easier for authority."
+                  },
+                  {
+                     "name": "Detached",
+                     "action": "You don't resist authority, but you also don't embrace authority either. You demonstrate disinterest and don't make things easier for authority."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Respect",
+            "action": "You Honour",
+            "definition": "Valuing, Admiring, Caring",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Civility",
+                     "action": "You value authority and act in a respectful and civil way. You honour the role authority plays in society."
+                  },
+                  {
+                     "name": "Politeness",
+                     "action": "You value authority and act in a respectful and civil way. You honour the role authority plays in society."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Overly Friendly",
+            "action": "You People-Please",
+            "definition": "Deferent, Dutiful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Want to be liked",
+                     "action": "You fawn over authority and are overly helpful and involved."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Over-Involved",
+            "action": "You Flatter",
+            "definition": "Fawning, Flattering",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Worshipful"
+                  },
+                  {
+                     "name": "Idolising",
+                     "action": "You fawn over authority and are overly helpful and involved."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Fanatical",
+            "action": "You Obsess",
+            "definition": "Extreme, Radical, Over-enthusiastic",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Passionate",
+                     "action": "You are obsessively concerned with authority and may identify heavily with authority. You may use authority to meet a need for belonging or to excuse extreme personal views."
+                  },
+                  {
+                     "name": "Devoted",
+                     "action": "You are obsessively concerned with authority and may identify heavily with authority. You may use authority to meet a need for belonging or to excuse extreme personal views."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Respect",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 9,
+   "Question": "When you are trying hard to help someone who isn't listening to you, how do you react?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Angry",
+            "action": "You Lash Out",
+            "definition": "Very resentful, destructive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Aggressive",
+                     "action": "You take it personally and become angry and aggressive. You 'fly off the handle' and you take out your frustrations on the person."
+                  },
+                  {
+                     "name": "Lashing Out",
+                     "action": "You take it personally and become angry and aggressive. You 'fly off the handle' and you take out your frustrations on the person."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Seething",
+            "action": "You Hold a Grudge",
+            "definition": "Bite your tongue, feel revengeful; proud",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Spiteful",
+                     "action": "You don't outwardly confront this person, but you inwardly seethe and become quite upset. You may plan to \"get payback\". You refuse to help them anymore and tell them to find someone else to help them."
+                  },
+                  {
+                     "name": "Frustrated",
+                     "action": "You don't outwardly confront this person, but you inwardly seethe and become quite upset. You may plan to \"get payback\". You refuse to help them anymore and tell them to find someone else to help them."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Sabotaging",
+            "action": "You Bad-Mouth Them",
+            "definition": "Unhelpful, uncaring, gossiping",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Impair",
+                     "action": "You deliberately destroy or damage something as a reaction. You also openly bad-mouth them and can try to wreck their reputation or discredit them."
+                  },
+                  {
+                     "name": "Wreck",
+                     "action": "You deliberately destroy or damage something as a reaction. You also openly bad-mouth them and can try to wreck their reputation or discredit them."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Self-Control",
+            "action": "You Act",
+            "definition": "Restraint, Empowered, Calm",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Patient",
+                     "action": "You have enough self-control to choose how you respond. You act rather than becoming reactive or defensive. You can calmly question their behaviour with curiosity."
+                  },
+                  {
+                     "name": "Assertive",
+                     "action": "You have enough self-control to choose how you respond. You act rather than becoming reactive or defensive. You can calmly question their behaviour with curiosity."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Involved",
+            "action": "You Impose",
+            "definition": "Forceful, Know-it-all, Not Listening",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Overbearing",
+                     "action": "You may treat this person like a child or someone inferior to you. You may try to induce feelings of helplessness in them, so you can swoop in and 'rescue them'. You take on their problem as yours."
+                  },
+                  {
+                     "name": "Defensive",
+                     "action": "You over-involve yourself. You impose your ideas, presuming to know better than the person. You take their behaviour personally and become defensive. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Patronising",
+            "action": "You Rescue",
+            "definition": "Superiority, look down on, treat as inferior",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Influence Helplessness"
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Doormat",
+            "action": "You Allow",
+            "definition": "Pushover, Sheep, Weak",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Coward",
+                     "action": "You accept their treatment and don't acknowledge it. You don't set boundaries or appropriate standards of behaviour. You give more than you get back."
+                  },
+                  {
+                     "name": "Yes-Person",
+                     "action": "You accept their treatment and don't acknowledge it. You don't set boundaries or appropriate standards of behaviour. You give more than you get back."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Self-Control",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 10,
+   "Question": "When I notice someone needs help, how do I behave?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Angry",
+            "action": "You Lash Out",
+            "definition": "Very resentful, destructive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Aggressive",
+                     "action": "You take it personally and become angry and aggressive. You 'fly off the handle' and you take out your frustrations on the person."
+                  },
+                  {
+                     "name": "Lashing Out",
+                     "action": "You take it personally and become angry and aggressive. You 'fly off the handle' and you take out your frustrations on the person."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Seething",
+            "action": "You Hold a Grudge",
+            "definition": "Bite your tongue, feel revengeful; proud",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Spiteful",
+                     "action": "You don't outwardly confront this person, but you inwardly seethe and become quite upset. You may plan to \"get payback\". You refuse to help them anymore and tell them to find someone else to help them."
+                  },
+                  {
+                     "name": "Frustrated",
+                     "action": "You don't outwardly confront this person, but you inwardly seethe and become quite upset. You may plan to \"get payback\". You refuse to help them anymore and tell them to find someone else to help them."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Sabotaging",
+            "action": "You Bad-Mouth Them",
+            "definition": "Unhelpful, uncaring, gossiping",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Impair",
+                     "action": "You deliberately destroy or damage something as a reaction. You also openly bad-mouth them and can try to wreck their reputation or discredit them."
+                  },
+                  {
+                     "name": "Wreck",
+                     "action": "You deliberately destroy or damage something as a reaction. You also openly bad-mouth them and can try to wreck their reputation or discredit them."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Self-Control",
+            "action": "You Act",
+            "definition": "Restraint, Empowered, Calm",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Patient",
+                     "action": "You have enough self-control to choose how you respond. You act rather than becoming reactive or defensive. You can calmly question their behaviour with curiosity."
+                  },
+                  {
+                     "name": "Assertive",
+                     "action": "You have enough self-control to choose how you respond. You act rather than becoming reactive or defensive. You can calmly question their behaviour with curiosity."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Involved",
+            "action": "You Impose",
+            "definition": "Forceful, Know-it-all, Not Listening",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Overbearing",
+                     "action": "You may treat this person like a child or someone inferior to you. You may try to induce feelings of helplessness in them, so you can swoop in and 'rescue them'. You take on their problem as yours."
+                  },
+                  {
+                     "name": "Defensive",
+                     "action": "You over-involve yourself. You impose your ideas, presuming to know better than the person. You take their behaviour personally and become defensive. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Patronising",
+            "action": "You Rescue",
+            "definition": "Superiority, look down on, treat as inferior",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Influence Helplessness"
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Doormat",
+            "action": "You Allow",
+            "definition": "Pushover, Sheep, Weak",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Coward",
+                     "action": "You accept their treatment and don't acknowledge it. You don't set boundaries or appropriate standards of behaviour. You give more than you get back."
+                  },
+                  {
+                     "name": "Yes-Person",
+                     "action": "You accept their treatment and don't acknowledge it. You don't set boundaries or appropriate standards of behaviour. You give more than you get back."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Self-Control",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 11,
+   "Question": "How distracted or focused are you when you are learning new things with other people?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Distracting",
+            "action": "You Are Absent",
+            "definition": "Restless, Inattentive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Disruptive",
+                     "action": "You aren't paying attention. You  also distract others to draw attention away from your own inattention. You would not be able to recall any details from this situation."
+                  },
+                  {
+                     "name": "Distant",
+                     "action": "You aren't paying attention. You  also distract others to draw attention away from your own inattention. You would not be able to recall any details from this situation."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Unaware",
+            "action": "You Are Oblivious",
+            "definition": "Unobservant, Unperceptive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Unwitting",
+                     "action": "You are paying some low level of attention to the learning process, but overall, your mind is elsewhere. You are oblivious to most of what is going on around you. You are not particularly preoccupied by anything and you aren't disruptive to others. You struggle to recall many details of what you've learned, however."
+                  },
+                  {
+                     "name": "Ignorant",
+                     "action": "You are paying some low level of attention to the learning process, but overall, your mind is elsewhere. You are oblivious to most of what is going on around you. You are not particularly preoccupied by anything and you aren't disruptive to others. You struggle to recall many details of what you've learned, however."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Unfocused",
+            "action": "You Are Absent-Minded",
+            "definition": "Vague, Aimless",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Forgetful",
+                     "action": "You drift in and out of attention. You get distracted easily. You struggle to stay focused on what you are learning. You can recall some details, but you struggle on information relating to specific or specialised topics."
+                  },
+                  {
+                     "name": "Scatter-brained",
+                     "action": "You drift in and out of attention. You get distracted easily. You struggle to stay focused on what you are learning. You can recall some details, but you struggle on information relating to specific or specialised topics."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Present",
+            "action": "You are Focused",
+            "definition": "Attentive, Mindful, Engaged",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Receptive",
+                     "action": "You are open to taking in new information and you are focused on what you are learning. You find it easy to recall both specific and general information later."
+                  },
+                  {
+                     "name": "Open",
+                     "action": "You are open to taking in new information and you are focused on what you are learning. You find it easy to recall both specific and general information later."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Hyper-Focused",
+            "action": "You Are Overbearing",
+            "definition": "Fixed, Overly Concerned",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Zero on In",
+                     "action": "You are paying attention, but your level of attention is actually distracting to others as you are trying to take control over what you are being taught."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Controlling",
+            "action": "You Take Control",
+            "definition": "Preoccupied, Overbearing",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Impose on Others"
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Intense",
+            "action": "You Obsess",
+            "definition": "Hound, Dominate",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Monopolise",
+                     "action": "You cannot tolerate any interruption to what you are doing. You become frenzied in your attention and engagement. You may hound the teacher or try to dominate and show off your level of knowledge."
+                  },
+                  {
+                     "name": "Consume",
+                     "action": "You cannot tolerate any interruption to what you are doing. You become frenzied in your attention and engagement. You may hound the teacher or try to dominate and show off your level of knowledge."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Presence",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 12,
+   "Question": "How do you respond when someone says something rude to you or treats you unfairly?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Bitter",
+            "action": "You Resent",
+            "definition": "Destructive, Critical, Defensive",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Upset",
+                     "action": "You feel and show anger, hurt, or resentment towards that person. You identify the situation as a \"bad experience\" or the treatment as \"unjust\". You may also hold a grudge. "
+                  },
+                  {
+                     "name": "Angry",
+                     "action": "You feel and show anger, hurt, or resentment towards that person. You identify the situation as a \"bad experience\" or the treatment as \"unjust\". You may also hold a grudge. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Blaming",
+            "action": "You Deny",
+            "definition": "Self-Justifying, Denying",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Discrediting",
+                     "action": "You deny the comment or unfair treatment by self-justifying. You also blame the person and find fault with them. You react negatively."
+                  },
+                  {
+                     "name": "Blaming",
+                     "action": "You deny the comment or unfair treatment by self-justifying. You also blame the person and find fault with them. You react negatively."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Offended",
+            "action": "You Are Upset",
+            "definition": "Insulted, Bruised ego, Upset",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Taking it personally",
+                     "action": "You take the comment or unfair treatment personally and become offended. You allow that person's behaviour to affect your mood. You demonstrate that, to some extent, you care what that person thinks of you."
+                  },
+                  {
+                     "name": "",
+                     "action": "You take the comment or unfair treatment personally and become offended. You allow that person's behaviour to affect your mood. You demonstrate that, to some extent, you care what that person thinks of you."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Unoffendable",
+            "action": "You Let It Go",
+            "definition": "Affable, Good-Natured, Self-Control",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Self-Confident",
+                     "action": "You are confident enough in yourself that you don't take on the opinions of others and allow them to affect you. You can hear what others have to say, but you don't put stock in it. You let things go and know that their opinion of you doesn't matter as much as your opinion of yourself."
+                  },
+                  {
+                     "name": "Self-Aware",
+                     "action": "You are confident enough in yourself that you don't take on the opinions of others and allow them to affect you. You can hear what others have to say, but you don't put stock in it. You let things go and know that their opinion of you doesn't matter as much as your opinion of yourself."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Dismissive",
+            "action": "You Don't Care",
+            "definition": "Trivialising, Supressing, Discarding",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Resisting Feelings",
+                     "action": "You don't want to confront the person but you also don't agree with what they said/did. You avoid the issue and walk away. The issue does not get resolved."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Avoidant",
+            "action": "You Recoil",
+            "definition": "Escaping, Evading",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Dodging"
+                  },
+                  {
+                     "name": "Shrinking Away From",
+                     "action": "You don't want to confront the person but you also don't agree with what they said/did. You avoid the issue and walk away. The issue does not get resolved."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Arrogant",
+            "action": "You Are Opinionated",
+            "definition": "Haughty, Superior, Cocky",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Prideful",
+                     "action": "You not only dismiss the comment or behaviour, but you see it as a further sign of your superiority over this person. You don't value their opinion and have an exaggerated sense of pride and important. You consider yourself to have greater knowledge and abilities than this person."
+                  },
+                  {
+                     "name": "Unaware",
+                     "action": "You not only dismiss the comment or behaviour, but you see it as a further sign of your superiority over this person. You don't value their opinion and have an exaggerated sense of pride and important. You consider yourself to have greater knowledge and abilities than this person."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Unoffendable",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 13,
+   "Question": "How committed to self-improvement are you?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Not committed",
+            "action": "You Are Not Interested",
+            "definition": "Unmotivated, Neglectful",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Abstain",
+                     "action": "You do not have interest in, or commitment to, self-improvement. "
+                  },
+                  {
+                     "name": "Idleness",
+                     "action": "You do not have interest in, or commitment to, self-improvement. "
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Concede",
+            "action": "You Give Up",
+            "definition": "Surrender, Easily Defeated",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Lack of Perseverance",
+                     "action": "You may try to do things to improve yourself, but if you try, you generally give up and return to old habits."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Inactive",
+            "action": "You Fear Failure",
+            "definition": "Careless, Half-Hearted",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Perfunctory",
+                     "action": "Attempts at change are often hesitant because you fear failure, but also because it is a half-hearted effort. You don't fully commit attempts to change, so they often end up fizzling out."
+                  },
+                  {
+                     "name": "Risk-Averse",
+                     "action": "Attempts at change are often hesitant because you fear failure, but also because it is a half-hearted effort. You don't fully commit attempts to change, so they often end up fizzling out."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Committed",
+            "action": "You Are Determined",
+            "definition": "Active, Courageous, Determination",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Striving",
+                     "action": "You seek out opportunities for growth and use grit and determination to pursue your goals. When you find it hard, you reflect on why it's important to you and then renew your commitment to the goal."
+                  },
+                  {
+                     "name": "Imrpoving",
+                     "action": "You seek out opportunities for growth and use grit and determination to pursue your goals. When you find it hard, you reflect on why it's important to you and then renew your commitment to the goal."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Overambitious",
+            "action": "You Show Off",
+            "definition": "Exaggerated, Over-the-top, Lofty",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Pompous",
+                     "action": "You focus on one thing at the expense of anything else. You care about only your own life and will do anything to further your own interests."
+                  },
+                  {
+                     "name": "Flashy",
+                     "action": "You are committed to self-improvement, but you have unrealistic ambitions and expectations. This can result in you appearing to show-off or bite off more than you can chew."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Single-Minded",
+            "action": "You Fixate",
+            "definition": "Tunnel Vision, Self-Absorbed",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Disregard"
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Addicted",
+            "action": "You Obsess",
+            "definition": "Burnt out, Extreme",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Devoteful",
+                     "action": "You are devoted and addicted. You disregard anyone and anything else. You struggle to maintain relationships because you cannot focus on anyone else. This extreme level of obsession is exhausting and you may burn out."
+                  },
+                  {
+                     "name": "Fanatical",
+                     "action": "You are devoted and addicted. You disregard anyone and anything else. You struggle to maintain relationships because you cannot focus on anyone else. This extreme level of obsession is exhausting and you may burn out."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Commitment",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": 14,
+   "Question": "When things keep going wrong and you feel like you have a lot of \"bad luck\", how do you respond?",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "Defeated",
+            "action": "You Give Up",
+            "definition": "Anxious, Negativity, Stressed",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Feeling Downhearted and Blue",
+                     "action": "You can fall into a negative spiral and think that \"everything\" is going wrong and \"nothing\" ever goes right. You may think that things will \"never\" get better and you may forget that you haven't always felt this way."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Withdrawal",
+            "action": "You Feel Inadequate",
+            "definition": "Risk-averse, Critical",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Catastrophise",
+                     "action": "You resign yourself to the situation as you feel too afraid of failing to do anything about it. You feel negative and critical about everything and you can catastrophise situations and believe that they are worse than they actually are."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Proscrastinate",
+            "action": "You Avoid",
+            "definition": "Frustrated, Resentful of Others",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Lack of Perseverance",
+                     "action": "There is contemplation and desire to change, but there is also a lack of perservance, a comparison to others (which can lead to resentment), and an avoidance of self-imposed obstacles."
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Resilient",
+            "action": "You Cope",
+            "definition": "Bounce back, Cope, Persevere",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Brave",
+                     "action": "You believe in yourself to get through this. You don't engage in negative or catastrophic thinking. You don't feel sorry for yourself. You practice gratitude and know that everything passes eventually."
+                  },
+                  {
+                     "name": "Adaptable",
+                     "action": "You believe in yourself to get through this. You don't engage in negative or catastrophic thinking. You don't feel sorry for yourself. You practice gratitude and know that everything passes eventually."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Over-Optimistic",
+            "action": "You Over-Estimate",
+            "definition": "Unrealistic, Out of Touch",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Romanticise",
+                     "action": "You fake positivity while minimising your feelings about the situation. You suppress your feelings but do not acknowledge the impact of the situation on yourself."
+                  },
+                  {
+                     "name": "Overdo",
+                     "action": "You exaggerate the positives of the situation and are slightly out of touch with reality. You tend to overdo positive thinking and romanticise and over-emphasise situational aspects."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Faking It",
+            "action": "You Deny",
+            "definition": "Minimising, Pretending",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Over-extend"
+                  },
+                  {
+                     "name": "Overdo",
+                     "action": "You fake positivity while minimising your feelings about the situation. You suppress your feelings but do not acknowledge the impact of the situation on yourself."
+                  }
+               ]
+            }
+         },
+         {
+            "name": "Totally Unrealistic",
+            "action": "You Deflect",
+            "definition": "Impractical, Ignoring, Idealistic",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "Fanciful",
+                     "action": "You draw away from and refuse anything that is at odds with your opinions. You have idealistic and unrealistic expectations which don't have chances of being realised. It can lead to despair and burn out."
+                  },
+                  {
+                     "name": "Illogical",
+                     "action": "You draw away from and refuse anything that is at odds with your opinions. You have idealistic and unrealistic expectations which don't have chances of being realised. It can lead to despair and burn out."
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "Resilience",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+},
+ {
+   "VID": null,
+   "id": null,
+   "Question": "",
+   "ValueOptions": {
+      "value": [
+         {
+            "VID": null,
+            "tickName": "",
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": "0"
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         },
+         {
+            "name": "",
+            "action": "",
+            "definition": "",
+            "default": "",
+            "synonyms": {
+               "synonym": [
+                  {
+                     "name": "",
+                     "action": ""
+                  },
+                  {
+                     "name": "",
+                     "action": ""
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "defaultColor": "",
+   "BasicLabel": "",
+   "AnswerValue": "",
+   "href": "",
+   "AnswerKeyWords": ""
+}
+]
+}
