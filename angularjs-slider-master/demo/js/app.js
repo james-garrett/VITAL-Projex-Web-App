@@ -169,7 +169,7 @@ app.controller('MainCtrl',
     // var width = 800;
     var height = drawingAreaHeight;
     // var height = 400;
-    corners = 8;
+    // corners = 8;
     // console.log(corners);
     // var corners = 5;
     //initial calculation
@@ -256,8 +256,11 @@ app.controller('MainCtrl',
         var gem = new Gem(container, g);
         var width = container.width.baseVal.value;
         var height = container.height.baseVal.value;
-        container.style.height = "100px";
-        container.style.width = "100px";
+        // container.style.height = "100px";
+        // container.style.width = "100px";
+        console.log($(window).width());
+        container.style.height = $(window).height()/6.10769;
+        container.style.width =  $(window).width()/7.330769230769231;
         gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
@@ -266,9 +269,9 @@ app.controller('MainCtrl',
   
 
   $scope.placeGemOnDiv = function(index) {
-    // console.log(index);
-    var width = (document.getElementById("shapeContainer").offsetWidth)/2;
-    var height = (document.getElementById("shapeContainer").offsetHeight)/2;
+    console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
+    var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
+    var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
 
     return {"left": $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x,           
                 "top": $scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y,
@@ -290,8 +293,8 @@ app.controller('MainCtrl',
 
 
   $scope.placeGemLabel = function(index) {
-    var width = (document.getElementById("shapeContainer").offsetWidth)/2;
-    var height = (document.getElementById("shapeContainer").offsetHeight)/2;
+    var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
+    var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
     
     var heading = document.getElementById("Q" + index.toString() + "gemLabel");
     var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
@@ -684,10 +687,10 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
                      ['RdPu', 'PuRd', 'OrRd'],
                      ['Blues', 'Reds', 'Oranges'],
                      ['Reds', 'PuOr', 'BrBG'],
-                     ['PRGn', 'PiYG', 'RdBu'],
-                     ['PRGn', 'PiYG', 'RdBu'],
-                     ['PRGn', 'PiYG', 'RdBu'],
-                     ['PRGn', 'PiYG', 'RdBu'],
+                     ['PRGn', 'Greens', 'RdBu'],
+                     ['PRGn', 'Blues', 'RdBu'],
+                     ['PRGn', 'Purples', 'RdBu'],
+                     ['PRGn', 'Spectral', 'RdBu'],
                      // ['RdGy', 'RdYIBu', 'Spectral'],
                      ['Spectral', 'RdYIBu', 'Paired']];
       // console.log("colors chosen ", palette[index]);

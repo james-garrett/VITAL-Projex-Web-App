@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trianglify custom render function example</title>
+    <style>
+    html, body {
+      margin: 0 0;
+      padding: 0 0;
+      text-align: center;
+      font-size: 0;
+    }
+    </style>
+  </head>
+  <body>
+  <script src="../dist/trianglify.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+  <script>
+  var h = window.innerHeight;
+  var w = window.innerWidth;
+  // set up the base pattern
+  var pattern = Trianglify({
+    height: h,
+    width: w,
+    cell_size: 30 + Math.random() * 100});
+
+  var svg = d3.select("body")
+    .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
+  var poly_selection = svg.selectAll("polygon");
+
+  function render_to_d3(polys, opts) {
+    poly_selection
+      .data(polys)
+      .enter().append("polygon")
+        .attr("points", function(d) {
+          return d[1]
+        })
+        .attr("stroke-width", "1.51")
+        .attr("fill", function(d) {
+          return d[0];
+        })
+        .attr("stroke", function(d) {
+          return d[0];
+        })
+        .on('mouseover', function(d) {
+          var el = d3.select(d3.event.target);
+
+          el.attr('stroke', 'black');
+          el.on('mouseout', function(d) {
+            el.attr('stroke', d[0]);
+          });
+        });
+  }
+
+  pattern.render(render_to_d3);
+  </script>
+  </body>
+</html>

@@ -36,87 +36,88 @@ var defaults = {
 
 function Trianglify(opts) {
   var rand;
-  
   // apply defaults
   opts = _merge_opts(defaults, opts);
 
-  // setup seedable RNG
-  rand = seedrandom(opts.seed);
+  var triangles = generate(opts);
+  return new Pattern(triangles, opts, generate);
 
-  // randomize colors if requested
-  if (opts.x_colors === 'random') opts.x_colors = _random_from_palette();
-  if (opts.y_colors === 'random') opts.y_colors = _random_from_palette();
-  if (opts.y_colors === 'match_x') opts.y_colors = opts.x_colors;
+  function generate (opts) {
+    // setup seedable RNG
+    rand = seedrandom(opts.seed);
+    // randomize colors if requested
+    if (opts.x_colors === 'random') opts.x_colors = _random_from_palette();
+    if (opts.y_colors === 'random') opts.y_colors = _random_from_palette();
+    if (opts.y_colors === 'match_x') opts.y_colors = opts.x_colors;
 
-  // some sanity-checking
-  if (!(opts.width > 0 && opts.height > 0)) {
-    throw new Error("Width and height must be numbers greater than 0");
-  }
+    // some sanity-checking
+    if (!(opts.width > 0 && opts.height > 0)) {
+      throw new Error("Width and height must be numbers greater than 0");
+    }
 
-  if (opts.cell_size < 2) {
-    throw new Error("Cell size must be greater than 2.");
-  }
+    if (opts.cell_size < 2) {
+      throw new Error("Cell size must be greater than 2.");
+    }
 
-  // Setup the color gradient function
-  var gradient;
+    // Setup the color gradient function
+    var gradient;
 
-  if (opts.color_function) {
-    gradient = function(x, y) {
-      return chroma(opts.color_function(x, y));
+    if (opts.color_function) {
+      gradient = function(x, y) {
+        return chroma(opts.color_function(x, y));
+      };
+    } else {
+      var x_color = chroma.scale(opts.x_colors).mode(opts.color_space);
+      var y_color = chroma.scale(opts.y_colors).mode(opts.color_space);
+      gradient = function(x, y) {
+        return chroma.interpolate(x_color(x), y_color(y), 0.5, opts.color_space);
+      };
+    }
+
+    // Figure out key dimensions
+
+    // it's a pain to prefix width and height with opts all the time, so let's
+    // give them proper variables to refer to
+    var width = opts.width;
+    var height = opts.height;
+
+    // How many cells we're going to have on each axis (pad by 2 cells on each edge)
+    var cells_x = Math.floor((width + 4 * opts.cell_size) / opts.cell_size);
+    var cells_y = Math.floor((height + 4 * opts.cell_size) / opts.cell_size);
+
+    // figure out the bleed widths to center the grid
+    var bleed_x = ((cells_x * opts.cell_size) - width)/2;
+    var bleed_y = ((cells_y * opts.cell_size) - height)/2;
+
+    // how much can out points wiggle (+/-) given the cell padding?
+    var variance = opts.cell_size * opts.variance / 2;
+
+    // Set up normalizers
+    var norm_x = function(x) {
+      return _map(x, [-bleed_x, width+bleed_x], [0, 1]);
     };
-  } else {
-    var x_color = chroma.scale(opts.x_colors).mode(opts.color_space);
-    var y_color = chroma.scale(opts.y_colors).mode(opts.color_space);
-    gradient = function(x, y) {
-      return chroma.interpolate(x_color(x), y_color(y), 0.5, opts.color_space);
+
+    var norm_y = function(y) {
+      return _map(y, [-bleed_y, height+bleed_y], [0, 1]);
     };
+
+    // generate a point mesh
+    var points = opts.points || _generate_points(width, height, bleed_x, bleed_y, opts.cell_size, variance, rand);
+
+    // delaunay.triangulate gives us indices into the original coordinate array
+    var geom_indices = delaunay.triangulate(points);
+
+    // iterate over the indices in groups of three to flatten them into polygons, with color lookup
+    var triangles = [];
+    var lookup_point = function(i) { return points[i];};
+    for (var i=0; i < geom_indices.length; i += 3) {
+      var vertices = [geom_indices[i], geom_indices[i+1], geom_indices[i+2]].map(lookup_point);
+      var centroid = _centroid(vertices);
+      var color = gradient(norm_x(centroid.x), norm_y(centroid.y)).hex();
+      triangles.push([color, vertices]);
+    }
+    return triangles;
   }
-
-  // Figure out key dimensions
-
-  // it's a pain to prefix width and height with opts all the time, so let's
-  // give them proper variables to refer to
-  var width = opts.width;
-  var height = opts.height;
-
-  // How many cells we're going to have on each axis (pad by 2 cells on each edge)
-  var cells_x = Math.floor((width + 4 * opts.cell_size) / opts.cell_size);
-  var cells_y = Math.floor((height + 4 * opts.cell_size) / opts.cell_size);
-
-  // figure out the bleed widths to center the grid
-  var bleed_x = ((cells_x * opts.cell_size) - width)/2;
-  var bleed_y = ((cells_y * opts.cell_size) - height)/2;
-
-  // how much can out points wiggle (+/-) given the cell padding?
-  var variance = opts.cell_size * opts.variance / 2;
-
-  // Set up normalizers
-  var norm_x = function(x) {
-    return _map(x, [-bleed_x, width+bleed_x], [0, 1]);
-  };
-
-  var norm_y = function(y) {
-    return _map(y, [-bleed_y, height+bleed_y], [0, 1]);
-  };
-
-  // generate a point mesh
-  var points = opts.points || _generate_points(width, height, bleed_x, bleed_y, opts.cell_size, variance, rand);
-
-  // delaunay.triangulate gives us indices into the original coordinate array
-  var geom_indices = delaunay.triangulate(points);
-
-  // iterate over the indices in groups of three to flatten them into polygons, with color lookup
-  var triangles = [];
-  var lookup_point = function(i) { return points[i];};
-  for (var i=0; i < geom_indices.length; i += 3) {
-    var vertices = [geom_indices[i], geom_indices[i+1], geom_indices[i+2]].map(lookup_point);
-    var centroid = _centroid(vertices);
-    var color = gradient(norm_x(centroid.x), norm_y(centroid.y)).hex();
-    triangles.push([color, vertices]);
-  }
-  return Pattern(triangles, opts);
-
-
   /*********************************************************
   *
   * Private functions

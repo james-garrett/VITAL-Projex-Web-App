@@ -22,8 +22,15 @@ describe('Trianglify', function(){
     (function() {Trianglify({width: 100, height: -1});}).should.throw(Error);
   });
 
-  it('return a Pattern given valid options', function() {
-    Trianglify().should.include.keys(['opts', 'polys', 'svg', 'canvas']);
+  it('return a Pattern given valid options and methods', function() {
+    var pattern = Trianglify();
+    pattern.should.be.an.instanceof(Pattern);
+    pattern.should.have.property('opts');
+    pattern.should.have.property('polys');
+    pattern.should.respondTo('canvas');
+    pattern.should.respondTo('png');
+    pattern.should.respondTo('render');
+    pattern.should.respondTo('svg');
   });
 
   it('should populate opts with defaults', function() {
