@@ -4,7 +4,7 @@
     <h1>Question One</h1>
   
 </ion-header-bar> -->
-<ion-content data-ng-controller="MainCtrl" onkeypress="$scope.shortcut(event)">
+<ion-content onkeypress="$scope.shortcut(event)">
 <!-- <header><h2 id="questionHeading">QUESTION 1</h2></header> -->
   <div id="header">
   <h4 id="questionHeading">Select a Gem to Begin a Question</h4>
@@ -38,6 +38,7 @@
             </g>
           <!-- https://codepen.io/cwmanning/pen/Hugye -->
         <!-- <text id="Q{{$index}}gemLabel" x="13%" y="50%" font-family="Ubuntu" font-size="33" fill="white" style="display: block;">{{x.BasicLabel}}</text> -->
+        <text>{{valueQuestion[0].length}}</text>
         </svg>
 
         <h5 id="Q{{$index}}gemLabel" font-family="Ubuntu" fill="white" 

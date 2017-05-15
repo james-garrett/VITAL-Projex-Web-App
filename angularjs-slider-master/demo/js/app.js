@@ -65,6 +65,14 @@ app.controller('MainCtrl',
 		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData) {
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
+      $scope.form = null;
+      $scope.valueQuestion = new Array(0);
+      // PHPData.getOutput();
+      // console.log(PHPData.returnPHPData());
+      JSONData.getJSONDataFromFile('json/newQuestions15.json', "questions");
+      
+      $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
+      sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
     
     $scope.callToGetJSONDATA = function() {
       // console.log(JSONData.getJSONDataFromFile('json/questions.json'));
@@ -175,7 +183,6 @@ app.controller('MainCtrl',
     //initial calculation
     var radius = 1;
     var angle = (Math.PI * 2) / corners;
-
     //build points 
     var points = [];
     for (var i=0; i<corners; i++) {
@@ -256,11 +263,13 @@ app.controller('MainCtrl',
         var gem = new Gem(container, g);
         var width = container.width.baseVal.value;
         var height = container.height.baseVal.value;
-        // container.style.height = "100px";
-        // container.style.width = "100px";
-        console.log($(window).width());
-        container.style.height = $(window).height()/6.10769;
-        container.style.width =  $(window).width()/7.330769230769231;
+        container.style.height = "100px";
+        container.style.width = "100px";
+        // console.log($(window).width());
+        // container.style.height = $(window).height()/6.10769;
+        // container.style.width =  $(window).width()/7.330769230769231;
+        // console.log("UGH", gem.setColorPalette(index)[1]);
+        // gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
@@ -269,10 +278,11 @@ app.controller('MainCtrl',
   
 
   $scope.placeGemOnDiv = function(index) {
-    console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
+    // console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
     var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
     var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
-
+    console.log(index, JSONData.returnQuestionLength());
+    console.log($scope.getPolyGon(width, height, JSONData.returnQuestionLength()));
     return {"left": $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x,           
                 "top": $scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y,
                 "position": "absolute",
@@ -395,14 +405,14 @@ app.controller('MainCtrl',
     }
   });   
   
-  $scope.form = null;
-  $scope.valueQuestion = new Array(0);
-  PHPData.getOutput();
-  console.log(PHPData.returnPHPData());
-  // JSONData.getJSONDataFromFile('json/newQuestions2.json', "questions");
-  JSONData.getJSONDataFromFile('json/questions2.json', "questions");
-  $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
-  sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
+  // $scope.form = null;
+  // $scope.valueQuestion = new Array(0);
+  // // PHPData.getOutput();
+  // // console.log(PHPData.returnPHPData());
+  // JSONData.getJSONDataFromFile('json/newQuestions15.json', "questions");
+  
+  // $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
+  // sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
 
   
   // console.log(JSONData.returnQuestionJSONData()[0]); 
@@ -679,9 +689,11 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
       }
 
   this.setColorPalette = function(index) {
-    // console.log(index);
+    
     // console.log(palette[index]);
     var palette = [['Greens','YlGnBu','Purples'],
+                     ['Greens','YlGnBu','Purples'],
+                     ['Greens','YlGnBu','Purples'],
                      ['Blues','BuGn', 'YlOrRd'],
                      ['PuBuGn', 'PuBu', 'BuPu'],
                      ['RdPu', 'PuRd', 'OrRd'],
@@ -691,9 +703,16 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
                      ['PRGn', 'Blues', 'RdBu'],
                      ['PRGn', 'Purples', 'RdBu'],
                      ['PRGn', 'Spectral', 'RdBu'],
-                     // ['RdGy', 'RdYIBu', 'Spectral'],
-                     ['Spectral', 'RdYIBu', 'Paired']];
+
+                     // ['YIGn', 'RdYIBu', 'Spectral'],
+
+                     // ['Spectral', 'RdYIBu', 'PRGn'],
+                     ['YIOrRd', 'OrRd', 'PuRd'],
+                     ['PuOr', 'BrBG', 'Blues'],
+                     ['Set3', 'Set2', 'Set1'],
+                     ['Pastel2', 'Greys', 'Pastel1']];
       // console.log("colors chosen ", palette[index]);
+      console.log(palette[index], index);
       return palette[index];
     }
 
@@ -735,7 +754,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   }
 
   this.createGem = function(gheight, gwidth, x_color, y_color, bg, solo) {
-    console.log(gheight, gwidth, x_color, y_color, bg, solo);
+    // console.log(gheight, gwidth, x_color, y_color, bg, solo);
     var pattern = Trianglify({
         height: gheight,
         width: gwidth,
@@ -905,12 +924,15 @@ app.service('JSONData', function() {
     var numberOfQuestions = 0;
     // $scope.loadJSON();
     var indexChosen = -1;
+    
+
     var getJSONDataFromFile = function(filename, dataType) {
         var returnJSON = [];
         $.getJSON(filename, function(json) {
           if(dataType == "questions") {
             $.each(json.Questions, function(k, v) {
               // console.log(k, v);
+              console.log(numberOfQuestions);
               numberOfQuestions++;
             })
             questionJSONData.push(json.Questions);
@@ -928,11 +950,11 @@ app.service('JSONData', function() {
         // console.log("qd is null");
       }
       // returnQuestionJSONData();
-      console.log(numberOfQuestions);
+      // console.log(numberOfQuestions);
     }
 
     var returnQuestionLength = function() {
-      return (numberOfQuestions/2);
+      return numberOfQuestions;
     }
 
     var returnQuestionJSONData = function() {
