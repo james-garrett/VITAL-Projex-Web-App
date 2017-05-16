@@ -269,8 +269,8 @@ app.controller('MainCtrl',
         // container.style.height = $(window).height()/6.10769;
         // container.style.width =  $(window).width()/7.330769230769231;
         // console.log("UGH", gem.setColorPalette(index)[1]);
+        gem.createGem(width*4, height*4, gem.setColorPalette(0)[1], 'match_x', g, false);
         // gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
-        gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
   }
@@ -281,8 +281,8 @@ app.controller('MainCtrl',
     // console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
     var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
     var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
-    console.log(index, JSONData.returnQuestionLength());
-    console.log($scope.getPolyGon(width, height, JSONData.returnQuestionLength()));
+    // console.log(index, JSONData.returnQuestionLength());
+    // console.log($scope.getPolyGon(width, height, JSONData.returnQuestionLength()));
     return {"left": $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x,           
                 "top": $scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y,
                 "position": "absolute",
@@ -348,43 +348,6 @@ app.controller('MainCtrl',
     };
   }
 
-  $scope.setHexCanvasStyle = function(hex, shapeContainer) {
-    // console.log(shapeContainer.width())
-    hex.style.width = shapeContainer.width();
-    hex.style.height = shapeContainer.height();
-    hex.width = hex.offSetWidth;
-    hex.height = hex.offSetHeight;
-    return hex;
-  }
-
-  $scope.drawBigHex = function() {
-    // console.log("shapeContainer dims:", $("#shapeContainer").width(), $("#shapeContainer").height()) ;
-    var hex= document.getElementById("bigPoly");
-    //draw
-    var width = (document.getElementById("shapeContainer").offsetWidth/2);
-    var height = (document.getElementById("shapeContainer").offsetHeight/2);
-    $scope.gem = new Gem("shapeContainer", "bigSpinObj");
-    $scope.gem.createGem(height, height, 'Greys', 'Greys', document.getElementById("bigSpinObj"), true);
-    } 
-
-    $scope.hexStyle = function() {
-      var width = (document.getElementById("shapeContainer").offsetWidth)/2;
-      var height = (document.getElementById("shapeContainer").offsetHeight)/2;
-      var float = 15e-1;
-      var distance = (Math.abs($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[3].x - $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[1].x)*float + "px");
-      // console.log(width, distance, float);
-      return {
-
-                "z-index": "-1",
-                "margin-left": "10vw",
-                "margin-right": "10vw",
-                "margin-top": "10vh",
-                "margin-bottom": "10vh",
-                "width": distance,
-                "height": distance,
-                "border-radius": "100%",
-              };
-    }
 
     $scope.GetColours = function(arrayOfGems){
       // console.log(document.querySelectorAll('svg[id^="prettyGem"]'));
@@ -405,20 +368,6 @@ app.controller('MainCtrl',
     }
   });   
   
-  // $scope.form = null;
-  // $scope.valueQuestion = new Array(0);
-  // // PHPData.getOutput();
-  // // console.log(PHPData.returnPHPData());
-  // JSONData.getJSONDataFromFile('json/newQuestions15.json', "questions");
-  
-  // $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
-  // sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
-
-  
-  // console.log(JSONData.returnQuestionJSONData()[0]); 
-  // console.log(JSON.parse(sessionStorage.getItem("questionJSONData", $scope.valueQuestion)));
-
-
 
 }]);
 
@@ -691,7 +640,8 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   this.setColorPalette = function(index) {
     
     // console.log(palette[index]);
-    var palette = [['Greens','YlGnBu','Purples'],
+    var palette = [
+                     ['Greens','YlGnBu','Purples'],
                      ['Greens','YlGnBu','Purples'],
                      ['Greens','YlGnBu','Purples'],
                      ['Blues','BuGn', 'YlOrRd'],
@@ -702,6 +652,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
                      ['PRGn', 'Greens', 'RdBu'],
                      ['PRGn', 'Blues', 'RdBu'],
                      ['PRGn', 'Purples', 'RdBu'],
+                     ['PRGn', 'Spectral', 'RdBu'],
                      ['PRGn', 'Spectral', 'RdBu'],
 
                      // ['YIGn', 'RdYIBu', 'Spectral'],
