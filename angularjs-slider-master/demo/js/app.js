@@ -811,6 +811,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
 
     this.setSlider = function(questionJSONData) {
+      console.log(JSONData.getIndex()); 
+      console.log(JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions);
       this.slider_ticks_legend = {
           value: 4,
           options: {
@@ -831,10 +833,22 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
             // onChange: this.onChangeListener,
 
-            getPointerColor: function(value) {              
-              AnswerListener.setInputValue(value);
+            showTicksValues: true,
+
+            // ticksValuesTooltip: function(value) {
+            //   console.log("tooltip triggered");
+            //   return 'Tooltip for ';
+            // },
+
+            ticksTooltip: function(v) {
+              console.log("tooltip triggered");
+              return (JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[v].definition);
+            },
+
+            getPointerColor: function(v) {              
+              AnswerListener.setInputValue(v);
               notify();
-              return value;
+              return v;
             }
           }
       };

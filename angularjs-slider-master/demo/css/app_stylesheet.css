@@ -262,6 +262,7 @@
 	.Q1slider {
 		text-align: center;
 		background: none;
+		/* padding: 100px; */
 	}
 
 	.rz-tick-legend.ng-binding {

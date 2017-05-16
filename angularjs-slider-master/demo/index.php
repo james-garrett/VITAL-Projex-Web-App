@@ -11,6 +11,9 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script> -->
   <link rel="stylesheet" href="css/app_stylesheet.css"/>
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
+  
+
+  
   <link rel="stylesheet" href="../dist/rzslider.css"/>
   <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet"/>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
@@ -61,6 +64,7 @@
 </script>
 <!-- <script src="../Proj/node_modules/angular-1.6.1/angular.js"></script> -->
 <script src="./lib/ui-bootstrap-tpls.js"></script>
+
 <script src="../dist/rzslider.js"></script>
 <script src="js/app.js"></script>
 </html>
