@@ -69,7 +69,7 @@ app.controller('MainCtrl',
       $scope.valueQuestion = new Array(0);
       // PHPData.getOutput();
       // console.log(PHPData.returnPHPData());
-      JSONData.getJSONDataFromFile('json/newQuestions15.json', "questions");
+      JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
       
       $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
       sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
@@ -85,9 +85,8 @@ app.controller('MainCtrl',
   
   $scope.$on('$ionicView.afterEnter', function(){
     // $scope.drawBigHex();
-    
+    console.log("afterEnter called");
     $scope.appendToMenu();
-    $scope.GetColours("blar");
     // console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() ==true) {
       // AnswerListener.clearAnswerListener();  
@@ -102,6 +101,7 @@ app.controller('MainCtrl',
                                   document.getElementById(text_elem_Name));
       AnswerListener.setQuestionAnswered(false);
       $scope.checkCompletionStatus();
+
       // $scope.showStorage();
     } 
     // console.log(typeof sessionStorage.getItem("Q1"));
@@ -349,10 +349,6 @@ app.controller('MainCtrl',
   }
 
 
-    $scope.GetColours = function(arrayOfGems){
-      // console.log(document.querySelectorAll('svg[id^="prettyGem"]'));
-
-    }
 
   $(document).keypress(function(e){
     console.log("shortcut");
@@ -663,7 +659,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
                      ['Set3', 'Set2', 'Set1'],
                      ['Pastel2', 'Greys', 'Pastel1']];
       // console.log("colors chosen ", palette[index]);
-      console.log(palette[index], index);
+      // console.log(palette[index], index);
       return palette[index];
     }
 
@@ -883,7 +879,7 @@ app.service('JSONData', function() {
           if(dataType == "questions") {
             $.each(json.Questions, function(k, v) {
               // console.log(k, v);
-              console.log(numberOfQuestions);
+              // console.log(numberOfQuestions);
               numberOfQuestions++;
             })
             questionJSONData.push(json.Questions);
