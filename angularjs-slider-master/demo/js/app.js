@@ -61,31 +61,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem', 'PHPData',
-		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData) {
-      $scope.valueQuestion = new Array(0);
-      $scope.jsonData = {};
-      $scope.form = null;
-      $scope.valueQuestion = new Array(0);
-      // PHPData.getOutput();
-      // console.log(PHPData.returnPHPData());
-      JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
-      
-      $scope.valueQuestion = JSONData.returnQuestionJSONData(); 
-      sessionStorage.setItem("QuestionData", JSON.stringify($scope.valueQuestion));
+	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem', 'PHPData', 'ColorBrewerList',
+		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData, ColorBrewerList) {
+
     
     $scope.callToGetJSONDATA = function() {
       // console.log(JSONData.getJSONDataFromFile('json/questions.json'));
     }
-
-
+   
   // $scope.callToGetJSONDATA();
   $scope.gem = null;
   //upon the controller being opened, execute this function
   
   $scope.$on('$ionicView.afterEnter', function(){
     // $scope.drawBigHex();
-    console.log("afterEnter called");
+    // console.log("afterEnter called");
+
     $scope.appendToMenu();
     // console.log("gah", AnswerListener.getInputValue(), AnswerListener.getQuestionAnswered());
     if(AnswerListener.getInputValue() != -1 && AnswerListener.getQuestionAnswered() ==true) {
@@ -248,7 +239,6 @@ app.controller('MainCtrl',
         };
     }
 
-
     return points;
   }
 
@@ -257,7 +247,7 @@ app.controller('MainCtrl',
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
       console.log(inputs);
       inputs.forEach(function(g, index) {
-        console.log(index);
+        // console.log(index);
         g = document.getElementById("spinObj" + index.toString());
         var container = inputs[index];
         var gem = new Gem(container, g);
@@ -269,13 +259,12 @@ app.controller('MainCtrl',
         // container.style.height = $(window).height()/6.10769;
         // container.style.width =  $(window).width()/7.330769230769231;
         // console.log("UGH", gem.setColorPalette(index)[1]);
-        gem.createGem(width*4, height*4, gem.setColorPalette(0)[1], 'match_x', g, false);
+        gem.createGem(width*4, height*4, ColorBrewerList.setColorPalette(index)[1], 'match_x', g, false);
         // gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
         
         });
   }
 
-  
 
   $scope.placeGemOnDiv = function(index) {
     // console.log(document.getElementById("shapeContainer").offsetWidth, document.getElementById("shapeContainer").offsetHeight);
@@ -351,19 +340,48 @@ app.controller('MainCtrl',
 
 
   $(document).keypress(function(e){
-    console.log("shortcut");
+    // console.log("shortcut");
     if(e.keyCode ==97) {
-      var sortingArray = new Array();
+      
       sessionStorage.setItem("Question: " + "0", 6);
       sessionStorage.setItem("Question: " + "1", 5);
       sessionStorage.setItem("Question: " + "2", 4);
       sessionStorage.setItem("Question: " + "3", 3);
       sessionStorage.setItem("Question: " + "4", 2);
+      sessionStorage.setItem("Question: " + "5", 6);
+      sessionStorage.setItem("Question: " + "6", 5);
+      sessionStorage.setItem("Question: " + "7", 4);
+      sessionStorage.setItem("Question: " + "8", 3);
+      sessionStorage.setItem("Question: " + "9", 2);
+      // console.log(sessionStorage.getItem("Question: 0"));
+
+      console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
+      // printAllSessionsData();
+
       location.href='#/ParticipantResultsPage';
-      // console.log(sessionStorage.getItem("Question"));
     }
-  });   
+  });
+
+  printAllSessionsData = function() {
+    console.log("All sessionStorage data:");
+    for (var i = 0; i < sessionStorage.length; i++){
+        console.log(JSON.parse(sessionStorage.getItem(sessionStorage.key(i))));
+    }
+  }
   
+      $scope.form = null;
+      $scope.valueQuestion = new Array(0);
+      $scope.jsonData = {};
+      // PHPData.getOutput();
+      // console.log(PHPData.returnPHPData());
+      // JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
+      // JSONData.getJSONDataFromFile('json/questions2.json', "questions");
+      
+      $scope.valueQuestion = JSONData.returnQuestionJSONData('json/questions2.json', "questions"); 
+      console.log($scope.valueQuestion);
+      sessionStorage.setItem("questionJSONData", JSON.stringify($scope.valueQuestion)); 
+      console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
+
 
 }]);
 
@@ -383,7 +401,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
 
           var array =  JSON.parse(sessionStorage.getItem("questionJSONData"))[0][index];
         } else {
-           var array = JSONData.returnQuestionJSONData()[0][index];
+           var array = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][index];
         }
        
        
@@ -527,16 +545,22 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
 
       $scope.orderResults = function() {
         sortingArray = new Array();
-        console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0]);
+        // console.log(sessionStorage.getItem("questionJSONData"));
+        console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))[0]);
         Object.keys(sessionStorage).forEach(function(elem, index) {
           if(elem.indexOf("Question: ") != -1) {
             var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
             var questionIndex = elem.replace('Question: ', '');
-            console.log(questionIndex, sessionStorage.getItem(elem), (JSON.parse(sessionStorage.getItem("QuestionData")))[0][0].BasicLabel, elem.replace('Question: ', ''), elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
+            console.log(questionIndex); 
+            console.log(sessionStorage.getItem(elem)); 
+            // console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0][0].BasicLabel); 
+            console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
+            console.log(elem.replace('Question: ', '')) 
+            console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
             console.log(sessionStorage.getItem(elem));
             sortingArray.push({question: elem.replace('Question: ', ''), 
-                discourse: (JSON.parse(sessionStorage.getItem("QuestionData")))[0][questionIndex].BasicLabel, 
-                rating: JSON.parse(sessionStorage.getItem("QuestionData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
+                discourse: (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel, 
+                rating: JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
                 distanceFrom4: newIndex});
           }
           
@@ -621,7 +645,7 @@ app.controller('ReportCreator', ['$rootScope','$scope','$timeout', '$uibModal', 
 
 }]);
 
-app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $http, JSONData) {
+app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', function($rootScope, $http, JSONData, ColorBrewerList) {
   var Gem = function(container, appendingObj) {
       this.initialize = function() {
         // console.log("Gem", JSONData.getIndex());
@@ -632,36 +656,6 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
 		// console.log(this.gem);
 
       }
-
-  this.setColorPalette = function(index) {
-    
-    // console.log(palette[index]);
-    var palette = [
-                     ['Greens','YlGnBu','Purples'],
-                     ['Greens','YlGnBu','Purples'],
-                     ['Greens','YlGnBu','Purples'],
-                     ['Blues','BuGn', 'YlOrRd'],
-                     ['PuBuGn', 'PuBu', 'BuPu'],
-                     ['RdPu', 'PuRd', 'OrRd'],
-                     ['Blues', 'Reds', 'Oranges'],
-                     ['Reds', 'PuOr', 'BrBG'],
-                     ['PRGn', 'Greens', 'RdBu'],
-                     ['PRGn', 'Blues', 'RdBu'],
-                     ['PRGn', 'Purples', 'RdBu'],
-                     ['PRGn', 'Spectral', 'RdBu'],
-                     ['PRGn', 'Spectral', 'RdBu'],
-
-                     // ['YIGn', 'RdYIBu', 'Spectral'],
-
-                     // ['Spectral', 'RdYIBu', 'PRGn'],
-                     ['YIOrRd', 'OrRd', 'PuRd'],
-                     ['PuOr', 'BrBG', 'Blues'],
-                     ['Set3', 'Set2', 'Set1'],
-                     ['Pastel2', 'Greys', 'Pastel1']];
-      // console.log("colors chosen ", palette[index]);
-      // console.log(palette[index], index);
-      return palette[index];
-    }
 
   setGemColorRange = function(gemColor, color1, color2, color3) {
     // console.log(gemColor);
@@ -734,9 +728,9 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
     // h*=0.7;
     // w*=0.7; 
     var colors = {color1: '', color2: '', color3:''};
-    colors.color1 = this.setColorPalette(currentIndex)[0];
-    colors.color2 = this.setColorPalette(currentIndex)[1];
-    colors.color3 = this.setColorPalette(currentIndex)[2];
+    colors.color1 = ColorBrewerList.setColorPalette(currentIndex)[0];
+    colors.color2 = ColorBrewerList.setColorPalette(currentIndex)[1];
+    colors.color3 = ColorBrewerList.setColorPalette(currentIndex)[2];
 
     var x = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[0];
     var y = setGemColorRange(gemColor, colors.color1,colors.color2,colors.color3)[1];
@@ -747,12 +741,12 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', function($rootScope, $htt
   }
 
   this.changeGemDefinition = function(value) {
-     document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
+     document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
   }
   this.changeGemLabel = function(value) {
     var gemTxt = document.getElementById("gemLabel");
 
-    var description = JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+    var description = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
     document.getElementById("gemLabel").textContent = description;
     if(description.length > 14) {
       var split = description.match(/.{1,14}/g);
@@ -823,7 +817,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     this.setSlider = function(questionJSONData) {
       console.log(JSONData.getIndex()); 
-      console.log(JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions);
+      console.log(JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions);
       this.slider_ticks_legend = {
           value: 4,
           options: {
@@ -852,17 +846,19 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
             // },
 
             ticksTooltip: function(v) {
-              console.log("tooltip triggered");
-              return (JSONData.returnQuestionJSONData()[0][JSONData.getIndex()].ValueOptions.value[v].definition);
+              // console.log("tooltip triggered");
+              return (JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[v].definition);
             },
 
             getTickColor: function (value) {
-              if (value < 3)
-                return 'red';
+              var colorRange = ColorBrewerList.setColorPalette(JSONData.getIndex());
+              console.log(colorRange[0], ColorBrewerList.searchForColor(colorRange[0]));
+              if (value < 3) 
+                return (ColorBrewerList.searchForColor(colorRange[0]));
               if (value < 6)
-                return 'orange';
+                return ColorBrewerList.searchForColor(colorRange[1]);
               if (value < 9)
-                return 'yellow';
+                return ColorBrewerList.searchForColor(colorRange[2]);
               return '#2AE02A';
           },
 
@@ -913,22 +909,24 @@ app.service('JSONData', function() {
     var getJSONDataFromFile = function(filename, dataType) {
         var returnJSON = [];
         $.getJSON(filename, function(json) {
-          if(dataType == "questions") {
-            $.each(json.Questions, function(k, v) {
-              // console.log(k, v);
-              // console.log(numberOfQuestions);
-              numberOfQuestions++;
-            })
-            questionJSONData.push(json.Questions);
-          } else if(dataType == "report") {
-            console.log("report");
-            $.each(json.Results, function(k, v) {
-              // console.log(k, v);
-            })
-            reportJSONData.push(json.Results);
-            
-          }
-        });
+              if(dataType == "questions") {
+                $.each(json.Questions, function(k, v) {
+                  // console.log(k, v, questionJSONData);
+                  // console.log(numberOfQuestions);
+                  numberOfQuestions++;
+                })
+                questionJSONData.push(json.Questions);
+                // console.log(questionJSONData);
+
+              } else if(dataType == "report") {
+                console.log("report");
+                $.each(json.Results, function(k, v) {
+                  // console.log(k, v);
+                })
+                reportJSONData.push(json.Results);
+              
+            }
+      });
       // console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
       if((typeof(questionJSONData) == "undefined") == true) {
         // console.log("qd is null");
@@ -941,7 +939,15 @@ app.service('JSONData', function() {
       return numberOfQuestions;
     }
 
-    var returnQuestionJSONData = function() {
+    var setQuestionJSONData = function(val) {
+        questionJSONData = val;
+    }
+
+    var returnQuestionJSONData = function(filename, dataType) {
+      // console.log(questionJSONData);
+      if(questionJSONData.length == 0) {
+          getJSONDataFromFile(filename, dataType);
+      }
       return questionJSONData;
     }
 
@@ -959,6 +965,7 @@ app.service('JSONData', function() {
 
     return {
       getJSONDataFromFile: getJSONDataFromFile,
+      setQuestionJSONData: setQuestionJSONData,
       returnQuestionJSONData: returnQuestionJSONData,
       returnReportJSONData: returnReportJSONData,
       returnQuestionLength: returnQuestionLength,
@@ -1003,24 +1010,55 @@ app.service('ColorBrewerList', function() {
     return colorList;
   }
 
+  var setColorPalette = function(index) {
+    
+    // console.log(palette[index]);
+    var palette = [
+                     ['Greens','YlGnBu','Purples'],
+                     ['YlOrBr','RdGy','GnBu'],
+                     ['Greens','RdYlBu','Purples'],
+                     ['Blues','BuGn', 'YlOrRd'],
+                     ['PuBuGn', 'PuBu', 'BuPu'],
+                     ['RdPu', 'PuRd', 'OrRd'],
+                     ['Blues', 'Reds', 'Oranges'],
+                     ['Reds', 'PuOr', 'BrBG'],
+                     ['PRGn', 'Greens', 'RdBu'],
+                     ['PRGn', 'Blues', 'RdBu'],
+                     ['PRGn', 'Purples', 'RdBu'],
+                     ['PRGn', 'Spectral', 'RdBu'],
+                     ['PRGn', 'PiYG', 'RdBu'],
+                     ['YIOrRd', 'OrRd', 'PuRd'],
+                     ['PuOr', 'BrBG', 'Blues'],
+                     ['Set3', 'RdYlGn', 'Set1'],
+                     ['Pastel2', 'Greys', 'Pastel1']];
+      // console.log("colors chosen ", palette[index]);
+      // console.log(palette[index], index);
+    return palette[index];
+  }
+
   var searchForColor = function(color) {
-    console.log(colorList.color[0]);
+    // console.log(colorList.color[0]);
+    var returnColor = '';
     Object.keys(colorList.color).forEach(function(elem, index) {
         
         var colorName = colorList.color[index].color;
-        console.log(colorName, index, color, colorName == color);
+        // console.log(colorName, index, color, colorName == color);
         if(colorName == color) {
-          console.log(colorName, typeof(elem), color);
-          console.log(colorList.color[index].array[0]);
-          return colorList.color[index].array[0];
+          // console.log(colorName, typeof(elem), color);
+          // console.log(colorList.color[index].array[0]);
+          var array = colorList.color[index].array;
+          // console.log(array);
+          returnColor = (colorList.color[index].array[3]);
         }
         // console.log(index + " " + elem + " " + (elem.toString() === color) + " " + elem.toString());
       });
+    return returnColor;
   }
 
   return {
     returnColorList: returnColorList,
     searchForColor: searchForColor,
+    setColorPalette: setColorPalette,
   };
 });
 
