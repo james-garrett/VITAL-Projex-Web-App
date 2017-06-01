@@ -61,8 +61,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 app.controller('MainCtrl', 
-	['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem', 'PHPData', 'ColorBrewerList',
-		function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData, ColorBrewerList) {
+  ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 'JSONData', 'Gem', 'PHPData', 'ColorBrewerList',
+    function($rootScope, $scope, $timeout, $uibModal, AnswerListener, JSONData, Gem, PHPData, ColorBrewerList) {
 
     
     $scope.callToGetJSONDATA = function() {
@@ -380,7 +380,6 @@ app.controller('MainCtrl',
       $scope.valueQuestion = JSONData.returnQuestionJSONData('json/questions2.json', "questions"); 
       console.log($scope.valueQuestion);
       sessionStorage.setItem("questionJSONData", JSON.stringify($scope.valueQuestion)); 
-      console.log("3!");
       console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
 
 
@@ -425,12 +424,12 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
     
       NotifyingService.subscribe($scope, function somethingChanged() {
         gemEvent();
-          console.log("NotifyingService caught call");
+          // console.log("NotifyingService caught call");
 
       });
       
       gemEvent = function() {
-      	$scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex(), document.getElementById("spinObj"));
+        $scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex(), document.getElementById("spinObj"));
         $scope.gem.changeGemLabel(AnswerListener.getInputValue());
         $scope.gem.changeGemDefinition(AnswerListener.getInputValue());
       }
@@ -654,7 +653,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
         // console.log(elem);
         // console.log(elem.clientHeight);
         // document.getElementById(appendingObj), false);
-		// console.log(this.gem);
+    // console.log(this.gem);
 
       }
 
@@ -818,7 +817,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     this.setSlider = function(questionJSONData) {
       console.log(JSONData.getIndex()); 
-      console.log(JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions);
+      // console.log(JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions);
       this.slider_ticks_legend = {
           value: 4,
           options: {
@@ -853,7 +852,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
             getTickColor: function (value) {
               var colorRange = ColorBrewerList.setColorPalette(JSONData.getIndex());
-              console.log(colorRange[0], ColorBrewerList.searchForColor(colorRange[0]));
+              // console.log(colorRange[0], ColorBrewerList.searchForColor(colorRange[0]));
               if (value < 3) 
                 return (ColorBrewerList.searchForColor(colorRange[0]));
               if (value < 6)
@@ -909,28 +908,31 @@ app.service('JSONData', function() {
 
     var getJSONDataFromFile = function(filename, dataType) {
         var returnJSON = [];
-        return $.getJSON(filename).then(function(json) {
-          return {
-            json: json
-          }
-        });
+        $.getJSON(filename, function(json) {
+              if(dataType == "questions") {
+                $.each(json.Questions, function(k, v) {
+                  // console.log(k, v, questionJSONData);
+                  // console.log(numberOfQuestions);
+                  numberOfQuestions++;
+                })
+                questionJSONData.push(json.Questions);
+                // console.log(questionJSONData);
+
+              } else if(dataType == "report") {
+                console.log("report");
+                $.each(json.Results, function(k, v) {
+                  // console.log(k, v);
+                })
+                reportJSONData.push(json.Results);
               
+            }
+      });
       // console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
       if((typeof(questionJSONData) == "undefined") == true) {
         // console.log("qd is null");
       }
       // returnQuestionJSONData();
       // console.log(numberOfQuestions);
-    }
-
-    var loopThroughArray = function(data) {
-
-    $.each(data.json.Questions).then(function(k, v) {
-            // console.log(k, v, questionJSONData);
-            // console.log(numberOfQuestions);
-            numberOfQuestions++;
-        });
-    return 1;
     }
 
     var returnQuestionLength = function() {
@@ -942,28 +944,6 @@ app.service('JSONData', function() {
     }
 
     var returnQuestionJSONData = function(filename, dataType) {
-      var promise1 = getJSONDataFromFile(filename, dataType); 
-
-      promise1.then(function(data) {
-        console.log(data.json.Questions);
-        console.log("1");
-        if(dataType == "questions") {
-          // var promise2 = loopThroughArray(data);
-          // promise2.done(function() {  
-            // questionJSONData.push(data.json.Questions);
-            console.log("2");
-          // });
-          
-        // console.log(questionJSONData);
-        // });
-      } else if(dataType == "report") {
-        console.log("report");
-        $.each(data.json.Results, function(k, v) {
-          // console.log(k, v);
-        })
-
-      }
-      });
       // console.log(questionJSONData);
       if(questionJSONData.length == 0) {
           getJSONDataFromFile(filename, dataType);

@@ -263,6 +263,7 @@
 		text-align: center;
 		background: none;
 		/* padding: 100px; */
+		background: rgba(0,0, 0, 0);
 	}
 
 	.rz-tick-legend.ng-binding {
@@ -369,7 +370,7 @@
 
 	article.DescriptionBox {
 		padding: 10px;
-		background: rgba(0,0,0, 0.7);
+		background: rgba(0,0, 0, 0);
 		padding-bottom: 15px;
 		padding-top: 15px;
 		/*margin: 10px;*/
@@ -378,7 +379,23 @@
 		text-align: center;
 	}
 	
+	#pane1 {
+		background: rgba(0,0, 0, 0.7);
+		border-color: rgba(0,0, 0, 0);
+		border-radius: 15px;
+		color: #FFFFFF;
+	}
 
+	#pane1 > ion-item {
+		background: rgba(0,0, 0, 0);
+		border-color: rgba(0,0, 0, 0);
+		color: #fff;
+	}
+
+	#slider1 {
+		background: rgba(0,0, 0, 0);
+		border-color: rgba(0,0, 0, 0);
+	}
 
 	.tab-pane{
 	  padding-top: 10px;
