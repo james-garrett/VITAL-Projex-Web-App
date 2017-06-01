@@ -380,6 +380,7 @@ app.controller('MainCtrl',
       $scope.valueQuestion = JSONData.returnQuestionJSONData('json/questions2.json', "questions"); 
       console.log($scope.valueQuestion);
       sessionStorage.setItem("questionJSONData", JSON.stringify($scope.valueQuestion)); 
+      console.log("3!");
       console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
 
 
@@ -908,31 +909,28 @@ app.service('JSONData', function() {
 
     var getJSONDataFromFile = function(filename, dataType) {
         var returnJSON = [];
-        $.getJSON(filename, function(json) {
-              if(dataType == "questions") {
-                $.each(json.Questions, function(k, v) {
-                  // console.log(k, v, questionJSONData);
-                  // console.log(numberOfQuestions);
-                  numberOfQuestions++;
-                })
-                questionJSONData.push(json.Questions);
-                // console.log(questionJSONData);
-
-              } else if(dataType == "report") {
-                console.log("report");
-                $.each(json.Results, function(k, v) {
-                  // console.log(k, v);
-                })
-                reportJSONData.push(json.Results);
+        return $.getJSON(filename).then(function(json) {
+          return {
+            json: json
+          }
+        });
               
-            }
-      });
       // console.log(questionJSONData, (typeof(questionJSONData) == "undefined"));
       if((typeof(questionJSONData) == "undefined") == true) {
         // console.log("qd is null");
       }
       // returnQuestionJSONData();
       // console.log(numberOfQuestions);
+    }
+
+    var loopThroughArray = function(data) {
+
+    $.each(data.json.Questions).then(function(k, v) {
+            // console.log(k, v, questionJSONData);
+            // console.log(numberOfQuestions);
+            numberOfQuestions++;
+        });
+    return 1;
     }
 
     var returnQuestionLength = function() {
@@ -944,6 +942,28 @@ app.service('JSONData', function() {
     }
 
     var returnQuestionJSONData = function(filename, dataType) {
+      var promise1 = getJSONDataFromFile(filename, dataType); 
+
+      promise1.then(function(data) {
+        console.log(data.json.Questions);
+        console.log("1");
+        if(dataType == "questions") {
+          // var promise2 = loopThroughArray(data);
+          // promise2.done(function() {  
+            // questionJSONData.push(data.json.Questions);
+            console.log("2");
+          // });
+          
+        // console.log(questionJSONData);
+        // });
+      } else if(dataType == "report") {
+        console.log("report");
+        $.each(data.json.Results, function(k, v) {
+          // console.log(k, v);
+        })
+
+      }
+      });
       // console.log(questionJSONData);
       if(questionJSONData.length == 0) {
           getJSONDataFromFile(filename, dataType);
