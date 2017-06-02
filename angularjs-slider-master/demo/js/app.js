@@ -245,7 +245,7 @@ app.controller('MainCtrl',
   $scope.appendToMenu = function() {
     // console.log("pha");
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
-      console.log(inputs);
+      // console.log(inputs);
       inputs.forEach(function(g, index) {
         // console.log(index);
         g = document.getElementById("spinObj" + index.toString());
@@ -377,10 +377,12 @@ app.controller('MainCtrl',
       // JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
       // JSONData.getJSONDataFromFile('json/questions2.json', "questions");
       
-      $scope.valueQuestion = JSONData.returnQuestionJSONData('json/questions2.json', "questions"); 
-      console.log($scope.valueQuestion);
-      sessionStorage.setItem("questionJSONData", JSON.stringify($scope.valueQuestion)); 
-      console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
+      JSONData.returnQuestionJSONData('json/questions2.json', "questions", function(data) { 
+        sessionStorage.setItem("questionJSONData", JSON.stringify(data)); 
+        $scope.valueQuestion = data;
+        // console.log($scope.valueQuestion, data);
+        // console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
+      });
 
 
 }]);
@@ -556,7 +558,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             // console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0][0].BasicLabel); 
             console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
             console.log(elem.replace('Question: ', '')) 
-            console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
+            // console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
             console.log(sessionStorage.getItem(elem));
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel, 
@@ -777,7 +779,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
         // console.log(module.exports);
         // var dom = document.getElementsByClassName('rz-bar'); 
         // console.log(dom);
-        console.log(ColorBrewerList.searchForColor("Reds"));
+        // console.log(ColorBrewerList.searchForColor("Reds"));
         // dom.style.backgroundImage = 'linear-gradient(#000000, #ffffff)';
     };
 
@@ -816,8 +818,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
 
     this.setSlider = function(questionJSONData) {
-      console.log(JSONData.getIndex()); 
-      console.log(JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions);
+      // console.log(JSONData.getIndex()); 
+      // console.log(JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions);
       this.slider_ticks_legend = {
           value: 4,
           options: {
@@ -906,7 +908,7 @@ app.service('JSONData', function() {
     var indexChosen = -1;
     
 
-    var getJSONDataFromFile = function(filename, dataType) {
+    var getJSONDataFromFile = function(filename, dataType, callback) {
         var returnJSON = [];
         $.getJSON(filename, function(json) {
               if(dataType == "questions") {
@@ -916,6 +918,7 @@ app.service('JSONData', function() {
                   numberOfQuestions++;
                 })
                 questionJSONData.push(json.Questions);
+                callback(questionJSONData);
                 // console.log(questionJSONData);
 
               } else if(dataType == "report") {
@@ -943,10 +946,10 @@ app.service('JSONData', function() {
         questionJSONData = val;
     }
 
-    var returnQuestionJSONData = function(filename, dataType) {
+    var returnQuestionJSONData = function(filename, dataType, callback) {
       // console.log(questionJSONData);
       if(questionJSONData.length == 0) {
-          getJSONDataFromFile(filename, dataType);
+          getJSONDataFromFile(filename, dataType, callback);
       }
       return questionJSONData;
     }
