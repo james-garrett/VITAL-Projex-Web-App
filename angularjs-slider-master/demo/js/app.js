@@ -351,8 +351,7 @@ app.controller('MainCtrl',
       sessionStorage.setItem("Question: " + "5", 6);
       sessionStorage.setItem("Question: " + "6", 5);
       sessionStorage.setItem("Question: " + "7", 4);
-      sessionStorage.setItem("Question: " + "8", 3);
-      sessionStorage.setItem("Question: " + "9", 2);
+      
       // console.log(sessionStorage.getItem("Question: 0"));
 
       console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
@@ -554,12 +553,13 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
             var questionIndex = elem.replace('Question: ', '');
             console.log(questionIndex); 
-            console.log(sessionStorage.getItem(elem)); 
+            // console.log(sessionStorage.getItem(elem)); 
             // console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0][0].BasicLabel); 
-            console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
-            console.log(elem.replace('Question: ', '')) 
-            // console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("QuestionData"))[0][1]);
-            console.log(sessionStorage.getItem(elem));
+            // console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
+            // console.log(elem.replace('Question: ', '')) 
+            console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex]);
+            console.log(elem, sessionStorage.getItem(elem));
+            console.log("discourse:", (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel);
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel, 
                 rating: JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
