@@ -347,14 +347,14 @@ app.controller('MainCtrl',
       sessionStorage.setItem("Question: " + "1", 5);
       sessionStorage.setItem("Question: " + "2", 4);
       sessionStorage.setItem("Question: " + "3", 3);
-      sessionStorage.setItem("Question: " + "4", 2);
-      sessionStorage.setItem("Question: " + "5", 6);
+      sessionStorage.setItem("Question: " + "4", 1);
+      sessionStorage.setItem("Question: " + "5", 0);
       sessionStorage.setItem("Question: " + "6", 5);
       sessionStorage.setItem("Question: " + "7", 4);
       
       // console.log(sessionStorage.getItem("Question: 0"));
 
-      console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
+      // console.log(JSON.parse(sessionStorage.getItem("questionJSONData")));
       // printAllSessionsData();
 
       location.href='#/ParticipantResultsPage';
@@ -458,11 +458,11 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
     var xAxis = new Array();
     var yAxis = new Array();
       
-      $scope.init = function() {
+      $scope.init = function(answerDeviations, negDeviations, questionNumberAsArray) {
         $scope.generatePlot();
         var trace1 = {
           x: x,
-          y: [0, 1, 2, 3, 4],
+          y: questionNumberAsArray,
           // fill: 'tozeroy',
           type: 'scatter',
           // name: 'Your Projection',
@@ -470,24 +470,24 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         };
         var trace2 = {
           x: x2,
-          y: [0, 1, 2, 3, 4],
+          y: questionNumberAsArray,
           fill: 'tonexty',
           type: 'scatter',
           name: 'Your Projection'
         };
 
-        var trace3 = {
-          x: [0, 1, 1, 1, 2],
-          y: [0, 1, 2, 3, 4],
+        var trace3 = { //Right filling
+          x: answerDeviations,
+          y: questionNumberAsArray,
           showlegend: false,
           // fill: 'tonexty',
           // name: 'Ideal Projection',
           type: 'scatter'
         };
 
-        var trace4 = {
-          x: [0, -1, -1, -1, -2],
-          y: [0, 1, 2, 3, 4],
+        var trace4 = { //Left Filling
+          x: negDeviations,
+          y: questionNumberAsArray,
           fill: 'tonexty',
           name: 'Ideal Projection',
           type: 'scatter',
@@ -505,7 +505,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             t:100,
             pad:40          
           },
-          width: 700,
+          width: 900,
           paper_bgcolor: 'rgba(0,0,0, 0.7)',
           plot_bgcolor: '#FFFFFF',
           gridcolor: '#FFFFFF',
@@ -529,7 +529,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
 
           yaxis: {title: 'Core Value', 
                     titlefont:{ family: 'title', size: 18, color: '#FFFFFF'}, 
-                    tickvals:['0', '1', '2', '3', '4'],
+                    tickvals:['0', '1', '2', '3', '4', '5', '6', '7'],
                     // tickcolor: '#FFFFFF',
                     tickfont: {family: 'title', size: 12, color: '#FFFFFF'},
                     ticktext: yAxis},
@@ -550,16 +550,16 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))[0]);
         Object.keys(sessionStorage).forEach(function(elem, index) {
           if(elem.indexOf("Question: ") != -1) {
-            var newIndex = Math.abs(sessionStorage.getItem(elem)-4);
+            var newIndex = Math.abs(sessionStorage.getItem(elem)-3);
             var questionIndex = elem.replace('Question: ', '');
-            console.log(questionIndex); 
+            // console.log(questionIndex); 
             // console.log(sessionStorage.getItem(elem)); 
             // console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0][0].BasicLabel); 
             // console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
             // console.log(elem.replace('Question: ', '')) 
-            console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex]);
-            console.log(elem, sessionStorage.getItem(elem));
-            console.log("discourse:", (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel);
+            // console.log(elem, sessionStorage.getItem(elem), JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex]);
+            // console.log(elem, sessionStorage.getItem(elem));
+            // console.log("discourse:", (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel);
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel, 
                 rating: JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
@@ -568,7 +568,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           
         // }
         });
-        console.log(sortingArray);
+        // console.log(sortingArray);
         items = Object.keys(sortingArray).map(function(key) {
           // console.log(key, sortingArray[key].rating);
           return [key, sortingArray[key]];
@@ -578,7 +578,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           return first[1].distanceFrom4 - second[1].distanceFrom4;
         });
         
-        console.log(items);
+        // console.log(items);
         return items;
       }
 
@@ -590,6 +590,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           x[i] = temp[i][1].distanceFrom4;
           x2[i] = x[i]*-1;
           y[i] = i;
+          console.log(i, x[i]);
 
           yAxis[i] = temp[i][1].discourse;
           if(i == 0) {
@@ -623,8 +624,8 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         console.log(x, xAxis, xAxis[0]);
         // (Question number (y), Value slider (x), value chosen (text))
       }
+      $scope.init(x, x2, y);
 
-      $scope.init();
 
 
 
