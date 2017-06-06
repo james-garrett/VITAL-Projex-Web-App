@@ -130,6 +130,7 @@ app.controller('MainCtrl',
     // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
     $scope.gem.changeGemColor(answerIndex, gemIndex, polyElem);
     $scope.callToGetJSONDATA();
+    document.getElementsByClassName("environments-image" + gemIndex.toString())[0].style.opacity = "0.5";s
     // $scope.gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', polyElem, false);
   }
 
@@ -292,9 +293,9 @@ app.controller('MainCtrl',
 
 
   $scope.placeGemLabel = function(index) {
+    // console.log(ColorBrewerList.getContrast50(index));
     var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
     var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
-    
     var heading = document.getElementById("Q" + index.toString() + "gemLabel");
     var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
     // console.log(index.toString(), gemBox.width);
@@ -453,6 +454,8 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
 
     var x = new Array();
     var y = new Array();
+    var left = new Array();
+    var right = new Array();
     var x2 = new Array();
     var labels = new Array();
     var xAxis = new Array();
@@ -469,7 +472,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           showlegend: false
         };
         var trace2 = {
-          x: x2,
+          x: x,
           y: questionNumberAsArray,
           fill: 'tonexty',
           type: 'scatter',
@@ -477,7 +480,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         };
 
         var trace3 = { //Right filling
-          x: answerDeviations,
+          x: right,
           y: questionNumberAsArray,
           showlegend: false,
           // fill: 'tonexty',
@@ -486,7 +489,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         };
 
         var trace4 = { //Left Filling
-          x: negDeviations,
+          x: left,
           y: questionNumberAsArray,
           fill: 'tonexty',
           name: 'Ideal Projection',
@@ -550,9 +553,9 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))[0]);
         Object.keys(sessionStorage).forEach(function(elem, index) {
           if(elem.indexOf("Question: ") != -1) {
-            var newIndex = Math.abs(sessionStorage.getItem(elem)-3);
+            var newIndex = (sessionStorage.getItem(elem) - 3);
             var questionIndex = elem.replace('Question: ', '');
-            // console.log(questionIndex); 
+            console.log(sessionStorage.getItem(elem), newIndex); 
             // console.log(sessionStorage.getItem(elem)); 
             // console.log(JSON.parse(sessionStorage.getItem("QuestionData"))[0][0].BasicLabel); 
             // console.log(JSON.parse(sessionStorage.getItem("questionJSONData"))); 
@@ -563,19 +566,20 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             sortingArray.push({question: elem.replace('Question: ', ''), 
                 discourse: (JSON.parse(sessionStorage.getItem("questionJSONData")))[0][questionIndex].BasicLabel, 
                 rating: JSON.parse(sessionStorage.getItem("questionJSONData"))[0][questionIndex].ValueOptions.value[sessionStorage.getItem(elem)].action, 
-                distanceFrom4: newIndex});
+                distanceFrom4: newIndex,
+                absDistanceFrom4: Math.abs(newIndex)});
           }
           
         // }
         });
-        // console.log(sortingArray);
+        console.log(sortingArray);
         items = Object.keys(sortingArray).map(function(key) {
           // console.log(key, sortingArray[key].rating);
           return [key, sortingArray[key]];
         });
         items.sort(function(first, second) {
-          // console.log(second[1], first[1], second[1].distanceFrom4 - first[1].distanceFrom4);
-          return first[1].distanceFrom4 - second[1].distanceFrom4;
+          // console.log(first[1], second[1]);
+          return first[1].absDistanceFrom4 - second[1].absDistanceFrom4;
         });
         
         // console.log(items);
@@ -594,6 +598,8 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
 
           yAxis[i] = temp[i][1].discourse;
           if(i == 0) {
+            left[i] = x[i];
+            right[i] = x[i];
             labels.push({
             x: x[i],
             y: i,
@@ -605,7 +611,24 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             ax: 100,
             ay: -30
           });
+
+          } else if(x[i] < 0) {
+            left[i] = x[i];
+            right[i] = x2[i];
+            labels.push({
+            x: x[i],
+            y: i,
+            xref: 'x',
+            yref: 'y',
+            text: temp[i][1].rating,
+            showarrow: true,
+            arrowhead: 7,
+            ax: -80,
+            ay: 0
+          }); 
           } else {
+            left[i] = x2[i];
+            right[i] = x[i];
             labels.push({
             x: x[i],
             y: i,
@@ -616,7 +639,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
             arrowhead: 7,
             ax: 80,
             ay: 0
-          }); 
+          });
           }
           
         }
@@ -1018,19 +1041,19 @@ app.service('ColorBrewerList', function() {
     
     // console.log(palette[index]);
     var palette = [
-                     ['Greens','YlGnBu','Purples'],
-                     ['YlOrBr','RdGy','GnBu'],
-                     ['Greens','RdYlBu','Purples'],
-                     ['Blues','BuGn', 'YlOrRd'],
-                     ['PuBuGn', 'PuBu', 'BuPu'],
-                     ['RdPu', 'PuRd', 'OrRd'],
-                     ['Blues', 'Reds', 'Oranges'],
-                     ['Reds', 'PuOr', 'BrBG'],
+                     ['YlGnBu','Greens','Purples'],
+                     ['RdGy','YlOrBr','GnBu'],
+                     ['RdYlBu','Greens','Purples'],
+                     ['BuGn','Blues', 'YlOrRd'],
+                     ['Greens', 'Oranges', 'PuBuGn'],
+                     ['PuRd', 'RdPu', 'OrRd'],
+                     ['Reds', 'Blues', 'Oranges'],
+                     ['PuOr', 'Reds', 'BrBG'],
                      ['PRGn', 'Greens', 'RdBu'],
                      ['PRGn', 'Blues', 'RdBu'],
                      ['PRGn', 'Purples', 'RdBu'],
                      ['PRGn', 'Spectral', 'RdBu'],
-                     ['PRGn', 'PiYG', 'RdBu'],
+                     ['PiYG', 'PRGn', 'RdBu'],
                      ['YIOrRd', 'OrRd', 'PuRd'],
                      ['PuOr', 'BrBG', 'Blues'],
                      ['Set3', 'RdYlGn', 'Set1'],
@@ -1059,10 +1082,19 @@ app.service('ColorBrewerList', function() {
     return returnColor;
   }
 
+  var getContrast50 = function(index) {
+    var hexcolor = searchForColor((setColorPalette(index))[1]);
+    console.log(searchForColor((setColorPalette(index))[1]));
+    return (parseInt(hexcolor, 16) > 0xffffff/2) ? 'black':'white';
+}
+
+
+
   return {
     returnColorList: returnColorList,
     searchForColor: searchForColor,
     setColorPalette: setColorPalette,
+    getContrast50: getContrast50,
   };
 });
 
