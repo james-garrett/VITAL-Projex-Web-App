@@ -1000,6 +1000,43 @@ app.service('JSONData', function() {
       setIndex: setIndex,
     };
 
+app.service('PHPData', function() {
+    // handles the click event, sends the query
+  var data = new Array(0);
+  var getOutput = function() {
+    // console.log("Doin it");
+
+    //  $.getJSON('php/fetchFromServer.php', function(response) {    
+    //     $.each(response, function(fieldName, fieldValue) {
+    //       // data.push(response.responseText);
+    //       console.log(response, fieldName, fieldValue, response.responseText);
+    //       // $("#" + fieldName).val(fieldValue);          
+    //         });
+    //     data.push(response);
+    // });
+    // return false;
+
+    $.ajax({
+      url: "php/fetchFromServer.php",
+      dataType: "json",
+      async: false,
+      success: function(jsonStuff, textStatus, jqXHR) {
+        data.push(jsonStuff)
+        console.log(textStatus);
+      }
+    });
+  }
+
+  var returnPHPData = function() {
+    return data;
+  }
+
+  return {
+    getOutput: getOutput,
+    returnPHPData: returnPHPData,
+  };
+});
+
 });
 
 app.service('ColorBrewerList', function() {
@@ -1098,41 +1135,7 @@ app.service('ColorBrewerList', function() {
   };
 });
 
-app.service('PHPData', function() {
-    // handles the click event, sends the query
-  var data = new Array(0);
-  var getOutput = function() {
-    // console.log("Doin it");
 
-    //  $.getJSON('php/fetchFromServer.php', function(response) {    
-    //     $.each(response, function(fieldName, fieldValue) {
-    //       // data.push(response.responseText);
-    //       console.log(response, fieldName, fieldValue, response.responseText);
-    //       // $("#" + fieldName).val(fieldValue);          
-    //         });
-    //     data.push(response);
-    // });
-    // return false;
-
-    $.ajax({
-      url: "php/fetchFromServer.php",
-      dataType: "json",
-      success: function(jsonStuff, textStatus, jqXHR) {
-        data.push(jsonStuff)
-        console.log(textStatus);
-      }
-    });
-  }
-
-  var returnPHPData = function() {
-    return data;
-  }
-
-  return {
-    getOutput: getOutput,
-    returnPHPData: returnPHPData,
-  };
-});
 
 app.service('AnswerListener', function() {
   var inputValue = -1;
