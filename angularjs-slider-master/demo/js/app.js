@@ -372,7 +372,7 @@ app.controller('MainCtrl',
       $scope.form = null;
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
-      // PHPData.getOutput();
+      // $scope.valueQuesiton = PHPData.getOutput();
       // console.log(PHPData.returnPHPData());
       // JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
       // JSONData.getJSONDataFromFile('json/questions2.json', "questions");
@@ -460,6 +460,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
     var labels = new Array();
     var xAxis = new Array();
     var yAxis = new Array();
+    var ideal = new Array();
       
       $scope.init = function(answerDeviations, negDeviations, questionNumberAsArray) {
         $scope.generatePlot();
@@ -476,7 +477,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           y: questionNumberAsArray,
           fill: 'tonexty',
           type: 'scatter',
-          name: 'Your Projection'
+          name: 'Ideal Projection'
         };
 
         var trace3 = { //Right filling
@@ -492,7 +493,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
           x: left,
           y: questionNumberAsArray,
           fill: 'tonexty',
-          name: 'Ideal Projection',
+          name: 'Your Projection',
           type: 'scatter',
           
         };
@@ -545,6 +546,17 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         
         // $scope.valueSummary = JSONData.returnReportJSONData();
         // console.log($scope.valueSummary);
+      }
+
+      $scope.generateIdealProjection = function(arr) {
+        var fib = [];
+        fib[0] = 0;
+        fib[1] = 1;
+        for(i=2; i<=10; i++) {
+          fib[i] = fib[i-3] + fib[i-1];
+        }
+        console.log(fib);
+        return fib;
       }
 
       $scope.orderResults = function() {
@@ -647,6 +659,7 @@ app.controller('ParticipantResultsCreator', ['$rootScope','$scope','$timeout', '
         console.log(x, xAxis, xAxis[0]);
         // (Question number (y), Value slider (x), value chosen (text))
       }
+      $scope.generateIdealProjection(ideal);
       $scope.init(x, x2, y);
 
 
@@ -999,12 +1012,13 @@ app.service('JSONData', function() {
       getIndex: getIndex,
       setIndex: setIndex,
     };
+});
 
 app.service('PHPData', function() {
     // handles the click event, sends the query
   var data = new Array(0);
   var getOutput = function() {
-    // console.log("Doin it");
+    console.log("Doin it");
 
     //  $.getJSON('php/fetchFromServer.php', function(response) {    
     //     $.each(response, function(fieldName, fieldValue) {
@@ -1021,6 +1035,7 @@ app.service('PHPData', function() {
       dataType: "json",
       async: false,
       success: function(jsonStuff, textStatus, jqXHR) {
+        console.log("success");
         data.push(jsonStuff)
         console.log(textStatus);
       }
@@ -1035,8 +1050,6 @@ app.service('PHPData', function() {
     getOutput: getOutput,
     returnPHPData: returnPHPData,
   };
-});
-
 });
 
 app.service('ColorBrewerList', function() {
