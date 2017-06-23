@@ -130,7 +130,7 @@ app.controller('MainCtrl',
     // console.log(JSONData.returnQuestionJSONData()[0][gemIndex].ValueOptions.value[answerIndex-1].action);
     $scope.gem.changeGemColor(answerIndex, gemIndex, polyElem);
     $scope.callToGetJSONDATA();
-    document.getElementsByClassName("environments-image" + gemIndex.toString())[0].style.opacity = "0.5";s
+    document.getElementsByClassName("environments-image" + gemIndex.toString())[0].style.opacity = "0.5";
     // $scope.gem.createGem(width*2, height*2, gem.setColorPalette(index)[1], 'match_x', polyElem, false);
   }
 
@@ -246,7 +246,7 @@ app.controller('MainCtrl',
   $scope.appendToMenu = function() {
     // console.log("pha");
       var inputs = document.querySelectorAll('svg[class^="environments-image"]');
-      // console.log(inputs);
+      console.log(inputs);
       inputs.forEach(function(g, index) {
         // console.log(index);
         g = document.getElementById("spinObj" + index.toString());
@@ -377,7 +377,7 @@ app.controller('MainCtrl',
       // JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
       // JSONData.getJSONDataFromFile('json/questions2.json', "questions");
       
-      JSONData.returnQuestionJSONData('json/questions2.json', "questions", function(data) { 
+      JSONData.returnQuestionJSONData('json/questions8.json', "questions", function(data) { 
         sessionStorage.setItem("questionJSONData", JSON.stringify(data)); 
         $scope.valueQuestion = data;
         // console.log($scope.valueQuestion, data);
@@ -397,13 +397,14 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
       $scope.init = function() {
         // console.log(JSONData.getIndex());
         var index = sessionStorage.getItem("currentIndex", index);
+
         if(JSONData.getIndex() == -1) {
           console.log("asdasda", JSON.parse(sessionStorage.getItem("questionJSONData"))[0]);
           JSONData.setIndex(sessionStorage.getItem("currentIndex"));
 
           var array =  JSON.parse(sessionStorage.getItem("questionJSONData"))[0][index];
         } else {
-           var array = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][index];
+           var array = JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][index];
         }
        
        
@@ -416,6 +417,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         $scope.gem.createGem(elem.clientWidth*2, elem.clientHeight*2, 'Greys', 'Greys', 
                               document.getElementById("spinObj"), true);
         $scope.slider_ticks_legend = slider.sliderGet();
+        console.log(qNum);
         AnswerListener.setInputValue(4);
       } 
     $scope.init();
@@ -431,6 +433,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
       });
       
       gemEvent = function() {
+        // console.log("Hi!");
       	$scope.gem.changeGemColor(AnswerListener.getInputValue(), JSONData.getIndex(), document.getElementById("spinObj"));
         $scope.gem.changeGemLabel(AnswerListener.getInputValue());
         $scope.gem.changeGemDefinition(AnswerListener.getInputValue());
@@ -735,6 +738,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
 
   this.createGem = function(gheight, gwidth, x_color, y_color, bg, solo) {
     // console.log(gheight, gwidth, x_color, y_color, bg, solo);
+    // console.log(bg);
     var pattern = Trianglify({
         height: gheight,
         width: gwidth,
@@ -747,10 +751,13 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
           gem.setAttribute("id", "prettyGem");
           $('#prettyGem').remove();  
         } else {
-          var gemName = "prettyGem" + (bg.id).slice(-1);
+          console.log
+          // var gemName = "prettyGem" + (bg.id).slice(-1);
+          var gemName = "prettyGem" + (bg.id).split('j')[1];
           gem.setAttribute("id", gemName);
           $('#' + gemName).remove();  
           // console.log((bg.id).slice(-1), gemName);
+          console.log(bg.id, gemName);
         }
         bg.appendChild(gem);
         // console.log(bg);
@@ -758,7 +765,7 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
   }
 
   this.changeGemColor = function(gemColor, currentIndex, bg) {
-
+    // console.log(currentIndex);
     // console.log($("#QshapeContainer").width(), $("#QshapeContainer").height());
     var h = $("#QshapeContainer").height() + 100, w = $("#QshapeContainer").width() + 100;
 
@@ -780,12 +787,12 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
   }
 
   this.changeGemDefinition = function(value) {
-     document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
+     document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
   }
   this.changeGemLabel = function(value) {
     var gemTxt = document.getElementById("gemLabel");
 
-    var description = JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
+    var description = JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].action;
     document.getElementById("gemLabel").textContent = description;
     if(description.length > 14) {
       var split = description.match(/.{1,14}/g);
@@ -886,12 +893,12 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
             ticksTooltip: function(v) {
               // console.log("tooltip triggered");
-              return (JSONData.returnQuestionJSONData('json/questions2.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[v].definition);
+              return (JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[v].definition);
             },
 
             getTickColor: function (value) {
               var colorRange = ColorBrewerList.setColorPalette(JSONData.getIndex());
-              console.log(colorRange[0], ColorBrewerList.searchForColor(colorRange[0]));
+              // console.log(colorRange[0], ColorBrewerList.searchForColor(colorRange[0]));
               if (value < 3) 
                 return (ColorBrewerList.searchForColor(colorRange[0]));
               if (value < 6)
@@ -988,6 +995,7 @@ app.service('JSONData', function() {
       if(questionJSONData.length == 0) {
           getJSONDataFromFile(filename, dataType, callback);
       }
+      // console.log(questionJSONData);
       return questionJSONData;
     }
 

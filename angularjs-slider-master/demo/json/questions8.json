@@ -1,5 +1,581 @@
 {
    "Questions":[
+      
+      {
+         "VID":"36",
+         "id":"0000",
+         "Question":"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+         "ValueOptions":{
+            "value":[
+               {
+                  "VID":"000",
+                  "tickName":"Lie",
+                  "name":"Lie",
+                  "action":"You Tell Lies",
+                  "definition":"Untruthful; Unfair; Corrupt",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Dishonest",
+                           "action":"You are Dishonest"
+                        },
+                        {
+                           "name":"Untrustworthy",
+                           "action":"You are Untrustworthy"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Cheat",
+                  "action":"You are a Cheater",
+                  "definition":"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Deceive",
+                           "action":"You are Deceptive"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"White Lies",
+                  "action":"You Tell White Lies",
+                  "definition":"Telling minor lies to avoid hurting someone's feelings",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest",
+                  "action":"You are Honest",
+                  "definition":"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+                  "default":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest but Inconsiderate",
+                  "action":"You are Honest But Inconsiderate",
+                  "definition":"Insensitive; tactless; inappropriate; too modest",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gossip",
+                  "action":"You are a Gossiper",
+                  "definition":"True but destructive to relationships",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Hard-Hearted",
+                  "action":"You are Hard Hearted",
+                  "definition":"Honest but cruel; Unrealistically aiming for perfection",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Idealistic",
+                           "action":"You are Idealistic"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"#C555F6",
+         "BasicLabel":"Honesty",
+         "AnswerValue":"",
+         "href":"#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "VID":"36",
+         "id":"0000",
+         "Question":"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+         "ValueOptions":{
+            "value":[
+               {
+                  "VID":"000",
+                  "tickName":"Lie",
+                  "name":"Lie",
+                  "action":"You Tell Lies",
+                  "definition":"Untruthful; Unfair; Corrupt",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Dishonest",
+                           "action":"You are Dishonest"
+                        },
+                        {
+                           "name":"Untrustworthy",
+                           "action":"You are Untrustworthy"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Cheat",
+                  "action":"You are a Cheater",
+                  "definition":"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Deceive",
+                           "action":"You are Deceptive"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"White Lies",
+                  "action":"You Tell White Lies",
+                  "definition":"Telling minor lies to avoid hurting someone's feelings",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest",
+                  "action":"You are Honest",
+                  "definition":"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+                  "default":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest but Inconsiderate",
+                  "action":"You are Honest But Inconsiderate",
+                  "definition":"Insensitive; tactless; inappropriate; too modest",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gossip",
+                  "action":"You are a Gossiper",
+                  "definition":"True but destructive to relationships",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Hard-Hearted",
+                  "action":"You are Hard Hearted",
+                  "definition":"Honest but cruel; Unrealistically aiming for perfection",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Idealistic",
+                           "action":"You are Idealistic"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"#C555F6",
+         "BasicLabel":"Honesty",
+         "AnswerValue":"",
+         "href":"#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "VID":"36",
+         "id":"0000",
+         "Question":"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+         "ValueOptions":{
+            "value":[
+               {
+                  "VID":"000",
+                  "tickName":"Lie",
+                  "name":"Lie",
+                  "action":"You Tell Lies",
+                  "definition":"Untruthful; Unfair; Corrupt",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Dishonest",
+                           "action":"You are Dishonest"
+                        },
+                        {
+                           "name":"Untrustworthy",
+                           "action":"You are Untrustworthy"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Cheat",
+                  "action":"You are a Cheater",
+                  "definition":"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Deceive",
+                           "action":"You are Deceptive"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"White Lies",
+                  "action":"You Tell White Lies",
+                  "definition":"Telling minor lies to avoid hurting someone's feelings",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest",
+                  "action":"You are Honest",
+                  "definition":"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+                  "default":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest but Inconsiderate",
+                  "action":"You are Honest But Inconsiderate",
+                  "definition":"Insensitive; tactless; inappropriate; too modest",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gossip",
+                  "action":"You are a Gossiper",
+                  "definition":"True but destructive to relationships",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Hard-Hearted",
+                  "action":"You are Hard Hearted",
+                  "definition":"Honest but cruel; Unrealistically aiming for perfection",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Idealistic",
+                           "action":"You are Idealistic"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"#C555F6",
+         "BasicLabel":"Honesty",
+         "AnswerValue":"",
+         "href":"#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "VID":"36",
+         "id":"0000",
+         "Question":"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+         "ValueOptions":{
+            "value":[
+               {
+                  "VID":"000",
+                  "tickName":"Lie",
+                  "name":"Lie",
+                  "action":"You Tell Lies",
+                  "definition":"Untruthful; Unfair; Corrupt",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Dishonest",
+                           "action":"You are Dishonest"
+                        },
+                        {
+                           "name":"Untrustworthy",
+                           "action":"You are Untrustworthy"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Cheat",
+                  "action":"You are a Cheater",
+                  "definition":"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Deceive",
+                           "action":"You are Deceptive"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"White Lies",
+                  "action":"You Tell White Lies",
+                  "definition":"Telling minor lies to avoid hurting someone's feelings",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest",
+                  "action":"You are Honest",
+                  "definition":"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+                  "default":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest but Inconsiderate",
+                  "action":"You are Honest But Inconsiderate",
+                  "definition":"Insensitive; tactless; inappropriate; too modest",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gossip",
+                  "action":"You are a Gossiper",
+                  "definition":"True but destructive to relationships",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Hard-Hearted",
+                  "action":"You are Hard Hearted",
+                  "definition":"Honest but cruel; Unrealistically aiming for perfection",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Idealistic",
+                           "action":"You are Idealistic"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"#C555F6",
+         "BasicLabel":"Honesty",
+         "AnswerValue":"",
+         "href":"#/first",
+         "AnswerKeyWords":""
+      },
+
+      {
+         "VID":"36",
+         "id":"0000",
+         "Question":"Indicate on the scale which words most accurately describe your level of honesty in everyday life",
+         "ValueOptions":{
+            "value":[
+               {
+                  "VID":"000",
+                  "tickName":"Lie",
+                  "name":"Lie",
+                  "action":"You Tell Lies",
+                  "definition":"Untruthful; Unfair; Corrupt",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Dishonest",
+                           "action":"You are Dishonest"
+                        },
+                        {
+                           "name":"Untrustworthy",
+                           "action":"You are Untrustworthy"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Cheat",
+                  "action":"You are a Cheater",
+                  "definition":"Avoids Consequences; Rumour-Mongering; Exaggerates Answers",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Deceive",
+                           "action":"You are Deceptive"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"White Lies",
+                  "action":"You Tell White Lies",
+                  "definition":"Telling minor lies to avoid hurting someone's feelings",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest",
+                  "action":"You are Honest",
+                  "definition":"Everything said is right and true and considereate; trustworthy; genuine; reliable",
+                  "default":true,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Honest but Inconsiderate",
+                  "action":"You are Honest But Inconsiderate",
+                  "definition":"Insensitive; tactless; inappropriate; too modest",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Gossip",
+                  "action":"You are a Gossiper",
+                  "definition":"True but destructive to relationships",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+
+                        }
+                     ]
+                  }
+               },
+               {
+                  "name":"Hard-Hearted",
+                  "action":"You are Hard Hearted",
+                  "definition":"Honest but cruel; Unrealistically aiming for perfection",
+                  "default":false,
+                  "synonyms":{
+                     "synonym":[
+                        {
+                           "name":"Idealistic",
+                           "action":"You are Idealistic"
+                        }
+                     ]
+                  }
+               }
+            ]
+         },
+         "defaultColor":"#C555F6",
+         "BasicLabel":"Honesty",
+         "AnswerValue":"",
+         "href":"#/first",
+         "AnswerKeyWords":""
+      },
+
       {
          "VID":"36",
          "id":"0000",
