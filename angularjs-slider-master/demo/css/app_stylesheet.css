@@ -158,12 +158,15 @@
 		background-image: none;
 		/*These two lines below center-align the svg*/
 		display: block;
-		margin-left: 10vw;
-		margin-right: 10vw;
+		/* margin-left: 10vw; */
+		/* margin-right: 10vw; */
 		height: 80vh;
-		width: 80vw;
+		/* width: 80vw; */
 		position: absolute;
-		/*position: relative;*/
+		position: relative;
+		margin: auto;
+		width: 600px;
+		/* display: block; */
 	}
 
 	#hexCanvas {
