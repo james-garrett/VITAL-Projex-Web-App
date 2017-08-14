@@ -458,9 +458,6 @@ app.controller('MainCtrl',
       $scope.form = null;
       $scope.valueQuestion = new Array(0);
       $scope.jsonData = {};
-      // $scope.valueQuesiton = PHPData.getOutput();
-      // JSONData.getJSONDataFromFile('json/newQuestions10.json', "questions");
-      // JSONData.getJSONDataFromFile('json/questions2.json', "questions");
       
       JSONData.returnQuestionJSONData('json/questions8.json', "questions", function(data) { 
         sessionStorage.setItem("questionJSONData", JSON.stringify(data)); 
@@ -996,12 +993,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
         this.slider_ticks_legend = {};
         this.indexChosen = JSONData.getIndex();
         this.valueSelected = 4;
-        // var colourRange = require("./././trianglify-master/lib/colorbrewer.js");
-        // require(['./././trianglify-master/lib/colorbrewer.js'], function(foo) {
-        //   var colourRange = require('./././trianglify-master/lib/colorbrewer.js');
-        // });
-        // var dom = document.getElementsByClassName('rz-bar'); 
-        // dom.style.backgroundImage = 'linear-gradient(#000000, #ffffff)';
+      
     };
 
     notify = function() {
@@ -1091,6 +1083,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
   return Slider;
 }]);
 
+
+
 app.factory('NotifyingService', function($rootScope) {
     return {
         subscribe: function(scope, callback) {
@@ -1102,14 +1096,14 @@ app.factory('NotifyingService', function($rootScope) {
             $rootScope.$emit('notifying-service-event');
         }
     };
-});
-
 /**
 *
 * @param Scope rootScope
 *
 * Handy function which returns an event whenever a factory is created.
 **/
+});
+
 
 
 app.service('JSONData', function() {
@@ -1148,19 +1142,26 @@ app.service('JSONData', function() {
       // returnQuestionJSONData();
 
     /**
-    *
-    * @param filename
-    * @param dataType
+    * @param String filename 
+    * @param String dataType
     * @param callback
+    *
+    * Gets the json file given from the filename, and will either process data
+    * for a question set or a generated report. If dataType == "questions",
+    * the function keeps track of the number of questions. If dataType == "report"
+    * then the function doesn't track question total.
+    *
     **/
     }
 
     var returnQuestionLength = function() {
       return numberOfQuestions;
+    // If this service is given questions to process, it can return its count.
     }
 
     var setQuestionJSONData = function(val) {
         questionJSONData = val;
+    //  Unused function.
     }
 
     var returnQuestionJSONData = function(filename, dataType, callback) {
@@ -1169,16 +1170,27 @@ app.service('JSONData', function() {
       }
       return questionJSONData;
     }
+    /**
+    * Wrapper function which prevents website running asynchronously while
+    * getJSONDataFromFile fetches question data and making an incomplete web page.
+    * callback can be null if getJSONDataFromFile is already loaded (making questionJSONData.length != 0),
+    * and the question data will just be returned.
+    *
+    **/
+
 
     var returnReportJSONData = function() {
       return reportJSONData;
+    //Returns JSON data used for post-quiz report
     }
 
     var setIndex = function(field) {
       indexChosen = field;
+    // Changes the current question number set to field
     }
 
     var getIndex = function(field) {
+    // Gets the current question number (when user is doing question in menu.html)
       return indexChosen;
     }
 
@@ -1191,6 +1203,14 @@ app.service('JSONData', function() {
       getIndex: getIndex,
       setIndex: setIndex,
     };
+
+    /**
+    * return Object
+    * 
+    * This service allows all JSON question data to be managed externally
+    * to any factory if needed, acting as a private storage unit for hidden
+    * global variables. 
+    **/
 });
 
 app.service('PHPData', function() {
@@ -1229,13 +1249,14 @@ app.service('PHPData', function() {
     getOutput: getOutput,
     returnPHPData: returnPHPData,
   };
+
+  /**
+  * This is an incomplete service which can be used to load question JSON data
+  * from a myPHPAdmin server.
+  **/ 
 });
 
 app.service('ColorBrewerList', function() {
-  /**
-  * ColorBrewerList holds a colorList in an isolated service which users cannot access, 
-  * but factories such as slider and Gem can. 
-  **/
   var colorList = {"color": [
     {"color": "YlGn", "array": ["#ffffe5","#f7fcb9","#d9f0a3","#addd8e","#78c679","#41ab5d","#238443","#006837","#004529"]},
     {"color": "YlGnBu", "array": ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"]},
@@ -1272,7 +1293,7 @@ app.service('ColorBrewerList', function() {
     /**
     * @return Object colorList
 
-    * Returns colorList.
+    * Returns colorList in its entirety.
     *
     **/
   }
@@ -1352,19 +1373,16 @@ app.service('ColorBrewerList', function() {
     setColorPalette: setColorPalette,
     getContrast50: getContrast50,
   };
+
+  /**
+  * ColorBrewerList holds a colorList in an isolated service which users cannot access, 
+  * but factories such as slider and Gem can. 
+  **/
 });
 
 
 
 app.service('AnswerListener', function() {
-  /**
-  * Takes users input answers and stores them in a service
-  * isolated from users and factories, which persists as control
-  * between MainCtrl, QuestionFormCreator, and
-  * ParticipantResultsCreator is tranferred for the interface.
-  **/
-
-
   var inputValue = -1;
   var questionAnswered = false;
   var answeredQuestions = 0;
@@ -1434,6 +1452,12 @@ app.service('AnswerListener', function() {
     setQuestionAnswered: setQuestionAnswered,
     getQuestionAnswered: getQuestionAnswered,
   };
+  /**
+  * Takes users input answers and stores them in a service
+  * isolated from users and factories, which persists as control
+  * between MainCtrl, QuestionFormCreator, and
+  * ParticipantResultsCreator is tranferred for the interface.
+  **/
 
 });
 
@@ -1449,7 +1473,7 @@ app.directive('clickableLabel', function() {
       };
     }
   };
+  // Quick function intended to have labels appear on mouseOver, unsure if this is still even used!
 });
 
 //Use $rootScope to contain data from multiple controllers --> each controller should be for each state
-//https://forum.ionicframework.com/t/multiple-controllers-per-view-global-app-controller-wtf-is-a-controller/1070/2
