@@ -189,7 +189,9 @@ app.controller('MainCtrl',
     }
   };
   /**
-  * Allows the user to toggle the slider response panel
+  * @param Object
+  * Allows the user to toggle the slider response panel, 
+  * not currently being used.
   *
   **/
   
@@ -197,8 +199,10 @@ app.controller('MainCtrl',
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
-  /** Boolean func that checks if a selected group is shown
-    *
+  /** 
+  * @param Object group
+  * Boolean func that checks if a selected group is shown
+    * Not currently used.
     **/
 
   $scope.loadForm = function(index, array, title) {
@@ -209,6 +213,9 @@ app.controller('MainCtrl',
     location.href='#/first';
   } 
   /**
+  * @param int index 
+  * @param array array
+  *
   * 
   **/
 
@@ -287,9 +294,14 @@ app.controller('MainCtrl',
     return points;
 
     /**
-    *
+    * @param int drawingAreaWidth
+    * @param int drawingAreaHeight
+    * @param int corners
     * @return array
     *
+    * Takes custom-set dimensions and generates an array of objects containing
+    * the coordinates of each corner in a polygon outline which is drawn on-screen
+    * by other functions. Number of corners = number of questions.
     **/
   }
 
@@ -306,15 +318,20 @@ app.controller('MainCtrl',
         container.style.width = "100px";
         // container.style.height = $(window).height()/6.10769;
         // container.style.width =  $(window).width()/7.330769230769231;
-        console.log(index);
+        // console.log(index);
         gem.createGem(width*4, height*4, ColorBrewerList.setColorPalette(index%14)[1], 'match_x', g, false, index);
         // gem.createGem(width*4, height*4, gem.setColorPalette(index)[1], 'match_x', g, false);
-        
-        /**
-        *
+        });
+
+      /**
+        *  menu.php generates an array of svg objects, each called an 'environments-image' + current index,
+        * for each question read from the question JSON array. This fetches all generated shapes and
+        * appends a gem to each one. Each svg has a <g> tag inside of it which the gem is placed on.
+        * This was the easiest way to make the gems spin. createGem determines each gem's colour based on
+        * its index in the array, so you can see ColorbrewerList service being referenced to determine each 
+        * color as a param.
         *
         **/
-        });
   }
 
 
@@ -331,8 +348,15 @@ app.controller('MainCtrl',
                 "border-radius": "50%",
               };
   /**
+  *
   * @param index
   * @return Object
+  *
+  * In menu.html each gem is loaded through an angular loop, with one of the parameters being that
+  * each gem's style is determine through ng-style=placeGemOnDiv. This function returns an object which
+  * can freely list off each gem's css details. This function fetches each gem's place on the page
+  * by repeatedly running getPolGon and getting the next coordinates object, then placing the gem
+  * accordingly. It's extremely inefficient and the array could be saved to a service!
   **/
   }
 
@@ -341,6 +365,12 @@ app.controller('MainCtrl',
             "width": "1000px",
             "height": "1000px",
     };
+
+    /**
+    *
+    * Can be referenced in ng-stlye on menu.html to get a quick short custom CSS setting set. No longer used.
+    *
+    **/
   }
 
 
@@ -365,8 +395,11 @@ app.controller('MainCtrl',
            };
   /**
   *
-  * @param
+  * @param int index
   * @return Object
+  *
+  *
+  * 
   **/
   }
 
@@ -977,17 +1010,6 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     this.slider_ticks_legend = {};
 
-    clearDiv = function(div) {
-      
-
-      // while(div.firstChild) {
-      //   div.removeChild(div.firstChild);
-      // }
-    }
-
-
-
-
     backToMenu = function() {
       console.log("Storing answer of " + JSONData.getIndex() + " " + AnswerListener.getInputValue());
       console.log(JSONData.getIndex());
@@ -1082,6 +1104,13 @@ app.factory('NotifyingService', function($rootScope) {
     };
 });
 
+/**
+*
+* @param Scope rootScope
+*
+* Handy function which returns an event whenever a factory is created.
+**/
+
 
 app.service('JSONData', function() {
   /**
@@ -1120,9 +1149,9 @@ app.service('JSONData', function() {
 
     /**
     *
-    * @param
-    * @param
-    * @param
+    * @param filename
+    * @param dataType
+    * @param callback
     **/
     }
 

@@ -160,16 +160,10 @@
 
 
     var CreateSurveyData = function(JSONFile, newJSONData) {
-      // console.log(valueQuestion, valueQuestion[0].length, valueQuestion[valueQuestion.length]);
-      // console.log(newJSONData["0"]["Question Prompt"]);
-    //   console.log(newJSONData["0"].valueArray.length);
-    //   console.log(newJSONData.length, 
-        // newJSONData["0"].valueArray.length, 
-        // newJSONData["0"].valueArray["0"].synonyms.length);
       var newID = new String("000").concat(valueQuestion[0].length.toString());
       var JSONArr = new Object({"Questions": []});
         for(var questionIndex = 0; questionIndex < newJSONData.length; questionIndex++) {
-
+        
             var questionTemplate = {
               "id": newID,
               "Question": newJSONData[questionIndex]["Question Prompt"],
@@ -214,6 +208,15 @@
        var returnJSON = JSON.stringify(JSONArr);
        // console.log(JSONArr);
        console.log(returnJSON);
+
+       /**
+       * @param JSONFile - not used
+       * @param newJSONFile
+       *
+       * After user inputs new data, newJSONFile is used to iteratively generate a new version.
+       * This maps the structure of any JSON file used for reading questions off of in app.js
+       **/
+
      }
 
     storeSurvey = function(survey) {
@@ -251,17 +254,17 @@
     
     loadJSON = function() {
   
-  var returnJSON = [];
-  $.getJSON("json/questions.json", function(json) {
-    $.each(json.Questions, function(k, v) {
-      // console.log(k, v);
-    })
-    valueQuestion.push(json.Questions);
-    // $scope.valueQuestion = json.Questions[0].Question;
-    // return json;
-  });
-  // console.log($scope.valueQuestion);   
-  }
+    var returnJSON = [];
+    $.getJSON("json/questions.json", function(json) {
+      $.each(json.Questions, function(k, v) {
+        // console.log(k, v);
+      })
+      valueQuestion.push(json.Questions);
+      // $scope.valueQuestion = json.Questions[0].Question;
+      // return json;
+    });
+    
+    }
 
   loadJSON();
 
