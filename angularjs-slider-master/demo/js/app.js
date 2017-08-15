@@ -420,8 +420,9 @@ app.controller('MainCtrl',
             "width": ((document.getElementById("shapeContainer").offsetWidth/4)) + "px",            
     };
   /**
-  *
   * @return Object
+  *
+  * Originally placed a progress counter, not currently used.
   **/
 
   }
@@ -462,13 +463,16 @@ app.controller('MainCtrl',
       JSONData.returnQuestionJSONData('json/questions8.json', "questions", function(data) { 
         sessionStorage.setItem("questionJSONData", JSON.stringify(data)); 
         $scope.valueQuestion = data;
+
+      /**
+      * 
+      * Runs returnQuestionJSONData and waits for JSON reader to finish before
+      * continuing. It captures the question data, converts it to string,
+      * and saves it to valueQuestion.
+      **/
       });
 
-/**
-* @param
-* @param
-*
-**/
+
 }]);
 
 app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibModal', 'AnswerListener', 
@@ -482,11 +486,21 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         var index = sessionStorage.getItem("currentIndex", index);
         //Gets question index (always 0 at start)
         if(JSONData.getIndex() == -1) {
+          // The index is always set to -1 when the quiz beins.
           JSONData.setIndex(sessionStorage.getItem("currentIndex"));
           console(JSON.parse(sessionStorage.getItem("questionJSONData")));
           var array =  JSON.parse(sessionStorage.getItem("questionJSONData"))[0][index];
+          /**
+          * On the first question, the index is set to the current question number.
+          * Get the current question's data from saved question data.
+          **/
         } else {
            var array = JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][index];
+           /**
+           * 
+           * This seems to read the question data from file again, seems pretty inefficient!
+           *
+           **/
         }
       
         document.getElementById("questionHeadingOnForm").innerText = array.Question;
@@ -510,7 +524,7 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
           console.log("NotifyingService caught call");
       /**
       * 
-      *
+      * If the controller is accessed, catch this event and run gemEvent().
       **/
       });
       
@@ -520,16 +534,24 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         $scope.gem.changeGemDefinition(AnswerListener.getInputValue());
       /**
       *
+      * Change the gem's color, value label and definition to be the current's question index's
       **/
       }
 
       $scope.$on('JSONDATA', function(event, array) {
-      });
 
       /**
       * @param event
       * @param array
+      *
+      * Doesn't actually do anything atm
       **/
+      });
+  /**
+  *
+  * Handles each question form that the users fills out by grabbing the current question
+  * from JSONData and getting the current question index.
+  **/
   }]);
 
 
@@ -944,6 +966,11 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
           console.log(bg.id, gemName);
         }
         bg.appendChild(gem);
+  /**
+  *
+  *
+  **/
+
   }
 
   this.changeGemColor = function(gemColor, currentIndex, bg) {
@@ -993,7 +1020,10 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
         this.slider_ticks_legend = {};
         this.indexChosen = JSONData.getIndex();
         this.valueSelected = 4;
-      
+      /**
+      * 
+      *
+      **/
     };
 
     notify = function() {
