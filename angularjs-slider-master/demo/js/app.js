@@ -216,7 +216,8 @@ app.controller('MainCtrl',
   * @param int index 
   * @param array array
   *
-  * 
+  * Redirect page towards question form page, save current question index,
+  * fetch current index and get that question's data.
   **/
 
 
@@ -398,7 +399,10 @@ app.controller('MainCtrl',
   * @param int index
   * @return Object
   *
-  *
+  * Getting a certain gem's respective question number, set the size, position and content 
+  * of the overlaid label, returning the label's css data as an object. This function is run
+  * as the ng-style function executed for each gem label loaded through angular on the 
+  * question page, taking the returned object as CSS data.
   * 
   **/
   }
@@ -514,7 +518,8 @@ app.controller('QuestionFormCreator', ['$rootScope','$scope','$timeout', '$uibMo
         AnswerListener.setInputValue(4);
       /**
       * 
-      *
+      * Initializes a question form by setting it's question number (relative to other questions in the 
+      * JSON array of questions).
       **/
       } 
     $scope.init();
@@ -967,6 +972,15 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
         }
         bg.appendChild(gem);
   /**
+  * @param int gheight
+  * @param int gwidth
+  * @param array(array()) x_color
+  * @param array(array()) y_color
+  * @param bg
+  * @param boolean solo
+  * @param int Qindex
+  *
+  * 
   *
   *
   **/
@@ -990,8 +1004,29 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
     this.createGem(dimensions[0], dimensions[1], x, y, bg, true);
   }
 
+  /**
+  * @param gemColor
+  * @param int currentIndex
+  * @param bg
+  *
+  * Depending on what index (numbered from 0 to 7), we create a range of colour schemes fetched
+  * from ColorBrewerList (3 colors), set 2 gradients (arrays of similarly shaded colours), and input it as
+  * elements in a created gem. gem dimensions (arrays of x/y positions and coordinates) for its size are 
+  * also given to a created gem, as well as the id of the background that the gem is being appended to.
+  * We also send the gem a boolean value (true) to tell it whether or not it's creating an individual gem for
+  * a question, or one gem as part of an array displayed the menu.
+  *
+  **/
+
   this.changeGemDefinition = function(value) {
      document.getElementsByClassName("valueExplanation")[0].innerHTML = JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[value-1].definition;
+  /**
+  * @param int value
+  *
+  * Get's current question's "definition" (explanation) by grabbing its index in the array of possible responses
+  * and applying whatever chosen value the user has selected and setting the gem's definition to the indexed value.
+  **/
+
   }
   this.changeGemLabel = function(value) {
     var gemTxt = document.getElementById("gemLabel");
@@ -1001,6 +1036,14 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
     if(description.length > 14) {
       var split = description.match(/.{1,14}/g);
     }
+
+    /**
+    * @param int value
+    * 
+    * Similar to changeGemDefinition, but places a label overlaid on a gem describing the current value selected.
+    * It also divides up the label into multiple lines if the label is more than 14 characters, so that it stays within
+    * a gem's radius.
+    **/
 
   }
 
