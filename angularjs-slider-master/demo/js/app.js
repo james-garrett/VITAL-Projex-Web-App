@@ -980,7 +980,12 @@ app.factory('Gem', ['$rootScope', '$http', 'JSONData', 'ColorBrewerList', functi
   * @param boolean solo
   * @param int Qindex
   *
-  * 
+  * Using an open-source library called Trianglify, a textured shape consisting of differently coloured
+  * polygons can be assembled, with 2 arrays of colours (x_colors, y_colors) that the gems fade between
+  * to create 2-color gradients. The variance in the polygon shapes, size of polygons can all be configured 
+  * within the Trianglify object. The method also determines what its naming convention should be by 
+  * "solo", which determines whether to name it "#prettygem" or #prettyGem1 depending on Qindex - which
+  * determines what the number on the end will be. It's admittedly quite ridiculous how I've set this up.
   *
   *
   **/
@@ -1064,13 +1069,21 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
         this.indexChosen = JSONData.getIndex();
         this.valueSelected = 4;
       /**
+      * @param array(Array(String) questionJSONData
       * 
-      *
+      * Takes an associative array questionJSONData and inputs it into a slider, while saving this question's
+      * index to this.indexChosen, and setting the valueSelected (slider position) to the default position in
+      * the middle.
       **/
     };
 
     notify = function() {
         NotifyingService.notify();
+
+    /**
+    *
+    * Simple event handler which can be attached to objects to trigger when they change.
+    **/
     }
 
     this.slider_ticks_legend = {};
@@ -1081,6 +1094,13 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
       storeAnswer(JSONData.getIndex(), AnswerListener.getInputValue());
       AnswerListener.setQuestionAnswered(true);
       location.href='#/menu';
+
+
+    /**
+    *
+    * Stores the current selected response, saves it to the AnswerListener, marks this question as finished,
+    * and redirects the user to the menu again.
+    **/
     }
 
     storeAnswer = function(index, answer) {
@@ -1088,6 +1108,14 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
       console.log(JSONData.getIndex());
       sessionStorage.setItem("Question: " + index.toString(), answer); /*Store answer*/
       console.log(sessionStorage.getItem(index.toString()));
+    
+    /**
+    * @param int index
+    * @param int answer
+    *
+    * Gets the current question index and the current answer selected from the questionaire
+    * and saves it to sessionStorage.
+    **/
     }
 
 
@@ -1099,6 +1127,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
             ceil: 7,
             floor: 1,
 
+            //There are 7 values/answers to each question, so we set the ceiling and floor to this range.
+
             stepsArray: [
               {value: 1, legend: questionJSONData.ValueOptions.value[0].name},
               {value: 2, legend: questionJSONData.ValueOptions.value[1].name},
@@ -1107,6 +1137,8 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
               {value: 5, legend: questionJSONData.ValueOptions.value[4].name},
               {value: 6, legend: questionJSONData.ValueOptions.value[5].name},
               {value: 7, legend: questionJSONData.ValueOptions.value[6].name}
+
+              //These are the selectable points along the slider, each divot labelled by it's value name.
               
             ],
 
@@ -1121,6 +1153,7 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
             ticksTooltip: function(v) {
               return (JSONData.returnQuestionJSONData('json/questions8.json', "questions")[0][JSONData.getIndex()].ValueOptions.value[v].definition);
+              //Ensures that each selected value's definition/explanation is loaded from the JSON file.
             },
 
             getTickColor: function (value) {
@@ -1132,12 +1165,17 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
               if (value < 9)
                 return ColorBrewerList.searchForColor(colorRange[2]);
               return '#2AE02A';
+
+              // Each tick is coloured a similar shade to the current displayed gem, to give the users visual indication of
+              // the answer they selected.
           },
 
             getPointerColor: function(v) {              
               AnswerListener.setInputValue(v);
               notify();
               return v;
+            // This is meant to listen for pointer color, but it also takes the index (int) selected. Notify triggers whenever
+            // the slider changes, and the value v is saved to AnswerListener.
             }
           }
       };
@@ -1145,15 +1183,19 @@ app.factory('Slider', ['$rootScope', '$http', 'AnswerListener', 'JSONData', 'Not
 
     this.sliderGet = function() {
         return this.slider_ticks_legend;
+    // The returned value is just the slider object as a whole.
     }
 
     this.initialize();
     this.setSlider(questionJSONData);
 
-    
-
   };
   return Slider;
+
+  /**
+  *
+  * This factory handles loading, configuring and changing the slider object on each question. 
+  **/
 }]);
 
 
