@@ -337,10 +337,10 @@ app.controller('MainCtrl',
 
 
   $scope.placeGemOnDiv = function(index) {
-    var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
-    var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
-    return {"left": $scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x,           
-                "top": $scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y,
+    var width = (document.getElementById("shapeContainer").offsetWidth)/1.35;
+    var height = (document.getElementById("shapeContainer").offsetHeight)/1.35;
+    return {"left": (($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x*1.2) - 240),           
+                "top": ($scope.getPolyGon(width , height, JSONData.returnQuestionLength())[index].y*1.2 - 85),
                 "position": "absolute",
                 "display": "block",
                 "float": "left",
@@ -376,12 +376,12 @@ app.controller('MainCtrl',
 
 
   $scope.placeGemLabel = function(index) {
-    var width = (document.getElementById("shapeContainer").offsetWidth)/1.45;
-    var height = (document.getElementById("shapeContainer").offsetHeight)/1.45;
+    var width = (document.getElementById("shapeContainer").offsetWidth)/1.35;
+    var height = (document.getElementById("shapeContainer").offsetHeight)/1.35;
     var heading = document.getElementById("Q" + index.toString() + "gemLabel");
     var gemBox = document.getElementsByClassName("environments-image" + index.toString())[0];
-    var left = ($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x) + (gemBox.width.baseVal.value)/10;
-    var top = ($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].y) + (gemBox.height.baseVal.value)/4;
+    var left = (($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].x) + (gemBox.width.baseVal.value)/10) * 1.2 - 240;
+    var top = (($scope.getPolyGon(width, height, JSONData.returnQuestionLength())[index].y) + (gemBox.height.baseVal.value)/4) * 1.2 - 85;
     heading.style.left =  left + "px";
     heading.style.top = top + "px";
     return {"position": "absolute",
